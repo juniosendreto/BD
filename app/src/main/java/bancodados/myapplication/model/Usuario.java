@@ -11,6 +11,9 @@ import com.j256.ormlite.table.DatabaseTable;
  */
 @DatabaseTable(tableName = "usuario")
 public class Usuario {
+
+    public static final String COL_ID = "ID";
+
     public static final String COL_LOGIN = "LOGIN";
 
     public static final String COL_PASSWORD = "PASSWORD";
@@ -33,10 +36,10 @@ public class Usuario {
 
     public static final String TABLE_NAME = "USUARIO";
 
-    public static final String DATABASE_NAME = "project_db";
+    public static final String DATABASE_NAME = "sys_vistoria_db";
 
-    @DatabaseField(generatedId = true)
-    private Integer id;
+    @DatabaseField(columnName = "id", id = true, generatedId = true)
+    private Long id;
 
     @DatabaseField(columnName = "nome", dataType = DataType.STRING, canBeNull = false)
     private String nome;
@@ -74,11 +77,11 @@ public class Usuario {
     */
 
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

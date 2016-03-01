@@ -2,11 +2,16 @@ package bancodados.myapplication.model;
 
 import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
 /**
  * Created by junio on 26/02/16.
  */
+
+@DatabaseTable(tableName = "VISTORIA")
 public class Vistoria {
+
+    public static final String COL_ID = "ID";
 
     public static final String COL_ENCOSTA_NATURAL = "ENCOSTA_NATURAL";
 
@@ -35,6 +40,8 @@ public class Vistoria {
     public static final String COL_BLOCOS_ROCHA_MATACOES = "BLOCOS_ROCHA_MATACOES";
 
     public static final String COL_LIXO_ENTULHO = "LIXO_ENTULHO";
+
+    public static final String COL_CONCENTRA_AGUA_CHUVA = "CONCENTRA_AGUA_CHUVA";
 
     public static final String COL_CONCENTRA_AGUA_SERVIDA = "CONCENTRA_AGUA_SERVIDA";
 
@@ -68,57 +75,76 @@ public class Vistoria {
 
     public static final String COL_QUEDA_BLOCOS = "QUEDA_BLOCOS";
 
+    public static final String COL_ROLAMENTO_BLOCOS = "ROLAMENTO_BLOCOS";
+
+    public static final String COL_RISCO = "RISCO";
+
+    public static final String COL_QUANT_MORADIS = "QUANTIDADE_MORADIAS";
+
+    public static final String COL_QUANT_PESSOAS = "QUANTIDADE_PESSOAS";
+
+    public static final String COL_INFORMACOES = "INFORMACOES";
 
     public static final String TABLE_NAME = "VISTORIA";
 
+    @DatabaseField(columnName = "id", id = true, generatedId = true)
+    private Long id;
 
-    public static final String DATABASE_NAME = "project_db";
+    /*
+        2 PASSO - CARACTERIZAÇÃO DO LOCAL
+     */
 
+    @DatabaseField(columnName = "ENCOSTA_NATURAL", dataType = DataType.BOOLEAN, canBeNull = false)
+    private Boolean encostaNatural;
 
-    @DatabaseField(generatedId = true)
-    private Integer id;
+    @DatabaseField(columnName = "TALUDE_CORTE", dataType = DataType.BOOLEAN, canBeNull = false)
+    private Boolean taludeCorte;
 
-    @DatabaseField(columnName = "ENCOSTA_NATURAL", dataType = DataType.STRING, canBeNull = false)
-    private String encostaNatural;
+    @DatabaseField(columnName = "ATERRO_LANCADO", dataType = DataType.BOOLEAN, canBeNull = false)
+    private Boolean aterroLancado;
 
-    @DatabaseField(columnName = "TALUDE_CORTE", dataType = DataType.STRING, canBeNull = false)
-    private String taludeCorte;
+    @DatabaseField(columnName = "PAREDE_ROCHOSA", dataType = DataType.BOOLEAN, canBeNull = false)
+    private Boolean paredeRochosa;
 
-    @DatabaseField(columnName = "ATERRO_LANCADO", dataType = DataType.STRING, canBeNull = false)
-    private String aterroLancado;
+    @DatabaseField(columnName = "ALTURA_N", dataType = DataType.DOUBLE, canBeNull = false)
+    private Double alturaN;
 
-    @DatabaseField(columnName = "PAREDE_ROCHOSA", dataType = DataType.STRING, canBeNull = false)
-    private String paredeRochosa;
+    @DatabaseField(columnName = "ALTURA_C", dataType = DataType.DOUBLE, canBeNull = true)
+    private Double alturaC;
 
-    @DatabaseField(columnName = "ALTURA_N", dataType = DataType.STRING, canBeNull = false)
-    private String alturaN;
+    @DatabaseField(columnName = "ALTURA_L", dataType = DataType.DOUBLE, canBeNull = true)
+    private Double alturaL;
 
-    @DatabaseField(columnName = "ALTURA_C", dataType = DataType.STRING, canBeNull = true)
-    private String alturaC;
+    @DatabaseField(columnName = "ALTURA_R", dataType = DataType.DOUBLE, canBeNull = true)
+    private Double alturaR;
 
-    @DatabaseField(columnName = "ALTURA_L", dataType = DataType.STRING, canBeNull = true)
-    private String alturaL;
+    @DatabaseField(columnName = "DISTANCIA_MORADA_C", dataType = DataType.DOUBLE, canBeNull = true)
+    private Double distanciaMoradaC;
 
-    @DatabaseField(columnName = "ALTURA_R", dataType = DataType.STRING, canBeNull = true)
-    private String alturaR;
+    @DatabaseField(columnName = "DISTANCIA_MORADA_L", dataType = DataType.DOUBLE, canBeNull = false)
+    private Double DistanciaMoradaL;
 
-    @DatabaseField(columnName = "DISTANCIA_MORADA_C", dataType = DataType.STRING, canBeNull = true)
-    private String distanciaMoradaC;
+    @DatabaseField(columnName = "TOPO_C", dataType = DataType.DOUBLE, canBeNull = false)
+    private Double topoC;
 
-    @DatabaseField(columnName = "DISTANCIA_MORADA_L", dataType = DataType.STRING, canBeNull = false)
-    private Integer DistanciaMoradaL;
+    @DatabaseField(columnName = "TOPO_L", dataType = DataType.DOUBLE, canBeNull = false)
+    private Double topoL;
 
-    @DatabaseField(columnName = "TOPO_C", dataType = DataType.STRING, canBeNull = false)
-    private String topoC;
+    @DatabaseField(columnName = "BLOCOS_ROCHA_MATACOES", dataType = DataType.BOOLEAN, canBeNull = false)
+    private Boolean blocosRochasMatacoes;
 
-    @DatabaseField(columnName = "TOPO_L", dataType = DataType.STRING, canBeNull = false)
-    private String topoL;
+    @DatabaseField(columnName = "LIXO_ENTULHO", dataType = DataType.BOOLEAN, canBeNull = false)
+    private Boolean lixoEntulho;
 
-    @DatabaseField(columnName = "LIXO_ENTULHO", dataType = DataType.STRING, canBeNull = false)
-    private String lixoEntulho;
+     /*
+        3 PASSO - ÁGUA
+     */
 
-    @DatabaseField(columnName = "CONCENTRA_AGUA_SERVIDA", dataType = DataType.STRING, canBeNull = false)
-    private String concentraAguaServida;
+    @DatabaseField(columnName = "CONCENTRA_AGUA_CHUVA", dataType = DataType.BOOLEAN, canBeNull = false)
+    private Boolean concentraAguaChuva;
+
+    @DatabaseField(columnName = "CONCENTRA_AGUA_SERVIDA", dataType = DataType.BOOLEAN, canBeNull = false)
+    private Boolean concentraAguaServida;
 
     @DatabaseField(columnName = "DRENAGE_SUPERFICIAL", dataType = DataType.STRING, canBeNull = false)
     private String drenageSuperficial;
@@ -132,39 +158,376 @@ public class Vistoria {
     @DatabaseField(columnName = "MINAS_DAGUA", dataType = DataType.STRING, canBeNull = true)
     private String minasDagua;
 
-    @DatabaseField(columnName = "ARVORES", dataType = DataType.STRING, canBeNull = true)
-    private String arvores;
+     /*
+        4 PASSO - VEGETÇÃO NO TALUDE OU PROXIMIDADES
+     */
 
-    @DatabaseField(columnName = "VEGETACAO_RASTEIRA", dataType = DataType.STRING, canBeNull = false)
-    private Integer vegetacaoRasteira;
+    @DatabaseField(columnName = "ARVORES", dataType = DataType.BOOLEAN, canBeNull = true)
+    private Boolean arvores;
 
-    @DatabaseField(columnName = "AREA_DESMATADA", dataType = DataType.STRING, canBeNull = false)
-    private String areaDesmatada;
+    @DatabaseField(columnName = "VEGETACAO_RASTEIRA", dataType = DataType.BOOLEAN, canBeNull = false)
+    private Boolean vegetacaoRasteira;
+
+    @DatabaseField(columnName = "AREA_DESMATADA", dataType = DataType.BOOLEAN, canBeNull = false)
+    private Boolean areaDesmatada;
 
     @DatabaseField(columnName = "AREA_CULTIVO", dataType = DataType.STRING, canBeNull = false)
     private String areaCultivo;
 
+     /*
+        5 PASSO - SINAIS DE MOVIMENTAÇÕES
+     */
+
     @DatabaseField(columnName = "TRINCA", dataType = DataType.STRING, canBeNull = false)
     private String trinca;
 
-    @DatabaseField(columnName = "DEGRAUS_ABATIMENTO", dataType = DataType.STRING, canBeNull = false)
-    private String degrausAbatimento;
+    @DatabaseField(columnName = "DEGRAUS_ABATIMENTO", dataType = DataType.BOOLEAN, canBeNull = false)
+    private Boolean degrausAbatimento;
 
     @DatabaseField(columnName = "INCLINACAO", dataType = DataType.STRING, canBeNull = true)
     private String inclinacao;
 
-    @DatabaseField(columnName = "MURO_PAREDE_EMBARRIGADO", dataType = DataType.STRING, canBeNull = true)
-    private String muroParedeEmbarrigado;
+    @DatabaseField(columnName = "MURO_PAREDE_EMBARRIGADO", dataType = DataType.BOOLEAN, canBeNull = true)
+    private Boolean muroParedeEmbarrigado;
 
-    @DatabaseField(columnName = "CICATRIZ_ESCORREGAMENTO", dataType = DataType.STRING, canBeNull = true)
-    private String cicatrizEscorregamento;
+    @DatabaseField(columnName = "CICATRIZ_ESCORREGAMENTO", dataType = DataType.BOOLEAN, canBeNull = true)
+    private Boolean cicatrizEscorregamento;
+
+     /*
+        6 PASSOO - TIPO DE PROCESSOS DE INSTABILIZAÇÃO ESPERADOS OU JÁ OCORRIDOS
+     */
 
     @DatabaseField(columnName = "ESCORREGAMENTO", dataType = DataType.STRING, canBeNull = true)
     private String Escorregamento;
 
-    @DatabaseField(columnName = "QUEDA_BLOCOS", dataType = DataType.STRING, canBeNull = false)
-    private Integer quedaBlocos;
+    @DatabaseField(columnName = "QUEDA_BLOCOS", dataType = DataType.BOOLEAN, canBeNull = false)
+    private Boolean quedaBlocos;
+
+    @DatabaseField(columnName = "ROLAMENTO_BLOCOS", dataType = DataType.BOOLEAN, canBeNull = false)
+    private Boolean rolamentoBlocos;
+
+     /*
+        7 PASSO - DETERMINAÇÃO DO GRAU DE RISCO
+     */
+
+    @DatabaseField(columnName = "RISCO", dataType = DataType.STRING, canBeNull = false)
+    private Integer risco;
+
+    /*
+        8 PASSO - NECESSIDADE DE REMOÇÃO
+     */
+
+    @DatabaseField(columnName = "QUANTIDADE_MORADIAS", dataType = DataType.INTEGER, canBeNull = false)
+    private Integer quantidadeMoradias;
+
+    @DatabaseField(columnName = "QUANTIDADE_PESSOAS", dataType = DataType.INTEGER, canBeNull = false)
+    private Integer quantidadePessoas;
+
+     /*
+        8 PASSO - OUTRAS INFORMAÇÕES
+     */
+
+    @DatabaseField(columnName = "INFORMAÇÕES", dataType = DataType.STRING, canBeNull = false)
+    private String informacoes;
 
 
+    @DatabaseField(canBeNull = false, foreign = true)
+    private Localizacao localizacao;
 
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Boolean getEncostaNatural() {
+        return encostaNatural;
+    }
+
+    public void setEncostaNatural(Boolean encostaNatural) {
+        this.encostaNatural = encostaNatural;
+    }
+
+    public Boolean getTaludeCorte() {
+        return taludeCorte;
+    }
+
+    public void setTaludeCorte(Boolean taludeCorte) {
+        this.taludeCorte = taludeCorte;
+    }
+
+    public Boolean getAterroLancado() {
+        return aterroLancado;
+    }
+
+    public void setAterroLancado(Boolean aterroLancado) {
+        this.aterroLancado = aterroLancado;
+    }
+
+    public Boolean getParedeRochosa() {
+        return paredeRochosa;
+    }
+
+    public void setParedeRochosa(Boolean paredeRochosa) {
+        this.paredeRochosa = paredeRochosa;
+    }
+
+    public Double getAlturaN() {
+        return alturaN;
+    }
+
+    public void setAlturaN(Double alturaN) {
+        this.alturaN = alturaN;
+    }
+
+    public Double getAlturaC() {
+        return alturaC;
+    }
+
+    public void setAlturaC(Double alturaC) {
+        this.alturaC = alturaC;
+    }
+
+    public Double getAlturaL() {
+        return alturaL;
+    }
+
+    public void setAlturaL(Double alturaL) {
+        this.alturaL = alturaL;
+    }
+
+    public Double getAlturaR() {
+        return alturaR;
+    }
+
+    public void setAlturaR(Double alturaR) {
+        this.alturaR = alturaR;
+    }
+
+    public Double getDistanciaMoradaC() {
+        return distanciaMoradaC;
+    }
+
+    public void setDistanciaMoradaC(Double distanciaMoradaC) {
+        this.distanciaMoradaC = distanciaMoradaC;
+    }
+
+    public Double getTopoC() {
+        return topoC;
+    }
+
+    public void setTopoC(Double topoC) {
+        this.topoC = topoC;
+    }
+
+    public Double getDistanciaMoradaL() {
+        return DistanciaMoradaL;
+    }
+
+    public void setDistanciaMoradaL(Double distanciaMoradaL) {
+        DistanciaMoradaL = distanciaMoradaL;
+    }
+
+    public Double getTopoL() {
+        return topoL;
+    }
+
+    public void setTopoL(Double topoL) {
+        this.topoL = topoL;
+    }
+
+    public Boolean getBlocosRochasMatacoes() {
+        return blocosRochasMatacoes;
+    }
+
+    public void setBlocosRochasMatacoes(Boolean blocosRochasMatacoes) {
+        this.blocosRochasMatacoes = blocosRochasMatacoes;
+    }
+
+    public Boolean getLixoEntulho() {
+        return lixoEntulho;
+    }
+
+    public void setLixoEntulho(Boolean lixoEntulho) {
+        this.lixoEntulho = lixoEntulho;
+    }
+
+    public Boolean getConcentraAguaChuva() {
+        return concentraAguaChuva;
+    }
+
+    public void setConcentraAguaChuva(Boolean concentraAguaChuva) {
+        this.concentraAguaChuva = concentraAguaChuva;
+    }
+
+    public Boolean getConcentraAguaServida() {
+        return concentraAguaServida;
+    }
+
+    public void setConcentraAguaServida(Boolean concentraAguaServida) {
+        this.concentraAguaServida = concentraAguaServida;
+    }
+
+    public String getDrenageSuperficial() {
+        return drenageSuperficial;
+    }
+
+    public void setDrenageSuperficial(String drenageSuperficial) {
+        this.drenageSuperficial = drenageSuperficial;
+    }
+
+    public String getEsgoto() {
+        return esgoto;
+    }
+
+    public void setEsgoto(String esgoto) {
+        this.esgoto = esgoto;
+    }
+
+    public String getMinasDagua() {
+        return minasDagua;
+    }
+
+    public void setMinasDagua(String minasDagua) {
+        this.minasDagua = minasDagua;
+    }
+
+    public String getAguaMoradiaVazamento() {
+        return aguaMoradiaVazamento;
+    }
+
+    public void setAguaMoradiaVazamento(String aguaMoradiaVazamento) {
+        this.aguaMoradiaVazamento = aguaMoradiaVazamento;
+    }
+
+    public Boolean getArvores() {
+        return arvores;
+    }
+
+    public void setArvores(Boolean arvores) {
+        this.arvores = arvores;
+    }
+
+    public Boolean getVegetacaoRasteira() {
+        return vegetacaoRasteira;
+    }
+
+    public void setVegetacaoRasteira(Boolean vegetacaoRasteira) {
+        this.vegetacaoRasteira = vegetacaoRasteira;
+    }
+
+    public Boolean getAreaDesmatada() {
+        return areaDesmatada;
+    }
+
+    public void setAreaDesmatada(Boolean areaDesmatada) {
+        this.areaDesmatada = areaDesmatada;
+    }
+
+    public String getAreaCultivo() {
+        return areaCultivo;
+    }
+
+    public void setAreaCultivo(String areaCultivo) {
+        this.areaCultivo = areaCultivo;
+    }
+
+    public String getTrinca() {
+        return trinca;
+    }
+
+    public void setTrinca(String trinca) {
+        this.trinca = trinca;
+    }
+
+    public Boolean getDegrausAbatimento() {
+        return degrausAbatimento;
+    }
+
+    public void setDegrausAbatimento(Boolean degrausAbatimento) {
+        this.degrausAbatimento = degrausAbatimento;
+    }
+
+    public String getInclinacao() {
+        return inclinacao;
+    }
+
+    public void setInclinacao(String inclinacao) {
+        this.inclinacao = inclinacao;
+    }
+
+    public Boolean getMuroParedeEmbarrigado() {
+        return muroParedeEmbarrigado;
+    }
+
+    public void setMuroParedeEmbarrigado(Boolean muroParedeEmbarrigado) {
+        this.muroParedeEmbarrigado = muroParedeEmbarrigado;
+    }
+
+    public Boolean getCicatrizEscorregamento() {
+        return cicatrizEscorregamento;
+    }
+
+    public void setCicatrizEscorregamento(Boolean cicatrizEscorregamento) {
+        this.cicatrizEscorregamento = cicatrizEscorregamento;
+    }
+
+    public String getEscorregamento() {
+        return Escorregamento;
+    }
+
+    public void setEscorregamento(String escorregamento) {
+        Escorregamento = escorregamento;
+    }
+
+    public Boolean getQuedaBlocos() {
+        return quedaBlocos;
+    }
+
+    public void setQuedaBlocos(Boolean quedaBlocos) {
+        this.quedaBlocos = quedaBlocos;
+    }
+
+    public Boolean getRolamentoBlocos() {
+        return rolamentoBlocos;
+    }
+
+    public void setRolamentoBlocos(Boolean rolamentoBlocos) {
+        this.rolamentoBlocos = rolamentoBlocos;
+    }
+
+    public Integer getRisco() {
+        return risco;
+    }
+
+    public void setRisco(Integer risco) {
+        this.risco = risco;
+    }
+
+    public Integer getQuantidadeMoradias() {
+        return quantidadeMoradias;
+    }
+
+    public void setQuantidadeMoradias(Integer quantidadeMoradias) {
+        this.quantidadeMoradias = quantidadeMoradias;
+    }
+
+    public Integer getQuantidadePessoas() {
+        return quantidadePessoas;
+    }
+
+    public void setQuantidadePessoas(Integer quantidadePessoas) {
+        this.quantidadePessoas = quantidadePessoas;
+    }
+
+    public String getInformacoes() {
+        return informacoes;
+    }
+
+    public void setInformacoes(String informacoes) {
+        this.informacoes = informacoes;
+    }
 }
