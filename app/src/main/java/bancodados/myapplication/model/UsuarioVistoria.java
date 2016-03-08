@@ -28,7 +28,12 @@ public class UsuarioVistoria {
     private Vistoria vistoria;
 
     @DatabaseField(columnName = "DATA", dataType = DataType.DATE_TIME, canBeNull = false)
-    private DateFormat latitude;
+    private DateFormat data;
 
+    public UsuarioVistoria(Usuario usuario, Vistoria vistoria, DateFormat data) {
 
+        this.usuario = usuario;
+        this.vistoria = vistoria;
+        this.data = data;
+    }
 }

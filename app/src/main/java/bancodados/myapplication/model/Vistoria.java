@@ -530,4 +530,56 @@ public class Vistoria {
     public void setInformacoes(String informacoes) {
         this.informacoes = informacoes;
     }
+
+    public Vistoria(Boolean encostaNatural, Boolean taludeCorte, Boolean aterroLancado,
+                    Boolean paredeRochosa, Double alturaN, Double alturaC, Double alturaL,
+                    Double alturaR, Double distanciaMoradaC, Double distanciaMoradaL, Double topoC,
+                    Double topoL, Boolean blocosRochasMatacoes, Boolean lixoEntulho,
+                    Boolean concentraAguaChuva, Boolean concentraAguaServida,
+                    String drenageSuperficial, String esgoto, String aguaMoradiaVazamento,
+                    String minasDagua, Boolean arvores, Boolean vegetacaoRasteira, Boolean areaDesmatada,
+                    String areaCultivo, String trinca, Boolean degrausAbatimento, String inclinacao,
+                    Boolean muroParedeEmbarrigado, Boolean cicatrizEscorregamento, String escorregamento,
+                    Boolean quedaBlocos, Boolean rolamentoBlocos, Integer risco, Integer quantidadeMoradias,
+                    Integer quantidadePessoas, String informacoes, Localizacao localizacao) {
+
+
+        this.encostaNatural = encostaNatural;
+        this.taludeCorte = taludeCorte;
+        this.aterroLancado = aterroLancado;
+        this.paredeRochosa = paredeRochosa;
+        this.alturaN = alturaN;
+        this.alturaC = alturaC;
+        this.alturaL = alturaL;
+        this.alturaR = alturaR;
+        this.distanciaMoradaC = distanciaMoradaC;
+        DistanciaMoradaL = distanciaMoradaL;
+        this.topoC = topoC;
+        this.topoL = topoL;
+        this.blocosRochasMatacoes = blocosRochasMatacoes;
+        this.lixoEntulho = lixoEntulho;
+        this.concentraAguaChuva = concentraAguaChuva;
+        this.concentraAguaServida = concentraAguaServida;
+        this.drenageSuperficial = drenageSuperficial;
+        this.esgoto = esgoto;
+        this.aguaMoradiaVazamento = aguaMoradiaVazamento;
+        this.minasDagua = minasDagua;
+        this.arvores = arvores;
+        this.vegetacaoRasteira = vegetacaoRasteira;
+        this.areaDesmatada = areaDesmatada;
+        this.areaCultivo = areaCultivo;
+        this.trinca = trinca;
+        this.degrausAbatimento = degrausAbatimento;
+        this.inclinacao = inclinacao;
+        this.muroParedeEmbarrigado = muroParedeEmbarrigado;
+        this.cicatrizEscorregamento = cicatrizEscorregamento;
+        Escorregamento = escorregamento;
+        this.quedaBlocos = quedaBlocos;
+        this.rolamentoBlocos = rolamentoBlocos;
+        this.risco = risco;
+        this.quantidadeMoradias = quantidadeMoradias;
+        this.quantidadePessoas = quantidadePessoas;
+        this.informacoes = informacoes;
+        this.localizacao = localizacao;
+    }
 }

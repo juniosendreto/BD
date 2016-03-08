@@ -110,4 +110,16 @@ public class Localizacao {
     public void setTipoMoradia(String tipoMoradia) {
         this.tipoMoradia = tipoMoradia;
     }
+
+    public Localizacao(Collection vistorias, String nomeMorador, String tipoMoradia, String acessoLocal,
+                       String municipio, Double longitude, Double latitude) {
+
+        this.vistorias = vistorias;
+        this.nomeMorador = nomeMorador;
+        this.tipoMoradia = tipoMoradia;
+        this.acessoLocal = acessoLocal;
+        this.municipio = municipio;
+        this.longitude = longitude;
+        this.latitude = latitude;
+    }
 }
