@@ -1,5 +1,6 @@
 package bancodados.myapplication.model;
 
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
@@ -33,6 +34,10 @@ public class Localizacao {
     @DatabaseField(columnName = "id", id = true, generatedId = true)
     private Long id;
 
+    @ForeignCollectionField
+    private ForeignCollection<Vistoria> vistorias;
+
+
     @DatabaseField(columnName = "LATITUDE", dataType = DataType.DOUBLE, canBeNull = false)
     private Double latitude;
 
@@ -50,9 +55,6 @@ public class Localizacao {
 
     @DatabaseField(columnName = "TIPO_MORADIA", dataType = DataType.STRING, canBeNull = true)
     private String tipoMoradia;
-
-    @ForeignCollectionField(eager = true)
-    private Collection vistorias;
 
 
     public Long getId() {
@@ -111,15 +113,14 @@ public class Localizacao {
         this.tipoMoradia = tipoMoradia;
     }
 
-    public Localizacao(Collection vistorias, String nomeMorador, String tipoMoradia, String acessoLocal,
-                       String municipio, Double longitude, Double latitude) {
-
+    public Localizacao(ForeignCollection<Vistoria> vistorias, Double latitude, Double longitude,
+                       String municipio, String acessoLocal, String nomeMorador, String tipoMoradia) {
         this.vistorias = vistorias;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.municipio = municipio;
+        this.acessoLocal = acessoLocal;
         this.nomeMorador = nomeMorador;
         this.tipoMoradia = tipoMoradia;
-        this.acessoLocal = acessoLocal;
-        this.municipio = municipio;
-        this.longitude = longitude;
-        this.latitude = latitude;
     }
 }

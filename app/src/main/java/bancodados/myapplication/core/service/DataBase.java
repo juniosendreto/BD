@@ -22,8 +22,8 @@ import bancodados.myapplication.model.Vistoria;
  */
 public class DataBase extends OrmLiteSqliteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "sys_vistoria_db";
+    private static final int DATABASE_VERSION = 2;
+    private static final String DATABASE_NAME = "sys_vistoria_db.sqlite";
 
     private Dao<Usuario, Integer> usuarioDao = null;
     private Dao<UsuarioVistoria, Integer> usuarioVistoriaDao = null;
@@ -44,6 +44,8 @@ public class DataBase extends OrmLiteSqliteOpenHelper {
             TableUtils.createTable(connectionSource, Vistoria.class);
             TableUtils.createTable(connectionSource, Localizacao.class);
             TableUtils.createTable(connectionSource, UsuarioVistoria.class);
+
+            Log.d("--------", "Oi junio");
 
 
         } catch(SQLException e) {
@@ -69,7 +71,7 @@ public class DataBase extends OrmLiteSqliteOpenHelper {
 
         } catch(java.sql.SQLException e) {
 
-            Log.e("------", "Não foi possível dropar o banco", e);
+            Log.e("----------", "Não foi possível dropar o banco", e);
 
             throw new RuntimeException(e);
 
@@ -82,7 +84,7 @@ public class DataBase extends OrmLiteSqliteOpenHelper {
             try {
                 usuarioDao = getDao(Usuario.class);
             }catch (java.sql.SQLException e){
-                e.printStackTrace();
+                Log.d("------------", "DAO Usuario " + e.getMessage());
             }
         }
         return usuarioDao;
@@ -93,7 +95,8 @@ public class DataBase extends OrmLiteSqliteOpenHelper {
             try {
                 usuarioVistoriaDao = getDao(UsuarioVistoria.class);
             }catch (java.sql.SQLException e){
-                e.printStackTrace();
+                Log.d("-------", "DAO UsuarioVistoria " + e.getMessage());
+
             }
         }
         return usuarioVistoriaDao;
@@ -104,7 +107,7 @@ public class DataBase extends OrmLiteSqliteOpenHelper {
             try {
                 vistoriaDao = getDao(Vistoria.class);
             }catch (java.sql.SQLException e){
-                e.printStackTrace();
+                Log.d("-----", "DAO Vistoria " + e.getMessage());
             }
         }
         return vistoriaDao;
@@ -115,13 +118,10 @@ public class DataBase extends OrmLiteSqliteOpenHelper {
             try {
                 localizacaoDao = getDao(Localizacao.class);
             }catch (java.sql.SQLException e){
-                e.printStackTrace();
+                Log.d("------", "DAO Localizacao " + e.getMessage());
             }
         }
         return localizacaoDao;
     }
-
-
-
 
 }

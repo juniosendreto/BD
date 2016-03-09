@@ -9,6 +9,7 @@ import bancodados.myapplication.model.Usuario;
  * Created by junio on 08/03/16.
  */
 public class UsuarioVistoriaDaoImpl implements UsuarioDao{
+
     @Override
     public int save(Usuario usuario) {
 

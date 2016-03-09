@@ -41,6 +41,9 @@ public class Usuario {
     @DatabaseField(columnName = "id", id = true, generatedId = true)
     private Long id;
 
+    @DatabaseField(canBeNull = false, foreign = true)
+    private UsuarioVistoria usuarioVistoria;
+
     @DatabaseField(columnName = "nome", dataType = DataType.STRING, canBeNull = false)
     private String nome;
 
