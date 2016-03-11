@@ -15,12 +15,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl();
+       // UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl();
 
+        UsuarioDaoImpl u1 = new UsuarioDaoImpl(this);
         Usuario usuario = new Usuario("Junio", "39761555860", "junio", "12345", "junio.sendreto@hotmail.com",
                "SP", "rua", "4321", "12321", 1);
+        Usuario u;
+        u = (Usuario) u1.save(Usuario.class, usuario);
 
-        Log.d("-------", usuarioDao.save(usuario)+" Oi Denovo");
+
+        Log.d("-------", " Oi Denovo" + u.getNome());
 
     }
 }

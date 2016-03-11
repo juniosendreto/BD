@@ -22,8 +22,8 @@ import bancodados.myapplication.model.Vistoria;
  */
 public class DataBase extends OrmLiteSqliteOpenHelper {
 
-    private static final int DATABASE_VERSION = 2;
-    private static final String DATABASE_NAME = "sys_vistoria_db.sqlite";
+    private static final int DATABASE_VERSION = 1;
+    private static final String DATABASE_NAME = "sys_vistoria.db";
 
     private Dao<Usuario, Integer> usuarioDao = null;
     private Dao<UsuarioVistoria, Integer> usuarioVistoriaDao = null;
@@ -44,8 +44,6 @@ public class DataBase extends OrmLiteSqliteOpenHelper {
             TableUtils.createTable(connectionSource, Vistoria.class);
             TableUtils.createTable(connectionSource, Localizacao.class);
             TableUtils.createTable(connectionSource, UsuarioVistoria.class);
-
-            Log.d("--------", "Oi junio");
 
 
         } catch(SQLException e) {
@@ -122,6 +120,11 @@ public class DataBase extends OrmLiteSqliteOpenHelper {
             }
         }
         return localizacaoDao;
+    }
+
+    @Override
+    public void close(){
+        super.close();
     }
 
 }
