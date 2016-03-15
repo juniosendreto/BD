@@ -8,6 +8,7 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.text.DateFormat;
+import java.util.Date;
 
 /**
  * Created by junio on 01/03/16.
@@ -18,34 +19,27 @@ public class UsuarioVistoria {
 
     public static final String COL_ID = "ID";
 
-    @DatabaseField(columnName = "id", id = true, generatedId = true)
+    @DatabaseField(columnName = "id", generatedId = true)
     private Long id;
 
-    /* USUÁRIO
-
-    @DatabaseField(columnName = "USUARIO_ID", canBeNull = false, uniqueCombo = true)
-    private Usuario usuario;
-    */
-
-    @ForeignCollectionField
+    @ForeignCollectionField(columnName = "USUARIO_ID")
     private ForeignCollection<Usuario> usuarios;
 
-    /* VISTORIA
-    @DatabaseField(columnName = "VISTORIA_ID", canBeNull = false, uniqueCombo = true)
-    private Vistoria vistoria;
-    */
 
-    @ForeignCollectionField
+
+    @ForeignCollectionField(columnName = "VISTORIA_ID")
     private ForeignCollection<Vistoria> vistorias;
 
-    @DatabaseField(columnName = "DATA", dataType = DataType.DATE_TIME, canBeNull = false)
-    private DateFormat data;
 
-    public UsuarioVistoria(Long id, DateFormat data, ForeignCollection<Vistoria> vistorias,
+    @DatabaseField(columnName = "data", canBeNull = false)
+    private Date data;
+
+    public UsuarioVistoria(Date data, ForeignCollection<Vistoria> vistorias,
                            ForeignCollection<Usuario> usuarios) {
-        this.id = id;
         this.data = data;
         this.vistorias = vistorias;
         this.usuarios = usuarios;
     }
+    public UsuarioVistoria() {}
+
 }

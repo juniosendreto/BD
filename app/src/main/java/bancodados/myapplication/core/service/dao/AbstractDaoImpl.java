@@ -26,7 +26,9 @@ public abstract class AbstractDaoImpl {
     public void conexaoBD(){
         if(dataBase == null || !(dataBase.isOpen())) {
             dataBase = new DataBase(context);
-            Log.d("------", "Conexão feita!");
+            Log.d("---------", dataBase.getDatabaseName());
+            Log.d("---------", dataBase.isOpen() + "");
+
         }
 
     }
@@ -34,11 +36,10 @@ public abstract class AbstractDaoImpl {
     public Object save(Class classe, Object object){
         try{
             conexaoBD();
-
             dataBase.getDao(classe).create(object);
             return object;
-        }catch (SQLException e){
-            Log.d("------", "ERRO SAVE(ABSDAO)");
+        }catch (Exception e){
+            Log.d("--------", "ERRO SAVE(ABSDAO)" + e.getMessage());
         }finally {
             dataBase.close();
 

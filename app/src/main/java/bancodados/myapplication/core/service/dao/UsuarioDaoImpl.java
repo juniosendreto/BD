@@ -8,7 +8,6 @@ import com.j256.ormlite.dao.Dao;
 import java.util.List;
 
 import bancodados.myapplication.core.service.DataBase;
-import bancodados.myapplication.dao.UsuarioDao;
 import bancodados.myapplication.model.Usuario;
 
 /**

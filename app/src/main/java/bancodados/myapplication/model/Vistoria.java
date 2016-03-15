@@ -2,6 +2,7 @@ package bancodados.myapplication.model;
 
 import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 /**
@@ -87,13 +88,13 @@ public class Vistoria {
 
     public static final String TABLE_NAME = "VISTORIA";
 
-    @DatabaseField(columnName = "id", id = true, generatedId = true)
+    @DatabaseField(columnName = "id", generatedId = true)
     private Long id;
 
-    @DatabaseField(foreign = true)
+    @ForeignCollectionField
     private UsuarioVistoria usuarioVistoria;
 
-    @DatabaseField(canBeNull = false, foreign = true)
+    @ForeignCollectionField
     private Localizacao localizacao;
 
 
@@ -101,140 +102,140 @@ public class Vistoria {
         2 PASSO - CARACTERIZAÇÃO DO LOCAL
      */
 
-    @DatabaseField(columnName = "ENCOSTA_NATURAL", dataType = DataType.BOOLEAN, canBeNull = false)
+    @DatabaseField(columnName = "ENCOSTA_NATURAL", canBeNull = false)
     private Boolean encostaNatural;
 
-    @DatabaseField(columnName = "TALUDE_CORTE", dataType = DataType.BOOLEAN, canBeNull = false)
+    @DatabaseField(columnName = "TALUDE_CORTE", canBeNull = false)
     private Boolean taludeCorte;
 
-    @DatabaseField(columnName = "ATERRO_LANCADO", dataType = DataType.BOOLEAN, canBeNull = false)
+    @DatabaseField(columnName = "ATERRO_LANCADO", canBeNull = false)
     private Boolean aterroLancado;
 
-    @DatabaseField(columnName = "PAREDE_ROCHOSA", dataType = DataType.BOOLEAN, canBeNull = false)
+    @DatabaseField(columnName = "PAREDE_ROCHOSA", canBeNull = false)
     private Boolean paredeRochosa;
 
-    @DatabaseField(columnName = "ALTURA_N", dataType = DataType.DOUBLE, canBeNull = false)
+    @DatabaseField(columnName = "ALTURA_N", canBeNull = false)
     private Double alturaN;
 
-    @DatabaseField(columnName = "ALTURA_C", dataType = DataType.DOUBLE, canBeNull = true)
+    @DatabaseField(columnName = "ALTURA_C", canBeNull = true)
     private Double alturaC;
 
-    @DatabaseField(columnName = "ALTURA_L", dataType = DataType.DOUBLE, canBeNull = true)
+    @DatabaseField(columnName = "ALTURA_L", canBeNull = true)
     private Double alturaL;
 
-    @DatabaseField(columnName = "ALTURA_R", dataType = DataType.DOUBLE, canBeNull = true)
+    @DatabaseField(columnName = "ALTURA_R", canBeNull = true)
     private Double alturaR;
 
-    @DatabaseField(columnName = "DISTANCIA_MORADA_C", dataType = DataType.DOUBLE, canBeNull = true)
+    @DatabaseField(columnName = "DISTANCIA_MORADA_C", canBeNull = true)
     private Double distanciaMoradaC;
 
-    @DatabaseField(columnName = "DISTANCIA_MORADA_L", dataType = DataType.DOUBLE, canBeNull = false)
+    @DatabaseField(columnName = "DISTANCIA_MORADA_L", canBeNull = false)
     private Double DistanciaMoradaL;
 
-    @DatabaseField(columnName = "TOPO_C", dataType = DataType.DOUBLE, canBeNull = false)
+    @DatabaseField(columnName = "TOPO_C", canBeNull = false)
     private Double topoC;
 
-    @DatabaseField(columnName = "TOPO_L", dataType = DataType.DOUBLE, canBeNull = false)
+    @DatabaseField(columnName = "TOPO_L", canBeNull = false)
     private Double topoL;
 
-    @DatabaseField(columnName = "BLOCOS_ROCHA_MATACOES", dataType = DataType.BOOLEAN, canBeNull = false)
+    @DatabaseField(columnName = "BLOCOS_ROCHA_MATACOES", canBeNull = false)
     private Boolean blocosRochasMatacoes;
 
-    @DatabaseField(columnName = "LIXO_ENTULHO", dataType = DataType.BOOLEAN, canBeNull = false)
+    @DatabaseField(columnName = "LIXO_ENTULHO", canBeNull = false)
     private Boolean lixoEntulho;
 
      /*
         3 PASSO - ÁGUA
      */
 
-    @DatabaseField(columnName = "CONCENTRA_AGUA_CHUVA", dataType = DataType.BOOLEAN, canBeNull = false)
+    @DatabaseField(columnName = "CONCENTRA_AGUA_CHUVA", canBeNull = false)
     private Boolean concentraAguaChuva;
 
-    @DatabaseField(columnName = "CONCENTRA_AGUA_SERVIDA", dataType = DataType.BOOLEAN, canBeNull = false)
+    @DatabaseField(columnName = "CONCENTRA_AGUA_SERVIDA",  canBeNull = false)
     private Boolean concentraAguaServida;
 
-    @DatabaseField(columnName = "DRENAGE_SUPERFICIAL", dataType = DataType.STRING, canBeNull = false)
+    @DatabaseField(columnName = "DRENAGE_SUPERFICIAL", canBeNull = false)
     private String drenageSuperficial;
 
-    @DatabaseField(columnName = "ESGOTO", dataType = DataType.STRING, canBeNull = true)
+    @DatabaseField(columnName = "ESGOTO", canBeNull = true)
     private String esgoto;
 
-    @DatabaseField(columnName = "AGUA_MORADIA_VAZAMENTO", dataType = DataType.STRING, canBeNull = true)
+    @DatabaseField(columnName = "AGUA_MORADIA_VAZAMENTO", canBeNull = true)
     private String aguaMoradiaVazamento;
 
-    @DatabaseField(columnName = "MINAS_DAGUA", dataType = DataType.STRING, canBeNull = true)
+    @DatabaseField(columnName = "MINAS_DAGUA", canBeNull = true)
     private String minasDagua;
 
      /*
         4 PASSO - VEGETÇÃO NO TALUDE OU PROXIMIDADES
      */
 
-    @DatabaseField(columnName = "ARVORES", dataType = DataType.BOOLEAN, canBeNull = true)
+    @DatabaseField(columnName = "ARVORES", canBeNull = true)
     private Boolean arvores;
 
-    @DatabaseField(columnName = "VEGETACAO_RASTEIRA", dataType = DataType.BOOLEAN, canBeNull = false)
+    @DatabaseField(columnName = "VEGETACAO_RASTEIRA", canBeNull = false)
     private Boolean vegetacaoRasteira;
 
-    @DatabaseField(columnName = "AREA_DESMATADA", dataType = DataType.BOOLEAN, canBeNull = false)
+    @DatabaseField(columnName = "AREA_DESMATADA", canBeNull = false)
     private Boolean areaDesmatada;
 
-    @DatabaseField(columnName = "AREA_CULTIVO", dataType = DataType.STRING, canBeNull = false)
+    @DatabaseField(columnName = "AREA_CULTIVO", canBeNull = false)
     private String areaCultivo;
 
      /*
         5 PASSO - SINAIS DE MOVIMENTAÇÕES
      */
 
-    @DatabaseField(columnName = "TRINCA", dataType = DataType.STRING, canBeNull = false)
+    @DatabaseField(columnName = "TRINCA", canBeNull = false)
     private String trinca;
 
-    @DatabaseField(columnName = "DEGRAUS_ABATIMENTO", dataType = DataType.BOOLEAN, canBeNull = false)
+    @DatabaseField(columnName = "DEGRAUS_ABATIMENTO", canBeNull = false)
     private Boolean degrausAbatimento;
 
-    @DatabaseField(columnName = "INCLINACAO", dataType = DataType.STRING, canBeNull = true)
+    @DatabaseField(columnName = "INCLINACAO", canBeNull = true)
     private String inclinacao;
 
-    @DatabaseField(columnName = "MURO_PAREDE_EMBARRIGADO", dataType = DataType.BOOLEAN, canBeNull = true)
+    @DatabaseField(columnName = "MURO_PAREDE_EMBARRIGADO", canBeNull = true)
     private Boolean muroParedeEmbarrigado;
 
-    @DatabaseField(columnName = "CICATRIZ_ESCORREGAMENTO", dataType = DataType.BOOLEAN, canBeNull = true)
+    @DatabaseField(columnName = "CICATRIZ_ESCORREGAMENTO", canBeNull = true)
     private Boolean cicatrizEscorregamento;
 
      /*
         6 PASSOO - TIPO DE PROCESSOS DE INSTABILIZAÇÃO ESPERADOS OU JÁ OCORRIDOS
      */
 
-    @DatabaseField(columnName = "ESCORREGAMENTO", dataType = DataType.STRING, canBeNull = true)
+    @DatabaseField(columnName = "ESCORREGAMENTO", canBeNull = true)
     private String Escorregamento;
 
-    @DatabaseField(columnName = "QUEDA_BLOCOS", dataType = DataType.BOOLEAN, canBeNull = false)
+    @DatabaseField(columnName = "QUEDA_BLOCOS", canBeNull = false)
     private Boolean quedaBlocos;
 
-    @DatabaseField(columnName = "ROLAMENTO_BLOCOS", dataType = DataType.BOOLEAN, canBeNull = false)
+    @DatabaseField(columnName = "ROLAMENTO_BLOCOS", canBeNull = false)
     private Boolean rolamentoBlocos;
 
      /*
         7 PASSO - DETERMINAÇÃO DO GRAU DE RISCO
      */
 
-    @DatabaseField(columnName = "RISCO", dataType = DataType.STRING, canBeNull = false)
+    @DatabaseField(columnName = "RISCO", canBeNull = false)
     private Integer risco;
 
     /*
         8 PASSO - NECESSIDADE DE REMOÇÃO
      */
 
-    @DatabaseField(columnName = "QUANTIDADE_MORADIAS", dataType = DataType.INTEGER, canBeNull = false)
+    @DatabaseField(columnName = "QUANTIDADE_MORADIAS", canBeNull = false)
     private Integer quantidadeMoradias;
 
-    @DatabaseField(columnName = "QUANTIDADE_PESSOAS", dataType = DataType.INTEGER, canBeNull = false)
+    @DatabaseField(columnName = "QUANTIDADE_PESSOAS", canBeNull = false)
     private Integer quantidadePessoas;
 
      /*
         8 PASSO - OUTRAS INFORMAÇÕES
      */
 
-    @DatabaseField(columnName = "INFORMAÇÕES", dataType = DataType.STRING, canBeNull = false)
+    @DatabaseField(columnName = "INFORMAÇÕES", canBeNull = false)
     private String informacoes;
 
     public Long getId() {
@@ -598,4 +599,6 @@ public class Vistoria {
         this.quantidadePessoas = quantidadePessoas;
         this.informacoes = informacoes;
     }
+
+    public Vistoria(){    }
 }

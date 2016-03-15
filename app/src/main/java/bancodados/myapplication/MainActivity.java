@@ -17,14 +17,12 @@ public class MainActivity extends AppCompatActivity {
 
        // UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl();
 
-        UsuarioDaoImpl u1 = new UsuarioDaoImpl(this);
+        UsuarioDaoImpl u1 = new UsuarioDaoImpl(MainActivity.this);
         Usuario usuario = new Usuario("Junio", "39761555860", "junio", "12345", "junio.sendreto@hotmail.com",
                "SP", "rua", "4321", "12321", 1);
         Usuario u;
         u = (Usuario) u1.save(Usuario.class, usuario);
 
-
-        Log.d("-------", " Oi Denovo" + u.getNome());
 
     }
 }

@@ -31,29 +31,29 @@ public class Localizacao {
 
     public static final String TABLE_NAME = "LOCALIZACAO";
 
-    @DatabaseField(columnName = "id", id = true, generatedId = true)
+    @DatabaseField(columnName = "id", generatedId = true)
     private Long id;
 
-    @ForeignCollectionField
+    @ForeignCollectionField(columnName = "VISTORIA_ID")
     private ForeignCollection<Vistoria> vistorias;
 
 
-    @DatabaseField(columnName = "LATITUDE", dataType = DataType.DOUBLE, canBeNull = false)
+    @DatabaseField(columnName = "LATITUDE", canBeNull = false)
     private Double latitude;
 
-    @DatabaseField(columnName = "LONGITUDE", dataType = DataType.DOUBLE, canBeNull = false)
+    @DatabaseField(columnName = "LONGITUDE", canBeNull = false)
     private Double longitude;
 
-    @DatabaseField(columnName = "MUNICIPIO", dataType = DataType.STRING, canBeNull = false)
+    @DatabaseField(columnName = "MUNICIPIO", canBeNull = false)
     private String municipio;
 
-    @DatabaseField(columnName = "ACESSO_LOCAL", dataType = DataType.STRING, canBeNull = false)
+    @DatabaseField(columnName = "ACESSO_LOCAL", canBeNull = false)
     private String acessoLocal;
 
-    @DatabaseField(columnName = "NOME_MORADOR", dataType = DataType.STRING, canBeNull = false)
+    @DatabaseField(columnName = "NOME_MORADOR", canBeNull = false)
     private String nomeMorador;
 
-    @DatabaseField(columnName = "TIPO_MORADIA", dataType = DataType.STRING, canBeNull = true)
+    @DatabaseField(columnName = "TIPO_MORADIA", canBeNull = true)
     private String tipoMoradia;
 
 
@@ -123,4 +123,6 @@ public class Localizacao {
         this.nomeMorador = nomeMorador;
         this.tipoMoradia = tipoMoradia;
     }
+
+    public Localizacao(){}
 }

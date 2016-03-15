@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 /**
@@ -38,40 +39,40 @@ public class Usuario {
 
     public static final String DATABASE_NAME = "sys_vistoria_db";
 
-    @DatabaseField(columnName = "id", id = true, generatedId = true)
+    @DatabaseField(columnName = "id", generatedId = true)
     private Long id;
 
-    @DatabaseField(canBeNull = false, foreign = true)
+    @ForeignCollectionField
     private UsuarioVistoria usuarioVistoria;
 
-    @DatabaseField(columnName = "nome", dataType = DataType.STRING, canBeNull = false)
+    @DatabaseField(columnName = "nome", canBeNull = false)
     private String nome;
 
-    @DatabaseField(columnName = "login", dataType = DataType.STRING, canBeNull = false)
+    @DatabaseField(columnName = "login", canBeNull = false)
     private String login;
 
-    @DatabaseField(columnName = "password", dataType = DataType.STRING, canBeNull = false)
+    @DatabaseField(columnName = "password", canBeNull = false)
     private String password;
 
-    @DatabaseField(columnName = "cpf", dataType = DataType.STRING, canBeNull = false)
+    @DatabaseField(columnName = "cpf", canBeNull = false)
     private String cpf;
 
-    @DatabaseField(columnName = "email", dataType = DataType.STRING, canBeNull = false)
+    @DatabaseField(columnName = "email", canBeNull = false)
     private String email;
 
-    @DatabaseField(columnName = "municipio", dataType = DataType.STRING, canBeNull = true)
+    @DatabaseField(columnName = "municipio", canBeNull = true)
     private String municipio;
 
-    @DatabaseField(columnName = "endereco", dataType = DataType.STRING, canBeNull = true)
+    @DatabaseField(columnName = "endereco", canBeNull = true)
     private String endereco;
 
-    @DatabaseField(columnName = "telefone", dataType = DataType.STRING, canBeNull = true)
+    @DatabaseField(columnName = "telefone", canBeNull = true)
     private String telefone;
 
-    @DatabaseField(columnName = "celular", dataType = DataType.STRING, canBeNull = true)
+    @DatabaseField(columnName = "celular", canBeNull = true)
     private String celular;
 
-    @DatabaseField(columnName = "nivel", dataType = DataType.STRING, canBeNull = false)
+    @DatabaseField(columnName = "nivel", canBeNull = false)
     private Integer nivel;
 
 
