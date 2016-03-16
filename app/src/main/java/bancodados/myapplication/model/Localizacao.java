@@ -37,7 +37,6 @@ public class Localizacao {
     @ForeignCollectionField(columnName = "VISTORIA_ID")
     private ForeignCollection<Vistoria> vistorias;
 
-
     @DatabaseField(columnName = "LATITUDE", canBeNull = false)
     private Double latitude;
 
@@ -113,8 +112,7 @@ public class Localizacao {
         this.tipoMoradia = tipoMoradia;
     }
 
-    public Localizacao(ForeignCollection<Vistoria> vistorias, Double latitude, Double longitude,
-                       String municipio, String acessoLocal, String nomeMorador, String tipoMoradia) {
+    public Localizacao(ForeignCollection<Vistoria> vistorias, Double latitude, Double longitude, String municipio, String acessoLocal, String nomeMorador, String tipoMoradia) {
         this.vistorias = vistorias;
         this.latitude = latitude;
         this.longitude = longitude;

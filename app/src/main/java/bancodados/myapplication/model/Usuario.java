@@ -42,8 +42,8 @@ public class Usuario {
     @DatabaseField(columnName = "id", generatedId = true)
     private Long id;
 
-    @DatabaseField(foreign = true)
-    private UsuarioVistoria usuarioVistoria;
+    //@DatabaseField(foreign = true)
+    //private UsuarioVistoria usuarioVistoria;
 
     @DatabaseField(columnName = "nome", canBeNull = false)
     private String nome;

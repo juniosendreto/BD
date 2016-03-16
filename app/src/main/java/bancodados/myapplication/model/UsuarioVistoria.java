@@ -22,27 +22,27 @@ public class UsuarioVistoria {
     @DatabaseField(columnName = "id", generatedId = true)
     private Long id;
 
-    @ForeignCollectionField(columnName = "USUARIO_ID")
+    /*@ForeignCollectionField(columnName = "USUARIO_ID")
     private ForeignCollection<Usuario> usuarios;
 
     @ForeignCollectionField(columnName = "VISTORIA_ID")
-    private ForeignCollection<Vistoria> vistorias;
+    private ForeignCollection<Vistoria> vistorias;*/
 
-   /* @DatabaseField(columnName = "USUARIO_ID")
-    private Usuario usuarios;
+   @DatabaseField(foreign = true, columnName = "USUARIO_ID")
+    private Usuario usuario;
 
-    @DatabaseField(columnName = "VISTORIA_ID")
-    private Vistoria vistorias;*/
+    @DatabaseField(foreign = true, columnName = "VISTORIA_ID")
+    private Vistoria vistoria;
 
 
     @DatabaseField(columnName = "data", canBeNull = false)
     private Date data;
 
-    public UsuarioVistoria(Date data, ForeignCollection<Vistoria> vistorias,
-                           ForeignCollection<Usuario> usuarios) {
+    public UsuarioVistoria(Date data, Vistoria vistoria,
+                           Usuario usuario) {
         this.data = data;
-        this.vistorias = vistorias;
-        this.usuarios = usuarios;
+        this.vistoria = vistoria;
+        this.usuario = usuario;
     }
     public UsuarioVistoria() {}
 
