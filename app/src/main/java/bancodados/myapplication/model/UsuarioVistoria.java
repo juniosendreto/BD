@@ -25,10 +25,14 @@ public class UsuarioVistoria {
     @ForeignCollectionField(columnName = "USUARIO_ID")
     private ForeignCollection<Usuario> usuarios;
 
-
-
     @ForeignCollectionField(columnName = "VISTORIA_ID")
     private ForeignCollection<Vistoria> vistorias;
+
+   /* @DatabaseField(columnName = "USUARIO_ID")
+    private Usuario usuarios;
+
+    @DatabaseField(columnName = "VISTORIA_ID")
+    private Vistoria vistorias;*/
 
 
     @DatabaseField(columnName = "data", canBeNull = false)

@@ -42,7 +42,7 @@ public class Usuario {
     @DatabaseField(columnName = "id", generatedId = true)
     private Long id;
 
-    @ForeignCollectionField
+    @DatabaseField(foreign = true)
     private UsuarioVistoria usuarioVistoria;
 
     @DatabaseField(columnName = "nome", canBeNull = false)

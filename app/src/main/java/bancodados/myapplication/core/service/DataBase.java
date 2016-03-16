@@ -44,9 +44,8 @@ public class DataBase extends OrmLiteSqliteOpenHelper {
         try {
             TableUtils.createTable(connectionSource, Usuario.class);
             TableUtils.createTable(connectionSource, Vistoria.class);
-            TableUtils.createTable(connectionSource, Localizacao.class);
             TableUtils.createTable(connectionSource, UsuarioVistoria.class);
-
+            TableUtils.createTable(connectionSource, Localizacao.class);
 
         } catch(Exception e) {
 

@@ -1,5 +1,7 @@
 package bancodados.myapplication.model;
 
+import android.support.annotation.ColorRes;
+
 import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
@@ -91,10 +93,10 @@ public class Vistoria {
     @DatabaseField(columnName = "id", generatedId = true)
     private Long id;
 
-    @ForeignCollectionField
+    @DatabaseField(foreign = true)
     private UsuarioVistoria usuarioVistoria;
 
-    @ForeignCollectionField
+    @DatabaseField(foreign = true)
     private Localizacao localizacao;
 
 
@@ -246,7 +248,7 @@ public class Vistoria {
         this.id = id;
     }
 
-    public UsuarioVistoria getUsuarioVistoria() {
+    /*public UsuarioVistoria getUsuarioVistoria() {
         return usuarioVistoria;
     }
 
@@ -260,7 +262,7 @@ public class Vistoria {
 
     public void setLocalizacao(Localizacao localizacao) {
         this.localizacao = localizacao;
-    }
+    }*/
 
     public Boolean getEncostaNatural() {
         return encostaNatural;

@@ -39,7 +39,7 @@ public abstract class AbstractDaoImpl {
             dataBase.getDao(classe).create(object);
             return object;
         }catch (Exception e){
-            Log.d("--------", "ERRO SAVE(ABSDAO)" + e.getMessage());
+            Log.d("--------", "ERRO SAVE(ABSTRACTDAO) " + e.getMessage());
         }finally {
             dataBase.close();
 
