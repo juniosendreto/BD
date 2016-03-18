@@ -99,7 +99,7 @@ public class Vistoria {
 
 
     /*
-        2 PASSO - CARACTERIZAÇÃO DO LOCAL
+        2 PASSO - CARACTERIZAÇÃO DO LOCAL (14)
      */
 
     @DatabaseField(columnName = "ENCOSTA_NATURAL", canBeNull = false)
@@ -145,7 +145,7 @@ public class Vistoria {
     private Boolean lixoEntulho;
 
      /*
-        3 PASSO - ÁGUA
+        3 PASSO - ÁGUA (6)
      */
 
     @DatabaseField(columnName = "CONCENTRA_AGUA_CHUVA", canBeNull = false)
@@ -167,7 +167,7 @@ public class Vistoria {
     private String minasDagua;
 
      /*
-        4 PASSO - VEGETÇÃO NO TALUDE OU PROXIMIDADES
+        4 PASSO - VEGETÇÃO NO TALUDE OU PROXIMIDADES (4)
      */
 
     @DatabaseField(columnName = "ARVORES", canBeNull = true)
@@ -183,7 +183,7 @@ public class Vistoria {
     private String areaCultivo;
 
      /*
-        5 PASSO - SINAIS DE MOVIMENTAÇÕES
+        5 PASSO - SINAIS DE MOVIMENTAÇÕES (5)
      */
 
     @DatabaseField(columnName = "TRINCA", canBeNull = false)
@@ -202,7 +202,7 @@ public class Vistoria {
     private Boolean cicatrizEscorregamento;
 
      /*
-        6 PASSOO - TIPO DE PROCESSOS DE INSTABILIZAÇÃO ESPERADOS OU JÁ OCORRIDOS
+        6 PASSOO - TIPO DE PROCESSOS DE INSTABILIZAÇÃO ESPERADOS OU JÁ OCORRIDOS (3)
      */
 
     @DatabaseField(columnName = "ESCORREGAMENTO", canBeNull = true)
@@ -219,10 +219,10 @@ public class Vistoria {
      */
 
     @DatabaseField(columnName = "RISCO", canBeNull = false)
-    private Integer risco;
+    private String risco;
 
     /*
-        8 PASSO - NECESSIDADE DE REMOÇÃO
+        8 PASSO - NECESSIDADE DE REMOÇÃO (2)
      */
 
     @DatabaseField(columnName = "QUANTIDADE_MORADIAS", canBeNull = false)
@@ -518,11 +518,11 @@ public class Vistoria {
         this.rolamentoBlocos = rolamentoBlocos;
     }
 
-    public Integer getRisco() {
+    public String getRisco() {
         return risco;
     }
 
-    public void setRisco(Integer risco) {
+    public void setRisco(String risco) {
         this.risco = risco;
     }
 
@@ -550,18 +550,22 @@ public class Vistoria {
         this.informacoes = informacoes;
     }
 
-    public Vistoria(Boolean encostaNatural, Boolean taludeCorte, Boolean aterroLancado,
-                    Boolean paredeRochosa, Double alturaN, Double alturaC, Double alturaL,
-                    Double alturaR, Double distanciaMoradaC, Double distanciaMoradaL, Double topoC,
-                    Double topoL, Boolean blocosRochasMatacoes, Boolean lixoEntulho,
+
+    public Vistoria(){    }
+
+    public Vistoria(Localizacao localizacao, Boolean encostaNatural, Boolean taludeCorte,
+                    Boolean aterroLancado, Boolean paredeRochosa, Double alturaN, Double alturaC,
+                    Double alturaL, Double alturaR, Double distanciaMoradaC, Double distanciaMoradaL,
+                    Double topoC, Double topoL, Boolean blocosRochasMatacoes, Boolean lixoEntulho,
                     Boolean concentraAguaChuva, Boolean concentraAguaServida, String drenageSuperficial,
                     String esgoto, String aguaMoradiaVazamento, String minasDagua, Boolean arvores,
                     Boolean vegetacaoRasteira, Boolean areaDesmatada, String areaCultivo, String trinca,
                     Boolean degrausAbatimento, String inclinacao, Boolean muroParedeEmbarrigado,
                     Boolean cicatrizEscorregamento, String escorregamento, Boolean quedaBlocos,
-                    Boolean rolamentoBlocos, Integer risco, Integer quantidadeMoradias,
+                    Boolean rolamentoBlocos, String risco, Integer quantidadeMoradias,
                     Integer quantidadePessoas, String informacoes) {
 
+        this.localizacao = localizacao;
         this.encostaNatural = encostaNatural;
         this.taludeCorte = taludeCorte;
         this.aterroLancado = aterroLancado;
@@ -599,6 +603,4 @@ public class Vistoria {
         this.quantidadePessoas = quantidadePessoas;
         this.informacoes = informacoes;
     }
-
-    public Vistoria(){    }
 }

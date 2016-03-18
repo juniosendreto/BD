@@ -16,13 +16,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
        // UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl();
-
+        /*
         UsuarioDaoImpl u1 = new UsuarioDaoImpl(MainActivity.this);
         Usuario usuario = new Usuario("Junio", "39761555860", "junio", "12345", "junio.sendreto@hotmail.com",
                "SP", "rua", "4321", "12321", 1);
         Usuario u;
-        u = (Usuario) u1.save(Usuario.class, usuario);
+        u = (Usuario) u1.save(Usuario.class, usuario);*/
 
+        UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl(MainActivity.this);
+
+        /*Usuario usuarioActual = new Usuario("Junio", "12345678910", "junio", "12345",
+                "junio.sendreto@hotmail.com", "SP", "rua", "4321", "12321", 1);
+        Usuario usuarioExpected = (Usuario) usuarioDao.findById(Usuario.class, new Long(1));
+
+        Log.d(usuarioActual.getNome(), "-----" + usuarioExpected.getNome());
+        */
 
     }
 }
