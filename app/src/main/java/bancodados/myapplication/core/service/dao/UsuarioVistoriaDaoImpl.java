@@ -1,5 +1,7 @@
 package bancodados.myapplication.core.service.dao;
 
+import android.content.Context;
+
 import java.util.List;
 
 import bancodados.myapplication.model.Usuario;
@@ -7,31 +9,10 @@ import bancodados.myapplication.model.Usuario;
 /**
  * Created by junio on 08/03/16.
  */
-public class UsuarioVistoriaDaoImpl{
+public class UsuarioVistoriaDaoImpl extends AbstractDaoImpl{
 
 
-    public int save(Usuario usuario) {
-
-        return 1;
-    }
-
-    public Usuario upgrade(Usuario usuario) {
-        return null;
-    }
-
-    public Boolean delete(Usuario usuario) {
-        return null;
-    }
-
-    public List<Usuario> listAll() {
-        return null;
-    }
-
-    public Usuario findById(Long id) {
-        return null;
-    }
-
-    public Boolean findByIdLoginAndPassword(String login, String password) {
-        return null;
+    public UsuarioVistoriaDaoImpl(Context context) {
+        super(context);
     }
 }
