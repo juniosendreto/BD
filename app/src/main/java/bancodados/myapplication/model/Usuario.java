@@ -204,4 +204,46 @@ public class Usuario {
         this.celular = celular;
 
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Usuario usuario = (Usuario) o;
+
+        if (id != null ? !id.equals(usuario.id) : usuario.id != null) return false;
+        if (nome != null ? !nome.equals(usuario.nome) : usuario.nome != null) return false;
+        if (login != null ? !login.equals(usuario.login) : usuario.login != null) return false;
+        if (password != null ? !password.equals(usuario.password) : usuario.password != null)
+            return false;
+        if (cpf != null ? !cpf.equals(usuario.cpf) : usuario.cpf != null) return false;
+        if (email != null ? !email.equals(usuario.email) : usuario.email != null) return false;
+        if (municipio != null ? !municipio.equals(usuario.municipio) : usuario.municipio != null)
+            return false;
+        if (endereco != null ? !endereco.equals(usuario.endereco) : usuario.endereco != null)
+            return false;
+        if (telefone != null ? !telefone.equals(usuario.telefone) : usuario.telefone != null)
+            return false;
+        if (celular != null ? !celular.equals(usuario.celular) : usuario.celular != null)
+            return false;
+        return !(nivel != null ? !nivel.equals(usuario.nivel) : usuario.nivel != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (nome != null ? nome.hashCode() : 0);
+        result = 31 * result + (login != null ? login.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (cpf != null ? cpf.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (municipio != null ? municipio.hashCode() : 0);
+        result = 31 * result + (endereco != null ? endereco.hashCode() : 0);
+        result = 31 * result + (telefone != null ? telefone.hashCode() : 0);
+        result = 31 * result + (celular != null ? celular.hashCode() : 0);
+        result = 31 * result + (nivel != null ? nivel.hashCode() : 0);
+        return result;
+    }
 }

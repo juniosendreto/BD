@@ -32,5 +32,11 @@ public class MainActivity extends AppCompatActivity {
         Log.d(usuarioActual.getNome(), "-----" + usuarioExpected.getNome());
         */
 
+        Usuario actualUsuario = new Usuario("teutonio", "39761555860", "junio", "12345", "junio.sendreto@hotmail.com", "SP", "rua", "4321", "12321", 1);
+        usuarioDao.save(Usuario.class, actualUsuario);
+        Usuario expectedUsuario = (Usuario) usuarioDao.findById(Usuario.class, usuarioDao.countAllRows(Usuario.class));
+
+        Log.d("-------------b ", actualUsuario.equals(expectedUsuario) + "");
+
     }
 }

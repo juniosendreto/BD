@@ -13,14 +13,13 @@ import bancodados.myapplication.model.Usuario;
 public class UsuarioDaoTest extends TestCase{
     Context context =  null;
 
-    public void saveTest(){
+    public void testSave(){
         UsuarioDaoImpl usuarioDao =  new UsuarioDaoImpl(context);
+        Usuario actualUsuario = new Usuario("jak", "39761555860", "junio", "12345", "junio.sendreto@hotmail.com", "SP", "rua", "4321", "12321", 1);
+        usuarioDao.save(Usuario.class, actualUsuario);
 
-        Usuario actualUsuario = new Usuario("Junio", "39761555860", "junio", "12345", "junio.sendreto@hotmail.com", "SP", "rua", "4321", "12321", 1);
         Usuario expectedUsuario = (Usuario) usuarioDao.findById(Usuario.class, usuarioDao.countAllRows(Usuario.class));
-        //assertEquals(actualUsuario, expectedUsuario);
-
-        assertEquals(true, true);
+        assertEquals(actualUsuario, expectedUsuario);
 
     }
 

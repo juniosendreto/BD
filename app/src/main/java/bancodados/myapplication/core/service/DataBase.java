@@ -60,8 +60,6 @@ public class DataBase extends OrmLiteSqliteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource, int i, int i1) {
 
         try {
-            Log.d("-------", "What do you mean? 2");
-
             TableUtils.dropTable(connectionSource, UsuarioVistoria.class, true);
             TableUtils.dropTable(connectionSource, Usuario.class, true);
             TableUtils.dropTable(connectionSource, Vistoria.class, true);
@@ -124,9 +122,9 @@ public class DataBase extends OrmLiteSqliteOpenHelper {
 //        return localizacaoDao;
 //    }
 
-    @Override
-    public void close(){
-        super.close();
-    }
+   // @Override
+   // public void close(){
+    //    super.close();
+    //}
 
 }

@@ -105,27 +105,28 @@ public abstract class AbstractDaoImpl {
 
     public Long countAllRows(Class classe){
         try {
+            conexaoBD();
             return dataBase.getDao(classe).countOf();
         }catch (SQLException e){
-            Log.d("------", "ERRO countAllRows(ABSDAO)");
+            Log.d("------", "ERRO countAllRows(ABSDAO) - " + e.getMessage());
 
         }finally {
             dataBase.close();
         }
-        return Long.parseLong(null);
+        return Long.valueOf(0);
     }
 
-    public Long deleteAllrows(Class classe){
+    public Integer deleteAllrows(Class classe){
         try {
-            dataBase.getDao(classe).deleteIds(listAll(classe));
-            return countAllRows(classe);
+            conexaoBD();
+            return dataBase.getDao(classe).deleteIds(listAll(classe));
         }catch (SQLException e){
-            Log.d("------", "ERRO deleteAllRowsAllRows(ABSDAO)");
+            Log.d("------", "ERRO deleteAllRows(ABSDAO) - " + e.getMessage());
 
         }finally {
             dataBase.close();
         }
-        return Long.parseLong(null);
+        return 0;
     }
 
 }
