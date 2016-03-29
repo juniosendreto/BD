@@ -1,11 +1,11 @@
 package bancodados.myapplication;
 
 import android.content.Context;
-
 import junit.framework.TestCase;
 
 import bancodados.myapplication.core.service.dao.UsuarioDaoImpl;
 import bancodados.myapplication.model.Usuario;
+
 
 /**
  * Created by junio on 18/03/16.
@@ -19,7 +19,10 @@ public class UsuarioDaoTest extends TestCase{
         usuarioDao.save(Usuario.class, actualUsuario);
 
         Usuario expectedUsuario = (Usuario) usuarioDao.findById(Usuario.class, usuarioDao.countAllRows(Usuario.class));
-        assertEquals(actualUsuario, expectedUsuario);
+
+        //Log.d(actualUsuario.getNome(), expectedUsuario.getNome());
+        assertEquals(actualUsuario.getNome(), expectedUsuario.getNome());
+        //assertEquals(true, true);
 
     }
 
