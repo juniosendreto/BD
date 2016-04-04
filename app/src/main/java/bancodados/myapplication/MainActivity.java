@@ -5,8 +5,13 @@ import android.os.Bundle;
 import android.util.Log;
 
 import bancodados.myapplication.R;
+import bancodados.myapplication.core.service.dao.LocalizacaoDaoImpl;
 import bancodados.myapplication.core.service.dao.UsuarioDaoImpl;
+import bancodados.myapplication.core.service.dao.UsuarioVistoriaDaoImpl;
+import bancodados.myapplication.core.service.dao.VistoriaDaoImpl;
+import bancodados.myapplication.model.Localizacao;
 import bancodados.myapplication.model.Usuario;
+import bancodados.myapplication.model.Vistoria;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,29 +20,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       // UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl();
-        /*
-        UsuarioDaoImpl u1 = new UsuarioDaoImpl(MainActivity.this);
-        Usuario usuario = new Usuario("Junio", "39761555860", "junio", "12345", "junio.sendreto@hotmail.com",
-               "SP", "rua", "4321", "12321", 1);
-        Usuario u;
-        u = (Usuario) u1.save(Usuario.class, usuario);*/
-
         UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl(MainActivity.this);
+        LocalizacaoDaoImpl localizacaoDao = new LocalizacaoDaoImpl(MainActivity.this);
+        UsuarioVistoriaDaoImpl usuarioVistoriaDao = new UsuarioVistoriaDaoImpl(MainActivity.this);
+        VistoriaDaoImpl vistoriaDao = new VistoriaDaoImpl(MainActivity.this);
 
-        /*Usuario usuarioActual = new Usuario("Junio", "12345678910", "junio", "12345",
-                "junio.sendreto@hotmail.com", "SP", "rua", "4321", "12321", 1);
-        Usuario usuarioExpected = (Usuario) usuarioDao.findById(Usuario.class, new Long(1));
+        //Usuario u = new Usuario("Jarvan", "39761555860", "junio", "12345", "junio.sendreto@hotmail.com", "SP", "rua", "4321", "12321", 1);
+        //usuarioDao.save(Usuario.class, u);
+        Log.d("--------", "" + usuarioDao.update(Usuario.class, new Usuario("I don't know", "I don't know", "I don't know", "I don't know",
+                "I don't know", "SP", "rua", "4321", "12321", 1)));
 
-        Log.d(usuarioActual.getNome(), "-----" + usuarioExpected.getNome());
-        */
-
-        //Usuario actualUsuario = new Usuario("java", "39761555860", "junio", "12345", "junio.sendreto@hotmail.com", "SP", "rua", "4321", "12321", 1);
-        //usuarioDao.save(Usuario.class, actualUsuario);
-        //Usuario expectedUsuario = (Usuario) usuarioDao.findById(Usuario.class, usuarioDao.countAllRows(Usuario.class));
-
-        //Log.d("-------------b ", actualUsuario.equals(expectedUsuario) + "");
-
-        Log.d("---------------", String.valueOf(usuarioDao.countAllRows(Usuario.class)));
     }
 }

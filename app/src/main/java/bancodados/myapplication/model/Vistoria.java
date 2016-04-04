@@ -15,82 +15,6 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "VISTORIA")
 public class Vistoria {
 
-    public static final String COL_ID = "ID";
-
-    public static final String COL_ENCOSTA_NATURAL = "ENCOSTA_NATURAL";
-
-    public static final String COL_TALUDE_CORTE = "TALUDE_CORTE";
-
-    public static final String COL_ATERRO_LANCADO = "ATERRO_LANCADO";
-
-    public static final String COL_PAREDE_ROCHOSA = "PAREDE_ROCHOSA";
-
-    public static final String COL_ALTURA_N = "ALTURA_N";
-
-    public static final String COL_ALTURA_C = "ALTURA_C";
-
-    public static final String COL_ALTURA_L = "ALTURA_L";
-
-    public static final String COL_ALTURA_R = "ALTURA_R";
-
-    public static final String COL_DISTANCIA_MORADA_C = "DISTANCIA_MORADA_C";
-
-    public static final String COL_DISTANCIA_MORADA_L = "DISTANCIA_MORADA_L";
-
-    public static final String COL_TOPO_C = "TOPO_C";
-
-    public static final String COL_TOPO_L = "TOPO_L";
-
-    public static final String COL_BLOCOS_ROCHA_MATACOES = "BLOCOS_ROCHA_MATACOES";
-
-    public static final String COL_LIXO_ENTULHO = "LIXO_ENTULHO";
-
-    public static final String COL_CONCENTRA_AGUA_CHUVA = "CONCENTRA_AGUA_CHUVA";
-
-    public static final String COL_CONCENTRA_AGUA_SERVIDA = "CONCENTRA_AGUA_SERVIDA";
-
-    public static final String COL_DRENAGE_SUPERFICIAL = "DRENAGE_SUPERFICIAL";
-
-    public static final String COL_ESGOTO = "ESGOTO";
-
-    public static final String COL_AGUA_MORADIA_VAZAMENTO = "AGUA_MORADIA_VAZAMENTO";
-
-    public static final String COL_MINAS_DAGUA = "MINAS_DAGUA";
-
-    public static final String COL_ARVORES = "ARVORES";
-
-    public static final String COL_VEGETACAO_RASTEIRA = "VEGETACAO_RASTEIRA";
-
-    public static final String COL_AREA_DESMATADA = "AREA_DESMATADA";
-
-    public static final String COL_AREA_CULTIVO = "AREA_CULTIVO";
-
-    public static final String COL_TRINCA = "TRINCA";
-
-    public static final String COL_DEGRAUS_ABATIMENTO = "DEGRAUS_ABATIMENTO";
-
-    public static final String COL_INCLINACAO = "INCLINACAO";
-
-    public static final String COL_MURO_PAREDE_EMBARRIGADO = "MURO_PAREDE_EMBARRIGADO";
-
-    public static final String COL_CICATRIZ_ESCORREGAMENTO = "CICATRIZ_ESCORREGAMENTO";
-
-    public static final String COL_ESCORREGAMENTO = "ESCORREGAMENTO";
-
-    public static final String COL_QUEDA_BLOCOS = "QUEDA_BLOCOS";
-
-    public static final String COL_ROLAMENTO_BLOCOS = "ROLAMENTO_BLOCOS";
-
-    public static final String COL_RISCO = "RISCO";
-
-    public static final String COL_QUANT_MORADIS = "QUANTIDADE_MORADIAS";
-
-    public static final String COL_QUANT_PESSOAS = "QUANTIDADE_PESSOAS";
-
-    public static final String COL_INFORMACOES = "INFORMACOES";
-
-    public static final String TABLE_NAME = "VISTORIA";
-
     @DatabaseField(columnName = "id", generatedId = true)
     private Long id;
 
@@ -566,6 +490,56 @@ public class Vistoria {
                     Integer quantidadePessoas, String informacoes) {
 
         this.localizacao = localizacao;
+        this.encostaNatural = encostaNatural;
+        this.taludeCorte = taludeCorte;
+        this.aterroLancado = aterroLancado;
+        this.paredeRochosa = paredeRochosa;
+        this.alturaN = alturaN;
+        this.alturaC = alturaC;
+        this.alturaL = alturaL;
+        this.alturaR = alturaR;
+        this.distanciaMoradaC = distanciaMoradaC;
+        this.DistanciaMoradaL = distanciaMoradaL;
+        this.topoC = topoC;
+        this.topoL = topoL;
+        this.blocosRochasMatacoes = blocosRochasMatacoes;
+        this.lixoEntulho = lixoEntulho;
+        this.concentraAguaChuva = concentraAguaChuva;
+        this.concentraAguaServida = concentraAguaServida;
+        this.drenageSuperficial = drenageSuperficial;
+        this.esgoto = esgoto;
+        this.aguaMoradiaVazamento = aguaMoradiaVazamento;
+        this.minasDagua = minasDagua;
+        this.arvores = arvores;
+        this.vegetacaoRasteira = vegetacaoRasteira;
+        this.areaDesmatada = areaDesmatada;
+        this.areaCultivo = areaCultivo;
+        this.trinca = trinca;
+        this.degrausAbatimento = degrausAbatimento;
+        this.inclinacao = inclinacao;
+        this.muroParedeEmbarrigado = muroParedeEmbarrigado;
+        this.cicatrizEscorregamento = cicatrizEscorregamento;
+        this.Escorregamento = escorregamento;
+        this.quedaBlocos = quedaBlocos;
+        this.rolamentoBlocos = rolamentoBlocos;
+        this.risco = risco;
+        this.quantidadeMoradias = quantidadeMoradias;
+        this.quantidadePessoas = quantidadePessoas;
+        this.informacoes = informacoes;
+    }
+
+    public Vistoria(Boolean encostaNatural, Boolean taludeCorte,
+                    Boolean aterroLancado, Boolean paredeRochosa, Double alturaN, Double alturaC,
+                    Double alturaL, Double alturaR, Double distanciaMoradaC, Double distanciaMoradaL,
+                    Double topoC, Double topoL, Boolean blocosRochasMatacoes, Boolean lixoEntulho,
+                    Boolean concentraAguaChuva, Boolean concentraAguaServida, String drenageSuperficial,
+                    String esgoto, String aguaMoradiaVazamento, String minasDagua, Boolean arvores,
+                    Boolean vegetacaoRasteira, Boolean areaDesmatada, String areaCultivo, String trinca,
+                    Boolean degrausAbatimento, String inclinacao, Boolean muroParedeEmbarrigado,
+                    Boolean cicatrizEscorregamento, String escorregamento, Boolean quedaBlocos,
+                    Boolean rolamentoBlocos, String risco, Integer quantidadeMoradias,
+                    Integer quantidadePessoas, String informacoes) {
+
         this.encostaNatural = encostaNatural;
         this.taludeCorte = taludeCorte;
         this.aterroLancado = aterroLancado;

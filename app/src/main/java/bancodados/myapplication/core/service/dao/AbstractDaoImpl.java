@@ -3,13 +3,13 @@ package bancodados.myapplication.core.service.dao;
 import android.content.Context;
 import android.util.Log;
 
+
 import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
 import java.util.List;
 
-import bancodados.myapplication.core.service.DataBase;
-import bancodados.myapplication.model.Usuario;
+import bancodados.myapplication.bd.DataBase;
 
 /**
  * Created by junio on 11/03/16.
@@ -22,31 +22,36 @@ public abstract class AbstractDaoImpl {
 
     public AbstractDaoImpl(Context context) {
         this.context = context;
+        dataBase = new DataBase(context);
     }
 
     public void conexaoBD() {
-        if (dataBase == null || !(dataBase.isOpen())) {
-            dataBase = new DataBase(context);
+        try {
+            if (dataBase == null || !(dataBase.isOpen())) {
+                dataBase = new DataBase(context);
+            }
+        }catch (Exception e){
+
         }
+
     }
 
     public Object save(Class classe, Object object) {
         try {
-            conexaoBD();
+            //conexaoBD();
             dataBase.getDao(classe).create(object);
             return object;
         } catch (Exception e) {
             Log.d("--------", "ERRO SAVE(ABSTRACTDAO) " + e.getMessage());
-        } finally {
+        } /*finally {
             dataBase.close();
-        }
+        }*/
         return null;
     }
 
     public Object update(Class classe, Object object) {
         try {
-            conexaoBD();
-            dataBase.getDao(classe).update(object);
+            dataBase.getDao(classe).update(object)
             return object;
         } catch (SQLException e) {
             Log.d("------", "ERRO UPDATE(ABSDAO)");
@@ -58,7 +63,7 @@ public abstract class AbstractDaoImpl {
 
     public Boolean delete(Class classe, Object object) {
         try {
-            conexaoBD();
+            //conexaoBD();
             dataBase.getDao(classe).delete(object);
             return true;
         } catch (SQLException e) {
@@ -72,7 +77,7 @@ public abstract class AbstractDaoImpl {
     public List<Class> listAll(Class classe) {
         List<Class> lista = null;
         try {
-            conexaoBD();
+            //conexaoBD();
             lista = dataBase.getDao(classe).queryForAll();
             return lista;
         } catch (SQLException e) {
@@ -86,13 +91,13 @@ public abstract class AbstractDaoImpl {
     public Object findById(Class classe, Long id) {
         Object classeId = null;
         try {
-            conexaoBD();
+            //conexaoBD();
             Dao<Class, Integer> dao = dataBase.getDao(classe);
             classeId = dao.queryForId(Integer.valueOf(id.intValue()));
             return classeId;
         } catch (SQLException e) {
             Log.d("------", "ERRO findById(ABSDAO)");
-        } finally {
+        }finally {
             dataBase.close();
         }
         return null;
@@ -101,17 +106,17 @@ public abstract class AbstractDaoImpl {
 
     public Long countAllRows(Class classe) {
         try {
-            conexaoBD();
+            //conexaoBD();
             return dataBase.getDao(classe).countOf();
         } catch (SQLException e) {
             Log.d("------", "ERRO countAllRows(ABSDAO) - " + e.getMessage());
 
-        } finally {
+        }finally {
             dataBase.close();
         }
         return Long.valueOf(0);
     }
-
+/*
     public Integer deleteAllrows(Class classe) {
         try {
             conexaoBD();
@@ -125,6 +130,8 @@ public abstract class AbstractDaoImpl {
             dataBase.close();
         }
         return 0;
-    }
+    }*/
+
+    public
 
 }

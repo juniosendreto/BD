@@ -1,16 +1,12 @@
-package bancodados.myapplication.core.service;
+package bancodados.myapplication.bd;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
-import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
-
-import java.sql.SQLException;
-
 import bancodados.myapplication.model.Localizacao;
 import bancodados.myapplication.model.Usuario;
 import bancodados.myapplication.model.UsuarioVistoria;
@@ -33,7 +29,6 @@ public class DataBase extends OrmLiteSqliteOpenHelper {
 
     public DataBase(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-
 
     }
 
@@ -68,7 +63,7 @@ public class DataBase extends OrmLiteSqliteOpenHelper {
 
         } catch(java.sql.SQLException e) {
 
-            Log.e("----------", "Não foi possível dropar o banco", e);
+            Log.e("----------", "Não foi possível dropar o banco" + e.getMessage());
 
             throw new RuntimeException(e);
 

@@ -1,6 +1,8 @@
 package bancodados.myapplication;
 
 import android.content.Context;
+import android.util.Log;
+
 import junit.framework.TestCase;
 
 import bancodados.myapplication.core.service.dao.UsuarioDaoImpl;
@@ -10,12 +12,13 @@ import bancodados.myapplication.model.Usuario;
 /**
  * Created by junio on 18/03/16.
  */
-public class UsuarioDaoTest extends TestCase{
-    Context context =  null;
+public class UsuarioDaoTest extends ConfingBDTestCase{
 
     public void testSave(){
-        UsuarioDaoImpl usuarioDao =  new UsuarioDaoImpl(context);
-        Usuario actualUsuario = new Usuario("jak", "39761555860", "junio", "12345", "junio.sendreto@hotmail.com", "SP", "rua", "4321", "12321", 1);
+
+        Log.d("------------------", getContext() + "");
+        UsuarioDaoImpl usuarioDao =  new UsuarioDaoImpl(getContext());
+        Usuario actualUsuario = new Usuario("jakson", "39761555860", "junio", "12345", "junio.sendreto@hotmail.com", "SP", "rua", "4321", "12321", 1);
         usuarioDao.save(Usuario.class, actualUsuario);
 
         Usuario expectedUsuario = (Usuario) usuarioDao.findById(Usuario.class, usuarioDao.countAllRows(Usuario.class));

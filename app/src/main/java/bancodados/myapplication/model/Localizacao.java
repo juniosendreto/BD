@@ -112,8 +112,19 @@ public class Localizacao {
         this.tipoMoradia = tipoMoradia;
     }
 
-    public Localizacao(ForeignCollection<Vistoria> vistorias, Double latitude, Double longitude, String municipio, String acessoLocal, String nomeMorador, String tipoMoradia) {
+    public Localizacao(ForeignCollection<Vistoria> vistorias, Double latitude, Double longitude, String municipio,
+                       String acessoLocal, String nomeMorador, String tipoMoradia) {
         this.vistorias = vistorias;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.municipio = municipio;
+        this.acessoLocal = acessoLocal;
+        this.nomeMorador = nomeMorador;
+        this.tipoMoradia = tipoMoradia;
+    }
+
+    public Localizacao(Double latitude, Double longitude, String municipio,
+                       String acessoLocal, String nomeMorador, String tipoMoradia) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.municipio = municipio;
