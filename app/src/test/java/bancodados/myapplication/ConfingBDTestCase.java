@@ -21,6 +21,7 @@ public class ConfingBDTestCase extends AndroidTestCase{
         try {
             context = new RenamingDelegatingContext(getContext(), "sys_vistoria");
             DataBaseHelperFactory.getIntanceConnection(context);
+
         }catch (Exception e){
             Log.d("-----------", "Erro ConfigBDTestCase " + e.getMessage());
         }

@@ -7,6 +7,9 @@ import android.util.Log;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
+
+import java.sql.SQLException;
+
 import bancodados.myapplication.model.Localizacao;
 import bancodados.myapplication.model.Usuario;
 import bancodados.myapplication.model.UsuarioVistoria;
@@ -61,7 +64,7 @@ public class DataBase extends OrmLiteSqliteOpenHelper {
 
             onCreate(sqLiteDatabase, connectionSource);
 
-        } catch(java.sql.SQLException e) {
+        } catch(SQLException e) {
 
             Log.e("----------", "Não foi possível dropar o banco" + e.getMessage());
 

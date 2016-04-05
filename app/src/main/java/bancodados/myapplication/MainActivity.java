@@ -26,9 +26,14 @@ public class MainActivity extends AppCompatActivity {
         VistoriaDaoImpl vistoriaDao = new VistoriaDaoImpl(MainActivity.this);
 
         //Usuario u = new Usuario("Jarvan", "39761555860", "junio", "12345", "junio.sendreto@hotmail.com", "SP", "rua", "4321", "12321", 1);
-        //usuarioDao.save(Usuario.class, u);
-        Log.d("--------", "" + usuarioDao.update(Usuario.class, new Usuario("I don't know", "I don't know", "I don't know", "I don't know",
-                "I don't know", "SP", "rua", "4321", "12321", 1)));
+        //usuarioDao.save(Usuariemulador n funciona com junit
+        // o.class, u);
+        Usuario u = (Usuario) usuarioDao.findById(Usuario.class, 4l);
+        u.setNome("mudei de nome");
+        usuarioDao.update(Usuario.class, u);
+        Usuario u2 = (Usuario) usuarioDao.findById(Usuario.class, 4l);
+
+        Log.d("--------", "" + u2.getId() + " " + u2.getNome());
 
     }
 }

@@ -1,9 +1,6 @@
 package bancodados.myapplication;
 
-import android.content.Context;
 import android.util.Log;
-
-import junit.framework.TestCase;
 
 import bancodados.myapplication.core.service.dao.UsuarioDaoImpl;
 import bancodados.myapplication.model.Usuario;
