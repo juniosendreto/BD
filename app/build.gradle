@@ -33,4 +33,5 @@ dependencies {
     //compile project(':ormlite-jdbc-4.49-SNAPSHOT')
     compile 'com.j256.ormlite:ormlite-android:4.48'
     compile 'com.j256.ormlite:ormlite-core:4.48'
+    androidTestCompile 'junit:junit:4.12'
 }
