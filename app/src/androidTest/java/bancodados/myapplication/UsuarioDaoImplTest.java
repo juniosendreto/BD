@@ -81,23 +81,29 @@ public class UsuarioDaoImplTest extends ConfigBDTestCase{
 
     public void testListAll(){
         UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl(getContext());
+
+        Boolean expected = true, actual = true;
         Usuario usuario1 = new Usuario("carlos", "123445546", "carlos", "12345", "carlos@carlos", "SP", "rua", "4321", "12321", 1);
         Usuario usuario2 = new Usuario("jarvan", "123445546", "jarvan", "12345", "jarvan@jarvan", "SP", "rua", "4321", "12321", 1);
         Usuario usuario3 = new Usuario("fiora", "123445546", "fiora", "12345", "fiora@fiora", "SP", "rua", "4321", "12321", 1);
 
-        List<Usuario> listActual = new ArrayList<Usuario>();
-        listActual.add(usuario1);
-        listActual.add(usuario1);
-        listActual.add(usuario1);
+        List<Usuario> listFixa = new ArrayList<Usuario>();
+        listFixa.add(usuario1);
+        listFixa.add(usuario1);
+        listFixa.add(usuario1);
 
         usuarioDao.save(Usuario.class, usuario1);
         usuarioDao.save(Usuario.class, usuario2);
         usuarioDao.save(Usuario.class, usuario3);
 
-        ArrayList listExpected = (ArrayList) usuarioDao.listAll(Usuario.class);
+        ArrayList listBD = (ArrayList) usuarioDao.listAll(Usuario.class);
 
-        //assertEquals(listActual, listExpected);
+        for(int i = 0; i < listBD.size(); i++){
+            if(!(listFixa.get(i).equals(listBD.get(i))))
+                actual = false;
+        }
 
+        assertEquals(actual, expected);
         usuarioDao.delete(Usuario.class, usuario1);
         usuarioDao.delete(Usuario.class, usuario2);
         usuarioDao.delete(Usuario.class, usuario3);
