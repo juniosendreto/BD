@@ -8,6 +8,7 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import bancodados.myapplication.bd.DataBase;
@@ -81,7 +82,7 @@ public abstract class AbstractDaoImpl {
         List<Class> lista = null;
         try {
             openBD();
-            lista = dataBase.getDao(classe).queryForAll();
+            lista =  dataBase.getDao(classe).queryForAll();
             return lista;
         } catch (SQLException e) {
             Log.d("------", "ERRO listAll(ABSDAO)");
@@ -96,7 +97,7 @@ public abstract class AbstractDaoImpl {
         try {
             openBD();
             Dao<Class, Integer> dao = dataBase.getDao(classe);
-            classeId = dao.queryForId(Integer.valueOf(id.intValue()));
+            classeId = dao.queryForId(Integer.valueOf(id.toString()));
             return classeId;
         } catch (SQLException e) {
             Log.d("------", "ERRO findById(ABSDAO)");
