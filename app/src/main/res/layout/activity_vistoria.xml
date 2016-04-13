@@ -32,11 +32,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PASSO 1 - DADOS GERAIS SOBRE A MORADIA "
-                android:id="@+id/passo1"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:onClick="showElements"/>
+                android:id="@+id/passo1TV"
+                android:clickable="true"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -45,8 +42,8 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="false"
-                android:orientation="vertical">
-                <!-- android:visibility="gone" -->
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -130,7 +127,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Passo 2 - CARACTERIZAÇÃO DO LOCAL"
-                android:id="@+id/passo2"
+                android:id="@+id/passo2TV"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -362,7 +359,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Passo 3 - ÁGUA"
-                android:id="@+id/passo3"
+                android:id="@+id/passo3TV"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -526,10 +523,415 @@
                         android:text="Não"/>
                 </RadioGroup>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Minas d'água no barranco (talude)"
+                    android:id="@+id/minasAguaTV"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No pé"
+                        android:id="@+id/peRB"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/meioRB"
+                        android:text="No meio" />
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/topoTaludeRB"
+                        android:text="Topo do talude ou aterro" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <!-- *********** Passo 4 - Vegetação no talude ou proximidades ******** -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Passo 4 - Vegetação no talude ou proximidades"
+                android:id="@+id/passo4TV"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:onClick="showElements"/>
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Passo4LL"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="false"
+                android:orientation="vertical">
+                <!-- android:visibility="gone" -->
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/presencaArvoresCB"
+                    android:text="Presença de Árvores" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/vegetacaoRasteiraCB"
+                    android:text="Vegetação Rasteira" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/areaDesmatadaCB"
+                    android:text="Área Desmatada" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Área de Cultivo"
+                    android:id="@+id/areaCultivoTV"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/areaCultivoET" />
+
+            </LinearLayout>
+
+            <!-- *********** Passo 5 - Sinais de movimentação ******** -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Passo 5 - Sinais de movimentações"
+                android:id="@+id/passo5TV"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:onClick="showElements"/>
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Passo5LL"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="false"
+                android:orientation="vertical">
+                <!-- android:visibility="gone" -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/trincasLL"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="false"
+                    android:orientation="horizontal">
+                    <!-- android:visibility="gone" -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Trincas"
+                        android:id="@+id/trincasTV"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/terrenoCB"
+                        android:text="No terreno" />
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/moradiaCB"
+                        android:text="Na moradia" />
+                        <!--- Adicionar imagem -->
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/degrausLL"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="false"
+                    android:orientation="vertical">
+                    <!-- android:visibility="gone" -->
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/degrausAbatimentoCB"
+                        android:text="Degraus de batimento" />
+                    <!--- Adicionar imagem -->
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/inclinacaoLL"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="false"
+                    android:orientation="horizontal">
+                    <!-- android:visibility="gone" -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Inclinação"
+                        android:id="@+id/inclinacaoTV"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/arvoreInclinacaoCB"
+                        android:text="Árvores" />
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/postesInclinacaoCB"
+                        android:text="Postes" />
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/murosInclinacaoCB"
+                        android:text="Muros" />
+                </LinearLayout>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/paredesEmbarrigadosCB"
+                    android:text="Muros/paredes 'embarrigados'" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/cicatrizEscorregamentoCB"
+                    android:text="Cicatriz de escorregamento próxima à moradia" />
+            </LinearLayout>
+
+            <!-- *********** Passo 6 - Tipos de processos de instabilização esperados ou já ocorridos ******** -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Passo 6 - Tipos de processos de instabilização esperados ou já ocorridos"
+                android:id="@+id/passo6TV"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:onClick="showElements"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Passo6LL"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="false"
+                android:orientation="vertical">
+                <!-- android:visibility="gone" -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/escorregamentosLL"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="false"
+                    android:orientation="horizontal">
+                    <!-- android:visibility="gone" -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Inclinação"
+                        android:id="@+id/escorregamentosTV"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/escorregamentoTaludeNaturalCB"
+                        android:text="No talude natural" />
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/escorregamentoTaludeCorteCB"
+                        android:text="No talude de corte" />
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/escorregamentoAterroCB"
+                        android:text="Aterro" />
+                </LinearLayout>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/quedaBlocosCB"
+                    android:text="Queda de blocos" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rolamentoBlocosCB"
+                    android:text="Rolamento de blocos" />
+
+            </LinearLayout>
+
+            <!-- *********** Passo 7 - Determinação do grau de risco ******** -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Passo 7 - Determinação do grau de risco"
+                android:id="@+id/passo7TV"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:onClick="showElements"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Passo7LL"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="false"
+                android:orientation="vertical">
+                <!-- android:visibility="gone" -->
+
+                <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="RISCO MUITO ALTO/Providência imediata"
+                        android:id="@+id/riscoMuitoAltoRB"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/riscoAltoB"
+                        android:text="RISCO ALTO/Manter o local em observação" />
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/riscoMedioRB"
+                        android:text="RISCO MÉDIO/Manter o local em observação" />
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/riscoBaixoRB"
+                        android:text="RISCO BAIXO OU INESXISTENTE (pode incluir situaçãoes sem risco)" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <!-- *********** Passo 8 - Necessidade de remoção ******** -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Passo 8 - Necessidade de remoção"
+                android:id="@+id/passo8TV"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:onClick="showElements"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Passo8LL"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="false"
+                android:orientation="vertical">
+                <!-- android:visibility="gone" -->
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Número de moradias em risco"
+                    android:id="@+id/numeroMoradiasRiscoTV"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/numeroMoradiasRiscoET" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Estimativa do número de pessoas para remoção"
+                    android:id="@+id/quatidadeRemocaoTV"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/quantidadeRemocaoET" />
+
+            </LinearLayout>
+
+        <!-- *********** Passo 8 - Necessidade de remoção ******** -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Passo 9 - Outras informaões"
+            android:id="@+id/passo9TV"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:onClick="showElements"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Passo9LL"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="false"
+                android:orientation="vertical">
+                <!-- android:visibility="gone" -->
+
+                <EditText
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/outrasInformacoesET" />
             </LinearLayout>
 
         </LinearLayout>
