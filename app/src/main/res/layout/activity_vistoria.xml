@@ -32,8 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PASSO 1 - DADOS GERAIS SOBRE A MORADIA "
-                android:id="@+id/passo1TV"
-                android:clickable="true"/>
+                android:id="@+id/passo1TV" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -126,23 +125,22 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Passo 2 - CARACTERIZAÇÃO DO LOCAL"
+                android:text="PASSO 2 - CARACTERIZAÇÃO DO LOCAL"
                 android:id="@+id/passo2TV"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:onClick="showElements"/>
+                android:layout_alignParentStart="true" />
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/Passo2LL"
+                android:id="@+id/passo2LL"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="false"
-                android:orientation="vertical">
-                <!-- android:visibility="gone" -->
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <!--  **Encosta Natural** -->
 
@@ -159,8 +157,8 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="false"
-                    android:orientation="vertical">
-                    <!-- android:visibility="gone" -->
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -194,8 +192,8 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="false"
-                    android:orientation="vertical">
-                    <!-- android:visibility="gone" -->
+                    android:orientation="vertical"
+                    android:visibility="gone" >
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -259,8 +257,8 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="false"
-                    android:orientation="vertical">
-                    <!-- android:visibility="gone" -->
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -320,8 +318,8 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="false"
-                    android:orientation="vertical">
-                    <!-- android:visibility="gone" -->
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -362,17 +360,16 @@
                 android:id="@+id/passo3TV"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:onClick="showElements"/>
+                android:layout_alignParentStart="true" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/Passo3LL"
+                android:id="@+id/passo3LL"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="false"
-                android:orientation="vertical">
-                <!-- android:visibility="gone" -->
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <CheckBox
                     android:layout_width="wrap_content"
@@ -499,8 +496,9 @@
                     <RadioGroup
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <!---android:visibility="gone"-->
+                        android:orientation="horizontal"
+                        android:id="@+id/vazamentoSNRG"
+                        android:visibility="gone">
 
 
                         <RadioButton
@@ -560,23 +558,22 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Passo 4 - Vegetação no talude ou proximidades"
+                android:text="PASSO 4 - VEGETAÇÃO NO TALUDE OU PROXIMIDADES"
                 android:id="@+id/passo4TV"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:onClick="showElements"/>
+                android:layout_alignParentStart="true" />
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/Passo4LL"
+                android:id="@+id/passo4LL"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="false"
-                android:orientation="vertical">
-                <!-- android:visibility="gone" -->
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <CheckBox
                     android:layout_width="wrap_content"
@@ -614,23 +611,22 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Passo 5 - Sinais de movimentações"
+                android:text="PASSO 5 - SINAIS DE MOVIMENTAÇÕES"
                 android:id="@+id/passo5TV"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:onClick="showElements"/>
+                android:layout_alignParentStart="true" />
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/Passo5LL"
+                android:id="@+id/passo5LL"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="false"
-                android:orientation="vertical">
-                <!-- android:visibility="gone" -->
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -736,23 +732,22 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Passo 6 - Tipos de processos de instabilização esperados ou já ocorridos"
+                android:text="PASSO 6 - TIPOS DE PROCESSOS DE INSTABILIZAÇÃO ESPERADOS OU JÁ OCORRIDOS"
                 android:id="@+id/passo6TV"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:onClick="showElements"/>
+                android:layout_alignParentStart="true" />
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/Passo6LL"
+                android:id="@+id/passo6LL"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="false"
-                android:orientation="vertical">
-                <!-- android:visibility="gone" -->
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -762,7 +757,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="false"
                     android:orientation="horizontal">
-                    <!-- android:visibility="gone" -->
+                    <!--android:visibility="gone"-->
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -808,23 +803,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Passo 7 - Determinação do grau de risco"
+                android:text="PASSO 7 - DETERMINAÇÃO DO GRAU DE RISCO"
                 android:id="@+id/passo7TV"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:onClick="showElements"/>
-
+                android:layout_alignParentStart="true" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/Passo7LL"
+                android:id="@+id/passo7LL"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="false"
-                android:orientation="vertical">
-                <!-- android:visibility="gone" -->
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
@@ -859,22 +852,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Passo 8 - Necessidade de remoção"
+                android:text="PASSO 8 - NECESSIDADE DE REMOÇÃO"
                 android:id="@+id/passo8TV"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:onClick="showElements"/>
+                android:layout_alignParentStart="true" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/Passo8LL"
+                android:id="@+id/passo8LL"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="false"
-                android:orientation="vertical">
-                <!-- android:visibility="gone" -->
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -911,22 +903,21 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Passo 9 - Outras informaões"
+            android:text="PASSO 9 - OUTRAS INFORMAÇÕES"
             android:id="@+id/passo9TV"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:onClick="showElements"/>
+            android:layout_alignParentStart="true" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/Passo9LL"
+                android:id="@+id/passo9LL"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="false"
-                android:orientation="vertical">
-                <!-- android:visibility="gone" -->
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <EditText
                     android:layout_width="350dp"
