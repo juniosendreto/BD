@@ -26,19 +26,19 @@ public class Vistoria {
         2 PASSO - CARACTERIZAÇÃO DO LOCAL (14)
      */
 
-    @DatabaseField(columnName = "ENCOSTA_NATURAL", canBeNull = false)
+    @DatabaseField(columnName = "ENCOSTA_NATURAL", canBeNull = true)
     private Boolean encostaNatural;
 
-    @DatabaseField(columnName = "TALUDE_CORTE", canBeNull = false)
+    @DatabaseField(columnName = "TALUDE_CORTE", canBeNull = true)
     private Boolean taludeCorte;
 
-    @DatabaseField(columnName = "ATERRO_LANCADO", canBeNull = false)
+    @DatabaseField(columnName = "ATERRO_LANCADO", canBeNull = true)
     private Boolean aterroLancado;
 
-    @DatabaseField(columnName = "PAREDE_ROCHOSA", canBeNull = false)
+    @DatabaseField(columnName = "PAREDE_ROCHOSA", canBeNull = true)
     private Boolean paredeRochosa;
 
-    @DatabaseField(columnName = "ALTURA_N", canBeNull = false)
+    @DatabaseField(columnName = "ALTURA_N", canBeNull = true)
     private Double alturaN;
 
     @DatabaseField(columnName = "ALTURA_C", canBeNull = true)
@@ -53,32 +53,32 @@ public class Vistoria {
     @DatabaseField(columnName = "DISTANCIA_MORADA_C", canBeNull = true)
     private Double distanciaMoradaC;
 
-    @DatabaseField(columnName = "DISTANCIA_MORADA_L", canBeNull = false)
+    @DatabaseField(columnName = "DISTANCIA_MORADA_L", canBeNull = true)
     private Double DistanciaMoradaL;
 
-    @DatabaseField(columnName = "TOPO_C", canBeNull = false)
+    @DatabaseField(columnName = "TOPO_C", canBeNull = true)
     private Double topoC;
 
-    @DatabaseField(columnName = "TOPO_L", canBeNull = false)
+    @DatabaseField(columnName = "TOPO_L", canBeNull = true)
     private Double topoL;
 
-    @DatabaseField(columnName = "BLOCOS_ROCHA_MATACOES", canBeNull = false)
+    @DatabaseField(columnName = "BLOCOS_ROCHA_MATACOES", canBeNull = true)
     private Boolean blocosRochasMatacoes;
 
-    @DatabaseField(columnName = "LIXO_ENTULHO", canBeNull = false)
+    @DatabaseField(columnName = "LIXO_ENTULHO", canBeNull = true)
     private Boolean lixoEntulho;
 
      /*
         3 PASSO - ÁGUA (6)
      */
 
-    @DatabaseField(columnName = "CONCENTRA_AGUA_CHUVA", canBeNull = false)
+    @DatabaseField(columnName = "CONCENTRA_AGUA_CHUVA", canBeNull = true)
     private Boolean concentraAguaChuva;
 
-    @DatabaseField(columnName = "CONCENTRA_AGUA_SERVIDA",  canBeNull = false)
+    @DatabaseField(columnName = "CONCENTRA_AGUA_SERVIDA",  canBeNull = true)
     private Boolean concentraAguaServida;
 
-    @DatabaseField(columnName = "DRENAGE_SUPERFICIAL", canBeNull = false)
+    @DatabaseField(columnName = "DRENAGE_SUPERFICIAL", canBeNull = true)
     private String drenageSuperficial;
 
     @DatabaseField(columnName = "ESGOTO", canBeNull = true)
@@ -97,23 +97,23 @@ public class Vistoria {
     @DatabaseField(columnName = "ARVORES", canBeNull = true)
     private Boolean arvores;
 
-    @DatabaseField(columnName = "VEGETACAO_RASTEIRA", canBeNull = false)
+    @DatabaseField(columnName = "VEGETACAO_RASTEIRA", canBeNull = true)
     private Boolean vegetacaoRasteira;
 
-    @DatabaseField(columnName = "AREA_DESMATADA", canBeNull = false)
+    @DatabaseField(columnName = "AREA_DESMATADA", canBeNull = true)
     private Boolean areaDesmatada;
 
-    @DatabaseField(columnName = "AREA_CULTIVO", canBeNull = false)
+    @DatabaseField(columnName = "AREA_CULTIVO", canBeNull = true)
     private String areaCultivo;
 
      /*
         5 PASSO - SINAIS DE MOVIMENTAÇÕES (5)
      */
 
-    @DatabaseField(columnName = "TRINCA", canBeNull = false)
+    @DatabaseField(columnName = "TRINCA", canBeNull = true)
     private String trinca;
 
-    @DatabaseField(columnName = "DEGRAUS_ABATIMENTO", canBeNull = false)
+    @DatabaseField(columnName = "DEGRAUS_ABATIMENTO", canBeNull = true)
     private Boolean degrausAbatimento;
 
     @DatabaseField(columnName = "INCLINACAO", canBeNull = true)
@@ -132,34 +132,34 @@ public class Vistoria {
     @DatabaseField(columnName = "ESCORREGAMENTO", canBeNull = true)
     private String Escorregamento;
 
-    @DatabaseField(columnName = "QUEDA_BLOCOS", canBeNull = false)
+    @DatabaseField(columnName = "QUEDA_BLOCOS", canBeNull = true)
     private Boolean quedaBlocos;
 
-    @DatabaseField(columnName = "ROLAMENTO_BLOCOS", canBeNull = false)
+    @DatabaseField(columnName = "ROLAMENTO_BLOCOS", canBeNull = true)
     private Boolean rolamentoBlocos;
 
      /*
         7 PASSO - DETERMINAÇÃO DO GRAU DE RISCO
      */
 
-    @DatabaseField(columnName = "RISCO", canBeNull = false)
+    @DatabaseField(columnName = "RISCO", canBeNull = true)
     private String risco;
 
     /*
         8 PASSO - NECESSIDADE DE REMOÇÃO (2)
      */
 
-    @DatabaseField(columnName = "QUANTIDADE_MORADIAS", canBeNull = false)
+    @DatabaseField(columnName = "QUANTIDADE_MORADIAS", canBeNull = true)
     private Integer quantidadeMoradias;
 
-    @DatabaseField(columnName = "QUANTIDADE_PESSOAS", canBeNull = false)
+    @DatabaseField(columnName = "QUANTIDADE_PESSOAS", canBeNull = true)
     private Integer quantidadePessoas;
 
      /*
         8 PASSO - OUTRAS INFORMAÇÕES
      */
 
-    @DatabaseField(columnName = "INFORMAÇÕES", canBeNull = false)
+    @DatabaseField(columnName = "INFORMAÇÕES", canBeNull = true)
     private String informacoes;
 
     public Long getId() {

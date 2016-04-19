@@ -57,6 +57,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/localizacaoET" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Localização não informada"
+                    android:textColor="#ff2b40"
+                    android:id="@+id/localizacaoReportTV"
+                    android:layout_above="@id/localizacaoET"
+                    android:visibility="gone" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -85,6 +93,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/condicoesAreaET" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Condições de acesso a não informada"
+                    android:textColor="#ff2b40"
+                    android:id="@+id/condicoesAreaReportTV"
+                    android:layout_above="@id/condicoesAreaET"
+                    android:visibility="gone" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -548,7 +564,7 @@
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/topoTaludeRB"
+                        android:id="@+id/topoTaludeARB"
                         android:text="Topo do talude ou aterro" />
                 </RadioGroup>
             </LinearLayout>
@@ -650,12 +666,12 @@
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/terrenoCB"
+                        android:id="@+id/trincasTerrenoCB"
                         android:text="No terreno" />
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:id="@+id/moradiaCB"
+                        android:id="@+id/trincasMoradiaCB"
                         android:text="Na moradia" />
                         <!--- Adicionar imagem -->
                 </LinearLayout>
