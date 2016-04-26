@@ -30,9 +30,11 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="fill_parent"
                 android:text="PASSO 1 - DADOS GERAIS SOBRE A MORADIA "
                 android:id="@+id/passo1TV" />
+            <!--android:drawableRight="@mipmap/erro"-->
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -114,6 +116,7 @@
                 <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/tiposMoradiasRG"
                     android:orientation="horizontal">
 
                     <RadioButton
@@ -132,7 +135,13 @@
                         android:id="@+id/mistoRB"
                         android:text="Misto (alvenaria e madeira)" />
                 </RadioGroup>
-
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tipos de Moradias não informado!"
+                    android:textColor="#ff2b40"
+                    android:id="@+id/tiposMoradiasReportTV"
+                    android:layout_above="@id/tiposMoradiasRG"/>
 
             </LinearLayout>
 
@@ -189,6 +198,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/alturaEncostaET" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Altura da Encosta Natural não informada!"
+                        android:textColor="#ff2b40"
+                        android:id="@+id/alturaEncostaReportTV"
+                        android:layout_above="@id/alturaEncostaET"
+                        android:visibility="gone"/>
 
                     <!-- Recurso de imagens -->
                 </LinearLayout>
@@ -224,6 +241,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/alturaTaludeET" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Altura do Talude de corte não informada!"
+                        android:textColor="#ff2b40"
+                        android:id="@+id/alturaTaludeReportTV"
+                        android:layout_above="@id/alturaTaludeET"
+                        android:visibility="gone"/>
 
                     <!-- Recurso de imagens -->
 
@@ -240,6 +265,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/distanciaBaseTaludeET" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Distância da moradia da base da encosta/talude não informada!"
+                        android:textColor="#ff2b40"
+                        android:id="@+id/distanciaBaseTaludeReportTV"
+                        android:layout_above="@id/distanciaBaseTaludeET"
+                        android:visibility="gone"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -254,7 +287,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/alturaTopoTaludeET" />
-
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Distancia da moradia do topo da encosta/talude não informada!"
+                        android:textColor="#ff2b40"
+                        android:id="@+id/alturaTopoEncostaReportTV"
+                        android:layout_above="@id/alturaTopoTaludeET"
+                        android:visibility="gone"/>
 
                 </LinearLayout>
 
@@ -289,6 +329,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/alturaAterroET" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Altura do Aterro Lançado não informada!"
+                        android:textColor="#ff2b40"
+                        android:id="@+id/alturaAterroReportTV"
+                        android:layout_above="@id/alturaAterroET"
+                        android:visibility="gone"/>
 
                     <!-- Recurso de imagens -->
 
@@ -305,6 +353,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/distanciaBaseAterroET" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Distância da moradia da base do aterro não informada!"
+                        android:textColor="#ff2b40"
+                        android:id="@+id/distanciaBaseAterroReportTV"
+                        android:layout_above="@id/distanciaBaseAterroET"
+                        android:visibility="gone"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -319,6 +375,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/alturaTopoAterroET" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Distancia da moradia do topo do aterro não informada!"
+                        android:textColor="#ff2b40"
+                        android:id="@+id/alturaTopoAterroReportTV"
+                        android:layout_above="@id/alturaTopoAterroET"
+                        android:visibility="gone"/>
+
                 </LinearLayout>
 
                 <CheckBox
@@ -350,7 +415,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/alturaParedeET" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Altura da parede rochosa não informada!"
+                        android:textColor="#ff2b40"
+                        android:id="@+id/alturaParedeReportTV"
+                        android:layout_above="@id/alturaParedeET"
+                        android:visibility="gone"/>
                     <!-- Recurso de imagens -->
+
                 </LinearLayout>
 
                 <CheckBox
@@ -411,6 +485,7 @@
                 <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/drenagemSuperficialRG"
                     android:orientation="horizontal">
 
                     <RadioButton
@@ -429,6 +504,14 @@
                         android:id="@+id/satisfatorioRB"
                         android:text="Satisfatorio" />
                 </RadioGroup>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sistema de drenagem superficial não informada"
+                    android:textColor="#ff2b40"
+                    android:id="@+id/drenagemSuperficialReportTV"
+                    android:layout_above="@id/drenagemSuperficialRG"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -442,6 +525,7 @@
                 <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/idaEsgotoRG"
                     android:orientation="horizontal">
 
                     <RadioButton
@@ -460,6 +544,14 @@
                         android:id="@+id/superficieRB"
                         android:text="Lançamento em superfície (céu aberto)" />
                 </RadioGroup>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Local onde o esgoto vai não informado"
+                    android:textColor="#ff2b40"
+                    android:id="@+id/idaEsgotoReportTV"
+                    android:layout_above="@id/idaEsgotoRG"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -473,6 +565,7 @@
                 <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/vindaAguaRG"
                     android:orientation="horizontal">
 
                     <RadioButton
@@ -490,6 +583,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Local onde vem a água não informado"
+                    android:textColor="#ff2b40"
+                    android:id="@+id/vindaAguaReportTV"
+                    android:layout_above="@id/vindaAguaRG"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="Existe vazamento na tubulação?"
                     android:id="@+id/vazamentoTV"
                     android:layout_alignParentTop="true"
@@ -499,6 +601,7 @@
                 <RadioGroup
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/vazamentoRG"
                     android:orientation="horizontal">
 
                     <RadioButton
@@ -515,7 +618,6 @@
                         android:orientation="horizontal"
                         android:id="@+id/vazamentoSNRG"
                         android:visibility="gone">
-
 
                         <RadioButton
                             android:layout_width="wrap_content"
@@ -536,6 +638,23 @@
                         android:id="@+id/vazamentoNRB"
                         android:text="Não"/>
                 </RadioGroup>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Existência de vazamento não informada"
+                    android:textColor="#ff2b40"
+                    android:id="@+id/vazamentoReportTV"
+                    android:layout_above="@id/vazamentoRG"
+                    android:visibility="gone"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tipo de vazamento não informada"
+                    android:textColor="#ff2b40"
+                    android:id="@+id/vazamentoEAReportTV"
+                    android:layout_above="@id/vazamentoRG"
+                    android:visibility="gone"/>
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -566,6 +685,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/topoTaludeARB"
                         android:text="Topo do talude ou aterro" />
+
                 </RadioGroup>
             </LinearLayout>
 

@@ -35,6 +35,7 @@ public class VistoriaActivity extends AppCompatActivity {
         final RadioButton alvenariaRB = (RadioButton) findViewById(R.id.alvenariaRB);
         final RadioButton madeiraRB = (RadioButton) findViewById(R.id.madeiraRB);
         final RadioButton mistoRB = (RadioButton) findViewById(R.id.mistoRB);
+        final TextView tiposMoradiasReportTV = (TextView) findViewById(R.id.tiposMoradiasReportTV);
 
 
         /* PASSO 2 */
@@ -46,23 +47,35 @@ public class VistoriaActivity extends AppCompatActivity {
         final CheckBox encostaCB = (CheckBox) findViewById(R.id.encostaCB);
         final LinearLayout encostaLL = (LinearLayout) findViewById(R.id.encostaLL);
         final EditText alturaEncostaET = (EditText) findViewById(R.id.alturaEncostaET);
+        final TextView alturaEncostaReportTV = (TextView) findViewById(R.id.alturaEncostaReportTV);
+
 
         final CheckBox taludeCB = (CheckBox) findViewById(R.id.taludeCB);
         final LinearLayout taludeLL = (LinearLayout) findViewById(R.id.taludeLL);
         final EditText alturaTaludeET = (EditText) findViewById(R.id.alturaTaludeET);
         final EditText distanciaBaseTaludeET = (EditText) findViewById(R.id.distanciaBaseTaludeET);
         final EditText alturaTopoTaludeET = (EditText) findViewById(R.id.alturaTopoTaludeET);
+        final TextView alturaTaludeReportTV = (TextView) findViewById(R.id.alturaTaludeReportTV);
+        final TextView distanciaBaseTaludeReportTV = (TextView) findViewById(R.id.distanciaBaseTaludeReportTV);
+        final TextView alturaTopoEncostaReportTV = (TextView) findViewById(R.id.alturaTopoEncostaReportTV);
+
+
 
         final CheckBox aterroCB = (CheckBox) findViewById(R.id.aterroCB);
         final LinearLayout aterroLL = (LinearLayout) findViewById(R.id.aterroLL);
         final EditText alturaAterroET = (EditText) findViewById(R.id.alturaAterroET);
         final EditText distanciaBaseAterroET = (EditText) findViewById(R.id.distanciaBaseAterroET);
         final EditText alturaTopoAterroET = (EditText) findViewById(R.id.alturaTopoAterroET);
+        final TextView alturaAterroReportTV = (TextView) findViewById(R.id.alturaAterroReportTV);
+        final TextView distanciaBaseAterroReportTV = (TextView) findViewById(R.id.distanciaBaseAterroReportTV);
+        final TextView alturaTopoAterroReportTV = (TextView) findViewById(R.id.alturaTopoAterroReportTV);
 
 
-        final CheckBox pareceCB = (CheckBox) findViewById(R.id.paredeCB);
+        final CheckBox paredeCB = (CheckBox) findViewById(R.id.paredeCB);
         final LinearLayout paredeLL = (LinearLayout) findViewById(R.id.paredeLL);
         final EditText alturaParedeET = (EditText) findViewById(R.id.alturaParedeET);
+        final TextView alturaParedeReportTV = (TextView) findViewById(R.id.alturaParedeReportTV);
+
 
         final CheckBox blocosRochasCB = (CheckBox) findViewById(R.id.blocosRochasCB);
         final CheckBox lixoEntulhoCB = (CheckBox) findViewById(R.id.lixoEntulhoCB);
@@ -79,6 +92,8 @@ public class VistoriaActivity extends AppCompatActivity {
         final RadioButton inexistenteRB = (RadioButton) findViewById(R.id.inexistenteRB);
         final RadioButton precarioRB = (RadioButton) findViewById(R.id.precarioRB);
         final RadioButton satisfatorioRB = (RadioButton) findViewById(R.id.satisfatorioRB);
+        final TextView drenagemsuperficialReportTV = (TextView) findViewById(R.id.drenagemSuperficialReportTV);
+
 
         final RadioButton fossaRB = (RadioButton) findViewById(R.id.fossaRB);
         final RadioButton canalizadoRB = (RadioButton) findViewById(R.id.canalizadoRB);
@@ -188,6 +203,25 @@ public class VistoriaActivity extends AppCompatActivity {
             }
         });
 
+        alvenariaRB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adapter.visibilityRadioButton(alvenariaRB, tiposMoradiasReportTV);
+            }
+        });
+        madeiraRB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adapter.visibilityRadioButton(madeiraRB, tiposMoradiasReportTV);
+            }
+        });
+        mistoRB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adapter.visibilityRadioButton(mistoRB, tiposMoradiasReportTV);
+            }
+        });
+
 
          /* PASSO 2 */
 
@@ -203,6 +237,15 @@ public class VistoriaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 adapter.visibilityCheckBox(encostaCB, encostaLL);
+
+            }
+        });
+        alturaEncostaET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    adapter.nullValueByCheckBox(encostaCB, alturaEncostaET, alturaEncostaReportTV);
+                }
             }
         });
 
@@ -213,6 +256,33 @@ public class VistoriaActivity extends AppCompatActivity {
             }
         });
 
+        alturaTaludeET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    adapter.nullValueByCheckBox(taludeCB, alturaTaludeET, alturaTaludeReportTV);
+                }
+            }
+        });
+
+        distanciaBaseTaludeET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    adapter.nullValueByCheckBox(taludeCB, distanciaBaseTaludeET, distanciaBaseTaludeReportTV);
+                }
+            }
+        });
+
+        alturaTopoTaludeET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    adapter.nullValueByCheckBox(taludeCB, alturaTopoTaludeET, alturaTopoEncostaReportTV);
+                }
+            }
+        });
+
         aterroCB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -220,10 +290,46 @@ public class VistoriaActivity extends AppCompatActivity {
             }
         });
 
-        pareceCB.setOnClickListener(new View.OnClickListener() {
+        alturaAterroET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    adapter.nullValueByCheckBox(aterroCB, alturaAterroET, alturaAterroReportTV);
+                }
+            }
+        });
+
+        distanciaBaseAterroET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    adapter.nullValueByCheckBox(aterroCB, distanciaBaseAterroET, distanciaBaseAterroReportTV);
+                }
+            }
+        });
+
+        alturaTopoAterroET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    adapter.nullValueByCheckBox(aterroCB, alturaTopoAterroET, alturaTopoAterroReportTV);
+                }
+            }
+        });
+
+        paredeCB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                adapter.visibilityCheckBox(pareceCB, paredeLL);
+                adapter.visibilityCheckBox(paredeCB, paredeLL);
+            }
+        });
+
+        alturaParedeET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    adapter.nullValueByCheckBox(paredeCB, alturaParedeET, alturaParedeReportTV);
+                }
             }
         });
 
@@ -235,10 +341,16 @@ public class VistoriaActivity extends AppCompatActivity {
             }
         });
 
-        vazamentoSNRG.setOnClickListener(new View.OnClickListener() {
+        vazamentoSRB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                adapter.visibilityRadioButton(vazamentoSRB, vazamentoSNRG);
+                adapter.radionButtonChecked(vazamentoSRB, vazamentoSNRG);
+            }
+        });
+        vazamentoNRB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adapter.visibilityRadioButton(vazamentoNRB, vazamentoSNRG);
             }
         });
 

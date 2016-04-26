@@ -1,11 +1,9 @@
 package bancodados.myapplication.core.service.dao;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 /**
@@ -32,20 +30,17 @@ public class Adapter {
 
     public void visibilityRadioButton(RadioButton radioButton, View view){
         if(radioButton.isChecked()){
-            view.setVisibility(View.VISIBLE);
-        }else{
             view.setVisibility(View.GONE);
+        }else{
+            view.setVisibility(View.VISIBLE);
         }
     }
 
-    public void checkedOnOff(RadioButton radioButton){
+    public void radionButtonChecked(RadioButton radioButton, View view){
         if(radioButton.isChecked()){
-            radioButton.setChecked(true);
-            Log.d("---------", "checked");
+            view.setVisibility(View.VISIBLE);
         }else{
-            radioButton.setChecked(false);
-            Log.d("---------", "not checked");
-
+            view.setVisibility(View.GONE);
         }
     }
 
@@ -57,6 +52,13 @@ public class Adapter {
         }
     }
 
-
-
+    public void nullValueByCheckBox(CheckBox checkBox, EditText editText, TextView textView) {
+        if (checkBox.isChecked()) {
+            if (String.valueOf(editText.getText()).equals("")) {
+                textView.setVisibility(View.VISIBLE);
+            } else {
+                textView.setVisibility(View.GONE);
+            }
+        }
+    }
 }
