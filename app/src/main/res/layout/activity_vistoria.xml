@@ -612,32 +612,32 @@
 
                     </RadioButton>
 
-                    <RadioGroup
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:id="@+id/vazamentoSNRG"
-                        android:visibility="gone">
-
-                        <RadioButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Esgoto"
-                            android:id="@+id/vazamentoEsgotoRB"/>
-
-                        <RadioButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/vazamentoAguaRB"
-                            android:text="Agua" />
-                    </RadioGroup>
-
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/vazamentoNRB"
                         android:text="Não"/>
                 </RadioGroup>
+                <RadioGroup
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:id="@+id/vazamentoSNRG"
+                    android:visibility="gone">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Esgoto"
+                        android:id="@+id/vazamentoEsgotoRB"/>
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/vazamentoAguaRB"
+                        android:text="Agua" />
+                </RadioGroup>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -804,7 +804,6 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="false"
                     android:orientation="vertical">
-                    <!-- android:visibility="gone" -->
 
                     <CheckBox
                         android:layout_width="wrap_content"
@@ -958,6 +957,7 @@
                 <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/riscoRG"
                     android:orientation="vertical">
 
                     <RadioButton
@@ -981,6 +981,14 @@
                         android:id="@+id/riscoBaixoRB"
                         android:text="RISCO BAIXO OU INESXISTENTE (pode incluir situaçãoes sem risco)" />
                 </RadioGroup>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Existência de vazamento não informada"
+                    android:textColor="#ff2b40"
+                    android:id="@+id/riscoReportTV"
+                    android:layout_above="@id/riscoRG"
+                    android:visibility="gone"/>
             </LinearLayout>
 
             <!-- *********** Passo 8 - Necessidade de remoção ******** -->
@@ -1060,6 +1068,11 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/outrasInformacoesET" />
             </LinearLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/salvarVistoriaB"
+                android:text="Salvar Vistoria"/>
 
         </LinearLayout>
     </ScrollView>

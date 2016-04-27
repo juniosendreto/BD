@@ -3,6 +3,7 @@ package bancodados.myapplication.view;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 
 import bancodados.myapplication.R;
 import bancodados.myapplication.core.service.dao.Adapter;
+import bancodados.myapplication.model.Localizacao;
+import bancodados.myapplication.model.Vistoria;
 
 public class VistoriaActivity extends AppCompatActivity {
 
@@ -26,6 +29,8 @@ public class VistoriaActivity extends AppCompatActivity {
 
         final TextView passo1TV = (TextView) findViewById(R.id.passo1TV);
         final LinearLayout passo1LL = (LinearLayout) findViewById(R.id.passo1LL);
+        Vistoria vistoria = new Vistoria();
+        Localizacao localizacao =  new Localizacao();
 
         final EditText localizacaoET = (EditText) findViewById(R.id.localizacaoET);
         final TextView localizacaoReportTV = (TextView) findViewById(R.id.localizacaoReportTV);
@@ -49,7 +54,6 @@ public class VistoriaActivity extends AppCompatActivity {
         final EditText alturaEncostaET = (EditText) findViewById(R.id.alturaEncostaET);
         final TextView alturaEncostaReportTV = (TextView) findViewById(R.id.alturaEncostaReportTV);
 
-
         final CheckBox taludeCB = (CheckBox) findViewById(R.id.taludeCB);
         final LinearLayout taludeLL = (LinearLayout) findViewById(R.id.taludeLL);
         final EditText alturaTaludeET = (EditText) findViewById(R.id.alturaTaludeET);
@@ -58,8 +62,6 @@ public class VistoriaActivity extends AppCompatActivity {
         final TextView alturaTaludeReportTV = (TextView) findViewById(R.id.alturaTaludeReportTV);
         final TextView distanciaBaseTaludeReportTV = (TextView) findViewById(R.id.distanciaBaseTaludeReportTV);
         final TextView alturaTopoEncostaReportTV = (TextView) findViewById(R.id.alturaTopoEncostaReportTV);
-
-
 
         final CheckBox aterroCB = (CheckBox) findViewById(R.id.aterroCB);
         final LinearLayout aterroLL = (LinearLayout) findViewById(R.id.aterroLL);
@@ -70,12 +72,10 @@ public class VistoriaActivity extends AppCompatActivity {
         final TextView distanciaBaseAterroReportTV = (TextView) findViewById(R.id.distanciaBaseAterroReportTV);
         final TextView alturaTopoAterroReportTV = (TextView) findViewById(R.id.alturaTopoAterroReportTV);
 
-
         final CheckBox paredeCB = (CheckBox) findViewById(R.id.paredeCB);
         final LinearLayout paredeLL = (LinearLayout) findViewById(R.id.paredeLL);
         final EditText alturaParedeET = (EditText) findViewById(R.id.alturaParedeET);
         final TextView alturaParedeReportTV = (TextView) findViewById(R.id.alturaParedeReportTV);
-
 
         final CheckBox blocosRochasCB = (CheckBox) findViewById(R.id.blocosRochasCB);
         final CheckBox lixoEntulhoCB = (CheckBox) findViewById(R.id.lixoEntulhoCB);
@@ -175,6 +175,8 @@ public class VistoriaActivity extends AppCompatActivity {
         final LinearLayout passo9LL = (LinearLayout) findViewById(R.id.passo9LL);
 
         final EditText outrasInformacoesET = (EditText) findViewById(R.id.outrasInformacoesET);
+
+        final Button salvarVistoriaB = (Button) findViewById(R.id.salvarVistoriaB);
 
         /* PASSO 1 */
 
@@ -357,21 +359,21 @@ public class VistoriaActivity extends AppCompatActivity {
         inexistenteRB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //adapter.checkedOnOff(inexistenteRB);
+
             }
         });
 
         precarioRB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //adapter.checkedOnOff(precarioRB);
+
             }
         });
 
         satisfatorioRB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //adapter.checkedOnOff(satisfatorioRB);
+
             }
         });
 
@@ -419,6 +421,13 @@ public class VistoriaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 adapter.visibility(passo9LL);
+
+            }
+        });
+
+        salvarVistoriaB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
             }
         });

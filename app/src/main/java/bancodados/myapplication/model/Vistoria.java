@@ -21,6 +21,16 @@ public class Vistoria {
     @DatabaseField(foreign = true, columnName = "LOCALIZACAO_ID")
     private Localizacao localizacao;
 
+    /*
+        1 PASSO - DADOS GERAIS SOBRE AS MORADIAS
+     */
+
+    @DatabaseField(columnName = "NOME_MORADOR", canBeNull = false)
+    private String nomeMorador;
+
+    @DatabaseField(columnName = "TIPO_MORADIA", canBeNull = true)
+    private String tipoMoradia;
+
 
     /*
         2 PASSO - CARACTERIZAÇÃO DO LOCAL (14)
@@ -185,6 +195,22 @@ public class Vistoria {
     public void setLocalizacao(Localizacao localizacao) {
         this.localizacao = localizacao;
     }*/
+
+    public String getNomeMorador() {
+        return nomeMorador;
+    }
+
+    public void setNomeMorador(String nomeMorador) {
+        this.nomeMorador = nomeMorador;
+    }
+
+    public String getTipoMoradia() {
+        return tipoMoradia;
+    }
+
+    public void setTipoMoradia(String tipoMoradia) {
+        this.tipoMoradia = tipoMoradia;
+    }
 
     public Boolean getEncostaNatural() {
         return encostaNatural;
@@ -474,22 +500,33 @@ public class Vistoria {
         this.informacoes = informacoes;
     }
 
+    public Localizacao getLocalizacao() {
+        return localizacao;
+    }
 
-    public Vistoria(){    }
+    public void setLocalizacao(Localizacao localizacao) {
+        this.localizacao = localizacao;
+    }
 
-    public Vistoria(Localizacao localizacao, Boolean encostaNatural, Boolean taludeCorte,
-                    Boolean aterroLancado, Boolean paredeRochosa, Double alturaN, Double alturaC,
-                    Double alturaL, Double alturaR, Double distanciaMoradaC, Double distanciaMoradaL,
-                    Double topoC, Double topoL, Boolean blocosRochasMatacoes, Boolean lixoEntulho,
-                    Boolean concentraAguaChuva, Boolean concentraAguaServida, String drenageSuperficial,
-                    String esgoto, String aguaMoradiaVazamento, String minasDagua, Boolean arvores,
-                    Boolean vegetacaoRasteira, Boolean areaDesmatada, String areaCultivo, String trinca,
+
+    public Vistoria(){}
+
+    public Vistoria(Localizacao localizacao, String nomeMorador, String tipoMoradia,
+                    Boolean encostaNatural, Boolean taludeCorte, Boolean aterroLancado,
+                    Boolean paredeRochosa, Double alturaN, Double alturaC, Double alturaL,
+                    Double alturaR, Double distanciaMoradaC, Double distanciaMoradaL, Double topoC,
+                    Double topoL, Boolean blocosRochasMatacoes, Boolean lixoEntulho,
+                    Boolean concentraAguaChuva, Boolean concentraAguaServida,
+                    String drenageSuperficial, String esgoto, String aguaMoradiaVazamento,
+                    String minasDagua, Boolean arvores, Boolean vegetacaoRasteira,
+                    Boolean areaDesmatada, String areaCultivo, String trinca,
                     Boolean degrausAbatimento, String inclinacao, Boolean muroParedeEmbarrigado,
                     Boolean cicatrizEscorregamento, String escorregamento, Boolean quedaBlocos,
                     Boolean rolamentoBlocos, String risco, Integer quantidadeMoradias,
                     Integer quantidadePessoas, String informacoes) {
-
         this.localizacao = localizacao;
+        this.nomeMorador = nomeMorador;
+        this.tipoMoradia = tipoMoradia;
         this.encostaNatural = encostaNatural;
         this.taludeCorte = taludeCorte;
         this.aterroLancado = aterroLancado;

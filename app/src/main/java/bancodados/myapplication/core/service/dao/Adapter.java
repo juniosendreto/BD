@@ -9,7 +9,7 @@ import android.widget.TextView;
 /**
  * Created by junio on 13/04/16.
  */
-public class Adapter {
+public class Adapter{
 
     public void visibility(View view){
         if(view.getVisibility() == View.GONE){

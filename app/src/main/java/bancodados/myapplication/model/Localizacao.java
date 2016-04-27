@@ -15,22 +15,6 @@ import java.util.Collection;
 @DatabaseTable(tableName = "LOCALIZACAO")
 public class Localizacao {
 
-    public static final String COL_ID = "ID";
-
-    public static final String COL_LATITUDE = "LATITUDE";
-
-    public static final String COL_LONGITUDE = "LONGITUDE";
-
-    public static final String COL_MUNICIPIO = "MUNICIPIO";
-
-    public static final String COL_ACESSO_LOCAL = "ACESSO_LOCAL";
-
-    public static final String COL_NOME_MORADOR = "NOME_MORADOR";
-
-    public static final String COL_TIPO_MORADIA = "TIPO_MORADIA";
-
-    public static final String TABLE_NAME = "LOCALIZACAO";
-
     @DatabaseField(columnName = "id", generatedId = true)
     private Long id;
 
@@ -48,12 +32,6 @@ public class Localizacao {
 
     @DatabaseField(columnName = "ACESSO_LOCAL", canBeNull = false)
     private String acessoLocal;
-
-    @DatabaseField(columnName = "NOME_MORADOR", canBeNull = false)
-    private String nomeMorador;
-
-    @DatabaseField(columnName = "TIPO_MORADIA", canBeNull = true)
-    private String tipoMoradia;
 
 
     public Long getId() {
@@ -96,41 +74,22 @@ public class Localizacao {
         this.acessoLocal = acessoLocal;
     }
 
-    public String getNomeMorador() {
-        return nomeMorador;
-    }
-
-    public void setNomeMorador(String nomeMorador) {
-        this.nomeMorador = nomeMorador;
-    }
-
-    public String getTipoMoradia() {
-        return tipoMoradia;
-    }
-
-    public void setTipoMoradia(String tipoMoradia) {
-        this.tipoMoradia = tipoMoradia;
-    }
 
     public Localizacao(ForeignCollection<Vistoria> vistorias, Double latitude, Double longitude, String municipio,
-                       String acessoLocal, String nomeMorador, String tipoMoradia) {
+                       String acessoLocal) {
         this.vistorias = vistorias;
         this.latitude = latitude;
         this.longitude = longitude;
         this.municipio = municipio;
         this.acessoLocal = acessoLocal;
-        this.nomeMorador = nomeMorador;
-        this.tipoMoradia = tipoMoradia;
     }
 
-    public Localizacao(Double latitude, Double longitude, String municipio,
-                       String acessoLocal, String nomeMorador, String tipoMoradia) {
+    public Localizacao(Double latitude, Double longitude, String municipio, String acessoLocal) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.municipio = municipio;
         this.acessoLocal = acessoLocal;
-        this.nomeMorador = nomeMorador;
-        this.tipoMoradia = tipoMoradia;
+
     }
 
     public Localizacao(){}
