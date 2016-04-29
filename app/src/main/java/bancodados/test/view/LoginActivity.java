@@ -1,4 +1,4 @@
-package bancodados.myapplication.view;
+package bancodados.test.view;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -10,8 +10,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import bancodados.myapplication.R;
-import bancodados.myapplication.core.service.dao.UsuarioDaoImpl;
+import bancodados.test.R;
+import bancodados.test.core.service.dao.UsuarioDaoImpl;
 
 public class LoginActivity extends AppCompatActivity {
 

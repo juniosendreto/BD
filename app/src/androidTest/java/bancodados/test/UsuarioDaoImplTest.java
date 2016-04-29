@@ -1,19 +1,18 @@
-package bancodados.myapplication;
+package bancodados.test;
 
 import android.util.Log;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-import bancodados.myapplication.core.service.dao.UsuarioDaoImpl;
-import bancodados.myapplication.model.Usuario;
+import bancodados.test.core.service.dao.UsuarioDaoImpl;
+import bancodados.test.model.Usuario;
 
 /**
  * Created by junio on 05/04/16.
  */
 public class UsuarioDaoImplTest extends ConfigBDTestCase{
 
-    public void testSave(){
+   /* public void testSave(){
         Long Id;
         UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl(getContext());
         Usuario actualUsuario = new Usuario("carro", "123445546", "junio", "12345", "jax@jax", "SP", "rua", "4321", "12321", 1);
@@ -139,6 +138,20 @@ public class UsuarioDaoImplTest extends ConfigBDTestCase{
         usuarioDao.delete(Usuario.class, usuario1);
         usuarioDao.delete(Usuario.class, usuario2);
         usuarioDao.delete(Usuario.class, usuario3);
+    }*/
+
+    public void testFindByLoginAndPassword(){
+        UsuarioDaoImpl usuarioDao =  new UsuarioDaoImpl(getContext());
+        Usuario actualUsuario = new Usuario("tibers2", "123445546", "carlos", "12345", "carlos@carlos", "SP", "rua", "4321", "12321", 1);
+        usuarioDao.save(Usuario.class, actualUsuario);
+
+        Usuario expetedUsuario = (Usuario) usuarioDao.findByLoginAndPassword(actualUsuario.getLogin(), actualUsuario.getPassword());
+
+
+        Log.d("-----", actualUsuario.getNome() + " " + expetedUsuario.getNome());
+        assertEquals(actualUsuario, expetedUsuario);
+
+
     }
 
 }

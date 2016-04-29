@@ -1,17 +1,15 @@
-package bancodados.myapplication.core.service.dao;
+package bancodados.test.core.service.dao;
 
 import android.content.Context;
 import android.util.Log;
 
 
 import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-import bancodados.myapplication.bd.DataBase;
+import bancodados.test.bd.DataBase;
 
 /**
  * Created by junio on 11/03/16.
@@ -121,24 +119,12 @@ public abstract class AbstractDaoImpl {
         return Long.valueOf(0);
     }
 
-   /* public Boolean removeAllRows(Class classe){
-        try {
-            TableUtils.clearTable(dataBase.getConnectionSource(), classe);
-            return true;
-        }catch (SQLException e){
-            Log.d("------", "ERRO removeAllRows(ABSDAO) - " + e.getMessage());
-        }
-        return false;
-
-    }*/
 
 
     public Integer deleteAllrows(Class classe) {
         try {
             openBD();
             dataBase.getDao(classe).delete(listAll(classe));
-            //dataBase.getDao(classe).deleteIds(listAll(classe));
-            //dataBase.getDao(classe).delete(listAll(classe));
             return 1;
         } catch (SQLException e) {
             Log.d("------", "ERRO deleteAllRows(ABSDAO) - " + e.getMessage());

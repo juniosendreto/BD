@@ -1,4 +1,4 @@
-package bancodados.myapplication.bd;
+package bancodados.test.bd;
 
 import android.content.Context;
 

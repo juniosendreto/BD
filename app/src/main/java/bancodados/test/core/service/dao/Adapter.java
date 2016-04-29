@@ -1,4 +1,4 @@
-package bancodados.myapplication.core.service.dao;
+package bancodados.test.core.service.dao;
 
 import android.view.View;
 import android.widget.CheckBox;

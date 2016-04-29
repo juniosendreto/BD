@@ -7,7 +7,7 @@
     android:layout_alignParentLeft="true"
     android:layout_alignParentStart="false"
     android:orientation="vertical"
-    tools:context="bancodados.myapplication.view.VistoriaActivity">
+    tools:context="bancodados.test.view.VistoriaActivity">
 
     <ScrollView
         android:layout_width="fill_parent"

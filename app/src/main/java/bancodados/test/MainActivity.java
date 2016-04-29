@@ -1,17 +1,14 @@
-package bancodados.myapplication;
+package bancodados.test;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-import bancodados.myapplication.R;
-import bancodados.myapplication.core.service.dao.LocalizacaoDaoImpl;
-import bancodados.myapplication.core.service.dao.UsuarioDaoImpl;
-import bancodados.myapplication.core.service.dao.UsuarioVistoriaDaoImpl;
-import bancodados.myapplication.core.service.dao.VistoriaDaoImpl;
-import bancodados.myapplication.model.Localizacao;
-import bancodados.myapplication.model.Usuario;
-import bancodados.myapplication.model.Vistoria;
+import bancodados.test.core.service.dao.LocalizacaoDaoImpl;
+import bancodados.test.core.service.dao.UsuarioDaoImpl;
+import bancodados.test.core.service.dao.UsuarioVistoriaDaoImpl;
+import bancodados.test.core.service.dao.VistoriaDaoImpl;
+import bancodados.test.model.Usuario;
 
 public class MainActivity extends AppCompatActivity {
 

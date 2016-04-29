@@ -1,10 +1,6 @@
-package bancodados.myapplication.core.service.dao;
+package bancodados.test.core.service.dao;
 
 import android.content.Context;
-
-import java.util.List;
-
-import bancodados.myapplication.model.Localizacao;
 
 /**
  * Created by junio on 08/03/16.

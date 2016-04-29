@@ -1,12 +1,9 @@
-package bancodados.myapplication.model;
+package bancodados.test.model;
 
 import com.j256.ormlite.dao.ForeignCollection;
-import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
-
-import java.util.Collection;
 
 /**
  * Created by junio on 01/03/16.
@@ -14,6 +11,15 @@ import java.util.Collection;
 
 @DatabaseTable(tableName = "LOCALIZACAO")
 public class Localizacao {
+
+    public static final String COL_ID = "ID";
+    public static final String COL_LATITUDE = "LATITUDE";
+    public static final String COL_LONGITUDE = "LONGITUDE";
+    public static final String COL_MUNICIPIO = "MUNICIPIO";
+    public static final String COL_ACESSO_LOCAL = "ACESSO_LOCAL";
+    public static final String COL_NOME_MORADOR = "NOME_MORADOR";
+    public static final String COL_TIPO_MORADIA = "TIPO_MORADIA";
+    public static final String TABLE_NAME = "LOCALIZACAO";
 
     @DatabaseField(columnName = "id", generatedId = true)
     private Long id;

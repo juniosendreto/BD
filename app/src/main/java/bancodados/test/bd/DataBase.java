@@ -1,4 +1,4 @@
-package bancodados.myapplication.bd;
+package bancodados.test.bd;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,10 +10,10 @@ import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
 
-import bancodados.myapplication.model.Localizacao;
-import bancodados.myapplication.model.Usuario;
-import bancodados.myapplication.model.UsuarioVistoria;
-import bancodados.myapplication.model.Vistoria;
+import bancodados.test.model.Localizacao;
+import bancodados.test.model.Usuario;
+import bancodados.test.model.UsuarioVistoria;
+import bancodados.test.model.Vistoria;
 
 /**
  * Created by junio on 01/03/16.

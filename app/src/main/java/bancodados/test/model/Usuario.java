@@ -1,10 +1,6 @@
-package bancodados.myapplication.model;
+package bancodados.test.model;
 
-import android.util.Log;
-
-import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 /**
@@ -13,7 +9,18 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "usuario")
 public class Usuario {
 
+    public static final String COL_LOGIN = "LOGIN";
+    public static final String COL_PASSWORD = "PASSWORD";
+    public static final String COL_NOME = "NOME";
+    public static final String COL_CPF = "CPF";
+    public static final String COL_EMAIL = "EMAIL";
+    public static final String COL_MUNICIPIO = "MUNICIPIO";
+    public static final String COL_ENDERECO = "ENDERECO";
+    public static final String COL_TELEFONE = "TELEFONE";
+    public static final String COL_CELULAR = "CELULAR";
+    public static final String COL_NIVEL = "NIVEL";
     public static final String TABLE_NAME = "USUARIO";
+
 
     public static final String DATABASE_NAME = "sys_vistoria_db";
 

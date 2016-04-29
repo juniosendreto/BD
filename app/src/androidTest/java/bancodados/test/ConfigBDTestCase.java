@@ -1,4 +1,4 @@
-package bancodados.myapplication;
+package bancodados.test;
 
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
@@ -7,13 +7,12 @@ import android.util.Log;
 import org.junit.After;
 import org.junit.Before;
 
-import bancodados.myapplication.bd.DataBaseHelperFactory;
+import bancodados.test.bd.DataBaseHelperFactory;
 
 /**
- * Created by junio on 04/04/16.
+ * Created by junio on 05/04/16.
  */
-public class ConfingBDTestCase extends AndroidTestCase{
-
+public class ConfigBDTestCase extends AndroidTestCase{
     private RenamingDelegatingContext context = null;
 
     @Before

@@ -1,4 +1,4 @@
-package bancodados.myapplication.view;
+package bancodados.test.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,10 +11,10 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import bancodados.myapplication.R;
-import bancodados.myapplication.core.service.dao.Adapter;
-import bancodados.myapplication.model.Localizacao;
-import bancodados.myapplication.model.Vistoria;
+import bancodados.test.R;
+import bancodados.test.core.service.dao.Adapter;
+import bancodados.test.model.Localizacao;
+import bancodados.test.model.Vistoria;
 
 public class VistoriaActivity extends AppCompatActivity {
 
