@@ -2,6 +2,7 @@ package bancodados.test.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -11,9 +12,13 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 import bancodados.test.R;
 import bancodados.test.core.service.dao.Adapter;
+import bancodados.test.core.service.dao.UsuarioDaoImpl;
 import bancodados.test.model.Localizacao;
+import bancodados.test.model.Usuario;
 import bancodados.test.model.Vistoria;
 
 public class VistoriaActivity extends AppCompatActivity {

@@ -12,7 +12,7 @@ import bancodados.test.model.Usuario;
  */
 public class UsuarioDaoImplTest extends ConfigBDTestCase{
 
-   /* public void testSave(){
+   public void testSave(){
         Long Id;
         UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl(getContext());
         Usuario actualUsuario = new Usuario("carro", "123445546", "junio", "12345", "jax@jax", "SP", "rua", "4321", "12321", 1);
@@ -138,20 +138,18 @@ public class UsuarioDaoImplTest extends ConfigBDTestCase{
         usuarioDao.delete(Usuario.class, usuario1);
         usuarioDao.delete(Usuario.class, usuario2);
         usuarioDao.delete(Usuario.class, usuario3);
-    }*/
+    }
 
     public void testFindByLoginAndPassword(){
         UsuarioDaoImpl usuarioDao =  new UsuarioDaoImpl(getContext());
-        Usuario actualUsuario = new Usuario("tibers2", "123445546", "carlos", "12345", "carlos@carlos", "SP", "rua", "4321", "12321", 1);
+        Usuario actualUsuario = new Usuario("tibers2", "123445546", "carlos1", "12345", "carlos@carlos", "SP", "rua", "4321", "12321", 1);
         usuarioDao.save(Usuario.class, actualUsuario);
 
-        Usuario expetedUsuario = (Usuario) usuarioDao.findByLoginAndPassword(actualUsuario.getLogin(), actualUsuario.getPassword());
+        List<Usuario> expectedUsuario = usuarioDao.findByLoginAndPassword(actualUsuario.getLogin(), actualUsuario.getPassword());
 
+        assertEquals(actualUsuario.getLogin(), expectedUsuario.get(0).getLogin());
 
-        Log.d("-----", actualUsuario.getNome() + " " + expetedUsuario.getNome());
-        assertEquals(actualUsuario, expetedUsuario);
-
+        usuarioDao.delete(Usuario.class, actualUsuario);
 
     }
-
 }

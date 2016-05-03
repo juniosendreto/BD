@@ -31,11 +31,10 @@ public class LoginActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                try {
 
-                /*try {
-
-                    if (usuarioImpl.findByIdLoginAndPassword(loginE.getText().toString(),
-                            passwordE.getText().toString()) == true) {
+                    if (usuarioImpl.findByLoginAndPassword(loginE.getText().toString(),
+                            passwordE.getText().toString()) != null) {
                         report.setVisibility(View.INVISIBLE);
                         loginE.setText("");
                         passwordE.setText("");
@@ -46,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 } catch (Exception e) {
                     Log.d("ERRO CHAMADA TELA", e.getMessage());
-                }*/
+                }
             }
         });
 
