@@ -28,7 +28,7 @@ public class VistoriaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vistoria);
 
-        final Adapter adapter = new Adapter();
+        final Adapter adapter = new Adapter(getApplicationContext());
 
         /* PASSO 1 */
 

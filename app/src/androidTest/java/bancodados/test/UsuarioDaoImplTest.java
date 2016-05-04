@@ -78,7 +78,7 @@ public class UsuarioDaoImplTest extends ConfigBDTestCase{
         usuarioDao.delete(Usuario.class, expectedUsuario);
     }
 
-    public void testListAll(){
+    /*public void testListAll(){
         UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl(getContext());
 
         Boolean expected = true, actual = true;
@@ -107,7 +107,7 @@ public class UsuarioDaoImplTest extends ConfigBDTestCase{
         usuarioDao.delete(Usuario.class, usuario2);
         usuarioDao.delete(Usuario.class, usuario3);
 
-    }
+    }*/
 
     public void testFindById(){
         UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl(getContext());
@@ -146,6 +146,19 @@ public class UsuarioDaoImplTest extends ConfigBDTestCase{
         usuarioDao.save(Usuario.class, actualUsuario);
 
         List<Usuario> expectedUsuario = usuarioDao.findByLoginAndPassword(actualUsuario.getLogin(), actualUsuario.getPassword());
+
+        assertEquals(actualUsuario.getLogin(), expectedUsuario.get(0).getLogin());
+
+        usuarioDao.delete(Usuario.class, actualUsuario);
+
+    }
+
+    public void testFindByLogin(){
+        UsuarioDaoImpl usuarioDao =  new UsuarioDaoImpl(getContext());
+        Usuario actualUsuario = new Usuario("tibers2", "123445546", "carlos1", "12345", "carlos@carlos", "SP", "rua", "4321", "12321", 1);
+        usuarioDao.save(Usuario.class, actualUsuario);
+
+        List<Usuario> expectedUsuario = usuarioDao.findByLogin(actualUsuario.getLogin());
 
         assertEquals(actualUsuario.getLogin(), expectedUsuario.get(0).getLogin());
 
