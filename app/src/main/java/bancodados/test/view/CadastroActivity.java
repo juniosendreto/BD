@@ -69,53 +69,30 @@ public class CadastroActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    if (String.valueOf(passwordE.getText()).equals("")) {
-                        passwordReport.setText("*Campo Obrigatório");
-                        passwordReport.setVisibility(View.VISIBLE);
-                    }else if(passwordE.getText().toString().length() < 5){
-                        passwordReport.setText("*Sua senha deve conter 5 ou mais caracteres");
-                        passwordReport.setVisibility(View.VISIBLE);
-                    }else{
-                        passwordReport.setVisibility(View.GONE);
-                    }
+                    adapter.validarSenha(passwordET, passwordReportTV);
                 }
             }
         });
-/*
-        passwordE2.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+        password2ET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    if(!(passwordE.getText().toString().equals(passwordE2.getText().toString()))){
-                        passwordReport2.setText("*Senhas não coincidem");
-                        passwordReport2.setVisibility(View.VISIBLE);
-                    }else{
-                        passwordReport2.setVisibility(View.GONE);
-                    }
+                    adapter.validarConfirmacaoSenha(passwordET, password2ET, passwordReport2TV);
                 }
             }
         });
 
-        cpfE.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        cpfET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    if (String.valueOf(cpfE.getText()).equals("")) {
-                        cpfReport.setText("*Campo obrigatório");
-                        cpfReport.setVisibility(View.VISIBLE);
-
-                    }else if(validador.validarCfp(cpfE.getText().toString()) == false){
-                        cpfReport.setText("*CPF Inválido");
-                        cpfReport.setVisibility(View.VISIBLE);
-
-                    }else{
-                        cpfReport.setVisibility(View.GONE);
-                    }
+                    adapter.validarCfp(cpfET, cpfReportTV);
                 }
             }
         });
 
-        emailE.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+     /*   emailE.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
