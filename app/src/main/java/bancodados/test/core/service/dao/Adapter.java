@@ -1,6 +1,8 @@
 package bancodados.test.core.service.dao;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -9,6 +11,8 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import bancodados.test.model.Usuario;
 
@@ -149,17 +153,18 @@ public class Adapter{
         Integer numeroMultiplicacao;
         String digito = "";
         String cpfAux = "";
-        String cpf = editText.toString();
+        String cpf = editText.getText().toString();
 
         if (campoNull(editText) == true) {
             textView.setText(campoObrigatorio);
             textView.setVisibility(View.VISIBLE);
-        } else {
+        }else {
             for (int i = 0; i < cpf.length(); i++) {
                 if (Character.isDigit(cpf.charAt(i))) {
                     cpfAux = cpfAux + cpf.charAt(i);
                 }
             }
+            Log.d("------", cpfAux);
             if (cpfAux.length() == 11) {
 
                 for (int i = 0; i < 2; i++) {
@@ -171,7 +176,6 @@ public class Adapter{
 
                         for (int j = 0; j < 9; j++) {
                             calculo = calculo + Integer.parseInt(String.valueOf(cpf.charAt(j))) * numeroMultiplicacao;
-
                             numeroMultiplicacao--;
                         }
 
@@ -201,6 +205,7 @@ public class Adapter{
                 }
                 if (digito.charAt(0) == cpfAux.charAt(9) && digito.charAt(1) == cpfAux.charAt(10)) {
                     textView.setVisibility(View.GONE);
+                    Log.d("-----", digito);
                 } else {
                     textView.setText("CPF Inválido");
                     textView.setVisibility(View.VISIBLE);
@@ -212,4 +217,90 @@ public class Adapter{
         }
     }
 
+    public void validarEmail(EditText editText, TextView textView){
+
+        if(campoNull(editText)){
+            textView.setText(campoObrigatorio);
+            textView.setVisibility(View.VISIBLE);
+        }else{
+            String email = editText.getText().toString();
+            if (email != null && email.length() > 0) {
+                String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+                Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+                Matcher matcher = pattern.matcher(email);
+                if (!(matcher.matches())) {
+                    textView.setText("Email Inválido");
+                    textView.setVisibility(View.VISIBLE);
+                }else{
+                    textView.setVisibility(View.GONE);
+                }
+            }
+        }
+    }
+
+    public Boolean validarCamposUsuario(Usuario usuario) {
+        Integer contador = 0;
+        if (usuario.getNome().equals("")) {
+            contador++;
+        } else if (usuario.getNome().equals("")) {
+            contador++;
+        } else if (usuario.getLogin().equals("")) {
+            contador++;
+        } else if (usuario.getPassword().equals("")) {
+            contador++;
+        } else if (usuario.getCpf().equals("")) {
+            contador++;
+        } else if (usuario.getEmail().equals("")) {
+            contador++;
+        }
+        if (contador == 0) {
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+    public Boolean salvarUsuario(Usuario usuario, Boolean validacao){
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        if(validacao == true){
+            UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl(context);
+            usuarioDao.save(usuario.getClass(), usuario);
+            alert.setTitle("Alerta");
+            alert.setMessage("Usuário Criado com Sucesso!");
+            alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            alert.show();
+            return true;
+        }else {
+            alert.setTitle("Alerta");
+            alert.setMessage("Os campos: NOME, LOGIN, PASSWORD, CPF E EMAIL, são obrigatórios verifique se estão corretos!");
+            alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            alert.show();
+            return false;
+        }
+    }
+
+    public void validarNivel(EditText editText, TextView textView){
+        String nivel = editText.getText().toString();
+        if(campoNull(editText)){
+            textView.setText(campoObrigatorio);
+            textView.setVisibility(View.VISIBLE);
+        }else{
+            if(!(nivel.equals("1") || nivel.equals("2"))){
+                textView.setText("Você só pode se definir como nível 1 ou 2");
+                textView.setVisibility(View.VISIBLE);
+            }else{
+                textView.setVisibility(View.GONE);
+            }
+        }
+    }
 }

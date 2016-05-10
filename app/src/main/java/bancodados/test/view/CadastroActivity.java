@@ -22,6 +22,7 @@ public class CadastroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
 
+        final Usuario usuario;
         final UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl(this);
         final Adapter adapter= new Adapter(getApplicationContext());
         final Button salvarB = (Button) findViewById(R.id.salvarButton);
@@ -92,23 +93,39 @@ public class CadastroActivity extends AppCompatActivity {
             }
         });
 
-     /*   emailE.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        emailET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    if (emailE.getText().toString().equals("")) {
-                        emailReport.setText("*Campo obrigatório");
-                        emailReport.setVisibility(View.VISIBLE);
-
-                    }else if(validador.validarEmail(emailE.getText().toString())== false){
-                        emailReport.setText("*Email Inválido");
-                        emailReport.setVisibility(View.VISIBLE);
-
-                    }else{
-                        emailReport.setVisibility(View.GONE);
-                    }
+                    adapter.validarEmail(emailET, emailReportTV);
                 }
             }
-        });*/
+        });
+
+        nivelET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    adapter.validarNivel(nivelET, nivelReportTV);
+                }
+            }
+        });
+
+        salvarB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*usuario.setNome();
+                usuario.setLogin();
+                usuario.setPassword();
+                usuario.setCpf();
+                usuario.setEmail();
+                usuario.setEndereco();
+                usuario.set();
+                usuario.setNome();
+                usuario.setNome();
+                adapter.validarCamposUsuario()*/
+            }
+        });
+
     }
 }
