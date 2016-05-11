@@ -1,5 +1,8 @@
 package bancodados.test.view;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,9 +25,11 @@ public class CadastroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
 
-        final Usuario usuario;
+        //final Usuario usuario;
         final UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl(this);
-        final Adapter adapter= new Adapter(getApplicationContext());
+        final AlertDialog alert = new AlertDialog.Builder(this).create();
+        final Adapter adapter= new Adapter(CadastroActivity.this);
+
         final Button salvarB = (Button) findViewById(R.id.salvarButton);
         final EditText nomeET = (EditText) findViewById(R.id.nomeET);
         final EditText cpfET = (EditText) findViewById(R.id.cpfET);
@@ -114,18 +119,43 @@ public class CadastroActivity extends AppCompatActivity {
         salvarB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*usuario.setNome();
-                usuario.setLogin();
-                usuario.setPassword();
-                usuario.setCpf();
-                usuario.setEmail();
-                usuario.setEndereco();
-                usuario.set();
-                usuario.setNome();
-                usuario.setNome();
-                adapter.validarCamposUsuario()*/
+                Usuario usuario = new Usuario();
+                usuario.setNome(nomeET.getText().toString());
+                usuario.setLogin(loginET.getText().toString());
+                usuario.setPassword(passwordET.getText().toString());
+                usuario.setCpf(cpfET.getText().toString());
+                usuario.setEmail(emailET.getText().toString());
+                usuario.setEndereco(enderecoET.getText().toString());
+                usuario.setMunicipio(municipioET.getText().toString());
+                usuario.setTelefone(telefoneET.getText().toString());
+                usuario.setCelular(celularET.getText().toString());
+                if(adapter.isNumber(nivelET) == true){
+                    usuario.setNivel(Integer.parseInt(nivelET.getText().toString()));
+                    try {
+                        if(adapter.salvarUsuario(usuario, adapter.validarCamposUsuario(usuario)) == true)
+                            chamarActivity(Class.forName("bancodados.test.view.LoginActivity"));
+                    }catch (Exception e){
+                        Log.d("------", e.getMessage());
+                    }
+                }else{
+                    alert.setTitle("Alerta");
+                    alert.setMessage("Os campos: NOME, LOGIN, PASSWORD, CPF E EMAIL, são obrigatórios verifique se estão corretos!");
+                    alert.setButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    alert.show();
+                }
             }
         });
+
+    }
+
+    public void chamarActivity(Class novaActivity) {
+        Intent abrirActivity = new Intent(this, novaActivity);
+        startActivity(abrirActivity);
 
     }
 }

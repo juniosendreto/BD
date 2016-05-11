@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    chamarActivity(Class.forName("br.com.inpe.Activitys.CadastroActivity"));
+                    chamarActivity(Class.forName("bancodados.test.view.CadastroActivity"));
                     report.setVisibility(View.INVISIBLE);
 
                 } catch (ClassNotFoundException e) {

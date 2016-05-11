@@ -1,8 +1,10 @@
 package bancodados.test.core.service.dao;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -15,6 +17,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import bancodados.test.model.Usuario;
+import bancodados.test.view.CadastroActivity;
 
 /**
  * Created by junio on 13/04/16.
@@ -23,6 +26,7 @@ public class Adapter{
 
     private Context context;
     private String campoObrigatorio = "*Campo Obrigatório";
+    private Activity activity = new Activity();
 
     public Adapter(Context context) {
         this.context = context;
@@ -137,7 +141,6 @@ public class Adapter{
                 textView.setVisibility(View.VISIBLE);
             }
         }
-
     }
 
     public Boolean campoNull(EditText editText){
@@ -164,7 +167,6 @@ public class Adapter{
                     cpfAux = cpfAux + cpf.charAt(i);
                 }
             }
-            Log.d("------", cpfAux);
             if (cpfAux.length() == 11) {
 
                 for (int i = 0; i < 2; i++) {
@@ -205,7 +207,6 @@ public class Adapter{
                 }
                 if (digito.charAt(0) == cpfAux.charAt(9) && digito.charAt(1) == cpfAux.charAt(10)) {
                     textView.setVisibility(View.GONE);
-                    Log.d("-----", digito);
                 } else {
                     textView.setText("CPF Inválido");
                     textView.setVisibility(View.VISIBLE);
@@ -240,17 +241,32 @@ public class Adapter{
 
     public Boolean validarCamposUsuario(Usuario usuario) {
         Integer contador = 0;
+        UsuarioDaoImpl usuarioDao =  new UsuarioDaoImpl(context);
+        List<Usuario> u = usuarioDao.findByLogin(usuario.getLogin());
+
         if (usuario.getNome().equals("")) {
             contador++;
-        } else if (usuario.getNome().equals("")) {
+        }
+        if (usuario.getNome().equals("")) {
             contador++;
-        } else if (usuario.getLogin().equals("")) {
+        }
+        if (usuario.getLogin().equals("")) {
             contador++;
-        } else if (usuario.getPassword().equals("")) {
+        }
+        if(!(u.isEmpty() == true)){
+                if(u.get(0).getLogin().equals(usuario.getLogin())) {
+                    contador++;
+                }
+        }else{
             contador++;
-        } else if (usuario.getCpf().equals("")) {
+        }
+        if (usuario.getPassword().equals("")) {
             contador++;
-        } else if (usuario.getEmail().equals("")) {
+        }
+        if (usuario.getCpf().equals("")) {
+            contador++;
+        }
+        if (usuario.getEmail().equals("")) {
             contador++;
         }
         if (contador == 0) {
@@ -260,33 +276,38 @@ public class Adapter{
         }
     }
 
-    public Boolean salvarUsuario(Usuario usuario, Boolean validacao){
-        AlertDialog.Builder alert = new AlertDialog.Builder(context);
-        if(validacao == true){
-            UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl(context);
-            usuarioDao.save(usuario.getClass(), usuario);
-            alert.setTitle("Alerta");
-            alert.setMessage("Usuário Criado com Sucesso!");
-            alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
+    public Boolean salvarUsuario(Usuario usuario, Boolean validacao) {
+        try {
+            AlertDialog alert = new AlertDialog.Builder(context).create();
+            if (validacao == true) {
+                UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl(context);
+                usuarioDao.save(usuario.getClass(), usuario);
+                alert.setTitle("Alerta");
+                alert.setMessage("Usuário Criado com Sucesso!");
+                alert.setButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                alert.show();
+                return true;
+            } else {
+                alert.setTitle("Alerta");
+                alert.setMessage("Os campos: NOME, LOGIN, PASSWORD, CPF E EMAIL, são obrigatórios verifique se estão corretos!");
+                alert.setButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
-                }
-            });
-            alert.show();
-            return true;
-        }else {
-            alert.setTitle("Alerta");
-            alert.setMessage("Os campos: NOME, LOGIN, PASSWORD, CPF E EMAIL, são obrigatórios verifique se estão corretos!");
-            alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-
-                }
-            });
-            alert.show();
+                    }
+                });
+                alert.show();
+                return false;
+            }
+        } catch (Exception e) {
+            Log.d("--------", e.getMessage());
             return false;
         }
+
     }
 
     public void validarNivel(EditText editText, TextView textView){
@@ -303,4 +324,15 @@ public class Adapter{
             }
         }
     }
+
+    public Boolean isNumber(EditText editText){
+        try{
+            Integer.parseInt(editText.getText().toString());
+            return true;
+        }catch(Exception e){
+            return false;
+        }
+    }
+
+
 }
