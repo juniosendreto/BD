@@ -38,12 +38,12 @@ public class LoginActivity extends AppCompatActivity {
                         report.setVisibility(View.INVISIBLE);
                         loginE.setText("");
                         passwordE.setText("");
-                        chamarActivity(Class.forName("br.com.inpe.Activitys.TelaInicialActivity"));
-
+                        chamarActivity(Class.forName("bancodados.test.view.MainActivity"));
                     } else {
                         report.setVisibility(View.VISIBLE);
                     }
                 } catch (Exception e) {
+                    e.printStackTrace();
                     Log.d("ERRO CHAMADA TELA", e.getMessage());
                 }
             }
@@ -58,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
                     report.setVisibility(View.INVISIBLE);
 
                 } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
                     Log.d("ERRO CHAMADA CADASTRO", e.getMessage());
                 }
             }

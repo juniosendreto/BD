@@ -1,5 +1,6 @@
 package bancodados.test.view;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,14 +29,16 @@ public class VistoriaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vistoria);
 
+
         final Adapter adapter = new Adapter(getApplicationContext());
 
         /* PASSO 1 */
 
         final TextView passo1TV = (TextView) findViewById(R.id.passo1TV);
         final LinearLayout passo1LL = (LinearLayout) findViewById(R.id.passo1LL);
-        Vistoria vistoria = new Vistoria();
-        Localizacao localizacao =  new Localizacao();
+        final Vistoria vistoria = new Vistoria();
+       // Localizacao localizacao =  new Localizacao();
+
 
         final EditText localizacaoET = (EditText) findViewById(R.id.localizacaoET);
         final TextView localizacaoReportTV = (TextView) findViewById(R.id.localizacaoReportTV);
@@ -433,7 +436,17 @@ public class VistoriaActivity extends AppCompatActivity {
         salvarVistoriaB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /* PASSO 1 */
 
+                //vistoria.setLocalizacao();
+
+                /* PASSO 2 */
+                /* PASSO 3 */
+                /* PASSO 4 */
+                /* PASSO 5 */
+                /* PASSO 6 */
+                /* PASSO 7 */
+                /* PASSO 8 */
             }
         });
 

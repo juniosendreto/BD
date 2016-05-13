@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -95,13 +96,12 @@ public class Adapter{
 
         try {
             if (!(campoNull(editText) == true)) {
-                UsuarioDaoImpl usuarioDao =  new UsuarioDaoImpl(context);
+                UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl(context);
                 List<Usuario> usuarioList = usuarioDao.findByLogin(editText.getText().toString());
 
-                if(usuarioList == null){
+                if (usuarioList == null) {
                     textView.setVisibility(View.GONE);
-                }
-                else if (!usuarioList.isEmpty()) {
+                } else {
                     textView.setText("*Usuário Já Existe");
                     textView.setVisibility(View.VISIBLE);
                 }
@@ -109,7 +109,11 @@ public class Adapter{
                 textView.setText(campoObrigatorio);
                 textView.setVisibility(View.VISIBLE);
             }
+        }catch (java.sql.SQLException e) {
+            e.printStackTrace();
+
         }catch (Exception e){
+            e.printStackTrace();
             Log.d("----------", e.getMessage());
         }
     }
@@ -239,7 +243,7 @@ public class Adapter{
         }
     }
 
-    public Boolean validarCamposUsuario(Usuario usuario) {
+    public Boolean validarCamposUsuario(Usuario usuario) throws SQLException {
         Integer contador = 0;
         UsuarioDaoImpl usuarioDao =  new UsuarioDaoImpl(context);
         List<Usuario> u = usuarioDao.findByLogin(usuario.getLogin());
@@ -253,12 +257,10 @@ public class Adapter{
         if (usuario.getLogin().equals("")) {
             contador++;
         }
-        if(!(u.isEmpty() == true)){
+        if(!(u == null)){
                 if(u.get(0).getLogin().equals(usuario.getLogin())) {
                     contador++;
                 }
-        }else{
-            contador++;
         }
         if (usuario.getPassword().equals("")) {
             contador++;
