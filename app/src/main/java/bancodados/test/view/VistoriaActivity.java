@@ -438,7 +438,7 @@ public class VistoriaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 /* PASSO 1 */
 
-                //vistoria.setLocalizacao();
+
 
                 /* PASSO 2 */
                 /* PASSO 3 */

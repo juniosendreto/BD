@@ -45,7 +45,7 @@ public class DataBase extends OrmLiteSqliteOpenHelper {
             TableUtils.createTable(connectionSource, Localizacao.class);
 
         } catch(Exception e) {
-
+            e.printStackTrace();
             Log.e("-------", "Não foi possível criar a base de dados " + e.getMessage());
             throw new RuntimeException(e);
 
@@ -65,7 +65,7 @@ public class DataBase extends OrmLiteSqliteOpenHelper {
             onCreate(sqLiteDatabase, connectionSource);
 
         } catch(SQLException e) {
-
+            e.printStackTrace();
             Log.e("----------", "Não foi possível dropar o banco" + e.getMessage());
 
             throw new RuntimeException(e);

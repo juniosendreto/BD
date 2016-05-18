@@ -64,16 +64,21 @@ public abstract class AbstractDaoImpl {
     }
 
     public Boolean delete(Class classe, Object object) {
+        Integer validarDelete = 0;
         try {
             openBD();
-            dataBase.getDao(classe).delete(object);
-            return true;
-        } catch (SQLException e) {
+            validarDelete = dataBase.getDao(classe).delete(object);
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
             Log.d("------", "ERRO DELETE(ABSDAO)");
         } finally {
             dataBase.close();
         }
-        return null;
+        if(validarDelete == 1){
+            return true;
+        }else {
+            return false;
+        }
     }
 
     public List<Class> listAll(Class classe) {

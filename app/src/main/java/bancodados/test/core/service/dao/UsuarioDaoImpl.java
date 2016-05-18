@@ -23,7 +23,7 @@ public class UsuarioDaoImpl extends AbstractDaoImpl{
     }
 
     public List<Usuario> findByLoginAndPassword(String login, String password){
-        List<Usuario> usuarioList;
+        List<Usuario> usuarioList = null;
         try {
             openBD();
             QueryBuilder<Usuario, Object> queryBuilder = (QueryBuilder<Usuario, Object>) dataBase.getDao(Usuario.class).queryBuilder();
@@ -31,14 +31,13 @@ public class UsuarioDaoImpl extends AbstractDaoImpl{
             where.eq(Usuario.COL_LOGIN, login).and().eq(Usuario.COL_PASSWORD, password);
             PreparedQuery<Usuario> preparedQuery = queryBuilder.prepare();
             usuarioList = dataBase.getDao(Usuario.class).query(preparedQuery);
-            //return usuarioList;
 
         } catch (java.sql.SQLException e) {
+            e.printStackTrace();
             Log.d("----------", "Problema co  método findByLoginAndPassword");
-            return null;
         }
 
-        if(usuarioList.isEmpty()){
+        if(usuarioList.isEmpty() == true){
             return null;
         }else{
             return usuarioList;

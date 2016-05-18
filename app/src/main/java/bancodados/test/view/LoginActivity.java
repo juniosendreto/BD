@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import bancodados.test.R;
 import bancodados.test.core.service.dao.UsuarioDaoImpl;
+import bancodados.test.model.Usuario;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -26,6 +27,11 @@ public class LoginActivity extends AppCompatActivity {
         final EditText loginE = (EditText) findViewById(R.id.loginEditText);
         final EditText passwordE = (EditText) findViewById(R.id.passwordEditText);
         final TextView report =  (TextView) findViewById(R.id.report);
+        final TextView teste1 = (TextView) findViewById(R.id.list_item);
+
+        //int id = Integer.parseInt(teste1.getText().toString());
+        //Intent intent = new Intent(this, Usuario.class);
+        //intent.putExtra("teste", id);
 
 
         button.setOnClickListener(new View.OnClickListener() {

@@ -5,6 +5,8 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.util.Collection;
+
 /**
  * Created by junio on 01/03/16.
  */
@@ -25,18 +27,18 @@ public class Localizacao {
     private Long id;
 
     @ForeignCollectionField(columnName = "VISTORIA_ID")
-    private ForeignCollection<Vistoria> vistorias;
+    private Collection<Vistoria> vistorias;
 
-    @DatabaseField(columnName = "LATITUDE", canBeNull = false)
+    @DatabaseField(columnName = "LATITUDE", canBeNull = true)
     private Double latitude;
 
-    @DatabaseField(columnName = "LONGITUDE", canBeNull = false)
+    @DatabaseField(columnName = "LONGITUDE", canBeNull = true)
     private Double longitude;
 
-    @DatabaseField(columnName = "MUNICIPIO", canBeNull = false)
+    @DatabaseField(columnName = "MUNICIPIO", canBeNull = true)
     private String municipio;
 
-    @DatabaseField(columnName = "ACESSO_LOCAL", canBeNull = false)
+    @DatabaseField(columnName = "ACESSO_LOCAL", canBeNull = true)
     private String acessoLocal;
 
 
@@ -81,7 +83,7 @@ public class Localizacao {
     }
 
 
-    public Localizacao(ForeignCollection<Vistoria> vistorias, Double latitude, Double longitude, String municipio,
+    public Localizacao(Collection<Vistoria> vistorias, Double latitude, Double longitude, String municipio,
                        String acessoLocal) {
         this.vistorias = vistorias;
         this.latitude = latitude;

@@ -17,12 +17,6 @@ public class UsuarioVistoria {
     @DatabaseField(columnName = "id", generatedId = true)
     private Long id;
 
-    /*@ForeignCollectionField(columnName = "USUARIO_ID")
-    private ForeignCollection<Usuario> usuarios;
-
-    @ForeignCollectionField(columnName = "VISTORIA_ID")
-    private ForeignCollection<Vistoria> vistorias;*/
-
    @DatabaseField(foreign = true, columnName = "USUARIO_ID")
     private Usuario usuario;
 
@@ -31,9 +25,9 @@ public class UsuarioVistoria {
 
 
     @DatabaseField(columnName = "data", canBeNull = false)
-    private Date data;
+    private String data;
 
-    public UsuarioVistoria(Date data, Vistoria vistoria,
+    public UsuarioVistoria(String data, Vistoria vistoria,
                            Usuario usuario) {
         this.data = data;
         this.vistoria = vistoria;

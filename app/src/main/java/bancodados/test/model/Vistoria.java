@@ -20,7 +20,7 @@ public class Vistoria {
         1 PASSO - DADOS GERAIS SOBRE AS MORADIAS
      */
 
-    @DatabaseField(columnName = "NOME_MORADOR", canBeNull = false)
+    @DatabaseField(columnName = "NOME_MORADOR", canBeNull = true)
     private String nomeMorador;
 
     @DatabaseField(columnName = "TIPO_MORADIA", canBeNull = true)
@@ -560,18 +560,21 @@ public class Vistoria {
         this.informacoes = informacoes;
     }
 
-    public Vistoria(Boolean encostaNatural, Boolean taludeCorte,
-                    Boolean aterroLancado, Boolean paredeRochosa, Double alturaN, Double alturaC,
-                    Double alturaL, Double alturaR, Double distanciaMoradaC, Double distanciaMoradaL,
-                    Double topoC, Double topoL, Boolean blocosRochasMatacoes, Boolean lixoEntulho,
-                    Boolean concentraAguaChuva, Boolean concentraAguaServida, String drenageSuperficial,
-                    String esgoto, String aguaMoradiaVazamento, String minasDagua, Boolean arvores,
-                    Boolean vegetacaoRasteira, Boolean areaDesmatada, String areaCultivo, String trinca,
+    public Vistoria(String nomeMorador, String tipoMoradia, Boolean encostaNatural,
+                    Boolean taludeCorte, Boolean aterroLancado, Boolean paredeRochosa,
+                    Double alturaN, Double alturaC, Double alturaL, Double alturaR,
+                    Double distanciaMoradaC, Double distanciaMoradaL, Double topoC,
+                    Double topoL, Boolean blocosRochasMatacoes, Boolean lixoEntulho,
+                    Boolean concentraAguaChuva, Boolean concentraAguaServida,
+                    String drenageSuperficial, String esgoto, String aguaMoradiaVazamento,
+                    String minasDagua, Boolean arvores, Boolean vegetacaoRasteira,
+                    Boolean areaDesmatada, String areaCultivo, String trinca,
                     Boolean degrausAbatimento, String inclinacao, Boolean muroParedeEmbarrigado,
                     Boolean cicatrizEscorregamento, String escorregamento, Boolean quedaBlocos,
                     Boolean rolamentoBlocos, String risco, Integer quantidadeMoradias,
                     Integer quantidadePessoas, String informacoes) {
-
+        this.nomeMorador = nomeMorador;
+        this.tipoMoradia = tipoMoradia;
         this.encostaNatural = encostaNatural;
         this.taludeCorte = taludeCorte;
         this.aterroLancado = aterroLancado;
