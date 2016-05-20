@@ -22,7 +22,7 @@ public class UsuarioDaoImpl extends AbstractDaoImpl{
         super(context);
     }
 
-    public List<Usuario> findByLoginAndPassword(String login, String password){
+    public Usuario findByLoginAndPassword(String login, String password){
         List<Usuario> usuarioList = null;
         try {
             openBD();
@@ -40,7 +40,7 @@ public class UsuarioDaoImpl extends AbstractDaoImpl{
         if(usuarioList.isEmpty() == true){
             return null;
         }else{
-            return usuarioList;
+            return usuarioList.get(0);
         }
     }
 

@@ -1,7 +1,7 @@
 package bancodados.test.view;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,11 +10,12 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+
 import bancodados.test.R;
 import bancodados.test.core.service.dao.UsuarioDaoImpl;
 import bancodados.test.model.Usuario;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,27 +28,34 @@ public class LoginActivity extends AppCompatActivity {
         final EditText loginE = (EditText) findViewById(R.id.loginEditText);
         final EditText passwordE = (EditText) findViewById(R.id.passwordEditText);
         final TextView report =  (TextView) findViewById(R.id.report);
-        final TextView teste1 = (TextView) findViewById(R.id.list_item);
 
-        //int id = Integer.parseInt(teste1.getText().toString());
-        //Intent intent = new Intent(this, Usuario.class);
-        //intent.putExtra("teste", id);
+        final Intent intent = new Intent(this, MainActivity.class);
+
 
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-
-                    if (usuarioImpl.findByLoginAndPassword(loginE.getText().toString(),
-                            passwordE.getText().toString()) != null) {
+                    Usuario usuario = usuarioImpl.findByLoginAndPassword(loginE.getText().toString(),
+                            passwordE.getText().toString());
+                    if(usuario != null){
                         report.setVisibility(View.INVISIBLE);
                         loginE.setText("");
                         passwordE.setText("");
-                        chamarActivity(Class.forName("bancodados.test.view.MainActivity"));
-                    } else {
+                        //Log.d("------- 83478943", usuario.getNome());
+                        intent.putExtra("usuario", usuario);
+                        startActivity(intent);
+                    }else{
                         report.setVisibility(View.VISIBLE);
                     }
+                    /*
+                    if (usuarioImpl.findByLoginAndPassword(loginE.getText().toString(),
+                            passwordE.getText().toString()) != null) {
+
+
+                    } else {
+                    }*/
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.d("ERRO CHAMADA TELA", e.getMessage());

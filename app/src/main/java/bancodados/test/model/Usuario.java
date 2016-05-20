@@ -3,11 +3,13 @@ package bancodados.test.model;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.io.Serializable;
+
 /**
  * Created by junio on 26/02/16.
  */
 @DatabaseTable(tableName = "usuario")
-public class Usuario {
+public class Usuario implements Serializable{
 
     public static final String COL_LOGIN = "LOGIN";
     public static final String COL_PASSWORD = "PASSWORD";
@@ -20,9 +22,9 @@ public class Usuario {
     public static final String COL_CELULAR = "CELULAR";
     public static final String COL_NIVEL = "NIVEL";
     public static final String TABLE_NAME = "USUARIO";
-
-
     public static final String DATABASE_NAME = "sys_vistoria_db";
+
+    private static final long serialVersionUID = 1L;
 
     @DatabaseField(columnName = "id", generatedId = true)
     private Long id;

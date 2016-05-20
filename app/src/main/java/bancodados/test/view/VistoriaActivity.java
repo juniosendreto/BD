@@ -13,16 +13,18 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import bancodados.test.R;
 import bancodados.test.core.service.dao.Adapter;
+import bancodados.test.core.service.dao.AdapterVistoria;
 import bancodados.test.core.service.dao.UsuarioDaoImpl;
 import bancodados.test.model.Localizacao;
 import bancodados.test.model.Usuario;
 import bancodados.test.model.Vistoria;
 
-public class VistoriaActivity extends AppCompatActivity {
+public class VistoriaActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,8 @@ public class VistoriaActivity extends AppCompatActivity {
 
 
         final Adapter adapter = new Adapter(getApplicationContext());
+        final AdapterVistoria adapterVistoria = new AdapterVistoria(getApplicationContext());
+
 
         /* PASSO 1 */
 
@@ -437,6 +441,20 @@ public class VistoriaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 /* PASSO 1 */
+                List<RadioButton> radioButtonList = new ArrayList<RadioButton>();
+
+                vistoria.setNomeMorador(nomeMoradorET.getText().toString());
+
+                radioButtonList.add(alvenariaRB);
+                radioButtonList.add(madeiraRB);
+                radioButtonList.add(mistoRB);
+                vistoria.setTipoMoradia(adapterVistoria.whichButtonIsChacked(radioButtonList));
+                radioButtonList.removeAll(radioButtonList);
+
+                vistoria.setEncostaNatural(encostaCB.isChecked());
+                vistoria.setTaludeCorte(taludeCB.isChecked());
+                vistoria.setAterroLancado(aterroCB.isChecked());
+                vistoria.setTaludeCorte(taludeCB.isChecked());
 
 
 

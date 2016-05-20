@@ -1,5 +1,6 @@
 package bancodados.test.view;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +18,7 @@ import bancodados.test.core.service.dao.VistoriaDaoImpl;
 import bancodados.test.model.Localizacao;
 import bancodados.test.model.Usuario;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +29,17 @@ public class MainActivity extends AppCompatActivity {
         final EditText latitudeET = (EditText) findViewById(R.id.latitudeET);
         final EditText longitudeET = (EditText)findViewById(R.id.longitudeET);
         final Localizacao localizacao =  new Localizacao();
+        Intent intent = getIntent();
 
         //localizacao.setLatitude(Double.valueOf(latitudeET.getText().toString()));
         //localizacao.setLongitude(Double.valueOf(longitudeET.getText().toString()));
-
+        try {
+            Usuario u = (Usuario) intent.getSerializableExtra("usuario");
+            Log.d("------", u.getLogin());
+        }catch (Exception e){
+            e.printStackTrace();
+            Log.d("--------- ", e.getMessage());
+        }
         novaVistoria.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -27,7 +27,6 @@ public class Adapter{
 
     private Context context;
     private String campoObrigatorio = "*Campo Obrigatório";
-    private Activity activity = new Activity();
 
     public Adapter(Context context) {
         this.context = context;

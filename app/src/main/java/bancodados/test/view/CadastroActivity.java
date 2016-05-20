@@ -1,5 +1,6 @@
 package bancodados.test.view;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,7 +19,7 @@ import bancodados.test.core.service.dao.Adapter;
 import bancodados.test.core.service.dao.UsuarioDaoImpl;
 import bancodados.test.model.Usuario;
 
-public class CadastroActivity extends AppCompatActivity {
+public class CadastroActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
