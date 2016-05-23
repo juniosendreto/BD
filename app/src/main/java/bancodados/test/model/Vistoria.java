@@ -59,7 +59,7 @@ public class Vistoria {
     private Double distanciaMoradaC;
 
     @DatabaseField(columnName = "DISTANCIA_MORADA_L", canBeNull = true)
-    private Double DistanciaMoradaL;
+    private Double distanciaMoradaL;
 
     @DatabaseField(columnName = "TOPO_C", canBeNull = true)
     private Double topoC;
@@ -80,7 +80,7 @@ public class Vistoria {
     @DatabaseField(columnName = "CONCENTRA_AGUA_CHUVA", canBeNull = true)
     private Boolean concentraAguaChuva;
 
-    @DatabaseField(columnName = "CONCENTRA_AGUA_SERVIDA",  canBeNull = true)
+    @DatabaseField(columnName = "CONCENTRA_AGUA_SERVIDA", canBeNull = true)
     private Boolean concentraAguaServida;
 
     @DatabaseField(columnName = "DRENAGE_SUPERFICIAL", canBeNull = true)
@@ -89,8 +89,14 @@ public class Vistoria {
     @DatabaseField(columnName = "ESGOTO", canBeNull = true)
     private String esgoto;
 
+    @DatabaseField(columnName = "USO_AGUA_MORADARIA", canBeNull = true)
+    private String usoAguaMoradia;
+
     @DatabaseField(columnName = "AGUA_MORADIA_VAZAMENTO", canBeNull = true)
     private String aguaMoradiaVazamento;
+
+    @DatabaseField(columnName = "TIPO_VAZAMENTO", canBeNull = true)
+    private String tipoVazamento;
 
     @DatabaseField(columnName = "MINAS_DAGUA", canBeNull = true)
     private String minasDagua;
@@ -115,14 +121,23 @@ public class Vistoria {
         5 PASSO - SINAIS DE MOVIMENTAÇÕES (5)
      */
 
-    @DatabaseField(columnName = "TRINCA", canBeNull = true)
-    private String trinca;
+    @DatabaseField(columnName = "TRINCA_TERRENO", canBeNull = true)
+    private Boolean trincaTerreno;
+
+    @DatabaseField(columnName = "TRINCA_MORADIA", canBeNull = true)
+    private Boolean trincaMoradia;
 
     @DatabaseField(columnName = "DEGRAUS_ABATIMENTO", canBeNull = true)
     private Boolean degrausAbatimento;
 
-    @DatabaseField(columnName = "INCLINACAO", canBeNull = true)
-    private String inclinacao;
+    @DatabaseField(columnName = "INCLINACAO_ARVORES", canBeNull = true)
+    private Boolean arvoresInclinacao;
+
+    @DatabaseField(columnName = "INCLINACAO_POSTES", canBeNull = true)
+    private Boolean postesInclinacao;
+
+    @DatabaseField(columnName = "INCLINACAO_MUROS", canBeNull = true)
+    private Boolean murosInclinacao;
 
     @DatabaseField(columnName = "MURO_PAREDE_EMBARRIGADO", canBeNull = true)
     private Boolean muroParedeEmbarrigado;
@@ -134,8 +149,14 @@ public class Vistoria {
         6 PASSOO - TIPO DE PROCESSOS DE INSTABILIZAÇÃO ESPERADOS OU JÁ OCORRIDOS (3)
      */
 
-    @DatabaseField(columnName = "ESCORREGAMENTO", canBeNull = true)
-    private String Escorregamento;
+    @DatabaseField(columnName = "ESCORREGAMENTO_NATURAL", canBeNull = true)
+    private Boolean escorregamentoNatural;
+
+    @DatabaseField(columnName = "ESCORREGAMENTO_CORTE", canBeNull = true)
+    private Boolean escorregamentoCorte;
+
+    @DatabaseField(columnName = "ESCORREGAMENTO_ATERRO", canBeNull = true)
+    private Boolean escorregamentoAterro;
 
     @DatabaseField(columnName = "QUEDA_BLOCOS", canBeNull = true)
     private Boolean quedaBlocos;
@@ -167,29 +188,13 @@ public class Vistoria {
     @DatabaseField(columnName = "INFORMAÇÕES", canBeNull = true)
     private String informacoes;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    /*public UsuarioVistoria getUsuarioVistoria() {
-        return usuarioVistoria;
-    }
-
-    public void setUsuarioVistoria(UsuarioVistoria usuarioVistoria) {
-        this.usuarioVistoria = usuarioVistoria;
-    }
-
     public Localizacao getLocalizacao() {
         return localizacao;
     }
 
     public void setLocalizacao(Localizacao localizacao) {
         this.localizacao = localizacao;
-    }*/
+    }
 
     public String getNomeMorador() {
         return nomeMorador;
@@ -280,11 +285,11 @@ public class Vistoria {
     }
 
     public Double getDistanciaMoradaL() {
-        return DistanciaMoradaL;
+        return distanciaMoradaL;
     }
 
     public void setDistanciaMoradaL(Double distanciaMoradaL) {
-        DistanciaMoradaL = distanciaMoradaL;
+        distanciaMoradaL = distanciaMoradaL;
     }
 
     public Double getTopoC() {
@@ -351,12 +356,28 @@ public class Vistoria {
         this.esgoto = esgoto;
     }
 
+    public String getUsoAguaMoradia() {
+        return usoAguaMoradia;
+    }
+
+    public void setUsoAguaMoradia(String usoAguaMoradia) {
+        this.usoAguaMoradia = usoAguaMoradia;
+    }
+
     public String getAguaMoradiaVazamento() {
         return aguaMoradiaVazamento;
     }
 
     public void setAguaMoradiaVazamento(String aguaMoradiaVazamento) {
         this.aguaMoradiaVazamento = aguaMoradiaVazamento;
+    }
+
+    public String getTipoVazamento() {
+        return tipoVazamento;
+    }
+
+    public void setTipoVazamento(String tipoVazamento) {
+        this.tipoVazamento = tipoVazamento;
     }
 
     public String getMinasDagua() {
@@ -399,12 +420,20 @@ public class Vistoria {
         this.areaCultivo = areaCultivo;
     }
 
-    public String getTrinca() {
-        return trinca;
+    public Boolean getTrincaTerreno() {
+        return trincaTerreno;
     }
 
-    public void setTrinca(String trinca) {
-        this.trinca = trinca;
+    public void setTrincaTerreno(Boolean trincaTerreno) {
+        this.trincaTerreno = trincaTerreno;
+    }
+
+    public Boolean getTrincaMoradia() {
+        return trincaMoradia;
+    }
+
+    public void setTrincaMoradia(Boolean trincaMoradia) {
+        this.trincaMoradia = trincaMoradia;
     }
 
     public Boolean getDegrausAbatimento() {
@@ -415,12 +444,28 @@ public class Vistoria {
         this.degrausAbatimento = degrausAbatimento;
     }
 
-    public String getInclinacao() {
-        return inclinacao;
+    public Boolean getArvoresInclinacao() {
+        return arvoresInclinacao;
     }
 
-    public void setInclinacao(String inclinacao) {
-        this.inclinacao = inclinacao;
+    public void setArvoresInclinacao(Boolean arvoresInclinacao) {
+        this.arvoresInclinacao = arvoresInclinacao;
+    }
+
+    public Boolean getPostesInclinacao() {
+        return postesInclinacao;
+    }
+
+    public void setPostesInclinacao(Boolean postesInclinacao) {
+        this.postesInclinacao = postesInclinacao;
+    }
+
+    public Boolean getMurosInclinacao() {
+        return murosInclinacao;
+    }
+
+    public void setMurosInclinacao(Boolean murosInclinacao) {
+        this.murosInclinacao = murosInclinacao;
     }
 
     public Boolean getMuroParedeEmbarrigado() {
@@ -439,12 +484,28 @@ public class Vistoria {
         this.cicatrizEscorregamento = cicatrizEscorregamento;
     }
 
-    public String getEscorregamento() {
-        return Escorregamento;
+    public Boolean getEscorregamentoNatural() {
+        return escorregamentoNatural;
     }
 
-    public void setEscorregamento(String escorregamento) {
-        Escorregamento = escorregamento;
+    public void setEscorregamentoNatural(Boolean escorregamentoNatural) {
+        this.escorregamentoNatural = escorregamentoNatural;
+    }
+
+    public Boolean getEscorregamentoCorte() {
+        return escorregamentoCorte;
+    }
+
+    public void setEscorregamentoCorte(Boolean escorregamentoCorte) {
+        this.escorregamentoCorte = escorregamentoCorte;
+    }
+
+    public Boolean getEscorregamentoAterro() {
+        return escorregamentoAterro;
+    }
+
+    public void setEscorregamentoAterro(Boolean escorregamentoAterro) {
+        this.escorregamentoAterro = escorregamentoAterro;
     }
 
     public Boolean getQuedaBlocos() {
@@ -495,16 +556,8 @@ public class Vistoria {
         this.informacoes = informacoes;
     }
 
-    public Localizacao getLocalizacao() {
-        return localizacao;
+    public Vistoria() {
     }
-
-    public void setLocalizacao(Localizacao localizacao) {
-        this.localizacao = localizacao;
-    }
-
-
-    public Vistoria(){}
 
     public Vistoria(Localizacao localizacao, String nomeMorador, String tipoMoradia,
                     Boolean encostaNatural, Boolean taludeCorte, Boolean aterroLancado,
@@ -512,11 +565,14 @@ public class Vistoria {
                     Double alturaR, Double distanciaMoradaC, Double distanciaMoradaL, Double topoC,
                     Double topoL, Boolean blocosRochasMatacoes, Boolean lixoEntulho,
                     Boolean concentraAguaChuva, Boolean concentraAguaServida,
-                    String drenageSuperficial, String esgoto, String aguaMoradiaVazamento,
-                    String minasDagua, Boolean arvores, Boolean vegetacaoRasteira,
-                    Boolean areaDesmatada, String areaCultivo, String trinca,
-                    Boolean degrausAbatimento, String inclinacao, Boolean muroParedeEmbarrigado,
-                    Boolean cicatrizEscorregamento, String escorregamento, Boolean quedaBlocos,
+                    String drenageSuperficial, String esgoto, String usoAguaMoradia,
+                    String aguaMoradiaVazamento, String tipoVazamento, String minasDagua,
+                    Boolean arvores, Boolean vegetacaoRasteira, Boolean areaDesmatada,
+                    String areaCultivo, Boolean trincaTerreno, Boolean trincaMoradia,
+                    Boolean degrausAbatimento, Boolean arvoresInclinacao, Boolean postesInclinacao,
+                    Boolean murosInclinacao, Boolean muroParedeEmbarrigado,
+                    Boolean cicatrizEscorregamento, Boolean escorregamentoNatural,
+                    Boolean escorregamentoCorte, Boolean escorregamentoAterro, Boolean quedaBlocos,
                     Boolean rolamentoBlocos, String risco, Integer quantidadeMoradias,
                     Integer quantidadePessoas, String informacoes) {
         this.localizacao = localizacao;
@@ -531,7 +587,7 @@ public class Vistoria {
         this.alturaL = alturaL;
         this.alturaR = alturaR;
         this.distanciaMoradaC = distanciaMoradaC;
-        this.DistanciaMoradaL = distanciaMoradaL;
+        this.distanciaMoradaL = distanciaMoradaL;
         this.topoC = topoC;
         this.topoL = topoL;
         this.blocosRochasMatacoes = blocosRochasMatacoes;
@@ -540,18 +596,25 @@ public class Vistoria {
         this.concentraAguaServida = concentraAguaServida;
         this.drenageSuperficial = drenageSuperficial;
         this.esgoto = esgoto;
+        this.usoAguaMoradia = usoAguaMoradia;
         this.aguaMoradiaVazamento = aguaMoradiaVazamento;
+        this.tipoVazamento = tipoVazamento;
         this.minasDagua = minasDagua;
         this.arvores = arvores;
         this.vegetacaoRasteira = vegetacaoRasteira;
         this.areaDesmatada = areaDesmatada;
         this.areaCultivo = areaCultivo;
-        this.trinca = trinca;
+        this.trincaTerreno = trincaTerreno;
+        this.trincaMoradia = trincaMoradia;
         this.degrausAbatimento = degrausAbatimento;
-        this.inclinacao = inclinacao;
+        this.arvoresInclinacao = arvoresInclinacao;
+        this.postesInclinacao = postesInclinacao;
+        this.murosInclinacao = murosInclinacao;
         this.muroParedeEmbarrigado = muroParedeEmbarrigado;
         this.cicatrizEscorregamento = cicatrizEscorregamento;
-        this.Escorregamento = escorregamento;
+        this.escorregamentoNatural = escorregamentoNatural;
+        this.escorregamentoCorte = escorregamentoCorte;
+        this.escorregamentoAterro = escorregamentoAterro;
         this.quedaBlocos = quedaBlocos;
         this.rolamentoBlocos = rolamentoBlocos;
         this.risco = risco;
@@ -563,14 +626,16 @@ public class Vistoria {
     public Vistoria(String nomeMorador, String tipoMoradia, Boolean encostaNatural,
                     Boolean taludeCorte, Boolean aterroLancado, Boolean paredeRochosa,
                     Double alturaN, Double alturaC, Double alturaL, Double alturaR,
-                    Double distanciaMoradaC, Double distanciaMoradaL, Double topoC,
-                    Double topoL, Boolean blocosRochasMatacoes, Boolean lixoEntulho,
-                    Boolean concentraAguaChuva, Boolean concentraAguaServida,
-                    String drenageSuperficial, String esgoto, String aguaMoradiaVazamento,
+                    Double distanciaMoradaC, Double distanciaMoradaL, Double topoC, Double topoL,
+                    Boolean blocosRochasMatacoes, Boolean lixoEntulho, Boolean concentraAguaChuva,
+                    Boolean concentraAguaServida, String drenageSuperficial, String esgoto,
+                    String usoAguaMoradia, String aguaMoradiaVazamento, String tipoVazamento,
                     String minasDagua, Boolean arvores, Boolean vegetacaoRasteira,
-                    Boolean areaDesmatada, String areaCultivo, String trinca,
-                    Boolean degrausAbatimento, String inclinacao, Boolean muroParedeEmbarrigado,
-                    Boolean cicatrizEscorregamento, String escorregamento, Boolean quedaBlocos,
+                    Boolean areaDesmatada, String areaCultivo, Boolean trincaTerreno,
+                    Boolean trincaMoradia, Boolean degrausAbatimento, Boolean arvoresInclinacao,
+                    Boolean postesInclinacao, Boolean murosInclinacao, Boolean muroParedeEmbarrigado,
+                    Boolean cicatrizEscorregamento, Boolean escorregamentoNatural,
+                    Boolean escorregamentoCorte, Boolean escorregamentoAterro, Boolean quedaBlocos,
                     Boolean rolamentoBlocos, String risco, Integer quantidadeMoradias,
                     Integer quantidadePessoas, String informacoes) {
         this.nomeMorador = nomeMorador;
@@ -584,7 +649,7 @@ public class Vistoria {
         this.alturaL = alturaL;
         this.alturaR = alturaR;
         this.distanciaMoradaC = distanciaMoradaC;
-        this.DistanciaMoradaL = distanciaMoradaL;
+        this.distanciaMoradaL = distanciaMoradaL;
         this.topoC = topoC;
         this.topoL = topoL;
         this.blocosRochasMatacoes = blocosRochasMatacoes;
@@ -593,18 +658,25 @@ public class Vistoria {
         this.concentraAguaServida = concentraAguaServida;
         this.drenageSuperficial = drenageSuperficial;
         this.esgoto = esgoto;
+        this.usoAguaMoradia = usoAguaMoradia;
         this.aguaMoradiaVazamento = aguaMoradiaVazamento;
+        this.tipoVazamento = tipoVazamento;
         this.minasDagua = minasDagua;
         this.arvores = arvores;
         this.vegetacaoRasteira = vegetacaoRasteira;
         this.areaDesmatada = areaDesmatada;
         this.areaCultivo = areaCultivo;
-        this.trinca = trinca;
+        this.trincaTerreno = trincaTerreno;
+        this.trincaMoradia = trincaMoradia;
         this.degrausAbatimento = degrausAbatimento;
-        this.inclinacao = inclinacao;
+        this.arvoresInclinacao = arvoresInclinacao;
+        this.postesInclinacao = postesInclinacao;
+        this.murosInclinacao = murosInclinacao;
         this.muroParedeEmbarrigado = muroParedeEmbarrigado;
         this.cicatrizEscorregamento = cicatrizEscorregamento;
-        this.Escorregamento = escorregamento;
+        this.escorregamentoNatural = escorregamentoNatural;
+        this.escorregamentoCorte = escorregamentoCorte;
+        this.escorregamentoAterro = escorregamentoAterro;
         this.quedaBlocos = quedaBlocos;
         this.rolamentoBlocos = rolamentoBlocos;
         this.risco = risco;

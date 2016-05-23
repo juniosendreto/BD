@@ -1,6 +1,7 @@
 package bancodados.test.view;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,7 +20,6 @@ import java.util.List;
 import bancodados.test.R;
 import bancodados.test.core.service.dao.Adapter;
 import bancodados.test.core.service.dao.AdapterVistoria;
-import bancodados.test.core.service.dao.UsuarioDaoImpl;
 import bancodados.test.model.Localizacao;
 import bancodados.test.model.Usuario;
 import bancodados.test.model.Vistoria;
@@ -34,6 +34,9 @@ public class VistoriaActivity extends Activity {
 
         final Adapter adapter = new Adapter(getApplicationContext());
         final AdapterVistoria adapterVistoria = new AdapterVistoria(getApplicationContext());
+        final Intent intent = getIntent();
+        Usuario usuario = (Usuario) intent.getSerializableExtra("usuario");
+        Localizacao localizacao = (Localizacao) intent.getSerializableExtra("localizacao");
 
 
         /* PASSO 1 */
@@ -451,20 +454,103 @@ public class VistoriaActivity extends Activity {
                 vistoria.setTipoMoradia(adapterVistoria.whichButtonIsChacked(radioButtonList));
                 radioButtonList.removeAll(radioButtonList);
 
+                /* PASSO 2 */
                 vistoria.setEncostaNatural(encostaCB.isChecked());
                 vistoria.setTaludeCorte(taludeCB.isChecked());
                 vistoria.setAterroLancado(aterroCB.isChecked());
-                vistoria.setTaludeCorte(taludeCB.isChecked());
+                vistoria.setParedeRochosa(paredeCB.isChecked());
+                vistoria.setAlturaN(Double.valueOf(alturaEncostaET.getText().toString()));
+                vistoria.setAlturaC(Double.valueOf(alturaTaludeET.getText().toString()));
+                vistoria.setAlturaL(Double.valueOf(alturaAterroET.getText().toString()));
+                vistoria.setAlturaR(Double.valueOf(alturaParedeET.getText().toString()));
+                vistoria.setDistanciaMoradaC(Double.valueOf(distanciaBaseTaludeET.getText().toString()));
+                vistoria.setDistanciaMoradaL(Double.valueOf(distanciaBaseAterroET.getText().toString()));
+                vistoria.setTopoC(Double.valueOf(alturaTopoTaludeET.getText().toString()));
+                vistoria.setTopoL(Double.valueOf(alturaTopoAterroET.getText().toString()));
+                vistoria.setBlocosRochasMatacoes(blocosRochasCB.isChecked());
+                vistoria.setLixoEntulho(lixoEntulhoCB.isChecked());
 
-
-
-                /* PASSO 2 */
                 /* PASSO 3 */
+                vistoria.setConcentraAguaChuva(concentracaoAguaCB.isChecked());
+                vistoria.setConcentraAguaServida(lancamentoAguaCB.isChecked());
+
+
+                radioButtonList.add(inexistenteRB);
+                radioButtonList.add(precarioRB);
+                radioButtonList.add(satisfatorioRB);
+                vistoria.setDrenageSuperficial(adapterVistoria.whichButtonIsChacked(radioButtonList));
+                radioButtonList.removeAll(radioButtonList);
+
+                radioButtonList.add(fossaRB);
+                radioButtonList.add(canalizadoRB);
+                radioButtonList.add(superficieRB);
+                vistoria.setEsgoto(adapterVistoria.whichButtonIsChacked(radioButtonList));
+                radioButtonList.removeAll(radioButtonList);
+
+                radioButtonList.add(prefeituraCRB);
+                radioButtonList.add(mangueiraRB);
+                vistoria.setUsoAguaMoradia(adapterVistoria.whichButtonIsChacked(radioButtonList));
+                radioButtonList.removeAll(radioButtonList);
+
+                radioButtonList.add(vazamentoSRB);
+                radioButtonList.add(vazamentoNRB);
+                vistoria.setAguaMoradiaVazamento(adapterVistoria.whichButtonIsChacked(radioButtonList));
+                radioButtonList.removeAll(radioButtonList);
+                radioButtonList.add(vazamentoAguaRB);
+                radioButtonList.add(vazamentoEsgotoRB);
+                vistoria.setTipoVazamento(adapterVistoria.whichButtonIsChacked(radioButtonList));
+                radioButtonList.removeAll(radioButtonList);
+
+                radioButtonList.add(peRB);
+                radioButtonList.add(meioRB);
+                radioButtonList.add(topoTaludeARB);
+                vistoria.setMinasDagua(adapterVistoria.whichButtonIsChacked(radioButtonList));
+                radioButtonList.removeAll(radioButtonList);
+
                 /* PASSO 4 */
+
+                vistoria.setArvores(presencaArvoresCB.isChecked());
+                vistoria.setVegetacaoRasteira(vegetacaoRasteiraCB.isChecked());
+                vistoria.setAreaDesmatada(areaDesmatadaCB.isChecked());
+                vistoria.setAreaCultivo(areaCultivoET.getText().toString());
+
+
                 /* PASSO 5 */
+
+                vistoria.setTrincaMoradia(trincasMoradiaCB.isChecked());
+                vistoria.setTrincaTerreno(trincasTerrenoCB.isChecked());
+                vistoria.setDegrausAbatimento(degrausAbatimentoCB.isChecked());
+                vistoria.setArvoresInclinacao(arvoreInclinacaoCB.isChecked());
+                vistoria.setPostesInclinacao(postesInclinacaoCB.isChecked());
+                vistoria.setMurosInclinacao(murosInclinacaoCB.isChecked());
+                vistoria.setMuroParedeEmbarrigado(paredesEmbarrigadosCB.isChecked());
+                vistoria.setCicatrizEscorregamento(cicatrizEscorregamentoCB.isChecked());
+
                 /* PASSO 6 */
+
+                vistoria.setEscorregamentoNatural(escorregamentoTaludeNaturalCB.isChecked());
+                vistoria.setEscorregamentoCorte(escorregamentoTaludeCorteCB.isChecked());
+                vistoria.setEscorregamentoAterro(escorregamentoAterroCB.isChecked());
+                vistoria.setQuedaBlocos(quedaBlocosCB.isChecked());
+                vistoria.setRolamentoBlocos(rolamentoBlocosCB.isChecked());
+
                 /* PASSO 7 */
+
+                radioButtonList.add(riscoMuitoAltoRB);
+                radioButtonList.add(riscoAltoB);
+                radioButtonList.add(riscoMedioRB);
+                radioButtonList.add(riscoBaixoRB);
+                vistoria.setRisco(adapterVistoria.whichButtonIsChacked(radioButtonList));
+                radioButtonList.removeAll(radioButtonList);
+
                 /* PASSO 8 */
+
+                vistoria.setQuantidadeMoradias(Integer.valueOf(numeroMoradiasRiscoET.getText().toString()));
+                vistoria.setQuantidadePessoas(Integer.valueOf(quantidadeRemocaoET.getText().toString()));
+
+                /* PASSO 9 */
+
+                vistoria.setInformacoes(outrasInformacoesET.getText().toString());
             }
         });
 

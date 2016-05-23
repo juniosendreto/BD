@@ -5,6 +5,7 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Collection;
  */
 
 @DatabaseTable(tableName = "LOCALIZACAO")
-public class Localizacao {
+public class Localizacao implements Serializable{
 
     public static final String COL_ID = "ID";
     public static final String COL_LATITUDE = "LATITUDE";

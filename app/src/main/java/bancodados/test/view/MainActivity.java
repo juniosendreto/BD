@@ -29,22 +29,18 @@ public class MainActivity extends Activity {
         final EditText latitudeET = (EditText) findViewById(R.id.latitudeET);
         final EditText longitudeET = (EditText)findViewById(R.id.longitudeET);
         final Localizacao localizacao =  new Localizacao();
-        Intent intent = getIntent();
+        final Intent intent = new Intent(this, VistoriaActivity.class);
+        final Intent intentAuxiliar = getIntent();
 
-        //localizacao.setLatitude(Double.valueOf(latitudeET.getText().toString()));
-        //localizacao.setLongitude(Double.valueOf(longitudeET.getText().toString()));
-        try {
-            Usuario u = (Usuario) intent.getSerializableExtra("usuario");
-            Log.d("------", u.getLogin());
-        }catch (Exception e){
-            e.printStackTrace();
-            Log.d("--------- ", e.getMessage());
-        }
         novaVistoria.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    chamarActivity(Class.forName("bancodados.test.view.VistoriaActivity"));
+                    localizacao.setLatitude(Double.valueOf(latitudeET.getText().toString()));
+                    localizacao.setLongitude(Double.valueOf(longitudeET.getText().toString()));
+                    intent.putExtra("usuario", intentAuxiliar.getSerializableExtra("usuario"));
+                    intent.putExtra("localizacao", localizacao);
+                    startActivity(intent);
                 }catch (Exception e){
                     e.printStackTrace();
                 }
@@ -52,10 +48,4 @@ public class MainActivity extends Activity {
         });
     }
 
-    public void chamarActivity(Class novaActivity) {
-        Intent abrirActivity = new Intent(this, novaActivity);
-        ///abrirActivity.putExtra("Localização", (Parcelable) localizacao);
-        startActivity(abrirActivity);
-
-    }
 }

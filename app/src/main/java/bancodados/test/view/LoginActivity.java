@@ -28,7 +28,6 @@ public class LoginActivity extends Activity {
         final EditText loginE = (EditText) findViewById(R.id.loginEditText);
         final EditText passwordE = (EditText) findViewById(R.id.passwordEditText);
         final TextView report =  (TextView) findViewById(R.id.report);
-
         final Intent intent = new Intent(this, MainActivity.class);
 
 
@@ -43,19 +42,12 @@ public class LoginActivity extends Activity {
                         report.setVisibility(View.INVISIBLE);
                         loginE.setText("");
                         passwordE.setText("");
-                        //Log.d("------- 83478943", usuario.getNome());
                         intent.putExtra("usuario", usuario);
                         startActivity(intent);
                     }else{
                         report.setVisibility(View.VISIBLE);
                     }
-                    /*
-                    if (usuarioImpl.findByLoginAndPassword(loginE.getText().toString(),
-                            passwordE.getText().toString()) != null) {
 
-
-                    } else {
-                    }*/
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.d("ERRO CHAMADA TELA", e.getMessage());
