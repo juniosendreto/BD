@@ -2,6 +2,7 @@ package bancodados.test.core.service.dao;
 
 import android.app.Activity;
 import android.content.Context;
+import android.widget.EditText;
 import android.widget.RadioButton;
 
 import java.util.List;
@@ -37,9 +38,13 @@ public class AdapterVistoria {
         UsuarioDaoImpl usuarioDao =  new UsuarioDaoImpl(context);
         UsuarioVistoria usuarioVistoria = new UsuarioVistoria();
 
-
-
-
     }
+
+   /* public Double tratarDouble(EditText editText){
+        if(editText.getText().toString() == null)
+            return null;
+        else
+            return Double.Va
+    }*/
 
 }

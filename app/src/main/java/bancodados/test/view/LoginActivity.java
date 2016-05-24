@@ -9,10 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
-
 import bancodados.test.R;
 import bancodados.test.core.service.dao.UsuarioDaoImpl;
+import bancodados.test.core.service.dao.Util;
 import bancodados.test.model.Usuario;
 
 public class LoginActivity extends Activity {
@@ -29,8 +28,6 @@ public class LoginActivity extends Activity {
         final EditText passwordE = (EditText) findViewById(R.id.passwordEditText);
         final TextView report =  (TextView) findViewById(R.id.report);
         final Intent intent = new Intent(this, MainActivity.class);
-
-
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override

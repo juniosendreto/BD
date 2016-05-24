@@ -5,6 +5,7 @@ import android.util.Log;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import bancodados.test.core.service.dao.LocalizacaoDaoImpl;
@@ -30,20 +31,9 @@ public class VistoriaDaoImplTest extends ConfigBDTestCase{
         Usuario usuario1 = new Usuario("Junio", "39761555860", "junio", "12345", "junio.sendreto@hotmail.com", "SP", "rua", "4321", "12321", 1);
         Usuario usuario2 = new Usuario("Jarvan", "39761555860", "junio", "12345", "junio.sendreto@hotmail.com", "SP", "rua", "4321", "12321", 1);
 
-        Vistoria vistoria1 = new Vistoria(
-                "teste1", "teste2", true, true, true, true, 1.0, 1.5, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5,
-                true, true, true, true, "teste3", "teste4", "teste5", "teste6", true, true, true,
-                "test6", "test7", true, "teste8", true, true, "teste9", true, true, "teste10", 1, 2,
-                "teste11"
-        );
+        Vistoria vistoria1 = null;
 
-        Vistoria vistoria2 = new Vistoria(
-                "teste1", "teste2", true, true, true, true, 1.0, 1.5, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5,
-                true, true, true, true, "teste3", "teste4", "teste5", "teste6", true, true, true,
-                "test6", "test7", true, "teste8", true, true, "teste9", true, true, "teste10", 1, 2,
-                "teste11"
-        );
-
+        Vistoria vistoria2 = null;
         List<Vistoria> vistorias = new ArrayList<>();
         vistorias.add(vistoria1);
         vistorias.add(vistoria2);
@@ -54,18 +44,23 @@ public class VistoriaDaoImplTest extends ConfigBDTestCase{
         vistoria1.setLocalizacao(localizacao1);
         vistoria2.setLocalizacao(localizacao2);
 
-        UsuarioVistoria usuarioVistoria1 = new UsuarioVistoria("12/01/2015", vistoria1, usuario1);
-        UsuarioVistoria usuarioVistoria2 = new UsuarioVistoria("14/01/2015", vistoria2, usuario2);
+        UsuarioVistoria usuarioVistoria1 = null;
+        UsuarioVistoria usuarioVistoria2 = null;
 
-        usuarioDao.save(Usuario.class, usuario1);
-        usuarioDao.save(Usuario.class, usuario2);
-        localizacaoDao.save(Localizacao.class, localizacao1);
-        localizacaoDao.save(Localizacao.class, localizacao2);
-        vistoriaDao.save(Vistoria.class, vistoria1);
-        vistoriaDao.save(Vistoria.class, vistoria2);
-        usuarioVistoriaDao.save(UsuarioVistoria.class, usuarioVistoria1);
-        usuarioVistoriaDao.save(UsuarioVistoria.class, usuarioVistoria2);
+        try {
 
+
+            usuarioDao.save(Usuario.class, usuario1);
+            usuarioDao.save(Usuario.class, usuario2);
+            localizacaoDao.save(Localizacao.class, localizacao1);
+            localizacaoDao.save(Localizacao.class, localizacao2);
+            vistoriaDao.save(Vistoria.class, vistoria1);
+            vistoriaDao.save(Vistoria.class, vistoria2);
+            usuarioVistoriaDao.save(UsuarioVistoria.class, usuarioVistoria1);
+            usuarioVistoriaDao.save(UsuarioVistoria.class, usuarioVistoria2);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 

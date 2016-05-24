@@ -83,6 +83,13 @@ public class Localizacao implements Serializable{
         this.acessoLocal = acessoLocal;
     }
 
+    public Collection<Vistoria> getVistorias() {
+        return vistorias;
+    }
+
+    public void setVistorias(Collection<Vistoria> vistorias) {
+        this.vistorias = vistorias;
+    }
 
     public Localizacao(Collection<Vistoria> vistorias, Double latitude, Double longitude, String municipio,
                        String acessoLocal) {

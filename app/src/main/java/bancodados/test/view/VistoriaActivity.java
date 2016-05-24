@@ -2,9 +2,7 @@ package bancodados.test.view;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -14,14 +12,23 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import bancodados.test.R;
 import bancodados.test.core.service.dao.Adapter;
 import bancodados.test.core.service.dao.AdapterVistoria;
+import bancodados.test.core.service.dao.LocalizacaoDaoImpl;
+import bancodados.test.core.service.dao.UsuarioDaoImpl;
+import bancodados.test.core.service.dao.UsuarioVistoriaDaoImpl;
+import bancodados.test.core.service.dao.VistoriaDaoImpl;
 import bancodados.test.model.Localizacao;
 import bancodados.test.model.Usuario;
+import bancodados.test.model.UsuarioVistoria;
 import bancodados.test.model.Vistoria;
 
 public class VistoriaActivity extends Activity {
@@ -35,8 +42,16 @@ public class VistoriaActivity extends Activity {
         final Adapter adapter = new Adapter(getApplicationContext());
         final AdapterVistoria adapterVistoria = new AdapterVistoria(getApplicationContext());
         final Intent intent = getIntent();
-        Usuario usuario = (Usuario) intent.getSerializableExtra("usuario");
-        Localizacao localizacao = (Localizacao) intent.getSerializableExtra("localizacao");
+        final Usuario usuario = (Usuario) intent.getSerializableExtra("usuario");
+        final UsuarioDaoImpl usuarioDao =  new UsuarioDaoImpl(getApplicationContext());
+        final UsuarioVistoriaDaoImpl usuarioVistoriaDao = new UsuarioVistoriaDaoImpl(getApplicationContext());
+        final VistoriaDaoImpl vistoriaDao = new VistoriaDaoImpl(getApplicationContext());
+        final LocalizacaoDaoImpl localizacaoDao = new LocalizacaoDaoImpl(getApplicationContext());
+        final Localizacao localizacao = (Localizacao) intent.getSerializableExtra("localizacao");
+        final List<Vistoria> vistoriaList = new ArrayList<Vistoria>();
+        final UsuarioVistoria usuarioVistoria = new UsuarioVistoria(getApplicationContext());
+        final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        final Date date = new Date();
 
 
         /* PASSO 1 */
@@ -551,6 +566,21 @@ public class VistoriaActivity extends Activity {
                 /* PASSO 9 */
 
                 vistoria.setInformacoes(outrasInformacoesET.getText().toString());
+
+
+                vistoriaList.add(vistoria);
+                localizacao.setVistorias((Collection) vistoriaList);
+                vistoria.setLocalizacao(localizacao);
+                usuarioVistoria.setData(dateFormat.format(date));
+                usuarioVistoria.setUsuario(usuario);
+                usuarioVistoria.setVistoria(vistoria);
+
+                usuarioDao.save(Usuario.class, usuario);
+                localizacaoDao.save(Localizacao.class, localizacao);
+                vistoriaDao.save(Vistoria.class, vistoria);
+                usuarioVistoriaDao.save(UsuarioVistoria.class, usuarioVistoria);
+
+
             }
         });
 
