@@ -62,8 +62,10 @@ public class VistoriaActivity extends Activity {
        // Localizacao localizacao =  new Localizacao();
 
 
-        final EditText localizacaoET = (EditText) findViewById(R.id.localizacaoET);
-        final TextView localizacaoReportTV = (TextView) findViewById(R.id.localizacaoReportTV);
+        //final EditText localizacaoET = (EditText) findViewById(R.id.localizacaoET);
+        //final TextView localizacaoReportTV = (TextView) findViewById(R.id.localizacaoReportTV);
+        final EditText bairroET = (EditText) findViewById(R.id.bairroET);
+        final EditText municipioET = (EditText) findViewById(R.id.municipioET);
         final EditText nomeMoradorET = (EditText) findViewById(R.id.nomeMoradorET);
         final EditText condicoesAreaET = (EditText) findViewById(R.id.condicoesAreaET);
         final TextView condicoesAreaReportTV = (TextView) findViewById(R.id.condicoesAreaReportTV);
@@ -217,14 +219,7 @@ public class VistoriaActivity extends Activity {
             }
         });
 
-        localizacaoET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus){
-                    adapter.nullValue(localizacaoET, localizacaoReportTV);
-                }
-            }
-        });
+       ////////
 
         condicoesAreaET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -461,6 +456,8 @@ public class VistoriaActivity extends Activity {
                 /* PASSO 1 */
                 List<RadioButton> radioButtonList = new ArrayList<RadioButton>();
 
+                localizacao.setMunicipio(municipioET.getText().toString());
+                localizacao.setBairro(bairroET.getText().toString());
                 vistoria.setNomeMorador(nomeMoradorET.getText().toString());
 
                 radioButtonList.add(alvenariaRB);

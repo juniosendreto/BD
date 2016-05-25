@@ -39,6 +39,9 @@ public class Localizacao implements Serializable{
     @DatabaseField(columnName = "MUNICIPIO", canBeNull = true)
     private String municipio;
 
+    @DatabaseField(columnName = "BAIRRO", canBeNull = true)
+    private String bairro;
+
     @DatabaseField(columnName = "ACESSO_LOCAL", canBeNull = true)
     private String acessoLocal;
 
@@ -75,6 +78,14 @@ public class Localizacao implements Serializable{
         this.municipio = municipio;
     }
 
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
     public String getAcessoLocal() {
         return acessoLocal;
     }
@@ -92,15 +103,17 @@ public class Localizacao implements Serializable{
     }
 
     public Localizacao(Collection<Vistoria> vistorias, Double latitude, Double longitude, String municipio,
-                       String acessoLocal) {
+                       String bairro, String acessoLocal) {
         this.vistorias = vistorias;
         this.latitude = latitude;
         this.longitude = longitude;
         this.municipio = municipio;
+        this.bairro = bairro;
         this.acessoLocal = acessoLocal;
     }
 
-    public Localizacao(Double latitude, Double longitude, String municipio, String acessoLocal) {
+    public Localizacao(Double latitude, Double longitude, String municipio, String bairro,
+                       String acessoLocal) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.municipio = municipio;

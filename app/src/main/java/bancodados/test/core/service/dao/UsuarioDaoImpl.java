@@ -44,7 +44,7 @@ public class UsuarioDaoImpl extends AbstractDaoImpl{
         }
     }
 
-    public List<Usuario> findByLogin(String login) throws java.sql.SQLException {
+    public Usuario findByLogin(String login) throws java.sql.SQLException {
         List<Usuario> usuarioList;
         openBD();
         QueryBuilder<Usuario, Object> queryBuilder = (QueryBuilder<Usuario, Object>) dataBase.getDao(Usuario.class).queryBuilder();
@@ -56,7 +56,7 @@ public class UsuarioDaoImpl extends AbstractDaoImpl{
         if(usuarioList.isEmpty() == true){
             return null;
         }else{
-            return usuarioList;
+            return usuarioList.get(0);
         }
     }
 }

@@ -96,9 +96,9 @@ public class Adapter{
         try {
             if (!(campoNull(editText) == true)) {
                 UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl(context);
-                List<Usuario> usuarioList = usuarioDao.findByLogin(editText.getText().toString());
+                Usuario usuario = usuarioDao.findByLogin(editText.getText().toString());
 
-                if (usuarioList == null) {
+                if (usuario == null) {
                     textView.setVisibility(View.GONE);
                 } else {
                     textView.setText("*Usuário Já Existe");
@@ -245,7 +245,7 @@ public class Adapter{
     public Boolean validarCamposUsuario(Usuario usuario) throws SQLException {
         Integer contador = 0;
         UsuarioDaoImpl usuarioDao =  new UsuarioDaoImpl(context);
-        List<Usuario> u = usuarioDao.findByLogin(usuario.getLogin());
+        Usuario u = usuarioDao.findByLogin(usuario.getLogin());
 
         if (usuario.getNome().equals("")) {
             contador++;
@@ -257,7 +257,7 @@ public class Adapter{
             contador++;
         }
         if(!(u == null)){
-                if(u.get(0).getLogin().equals(usuario.getLogin())) {
+                if(u.getLogin().equals(usuario.getLogin())) {
                     contador++;
                 }
         }
