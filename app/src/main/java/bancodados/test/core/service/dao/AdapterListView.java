@@ -20,9 +20,43 @@ import bancodados.test.model.Vistoria;
 /**
  * Created by junio on 25/05/16.
  */
-public class AdapterListView extends ArrayAdapter {
+public class AdapterListView {
 
-    private static class ViewHolder{
+
+
+
+    /*
+           * View de itens
+               * Autor
+               * Data
+               * Bairro
+               * Municio
+
+               ** Todas as vistoria listadas
+               ** Com o usuário, data, municipio e bairro
+
+                Eu tenho uma vistoria, através dos relacionamentos eu preciso pegar o usuario
+                data e partes da localização.
+
+                Essa alternativa seria fazer querry com join, para acessar esse atributos
+
+
+
+
+    */
+
+
+
+
+
+
+
+
+
+
+
+
+    /*private static class ViewHolder{
         TextView autor;
         TextView municipio;
         TextView bairro;
@@ -53,5 +87,5 @@ public class AdapterListView extends ArrayAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         return convertView;
-    }
+    }*/
 }
