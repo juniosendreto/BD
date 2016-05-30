@@ -41,6 +41,12 @@
             android:layout_height="wrap_content"
             android:text="Cria Nova Vistoria"
             android:id="@+id/novaVistoriaB" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Listar Vistorias"
+            android:id="@+id/listarVistoriasB" />
     </LinearLayout>
 
 </RelativeLayout>

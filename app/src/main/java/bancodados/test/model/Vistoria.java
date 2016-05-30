@@ -188,6 +188,15 @@ public class Vistoria {
     @DatabaseField(columnName = "INFORMAÇÕES", canBeNull = true)
     private String informacoes;
 
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Localizacao getLocalizacao() {
         return localizacao;
     }

@@ -20,15 +20,19 @@ import bancodados.test.model.Usuario;
 
 public class MainActivity extends Activity {
 
+    Localizacao localizacao;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         final Button novaVistoria = (Button) findViewById(R.id.novaVistoriaB);
+        final Button listarVistorias = (Button) findViewById(R.id.listarVistoriasB);
         final EditText latitudeET = (EditText) findViewById(R.id.latitudeET);
         final EditText longitudeET = (EditText)findViewById(R.id.longitudeET);
-        final Localizacao localizacao =  new Localizacao();
+        localizacao =  new Localizacao();
         final Intent intent = new Intent(this, VistoriaActivity.class);
         final Intent intentAuxiliar = getIntent();
 
@@ -46,6 +50,23 @@ public class MainActivity extends Activity {
                 }
             }
         });
+
+        listarVistorias.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    chamarActivity(Class.forName("bancodados.test.view.ListViewVistoriaActivity"));
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public void chamarActivity(Class novaActivity) {
+        Intent abrirActivity = new Intent(this, novaActivity);
+        startActivity(abrirActivity);
+
     }
 
 }

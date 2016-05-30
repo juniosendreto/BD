@@ -1,8 +1,11 @@
 package bancodados.test.view;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -33,6 +36,9 @@ import bancodados.test.model.Vistoria;
 
 public class VistoriaActivity extends Activity {
 
+    Localizacao localizacao;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,11 +53,14 @@ public class VistoriaActivity extends Activity {
         final UsuarioVistoriaDaoImpl usuarioVistoriaDao = new UsuarioVistoriaDaoImpl(getApplicationContext());
         final VistoriaDaoImpl vistoriaDao = new VistoriaDaoImpl(getApplicationContext());
         final LocalizacaoDaoImpl localizacaoDao = new LocalizacaoDaoImpl(getApplicationContext());
-        final Localizacao localizacao = (Localizacao) intent.getSerializableExtra("localizacao");
+        localizacao = (Localizacao) intent.getSerializableExtra("localizacao");
         final List<Vistoria> vistoriaList = new ArrayList<Vistoria>();
         final UsuarioVistoria usuarioVistoria = new UsuarioVistoria(getApplicationContext());
         final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         final Date date = new Date();
+
+        Log.d("-----", localizacao.getLatitude() + "");
+        Log.d("-----", localizacao.getLongitude() + "");
 
 
         /* PASSO 1 */
@@ -59,11 +68,7 @@ public class VistoriaActivity extends Activity {
         final TextView passo1TV = (TextView) findViewById(R.id.passo1TV);
         final LinearLayout passo1LL = (LinearLayout) findViewById(R.id.passo1LL);
         final Vistoria vistoria = new Vistoria();
-       // Localizacao localizacao =  new Localizacao();
 
-
-        //final EditText localizacaoET = (EditText) findViewById(R.id.localizacaoET);
-        //final TextView localizacaoReportTV = (TextView) findViewById(R.id.localizacaoReportTV);
         final EditText bairroET = (EditText) findViewById(R.id.bairroET);
         final EditText municipioET = (EditText) findViewById(R.id.municipioET);
         final EditText nomeMoradorET = (EditText) findViewById(R.id.nomeMoradorET);
@@ -577,9 +582,30 @@ public class VistoriaActivity extends Activity {
                 vistoriaDao.save(Vistoria.class, vistoria);
                 usuarioVistoriaDao.save(UsuarioVistoria.class, usuarioVistoria);
 
+                AlertDialog.Builder alert = new AlertDialog.Builder(getApplicationContext());
+                alert.setMessage("Vistoria criada com sucesso");
+                alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        try {
+                            chamarActivity(Class.forName("bancodados.test.view.MainActivity"));
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
+                    }
+                });
             }
         });
+
+    }
+    public void chamarActivity(Class novaActivity) {
+        Intent abrirActivity = new Intent(this, novaActivity);
+        startActivity(abrirActivity);
 
     }
 }

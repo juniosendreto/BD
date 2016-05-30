@@ -29,8 +29,6 @@ public abstract class AbstractDaoImpl {
         try {
             if (dataBase == null || !(dataBase.isOpen())) {
                 dataBase = new DataBase(context);
-                Log.d("--------", context.getExternalFilesDir(null).getAbsolutePath());
-
             }
         }catch (Exception e){
             Log.d("--------", "ERRO OpenBD(ABSTRACTDAO) " + e.getMessage());

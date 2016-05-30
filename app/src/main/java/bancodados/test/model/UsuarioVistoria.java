@@ -16,6 +16,9 @@ import java.util.Date;
 public class UsuarioVistoria {
 
     public static final String COL_ID = "ID";
+    public static final String COL_USUARIO_ID = "USUARIO_ID";
+    public static final String COL_VISTORIA_ID = "VISTORIA_ID";
+
     private Context context;
 
     public UsuarioVistoria(Context context){
