@@ -23,7 +23,8 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/latitudeET" />
+            android:id="@+id/latitudeET"
+            android:inputType="number" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -34,7 +35,8 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/longitudeET" />
+            android:id="@+id/longitudeET"
+            android:inputType="number" />
 
         <Button
             android:layout_width="wrap_content"

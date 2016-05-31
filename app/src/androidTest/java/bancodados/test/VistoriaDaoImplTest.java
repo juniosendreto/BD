@@ -38,11 +38,11 @@ public class VistoriaDaoImplTest extends ConfigBDTestCase{
         vistorias.add(vistoria1);
         vistorias.add(vistoria2);
 
-        Localizacao localizacao1 = new Localizacao((Collection) vistorias, 1.9747654, -2.387464, "SJC", "teste");
-        Localizacao localizacao2 = new Localizacao((Collection) vistorias, -2.387464, -2.387464, "SJC", "teste");
+       // Localizacao localizacao1 = new Localizacao((Collection) vistorias, 1.9747654, -2.387464, "SJC", "teste");
+        //Localizacao localizacao2 = new Localizacao((Collection) vistorias, -2.387464, -2.387464, "SJC", "teste");
 
-        vistoria1.setLocalizacao(localizacao1);
-        vistoria2.setLocalizacao(localizacao2);
+        //vistoria1.setLocalizacao(localizacao1);
+        //vistoria2.setLocalizacao(localizacao2);
 
         UsuarioVistoria usuarioVistoria1 = null;
         UsuarioVistoria usuarioVistoria2 = null;
@@ -52,8 +52,8 @@ public class VistoriaDaoImplTest extends ConfigBDTestCase{
 
             usuarioDao.save(Usuario.class, usuario1);
             usuarioDao.save(Usuario.class, usuario2);
-            localizacaoDao.save(Localizacao.class, localizacao1);
-            localizacaoDao.save(Localizacao.class, localizacao2);
+            ///localizacaoDao.save(Localizacao.class, localizacao1);
+            //localizacaoDao.save(Localizacao.class, localizacao2);
             vistoriaDao.save(Vistoria.class, vistoria1);
             vistoriaDao.save(Vistoria.class, vistoria2);
             usuarioVistoriaDao.save(UsuarioVistoria.class, usuarioVistoria1);

@@ -59,9 +59,6 @@ public class VistoriaActivity extends Activity {
         final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         final Date date = new Date();
 
-        Log.d("-----", localizacao.getLatitude() + "");
-        Log.d("-----", localizacao.getLongitude() + "");
-
 
         /* PASSO 1 */
 
@@ -460,6 +457,7 @@ public class VistoriaActivity extends Activity {
             public void onClick(View v) {
                 /* PASSO 1 */
                 List<RadioButton> radioButtonList = new ArrayList<RadioButton>();
+                Double doubleNull = null;
 
                 localizacao.setMunicipio(municipioET.getText().toString());
                 localizacao.setBairro(bairroET.getText().toString());
@@ -472,18 +470,44 @@ public class VistoriaActivity extends Activity {
                 radioButtonList.removeAll(radioButtonList);
 
                 /* PASSO 2 */
-                vistoria.setEncostaNatural(encostaCB.isChecked());
-                vistoria.setTaludeCorte(taludeCB.isChecked());
-                vistoria.setAterroLancado(aterroCB.isChecked());
-                vistoria.setParedeRochosa(paredeCB.isChecked());
-                vistoria.setAlturaN(Double.valueOf(alturaEncostaET.getText().toString()));
-                vistoria.setAlturaC(Double.valueOf(alturaTaludeET.getText().toString()));
-                vistoria.setAlturaL(Double.valueOf(alturaAterroET.getText().toString()));
-                vistoria.setAlturaR(Double.valueOf(alturaParedeET.getText().toString()));
-                vistoria.setDistanciaMoradaC(Double.valueOf(distanciaBaseTaludeET.getText().toString()));
-                vistoria.setDistanciaMoradaL(Double.valueOf(distanciaBaseAterroET.getText().toString()));
-                vistoria.setTopoC(Double.valueOf(alturaTopoTaludeET.getText().toString()));
-                vistoria.setTopoL(Double.valueOf(alturaTopoAterroET.getText().toString()));
+                if(encostaCB.isChecked() == true){
+                    vistoria.setEncostaNatural(encostaCB.isChecked());
+                    vistoria.setAlturaN(Double.valueOf(alturaEncostaET.getText().toString()));
+                }else{
+                    vistoria.setEncostaNatural(encostaCB.isChecked());
+                    vistoria.setAlturaN(doubleNull);
+                }
+                if(taludeCB.isChecked() == true){
+                    vistoria.setTaludeCorte(taludeCB.isChecked());
+                    vistoria.setAlturaC(Double.valueOf(alturaTaludeET.getText().toString()));
+                    vistoria.setDistanciaMoradaC(Double.valueOf(distanciaBaseTaludeET.getText().toString()));
+                    vistoria.setTopoC(Double.valueOf(alturaTopoTaludeET.getText().toString()));
+                }else{
+                    vistoria.setTaludeCorte(taludeCB.isChecked());
+                    vistoria.setAlturaC(doubleNull);
+                    vistoria.setDistanciaMoradaC(doubleNull);
+                    vistoria.setTopoC(doubleNull);
+                }
+                if(aterroCB.isChecked() == true){
+                    vistoria.setAterroLancado(aterroCB.isChecked());
+                    vistoria.setAlturaL(Double.valueOf(alturaAterroET.getText().toString()));
+                    vistoria.setDistanciaMoradaL(Double.valueOf(distanciaBaseAterroET.getText().toString()));
+                    vistoria.setTopoL(Double.valueOf(alturaTopoAterroET.getText().toString()));
+
+                }else{
+                    vistoria.setAterroLancado(aterroCB.isChecked());
+                    vistoria.setAlturaL(doubleNull);
+                    vistoria.setDistanciaMoradaL(doubleNull);
+                    vistoria.setTopoL(doubleNull);
+                }
+                if(paredeCB.isChecked() == true){
+                    vistoria.setParedeRochosa(paredeCB.isChecked());
+                    vistoria.setAlturaR(Double.valueOf(alturaParedeET.getText().toString()));
+                }else{
+                    vistoria.setParedeRochosa(paredeCB.isChecked());
+                    vistoria.setAlturaR(doubleNull);
+                }
+
                 vistoria.setBlocosRochasMatacoes(blocosRochasCB.isChecked());
                 vistoria.setLixoEntulho(lixoEntulhoCB.isChecked());
 
@@ -561,10 +585,14 @@ public class VistoriaActivity extends Activity {
                 radioButtonList.removeAll(radioButtonList);
 
                 /* PASSO 8 */
-
-                vistoria.setQuantidadeMoradias(Integer.valueOf(numeroMoradiasRiscoET.getText().toString()));
-                vistoria.setQuantidadePessoas(Integer.valueOf(quantidadeRemocaoET.getText().toString()));
-
+                if(numeroMoradiasRiscoET.getText().toString().length() > 0)
+                    vistoria.setQuantidadeMoradias(Integer.valueOf(numeroMoradiasRiscoET.getText().toString()));
+                else
+                    vistoria.setQuantidadeMoradias(0);
+                if(quantidadeRemocaoET.getText().toString().length() > 0)
+                    vistoria.setQuantidadePessoas(Integer.valueOf(quantidadeRemocaoET.getText().toString()));
+                else
+                    vistoria.setQuantidadePessoas(0);
                 /* PASSO 9 */
 
                 vistoria.setInformacoes(outrasInformacoesET.getText().toString());
@@ -582,8 +610,8 @@ public class VistoriaActivity extends Activity {
                 vistoriaDao.save(Vistoria.class, vistoria);
                 usuarioVistoriaDao.save(UsuarioVistoria.class, usuarioVistoria);
 
-                AlertDialog.Builder alert = new AlertDialog.Builder(getApplicationContext());
-                alert.setMessage("Vistoria criada com sucesso");
+                AlertDialog.Builder alert = new AlertDialog.Builder(VistoriaActivity.this);
+                alert.setMessage("Você realmente deseja salvar a vistoria?");
                 alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -598,7 +626,7 @@ public class VistoriaActivity extends Activity {
                     public void onClick(DialogInterface dialog, int which) {
 
                     }
-                });
+                }).show();
             }
         });
 

@@ -204,7 +204,8 @@
                     <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/alturaEncostaET" />
+                        android:id="@+id/alturaEncostaET"
+                        android:inputType="number" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -247,7 +248,8 @@
                     <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/alturaTaludeET" />
+                        android:id="@+id/alturaTaludeET"
+                        android:inputType="number" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -271,7 +273,8 @@
                     <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/distanciaBaseTaludeET" />
+                        android:id="@+id/distanciaBaseTaludeET"
+                        android:inputType="number" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -293,7 +296,8 @@
                     <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/alturaTopoTaludeET" />
+                        android:id="@+id/alturaTopoTaludeET"
+                        android:inputType="number" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -335,7 +339,8 @@
                     <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/alturaAterroET" />
+                        android:id="@+id/alturaAterroET"
+                        android:inputType="number" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -359,7 +364,8 @@
                     <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/distanciaBaseAterroET" />
+                        android:id="@+id/distanciaBaseAterroET"
+                        android:inputType="number" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -381,7 +387,8 @@
                     <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/alturaTopoAterroET" />
+                        android:id="@+id/alturaTopoAterroET"
+                        android:inputType="number" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -421,7 +428,8 @@
                     <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/alturaParedeET" />
+                        android:id="@+id/alturaParedeET"
+                        android:inputType="number" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -1031,7 +1039,8 @@
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/numeroMoradiasRiscoET" />
+                    android:id="@+id/numeroMoradiasRiscoET"
+                    android:inputType="number" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1045,7 +1054,8 @@
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/quantidadeRemocaoET" />
+                    android:id="@+id/quantidadeRemocaoET"
+                    android:inputType="number" />
 
             </LinearLayout>
 

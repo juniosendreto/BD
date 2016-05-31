@@ -181,7 +181,6 @@ public class CadastroActivity extends Activity {
                     alert.setButton("Ok", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-
                         }
                     });
                     alert.show();

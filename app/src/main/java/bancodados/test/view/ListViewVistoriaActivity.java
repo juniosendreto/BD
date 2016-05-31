@@ -1,9 +1,13 @@
 package bancodados.test.view;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -28,9 +32,10 @@ public class ListViewVistoriaActivity extends Activity {
         setContentView(R.layout.activity_list_view_vistoria);
 
         final ListView vistoriaLV = (ListView) findViewById(R.id.vistoriaLV);
+        final AlertDialog.Builder alert = new AlertDialog.Builder(ListViewVistoriaActivity.this);
 
         UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl(getApplication());
-        LocalizacaoDaoImpl localizacaoDao = new LocalizacaoDaoImpl(getApplication());
+        LocalizacaoDaoImpl localizacaoDao = new LocalizacaoDaoImpl(this);
         UsuarioVistoriaDaoImpl usuarioVistoriaDao =  new UsuarioVistoriaDaoImpl(getApplicationContext());
 
         List<Vistoria> vistoriaList = (ArrayList) usuarioVistoriaDao.listAll(Vistoria.class);
@@ -39,6 +44,8 @@ public class ListViewVistoriaActivity extends Activity {
         UsuarioVistoria usuarioVistoria;
         Usuario usuario;
         Localizacao localizacao;
+        ArrayAdapter<ViewHolder> adapter;
+
         if(!(vistoriaList.isEmpty() == true)){
             for(Vistoria v: vistoriaList) {
                 try {
@@ -55,11 +62,28 @@ public class ListViewVistoriaActivity extends Activity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                adapter = new ArrayAdapter<ViewHolder>(this, R.layout.vistoria_item, viewHolders);
+                vistoriaLV.setAdapter(adapter);
             }
+
+        }else{
+
+            alert.setTitle("Alerta");
+            alert.setMessage("Não há nenhuma vistoria no Banco de dados!");
+            alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    try {
+                        chamarActivity(Class.forName("bancodados.test.view.MainActivity"));
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).show();
+
+
         }
 
-        ArrayAdapter<ViewHolder> adapter = new ArrayAdapter<ViewHolder>(this, R.layout.vistoria_item, viewHolders);
-        vistoriaLV.setAdapter(adapter);
 
     }
 
@@ -72,7 +96,13 @@ public class ListViewVistoriaActivity extends Activity {
 
         @Override
         public String toString(){
-            return "Autor: " + this.autor + "      Data: " + this.data + "\n\nMunicípio: " + this.municipio + "      Bairro: " + this.bairro;
+            return "Autor: " + this.autor + " Data: " + this.data + "\n\nMunicípio: " + this.municipio + "  Bairro: " + this.bairro;
         }
+    }
+
+    public void chamarActivity(Class novaActivity) {
+        Intent abrirActivity = new Intent(this, novaActivity);
+        startActivity(abrirActivity);
+
     }
 }
