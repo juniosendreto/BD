@@ -37,6 +37,14 @@ public class UsuarioVistoria {
     @DatabaseField(columnName = "data",  canBeNull = false)
     private String data;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Vistoria getVistoria() {
         return vistoria;
     }

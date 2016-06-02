@@ -54,6 +54,8 @@ public class VistoriaActivity extends Activity {
         final VistoriaDaoImpl vistoriaDao = new VistoriaDaoImpl(getApplicationContext());
         final LocalizacaoDaoImpl localizacaoDao = new LocalizacaoDaoImpl(getApplicationContext());
         localizacao = (Localizacao) intent.getSerializableExtra("localizacao");
+        final Vistoria vistoriaCriada = (Vistoria) intent.getSerializableExtra("vistoria");
+
         final List<Vistoria> vistoriaList = new ArrayList<Vistoria>();
         final UsuarioVistoria usuarioVistoria = new UsuarioVistoria(getApplicationContext());
         final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -383,26 +385,7 @@ public class VistoriaActivity extends Activity {
             }
         });
 
-        inexistenteRB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
-
-        precarioRB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        satisfatorioRB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
 
 
         passo4TV.setOnClickListener(new View.OnClickListener() {
@@ -452,10 +435,28 @@ public class VistoriaActivity extends Activity {
             }
         });
 
+        if(vistoriaCriada != null){
+            municipioET.setText(localizacao.getMunicipio());
+            bairroET.setText(localizacao.getBairro());
+            nomeMoradorET.setText(vistoriaCriada.getNomeMorador());
+
+            Log.d("-----", vistoria.getTipoMoradia() + "");
+
+            /*if(vistoria.getTipoMoradia().equals(alvenariaRB.getText())){
+                alvenariaRB.setChecked(false);
+            }else if(vistoria.getTipoMoradia().equals(madeiraRB.getText())){
+                madeiraRB.setChecked(false);
+            }else{
+                mistoRB.setChecked(false);
+            }*/
+
+        }
+
         salvarVistoriaB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 /* PASSO 1 */
+
                 List<RadioButton> radioButtonList = new ArrayList<RadioButton>();
                 Double doubleNull = null;
 

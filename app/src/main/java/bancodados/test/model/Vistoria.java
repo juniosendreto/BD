@@ -3,12 +3,14 @@ package bancodados.test.model;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.io.Serializable;
+
 /**
  * Created by junio on 26/02/16.
  */
 
 @DatabaseTable(tableName = "VISTORIA")
-public class Vistoria {
+public class Vistoria implements Serializable{
 
     @DatabaseField(columnName = "id", generatedId = true)
     private Long id;

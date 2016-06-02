@@ -8,9 +8,12 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +25,7 @@ import bancodados.test.core.service.dao.VistoriaDaoImpl;
 import bancodados.test.model.Localizacao;
 import bancodados.test.model.Usuario;
 import bancodados.test.model.UsuarioVistoria;
+import bancodados.test.model.ViewHolder;
 import bancodados.test.model.Vistoria;
 
 public class ListViewVistoriaActivity extends Activity {
@@ -33,13 +37,16 @@ public class ListViewVistoriaActivity extends Activity {
 
         final ListView vistoriaLV = (ListView) findViewById(R.id.vistoriaLV);
         final AlertDialog.Builder alert = new AlertDialog.Builder(ListViewVistoriaActivity.this);
+        final Intent intent =  new Intent(this, VistoriaActivity.class);
 
-        UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl(getApplication());
-        LocalizacaoDaoImpl localizacaoDao = new LocalizacaoDaoImpl(this);
+        final UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl(getApplication());
+        final LocalizacaoDaoImpl localizacaoDao = new LocalizacaoDaoImpl(this);
         UsuarioVistoriaDaoImpl usuarioVistoriaDao =  new UsuarioVistoriaDaoImpl(getApplicationContext());
+        final VistoriaDaoImpl vistoriaDao =  new VistoriaDaoImpl(getApplicationContext());
+
 
         List<Vistoria> vistoriaList = (ArrayList) usuarioVistoriaDao.listAll(Vistoria.class);
-        List<ViewHolder> viewHolders = new ArrayList<ViewHolder>();
+        final List<ViewHolder> viewHolders = new ArrayList<ViewHolder>();
 
         UsuarioVistoria usuarioVistoria;
         Usuario usuario;
@@ -53,10 +60,14 @@ public class ListViewVistoriaActivity extends Activity {
                     usuarioVistoria = usuarioVistoriaDao.findByIdVistoria(v);
                     usuario = (Usuario) usuarioDao.findById(Usuario.class, usuarioVistoria.getUsuario().getId());
                     localizacao = (Localizacao) localizacaoDao.findById(Localizacao.class, v.getLocalizacao().getId());
-                    viewHolder.autor = usuario.getNome();
-                    viewHolder.bairro = localizacao.getBairro();
-                    viewHolder.municipio =  localizacao.getMunicipio();
-                    viewHolder.data = usuarioVistoria.getData();
+                    viewHolder.setIdUsuario(usuario.getId());
+                    viewHolder.setIdUsuarioVistoria(usuarioVistoria.getId());
+                    viewHolder.setIdVistoria(v.getId());
+                    viewHolder.setIdLocalizacao(localizacao.getId());
+                    viewHolder.setAutor(usuario.getNome());
+                    viewHolder.setBairro(localizacao.getBairro());
+                    viewHolder.setMunicipio(localizacao.getMunicipio());
+                    viewHolder.setData(usuarioVistoria.getData());
                     viewHolders.add(viewHolder);
 
                 } catch (Exception e) {
@@ -84,20 +95,21 @@ public class ListViewVistoriaActivity extends Activity {
 
         }
 
+        vistoriaLV.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Vistoria vistoria = (Vistoria) vistoriaDao.findById(Vistoria.class , viewHolders.get(position).getIdVistoria());
+                Usuario usuario1 = (Usuario) usuarioDao.findById(Usuario.class, viewHolders.get(position).getIdUsuario());
+                Localizacao localizacao1 = (Localizacao) localizacaoDao.findById(Localizacao.class, viewHolders.get(position).getIdLocalizacao());
+                intent.putExtra("vistoria", vistoria);
+                intent.putExtra("usuario", usuario1);
+                intent.putExtra("localizacao", localizacao1);
+                startActivity(intent);
+                return false;
+            }
+        });
 
-    }
 
-    private class ViewHolder{
-        //Long id;
-        String autor;
-        String data;
-        String municipio;
-        String bairro;
-
-        @Override
-        public String toString(){
-            return "Autor: " + this.autor + " Data: " + this.data + "\n\nMunicípio: " + this.municipio + "  Bairro: " + this.bairro;
-        }
     }
 
     public void chamarActivity(Class novaActivity) {

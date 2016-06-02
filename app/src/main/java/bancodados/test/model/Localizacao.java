@@ -116,6 +116,7 @@ public class Localizacao implements Serializable{
                        String acessoLocal) {
         this.latitude = latitude;
         this.longitude = longitude;
+        this.bairro = bairro;
         this.municipio = municipio;
         this.acessoLocal = acessoLocal;
 
