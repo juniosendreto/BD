@@ -24,6 +24,7 @@ public class UsuarioVistoria {
     public UsuarioVistoria(Context context){
         this.context = context;
     }
+
     @DatabaseField(columnName = "id", generatedId = true)
     private Long id;
 

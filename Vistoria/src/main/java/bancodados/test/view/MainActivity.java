@@ -10,11 +10,13 @@ import android.widget.EditText;
 
 import bancodados.test.R;
 import bancodados.test.model.Localizacao;
+import bancodados.test.model.Usuario;
 
 
 public class MainActivity extends Activity {
 
     Localizacao localizacao;
+    Usuario usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +30,8 @@ public class MainActivity extends Activity {
         final EditText longitudeET = (EditText)findViewById(R.id.longitudeET);
         localizacao =  new Localizacao();
         final Intent intent = new Intent(this, VistoriaActivity.class);
-        final Intent intentAuxiliar = getIntent();
-        intent.putExtra("usuario", intentAuxiliar.getSerializableExtra("usuario"));
-        intent.putExtra("localizacao", localizacao);
+        usuario = (Usuario) getIntent().getSerializableExtra("usuarioLogado");
+
 
         novaVistoria.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,7 +39,8 @@ public class MainActivity extends Activity {
                 try {
                     localizacao.setLatitude(Double.valueOf(latitudeET.getText().toString()));
                     localizacao.setLongitude(Double.valueOf(longitudeET.getText().toString()));
-
+                    intent.putExtra("usuarioLogado", (Usuario) usuario);
+                    intent.putExtra("localizacao", (Localizacao) localizacao);
                     startActivity(intent);
                 }catch (Exception e){
                     e.printStackTrace();

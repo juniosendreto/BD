@@ -29,9 +29,6 @@ public class Usuario implements Serializable{
     @DatabaseField(columnName = "id", generatedId = true)
     private Long id;
 
-    //@DatabaseField(foreign = true)
-    //private UsuarioVistoria usuarioVistoria;
-
     @DatabaseField(columnName = "nome", canBeNull = false)
     private String nome;
 

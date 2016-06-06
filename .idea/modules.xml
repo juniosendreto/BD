@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BD.iml" filepath="$PROJECT_DIR$/BD.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Vistoria/Vistoria.iml" filepath="$PROJECT_DIR$/Vistoria/Vistoria.iml" />
       <module fileurl="file://$PROJECT_DIR$/Vistoria/app.iml" filepath="$PROJECT_DIR$/Vistoria/app.iml" />
     </modules>
   </component>

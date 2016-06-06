@@ -38,7 +38,7 @@ public class LoginActivity extends Activity {
                         report.setVisibility(View.INVISIBLE);
                         loginE.setText("");
                         passwordE.setText("");
-                        intent.putExtra("usuario", usuario);
+                        intent.putExtra("usuarioLogado", usuario);
                         startActivity(intent);
                     }else{
                         report.setVisibility(View.VISIBLE);

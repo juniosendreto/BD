@@ -26,7 +26,6 @@ import bancodados.test.R;
 import bancodados.test.core.service.dao.Adapter;
 import bancodados.test.core.service.dao.AdapterVistoria;
 import bancodados.test.core.service.dao.LocalizacaoDaoImpl;
-import bancodados.test.core.service.dao.UsuarioDaoImpl;
 import bancodados.test.core.service.dao.UsuarioVistoriaDaoImpl;
 import bancodados.test.core.service.dao.VistoriaDaoImpl;
 import bancodados.test.model.Localizacao;
@@ -37,6 +36,7 @@ import bancodados.test.model.Vistoria;
 public class VistoriaActivity extends Activity {
 
     Localizacao localizacao;
+    Usuario usuario;
 
 
     @Override
@@ -47,14 +47,13 @@ public class VistoriaActivity extends Activity {
 
         final Adapter adapter = new Adapter(getApplicationContext());
         final AdapterVistoria adapterVistoria = new AdapterVistoria(getApplicationContext());
-        final Intent intent = getIntent();
-        final Usuario usuario = (Usuario) intent.getSerializableExtra("usuario");
-        final UsuarioDaoImpl usuarioDao =  new UsuarioDaoImpl(getApplicationContext());
+        final Intent intent = new Intent(this, MainActivity.class);
         final UsuarioVistoriaDaoImpl usuarioVistoriaDao = new UsuarioVistoriaDaoImpl(getApplicationContext());
         final VistoriaDaoImpl vistoriaDao = new VistoriaDaoImpl(getApplicationContext());
         final LocalizacaoDaoImpl localizacaoDao = new LocalizacaoDaoImpl(getApplicationContext());
-        localizacao = (Localizacao) intent.getSerializableExtra("localizacao");
-        final Vistoria vistoriaCriada = (Vistoria) intent.getSerializableExtra("vistoria");
+        localizacao = (Localizacao) getIntent().getSerializableExtra("localizacao");
+        usuario = (Usuario) getIntent().getSerializableExtra("usuarioLogado");
+        final Vistoria vistoriaCriada = (Vistoria) getIntent().getSerializableExtra("vistoria");
 
         final List<Vistoria> vistoriaList = new ArrayList<Vistoria>();
         final UsuarioVistoria usuarioVistoria = new UsuarioVistoria(getApplicationContext());
@@ -222,8 +221,6 @@ public class VistoriaActivity extends Activity {
                 adapter.visibility(passo1LL);
             }
         });
-
-       ////////
 
         condicoesAreaET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -440,8 +437,7 @@ public class VistoriaActivity extends Activity {
             bairroET.setText(localizacao.getBairro());
             nomeMoradorET.setText(vistoriaCriada.getNomeMorador());
 
-            Log.d("-----", vistoria.getAreaCultivo() + "");
-            Log.d("-----", vistoria.getTipoMoradia() + "");
+
 
             /*if(vistoria.getTipoMoradia().equals(alvenariaRB.getText())){
                 alvenariaRB.setChecked(false);
@@ -607,12 +603,14 @@ public class VistoriaActivity extends Activity {
                 usuarioVistoria.setData(dateFormat.format(date));
 
 
-                usuarioVistoria.setUsuario(usuario);
-                usuarioVistoria.setVistoria(vistoria);
-
                 localizacaoDao.save(Localizacao.class, localizacao);
                 vistoriaDao.save(Vistoria.class, vistoria);
+                usuarioVistoria.setUsuario(usuario);
+                usuarioVistoria.setVistoria(vistoria);
                 usuarioVistoriaDao.save(UsuarioVistoria.class, usuarioVistoria);
+
+                Log.d("----- 2443223", usuarioVistoria.getUsuario().getId() + "");
+
 
                 AlertDialog.Builder alert = new AlertDialog.Builder(VistoriaActivity.this);
                 alert.setMessage("Você realmente deseja salvar a vistoria?");
@@ -620,8 +618,9 @@ public class VistoriaActivity extends Activity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         try {
-                            chamarActivity(Class.forName("bancodados.test.view.MainActivity"));
-                        } catch (ClassNotFoundException e) {
+                            intent.putExtra("UsuarioLogado", usuario);
+                            startActivity(intent);
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
