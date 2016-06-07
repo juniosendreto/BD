@@ -28,13 +28,11 @@ public class AdapterVistoria {
         this.context = context;
     }
 
-    public String whichButtonIsChacked(List<RadioButton> radioButtons){
+    public Integer whichButtonIsChacked(List<RadioButton> radioButtons){
 
-        for(RadioButton r: radioButtons){
-            if(r.isChecked()){
-
-                return r.getText().toString();
-            }
+        for(int i = 0; i < radioButtons.size(); i++){
+            if(radioButtons.get(i).isChecked())
+                return i + 1;
         }
         return null;
     }

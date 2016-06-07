@@ -26,8 +26,8 @@ public class Vistoria implements Serializable{
     private String nomeMorador;
 
     @DatabaseField(columnName = "TIPO_MORADIA", canBeNull = true)
-    private String tipoMoradia;
-
+    private Integer tipoMoradia;
+    //
 
     /*
         2 PASSO - CARACTERIZAÇÃO DO LOCAL (14)
@@ -86,23 +86,27 @@ public class Vistoria implements Serializable{
     private Boolean concentraAguaServida;
 
     @DatabaseField(columnName = "DRENAGE_SUPERFICIAL", canBeNull = true)
-    private String drenageSuperficial;
+    private Integer drenageSuperficial;
+
 
     @DatabaseField(columnName = "ESGOTO", canBeNull = true)
-    private String esgoto;
+    private Integer esgoto;
 
-    @DatabaseField(columnName = "USO_AGUA_MORADARIA", canBeNull = true)
-    private String usoAguaMoradia;
+
+    @DatabaseField(columnName = "USO_AGUA_MORADIA", canBeNull = true)
+    private Integer usoAguaMoradia;
+
 
     @DatabaseField(columnName = "AGUA_MORADIA_VAZAMENTO", canBeNull = true)
-    private String aguaMoradiaVazamento;
+    private Integer aguaMoradiaVazamento;
+
 
     @DatabaseField(columnName = "TIPO_VAZAMENTO", canBeNull = true)
-    private String tipoVazamento;
+    private Integer tipoVazamento;
 
     @DatabaseField(columnName = "MINAS_DAGUA", canBeNull = true)
-    private String minasDagua;
-
+    private Integer minasDagua;
+    //
      /*
         4 PASSO - VEGETÇÃO NO TALUDE OU PROXIMIDADES (4)
      */
@@ -171,7 +175,7 @@ public class Vistoria implements Serializable{
      */
 
     @DatabaseField(columnName = "RISCO", canBeNull = true)
-    private String risco;
+    private Integer risco;
 
     /*
         8 PASSO - NECESSIDADE DE REMOÇÃO (2)
@@ -189,7 +193,6 @@ public class Vistoria implements Serializable{
 
     @DatabaseField(columnName = "INFORMAÇÕES", canBeNull = true)
     private String informacoes;
-
 
     public Long getId() {
         return id;
@@ -215,11 +218,11 @@ public class Vistoria implements Serializable{
         this.nomeMorador = nomeMorador;
     }
 
-    public String getTipoMoradia() {
+    public Integer getTipoMoradia() {
         return tipoMoradia;
     }
 
-    public void setTipoMoradia(String tipoMoradia) {
+    public void setTipoMoradia(Integer tipoMoradia) {
         this.tipoMoradia = tipoMoradia;
     }
 
@@ -351,51 +354,51 @@ public class Vistoria implements Serializable{
         this.concentraAguaServida = concentraAguaServida;
     }
 
-    public String getDrenageSuperficial() {
+    public Integer getDrenageSuperficial() {
         return drenageSuperficial;
     }
 
-    public void setDrenageSuperficial(String drenageSuperficial) {
+    public void setDrenageSuperficial(Integer drenageSuperficial) {
         this.drenageSuperficial = drenageSuperficial;
     }
 
-    public String getEsgoto() {
+    public Integer getEsgoto() {
         return esgoto;
     }
 
-    public void setEsgoto(String esgoto) {
+    public void setEsgoto(Integer esgoto) {
         this.esgoto = esgoto;
     }
 
-    public String getUsoAguaMoradia() {
+    public Integer getUsoAguaMoradia() {
         return usoAguaMoradia;
     }
 
-    public void setUsoAguaMoradia(String usoAguaMoradia) {
+    public void setUsoAguaMoradia(Integer usoAguaMoradia) {
         this.usoAguaMoradia = usoAguaMoradia;
     }
 
-    public String getAguaMoradiaVazamento() {
+    public Integer getAguaMoradiaVazamento() {
         return aguaMoradiaVazamento;
     }
 
-    public void setAguaMoradiaVazamento(String aguaMoradiaVazamento) {
+    public void setAguaMoradiaVazamento(Integer aguaMoradiaVazamento) {
         this.aguaMoradiaVazamento = aguaMoradiaVazamento;
     }
 
-    public String getTipoVazamento() {
+    public Integer getTipoVazamento() {
         return tipoVazamento;
     }
 
-    public void setTipoVazamento(String tipoVazamento) {
+    public void setTipoVazamento(Integer tipoVazamento) {
         this.tipoVazamento = tipoVazamento;
     }
 
-    public String getMinasDagua() {
+    public Integer getMinasDagua() {
         return minasDagua;
     }
 
-    public void setMinasDagua(String minasDagua) {
+    public void setMinasDagua(Integer minasDagua) {
         this.minasDagua = minasDagua;
     }
 
@@ -535,11 +538,11 @@ public class Vistoria implements Serializable{
         this.rolamentoBlocos = rolamentoBlocos;
     }
 
-    public String getRisco() {
+    public Integer getRisco() {
         return risco;
     }
 
-    public void setRisco(String risco) {
+    public void setRisco(Integer risco) {
         this.risco = risco;
     }
 
@@ -567,25 +570,26 @@ public class Vistoria implements Serializable{
         this.informacoes = informacoes;
     }
 
-    public Vistoria() {
-    }
+    public Vistoria(){}
 
-    public Vistoria(String nomeMorador, String tipoMoradia, Boolean encostaNatural,
-                    Boolean taludeCorte, Boolean aterroLancado, Boolean paredeRochosa,
-                    Double alturaEncosta, Double alturaTalude, Double alturaAterro,
-                    Double alturaParede, Double distanciaBaseTalude,
+    public Vistoria(Long id, Localizacao localizacao, String nomeMorador, Integer tipoMoradia,
+                    Boolean encostaNatural, Boolean taludeCorte, Boolean aterroLancado,
+                    Boolean paredeRochosa, Double alturaEncosta, Double alturaTalude,
+                    Double alturaAterro, Double alturaParede, Double distanciaBaseTalude,
                     Double distanciaBaseAterro, Double alturaTopoTalude, Double alturaTopoAterro,
                     Boolean blocosRochasMatacoes, Boolean lixoEntulho, Boolean concentraAguaChuva,
-                    Boolean concentraAguaServida, String drenageSuperficial, String esgoto,
-                    String usoAguaMoradia, String aguaMoradiaVazamento, String tipoVazamento,
-                    String minasDagua, Boolean arvores, Boolean vegetacaoRasteira,
+                    Boolean concentraAguaServida, Integer drenageSuperficial, Integer esgoto,
+                    Integer usoAguaMoradia, Integer aguaMoradiaVazamento, Integer tipoVazamento,
+                    Integer minasDagua, Boolean arvores, Boolean vegetacaoRasteira,
                     Boolean areaDesmatada, String areaCultivo, Boolean trincaTerreno,
                     Boolean trincaMoradia, Boolean degrausAbatimento, Boolean arvoresInclinacao,
                     Boolean postesInclinacao, Boolean murosInclinacao, Boolean muroParedeEmbarrigado,
                     Boolean cicatrizEscorregamento, Boolean escorregamentoNatural,
-                    Boolean escorregamentoCorte, Boolean escorregamentoAterro,
-                    Boolean quedaBlocos, Boolean rolamentoBlocos, String risco,
-                    Integer quantidadeMoradias, Integer quantidadePessoas, String informacoes) {
+                    Boolean escorregamentoCorte, Boolean escorregamentoAterro, Boolean quedaBlocos,
+                    Boolean rolamentoBlocos, Integer risco, Integer quantidadeMoradias,
+                    Integer quantidadePessoas, String informacoes) {
+        this.id = id;
+        this.localizacao = localizacao;
         this.nomeMorador = nomeMorador;
         this.tipoMoradia = tipoMoradia;
         this.encostaNatural = encostaNatural;
@@ -633,23 +637,22 @@ public class Vistoria implements Serializable{
         this.informacoes = informacoes;
     }
 
-    public Vistoria(Localizacao localizacao, String nomeMorador, String tipoMoradia,
-                    Boolean encostaNatural, Boolean taludeCorte, Boolean aterroLancado,
-                    Boolean paredeRochosa, Double alturaEncosta, Double alturaTalude,
-                    Double alturaAterro, Double alturaParede, Double distanciaBaseTalude,
-                    Double distanciaBaseAterro, Double alturaTopoTalude, Double alturaTopoAterro,
-                    Boolean blocosRochasMatacoes, Boolean lixoEntulho, Boolean concentraAguaChuva,
-                    Boolean concentraAguaServida, String drenageSuperficial, String esgoto,
-                    String usoAguaMoradia, String aguaMoradiaVazamento, String tipoVazamento,
-                    String minasDagua, Boolean arvores, Boolean vegetacaoRasteira,
-                    Boolean areaDesmatada, String areaCultivo, Boolean trincaTerreno,
-                    Boolean trincaMoradia, Boolean degrausAbatimento, Boolean arvoresInclinacao,
-                    Boolean postesInclinacao, Boolean murosInclinacao, Boolean muroParedeEmbarrigado,
+    public Vistoria(String nomeMorador, Integer tipoMoradia, Boolean encostaNatural,
+                    Boolean taludeCorte, Boolean aterroLancado, Boolean paredeRochosa,
+                    Double alturaEncosta, Double alturaTalude, Double alturaAterro,
+                    Double alturaParede, Double distanciaBaseTalude, Double distanciaBaseAterro,
+                    Double alturaTopoTalude, Double alturaTopoAterro, Boolean blocosRochasMatacoes,
+                    Boolean lixoEntulho, Boolean concentraAguaChuva, Boolean concentraAguaServida,
+                    Integer drenageSuperficial, Integer esgoto, Integer usoAguaMoradia,
+                    Integer aguaMoradiaVazamento, Integer tipoVazamento, Integer minasDagua,
+                    Boolean arvores, Boolean vegetacaoRasteira, Boolean areaDesmatada,
+                    String areaCultivo, Boolean trincaTerreno, Boolean trincaMoradia,
+                    Boolean degrausAbatimento, Boolean arvoresInclinacao, Boolean postesInclinacao,
+                    Boolean murosInclinacao, Boolean muroParedeEmbarrigado,
                     Boolean cicatrizEscorregamento, Boolean escorregamentoNatural,
                     Boolean escorregamentoCorte, Boolean escorregamentoAterro, Boolean quedaBlocos,
-                    Boolean rolamentoBlocos, String risco, Integer quantidadeMoradias,
+                    Boolean rolamentoBlocos, Integer risco, Integer quantidadeMoradias,
                     Integer quantidadePessoas, String informacoes) {
-        this.localizacao = localizacao;
         this.nomeMorador = nomeMorador;
         this.tipoMoradia = tipoMoradia;
         this.encostaNatural = encostaNatural;

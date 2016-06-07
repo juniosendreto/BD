@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -52,8 +51,8 @@ public class VistoriaActivity extends Activity {
         final VistoriaDaoImpl vistoriaDao = new VistoriaDaoImpl(getApplicationContext());
         final LocalizacaoDaoImpl localizacaoDao = new LocalizacaoDaoImpl(getApplicationContext());
         localizacao = (Localizacao) getIntent().getSerializableExtra("localizacao");
-        usuario = (Usuario) getIntent().getSerializableExtra("usuarioLogado");
         final Vistoria vistoriaCriada = (Vistoria) getIntent().getSerializableExtra("vistoria");
+        usuario = Usuario.getInstance();
 
         final List<Vistoria> vistoriaList = new ArrayList<Vistoria>();
         final UsuarioVistoria usuarioVistoria = new UsuarioVistoria(getApplicationContext());
@@ -435,13 +434,11 @@ public class VistoriaActivity extends Activity {
         if(vistoriaCriada != null){
             municipioET.setText(localizacao.getMunicipio());
             bairroET.setText(localizacao.getBairro());
+            condicoesAreaET.setText(localizacao.getAcessoLocal());
             nomeMoradorET.setText(vistoriaCriada.getNomeMorador());
-
-
-
-            /*if(vistoria.getTipoMoradia().equals(alvenariaRB.getText())){
+            /*(if(vistoria.getMo.equals("alvenaria")){
                 alvenariaRB.setChecked(false);
-            }else if(vistoria.getTipoMoradia().equals(madeiraRB.getText())){
+            }else if(vistoria.getTipoMoradia().equals("madeira")){
                 madeiraRB.setChecked(false);
             }else{
                 mistoRB.setChecked(false);
@@ -609,16 +606,12 @@ public class VistoriaActivity extends Activity {
                 usuarioVistoria.setVistoria(vistoria);
                 usuarioVistoriaDao.save(UsuarioVistoria.class, usuarioVistoria);
 
-                Log.d("----- 2443223", usuarioVistoria.getUsuario().getId() + "");
-
-
                 AlertDialog.Builder alert = new AlertDialog.Builder(VistoriaActivity.this);
                 alert.setMessage("Você realmente deseja salvar a vistoria?");
                 alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         try {
-                            intent.putExtra("UsuarioLogado", usuario);
                             startActivity(intent);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -634,9 +627,5 @@ public class VistoriaActivity extends Activity {
         });
 
     }
-    public void chamarActivity(Class novaActivity) {
-        Intent abrirActivity = new Intent(this, novaActivity);
-        startActivity(abrirActivity);
 
-    }
 }

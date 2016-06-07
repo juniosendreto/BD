@@ -39,7 +39,6 @@ public class ListViewVistoriaActivity extends Activity {
         final AlertDialog.Builder alert = new AlertDialog.Builder(ListViewVistoriaActivity.this);
         final Intent intent =  new Intent(this, VistoriaActivity.class);
         final Intent intentMainActivivty = new Intent(this, MainActivity.class);
-        final Usuario usuarioLogado = (Usuario) getIntent().getSerializableExtra("usuarioLogado");
 
         final UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl(getApplication());
         final LocalizacaoDaoImpl localizacaoDao = new LocalizacaoDaoImpl(getApplicationContext());
@@ -60,10 +59,6 @@ public class ListViewVistoriaActivity extends Activity {
                 try {
                     ViewHolder viewHolder = new ViewHolder();
                     usuarioVistoria = usuarioVistoriaDao.findByIdVistoria(v);
-                    Log.d("-----", usuarioVistoria.getData());
-                    Log.d("-----", usuarioVistoria.getId() +"");
-                    Log.d("-----", usuarioVistoria.getUsuario().getId()+ "");
-                    Log.d("-----", usuarioVistoria.getVistoria().getId() + "");
                     usuario = (Usuario) usuarioDao.findById(Usuario.class, usuarioVistoria.getUsuario().getId());
                     localizacao = (Localizacao) localizacaoDao.findById(Localizacao.class, v.getLocalizacao().getId());
 
@@ -92,7 +87,6 @@ public class ListViewVistoriaActivity extends Activity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     try {
-                        intentMainActivivty.putExtra("usuarioLogado", getIntent().getSerializableExtra("usuarioLogado"));
                         startActivity(intentMainActivivty);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -107,10 +101,8 @@ public class ListViewVistoriaActivity extends Activity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Vistoria vistoria = (Vistoria) vistoriaDao.findById(Vistoria.class , viewHolders.get(position).getIdVistoria());
-                //Usuario usuario1 = (Usuario) usuarioDao.findById(Usuario.class, viewHolders.get(position).getIdUsuario());
                 Localizacao localizacao1 = (Localizacao) localizacaoDao.findById(Localizacao.class, viewHolders.get(position).getIdLocalizacao());
                 intent.putExtra("vistoria", vistoria);
-                intent.putExtra("usuarioLogado", usuarioLogado);
                 intent.putExtra("localizacao", localizacao1);
                 startActivity(intent);
                 return true;

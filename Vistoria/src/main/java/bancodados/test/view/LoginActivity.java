@@ -32,13 +32,15 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
                 try {
+
                     Usuario usuario = usuarioImpl.findByLoginAndPassword(loginE.getText().toString(),
                             passwordE.getText().toString());
+
                     if(usuario != null){
-                        report.setVisibility(View.INVISIBLE);
+                        report.setVisibility(View.GONE);
                         loginE.setText("");
                         passwordE.setText("");
-                        intent.putExtra("usuarioLogado", usuario);
+                        Usuario.uniqueUsuario = usuario;
                         startActivity(intent);
                     }else{
                         report.setVisibility(View.VISIBLE);

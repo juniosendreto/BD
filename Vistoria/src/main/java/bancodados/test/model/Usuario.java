@@ -24,6 +24,8 @@ public class Usuario implements Serializable{
     public static final String TABLE_NAME = "USUARIO";
     public static final String DATABASE_NAME = "sys_vistoria_db";
 
+    public static Usuario uniqueUsuario;
+
     private static final long serialVersionUID = 1L;
 
     @DatabaseField(columnName = "id", generatedId = true)
@@ -230,4 +232,13 @@ public class Usuario implements Serializable{
         result = 31 * result + (nivel != null ? nivel.hashCode() : 0);
         return result;
     }
+
+
+    public static synchronized Usuario getInstance(){
+        if(uniqueUsuario == null){
+            uniqueUsuario = new Usuario();
+        }
+        return uniqueUsuario;
+    }
+
 }
