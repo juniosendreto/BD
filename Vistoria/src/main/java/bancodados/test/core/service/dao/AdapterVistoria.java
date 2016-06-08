@@ -3,6 +3,7 @@ package bancodados.test.core.service.dao;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -35,6 +36,23 @@ public class AdapterVistoria {
                 return i + 1;
         }
         return null;
+    }
+
+    public void recuperarCheckRadionButton(List<RadioButton> radioButtons, Integer numeroCheck){
+        if(numeroCheck != null) {
+            for (int i = 0; i < radioButtons.size(); i++) {
+                if ((i + 1) == numeroCheck)
+                    radioButtons.get(i).setChecked(true);
+            }
+        }
+    }
+
+    public Boolean recuperaCheck(CheckBox checkBox, Boolean valorCheck){
+        if(valorCheck == true){
+            checkBox.setChecked(true);
+            return true;
+        }
+        return false;
     }
 
 

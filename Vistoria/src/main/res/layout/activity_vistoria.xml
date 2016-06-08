@@ -698,7 +698,7 @@
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/topoTaludeARB"
+                        android:id="@+id/topoTaludeRB"
                         android:text="Topo do talude ou aterro" />
 
                 </RadioGroup>

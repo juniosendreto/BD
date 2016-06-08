@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -144,7 +145,7 @@ public class VistoriaActivity extends Activity {
 
         final RadioButton peRB = (RadioButton) findViewById(R.id.peRB);
         final RadioButton meioRB = (RadioButton) findViewById(R.id.meioRB);
-        final RadioButton topoTaludeARB = (RadioButton) findViewById(R.id.topoTaludeARB);
+        final RadioButton topoTaludeRB = (RadioButton) findViewById(R.id.topoTaludeRB);
 
 
          /* PASSO 4 */
@@ -432,17 +433,134 @@ public class VistoriaActivity extends Activity {
         });
 
         if(vistoriaCriada != null){
+
+
+            /* PASSO 1 */
+
+            List<RadioButton> radioButtonList =  new ArrayList<>();
+            Boolean validarCheckBox;
+
             municipioET.setText(localizacao.getMunicipio());
             bairroET.setText(localizacao.getBairro());
             condicoesAreaET.setText(localizacao.getAcessoLocal());
             nomeMoradorET.setText(vistoriaCriada.getNomeMorador());
-            /*(if(vistoria.getMo.equals("alvenaria")){
-                alvenariaRB.setChecked(false);
-            }else if(vistoria.getTipoMoradia().equals("madeira")){
-                madeiraRB.setChecked(false);
-            }else{
-                mistoRB.setChecked(false);
-            }*/
+
+            radioButtonList.add(alvenariaRB);
+            radioButtonList.add(madeiraRB);
+            radioButtonList.add(mistoRB);
+            adapterVistoria.recuperarCheckRadionButton(radioButtonList, vistoriaCriada.getTipoMoradia());
+            radioButtonList.removeAll(radioButtonList);
+
+            /* PASSO 2 */
+
+            validarCheckBox = adapterVistoria.recuperaCheck(encostaCB, vistoriaCriada.getEncostaNatural());
+            if(validarCheckBox == true){
+                alturaEncostaET.setText(vistoriaCriada.getAlturaEncosta().toString());
+            }
+
+            validarCheckBox = adapterVistoria.recuperaCheck(taludeCB, vistoriaCriada.getTaludeCorte());
+            if(validarCheckBox == true){
+                alturaTaludeET.setText(vistoriaCriada.getAlturaTalude().toString());
+                distanciaBaseTaludeET.setText(vistoriaCriada.getDistanciaBaseTalude().toString());
+                alturaTopoTaludeET.setText(vistoriaCriada.getAlturaTopoTalude().toString());
+            }
+
+            validarCheckBox = adapterVistoria.recuperaCheck(aterroCB, vistoriaCriada.getAterroLancado());
+            if(validarCheckBox == true){
+                alturaAterroET.setText(vistoriaCriada.getAlturaAterro().toString());
+                distanciaBaseAterroET.setText(vistoriaCriada.getDistanciaBaseAterro().toString());
+                alturaTopoAterroET.setText(vistoriaCriada.getAlturaTopoAterro().toString());
+            }
+
+            validarCheckBox = adapterVistoria.recuperaCheck(paredeCB, vistoriaCriada.getParedeRochosa());
+            if(validarCheckBox == true){
+                alturaParedeET.setText(vistoriaCriada.getAlturaParede().toString());
+            }
+
+            adapterVistoria.recuperaCheck(blocosRochasCB, vistoriaCriada.getBlocosRochasMatacoes());
+            adapterVistoria.recuperaCheck(lixoEntulhoCB, vistoriaCriada.getLixoEntulho());
+
+
+             /* PASSO 3 */
+
+            adapterVistoria.recuperaCheck(concentracaoAguaCB, vistoriaCriada.getConcentraAguaChuva());
+            adapterVistoria.recuperaCheck(lancamentoAguaCB, vistoriaCriada.getConcentraAguaServida());
+
+            radioButtonList.add(inexistenteRB);
+            radioButtonList.add(precarioRB);
+            radioButtonList.add(satisfatorioRB);
+            adapterVistoria.recuperarCheckRadionButton(radioButtonList, vistoriaCriada.getDrenageSuperficial());
+            radioButtonList.removeAll(radioButtonList);
+
+            radioButtonList.add(fossaRB);
+            radioButtonList.add(canalizadoRB);
+            radioButtonList.add(superficieRB);
+            adapterVistoria.recuperarCheckRadionButton(radioButtonList, vistoriaCriada.getEsgoto());
+            radioButtonList.removeAll(radioButtonList);
+
+            radioButtonList.add(prefeituraCRB);
+            radioButtonList.add(mangueiraRB);
+            adapterVistoria.recuperarCheckRadionButton(radioButtonList, vistoriaCriada.getUsoAguaMoradia());
+            radioButtonList.removeAll(radioButtonList);
+
+            radioButtonList.add(vazamentoSRB);
+            radioButtonList.add(vazamentoNRB);
+            adapterVistoria.recuperarCheckRadionButton(radioButtonList, vistoriaCriada.getAguaMoradiaVazamento());
+            radioButtonList.removeAll(radioButtonList);
+            radioButtonList.add(vazamentoEsgotoRB);
+            radioButtonList.add(vazamentoAguaRB);
+            adapterVistoria.recuperarCheckRadionButton(radioButtonList, vistoriaCriada.getTipoVazamento());
+            radioButtonList.removeAll(radioButtonList);
+
+            radioButtonList.add(peRB);
+            radioButtonList.add(meioRB);
+            radioButtonList.add(topoTaludeRB);
+            adapterVistoria.recuperarCheckRadionButton(radioButtonList, vistoriaCriada.getMinasDagua());
+            radioButtonList.removeAll(radioButtonList);
+
+            /* PASSO 4 */
+
+            adapterVistoria.recuperaCheck(presencaArvoresCB, vistoriaCriada.getArvores());
+            adapterVistoria.recuperaCheck(vegetacaoRasteiraCB, vistoriaCriada.getVegetacaoRasteira());
+            adapterVistoria.recuperaCheck(areaDesmatadaCB, vistoriaCriada.getAreaDesmatada());
+            areaCultivoET.setText(vistoriaCriada.getAreaCultivo());
+
+            /* PASSO 5 */
+
+            adapterVistoria.recuperaCheck(trincasMoradiaCB, vistoriaCriada.getTrincaMoradia());
+            adapterVistoria.recuperaCheck(trincasTerrenoCB, vistoriaCriada.getTrincaTerreno());
+            adapterVistoria.recuperaCheck(degrausAbatimentoCB, vistoriaCriada.getDegrausAbatimento());
+            adapterVistoria.recuperaCheck(arvoreInclinacaoCB, vistoriaCriada.getArvoresInclinacao());
+            adapterVistoria.recuperaCheck(postesInclinacaoCB, vistoriaCriada.getPostesInclinacao());
+            adapterVistoria.recuperaCheck(murosInclinacaoCB, vistoriaCriada.getMurosInclinacao());
+            adapterVistoria.recuperaCheck(paredesEmbarrigadosCB, vistoriaCriada.getMuroParedeEmbarrigado());
+            adapterVistoria.recuperaCheck(cicatrizEscorregamentoCB, vistoriaCriada.getCicatrizEscorregamento());
+
+            /* PASSO 6 */
+
+            adapterVistoria.recuperaCheck(escorregamentoTaludeNaturalCB, vistoriaCriada.getEscorregamentoNatural());
+            adapterVistoria.recuperaCheck(escorregamentoTaludeCorteCB, vistoriaCriada.getEscorregamentoCorte());
+            adapterVistoria.recuperaCheck(escorregamentoAterroCB, vistoriaCriada.getEscorregamentoAterro());
+            adapterVistoria.recuperaCheck(quedaBlocosCB, vistoriaCriada.getQuedaBlocos());
+            adapterVistoria.recuperaCheck(rolamentoBlocosCB, vistoriaCriada.getRolamentoBlocos());
+
+            /* PASSO 7 */
+
+            radioButtonList.add(riscoMuitoAltoRB);
+            radioButtonList.add(riscoAltoB);
+            radioButtonList.add(riscoMedioRB);
+            radioButtonList.add(riscoBaixoRB);
+            adapterVistoria.recuperarCheckRadionButton(radioButtonList, vistoriaCriada.getRisco());
+            radioButtonList.removeAll(radioButtonList);
+
+            /* PASSO 8 */
+
+            numeroMoradiasRiscoET.setText(String.valueOf(vistoriaCriada.getQuantidadeMoradias()));
+            quantidadeRemocaoET.setText(String.valueOf(vistoriaCriada.getQuantidadePessoas()));
+
+            /* PASSO 9 */
+
+            outrasInformacoesET.setText(vistoriaCriada.getInformacoes());
 
         }
 
@@ -533,14 +651,14 @@ public class VistoriaActivity extends Activity {
                 radioButtonList.add(vazamentoNRB);
                 vistoria.setAguaMoradiaVazamento(adapterVistoria.whichButtonIsChacked(radioButtonList));
                 radioButtonList.removeAll(radioButtonList);
-                radioButtonList.add(vazamentoAguaRB);
                 radioButtonList.add(vazamentoEsgotoRB);
+                radioButtonList.add(vazamentoAguaRB);
                 vistoria.setTipoVazamento(adapterVistoria.whichButtonIsChacked(radioButtonList));
                 radioButtonList.removeAll(radioButtonList);
 
                 radioButtonList.add(peRB);
                 radioButtonList.add(meioRB);
-                radioButtonList.add(topoTaludeARB);
+                radioButtonList.add(topoTaludeRB);
                 vistoria.setMinasDagua(adapterVistoria.whichButtonIsChacked(radioButtonList));
                 radioButtonList.removeAll(radioButtonList);
 
