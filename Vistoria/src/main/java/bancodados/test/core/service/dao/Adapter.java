@@ -19,6 +19,7 @@ import java.util.regex.Pattern;
 
 import bancodados.test.model.Usuario;
 import bancodados.test.view.CadastroActivity;
+import bancodados.test.view.LoginActivity;
 
 /**
  * Created by junio on 13/04/16.
@@ -38,6 +39,14 @@ public class Adapter{
         }else{
             view.setVisibility(View.GONE);
 
+        }
+    }
+
+    public void validarVisibilidade(Boolean validacao, View view){
+        if(validacao == true){
+            view.setVisibility(View.GONE);
+        }else{
+            view.setVisibility(View.VISIBLE);
         }
     }
 
@@ -154,16 +163,14 @@ public class Adapter{
         }
     }
 
-    public void validarCfp(EditText editText, TextView textView) {
+    public Boolean validarCfp(String cpf) {
 
         Integer numeroMultiplicacao;
         String digito = "";
         String cpfAux = "";
-        String cpf = editText.getText().toString();
 
-        if (campoNull(editText) == true) {
-            textView.setText(campoObrigatorio);
-            textView.setVisibility(View.VISIBLE);
+        if (cpf == null) {
+            return false;
         }else {
             for (int i = 0; i < cpf.length(); i++) {
                 if (Character.isDigit(cpf.charAt(i))) {
@@ -209,36 +216,32 @@ public class Adapter{
                     }
                 }
                 if (digito.charAt(0) == cpfAux.charAt(9) && digito.charAt(1) == cpfAux.charAt(10)) {
-                    textView.setVisibility(View.GONE);
+                    return true;
                 } else {
-                    textView.setText("CPF Inválido");
-                    textView.setVisibility(View.VISIBLE);
+                    return false;
                 }
             }else{
-                textView.setText("CPF Inválido");
-                textView.setVisibility(View.VISIBLE);
+                return false;
             }
         }
     }
 
-    public void validarEmail(EditText editText, TextView textView){
+    public Boolean validarEmail(String email){
 
-        if(campoNull(editText)){
-            textView.setText(campoObrigatorio);
-            textView.setVisibility(View.VISIBLE);
+        if(email == null){
+            return false;
         }else{
-            String email = editText.getText().toString();
             if (email != null && email.length() > 0) {
                 String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
                 Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
                 Matcher matcher = pattern.matcher(email);
                 if (!(matcher.matches())) {
-                    textView.setText("Email Inválido");
-                    textView.setVisibility(View.VISIBLE);
+                    return false;
                 }else{
-                    textView.setVisibility(View.GONE);
+                    return true;
                 }
             }
+            return false;
         }
     }
 
@@ -250,9 +253,6 @@ public class Adapter{
         if (usuario.getNome().equals("")) {
             contador++;
         }
-        if (usuario.getNome().equals("")) {
-            contador++;
-        }
         if (usuario.getLogin().equals("")) {
             contador++;
         }
@@ -261,13 +261,13 @@ public class Adapter{
                     contador++;
                 }
         }
-        if (usuario.getPassword().equals("")) {
+        if (usuario.getPassword().length() < 5) {
             contador++;
         }
-        if (usuario.getCpf().equals("")) {
+        if (usuario.getCpf().equals("") || validarCfp(usuario.getCpf()) == false) {
             contador++;
         }
-        if (usuario.getEmail().equals("")) {
+        if (validarEmail(usuario.getEmail()) == false) {
             contador++;
         }
         if (contador == 0) {
@@ -288,6 +288,8 @@ public class Adapter{
                 alert.setButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(context, LoginActivity.class);
+                        context.startActivity(intent);
                     }
                 });
                 alert.show();
@@ -305,9 +307,10 @@ public class Adapter{
                 return false;
             }
         } catch (Exception e) {
+            e.printStackTrace();
             Log.d("--------", e.getMessage());
-            return false;
         }
+        return null;
 
     }
 
@@ -333,6 +336,10 @@ public class Adapter{
         }catch(Exception e){
             return false;
         }
+    }
+
+    public String conversaoEditTextParaString(EditText editText){
+        return editText.getText().toString();
     }
 
 

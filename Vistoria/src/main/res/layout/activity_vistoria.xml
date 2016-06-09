@@ -56,7 +56,7 @@
                     android:layout_alignParentStart="true" />
 
                 <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/municipioET" />
 
@@ -70,7 +70,7 @@
                     android:layout_alignParentStart="true" />
 
                 <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/bairroET" />
 
@@ -85,7 +85,7 @@
                     android:layout_alignParentStart="true" />
 
                 <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/nomeMoradorET" />
 
@@ -99,7 +99,7 @@
                     android:layout_alignParentStart="true" />
 
                 <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/condicoesAreaET" />
                 <TextView
@@ -202,7 +202,7 @@
                         android:layout_alignParentStart="true" />
 
                     <EditText
-                        android:layout_width="wrap_content"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/alturaEncostaET"
                         android:inputType="number" />
@@ -246,7 +246,7 @@
                         android:layout_alignParentStart="true" />
 
                     <EditText
-                        android:layout_width="wrap_content"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/alturaTaludeET"
                         android:inputType="number" />
@@ -271,7 +271,7 @@
                         android:layout_alignParentStart="true" />
 
                     <EditText
-                        android:layout_width="wrap_content"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/distanciaBaseTaludeET"
                         android:inputType="number" />
@@ -294,7 +294,7 @@
                         android:layout_alignParentStart="true" />
 
                     <EditText
-                        android:layout_width="wrap_content"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/alturaTopoTaludeET"
                         android:inputType="number" />
@@ -337,7 +337,7 @@
                         android:layout_alignParentStart="true" />
 
                     <EditText
-                        android:layout_width="wrap_content"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/alturaAterroET"
                         android:inputType="number" />
@@ -362,7 +362,7 @@
                         android:layout_alignParentStart="true" />
 
                     <EditText
-                        android:layout_width="wrap_content"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/distanciaBaseAterroET"
                         android:inputType="number" />
@@ -385,7 +385,7 @@
                         android:layout_alignParentStart="true" />
 
                     <EditText
-                        android:layout_width="wrap_content"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/alturaTopoAterroET"
                         android:inputType="number" />
@@ -426,7 +426,7 @@
                         android:layout_alignParentStart="true" />
 
                     <EditText
-                        android:layout_width="wrap_content"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/alturaParedeET"
                         android:inputType="number" />
@@ -751,7 +751,7 @@
                     android:layout_alignParentStart="true" />
 
                 <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/areaCultivoET" />
 
@@ -1037,7 +1037,7 @@
                     android:layout_alignParentStart="true" />
 
                 <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/numeroMoradiasRiscoET"
                     android:inputType="number" />
@@ -1052,7 +1052,7 @@
                     android:layout_alignParentStart="true" />
 
                 <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/quantidadeRemocaoET"
                     android:inputType="number" />

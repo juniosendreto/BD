@@ -451,11 +451,13 @@ public class VistoriaActivity extends Activity {
             adapterVistoria.recuperarCheckRadionButton(radioButtonList, vistoriaCriada.getTipoMoradia());
             radioButtonList.removeAll(radioButtonList);
 
+
             /* PASSO 2 */
 
             validarCheckBox = adapterVistoria.recuperaCheck(encostaCB, vistoriaCriada.getEncostaNatural());
             if(validarCheckBox == true){
                 alturaEncostaET.setText(vistoriaCriada.getAlturaEncosta().toString());
+                adapter.visibilityCheckBox(encostaCB, encostaLL);
             }
 
             validarCheckBox = adapterVistoria.recuperaCheck(taludeCB, vistoriaCriada.getTaludeCorte());
@@ -463,6 +465,8 @@ public class VistoriaActivity extends Activity {
                 alturaTaludeET.setText(vistoriaCriada.getAlturaTalude().toString());
                 distanciaBaseTaludeET.setText(vistoriaCriada.getDistanciaBaseTalude().toString());
                 alturaTopoTaludeET.setText(vistoriaCriada.getAlturaTopoTalude().toString());
+                adapter.visibilityCheckBox(taludeCB, taludeLL);
+
             }
 
             validarCheckBox = adapterVistoria.recuperaCheck(aterroCB, vistoriaCriada.getAterroLancado());
@@ -470,11 +474,15 @@ public class VistoriaActivity extends Activity {
                 alturaAterroET.setText(vistoriaCriada.getAlturaAterro().toString());
                 distanciaBaseAterroET.setText(vistoriaCriada.getDistanciaBaseAterro().toString());
                 alturaTopoAterroET.setText(vistoriaCriada.getAlturaTopoAterro().toString());
+                adapter.visibilityCheckBox(aterroCB, aterroLL);
+
             }
 
             validarCheckBox = adapterVistoria.recuperaCheck(paredeCB, vistoriaCriada.getParedeRochosa());
             if(validarCheckBox == true){
                 alturaParedeET.setText(vistoriaCriada.getAlturaParede().toString());
+                adapter.visibilityCheckBox(paredeCB, paredeLL);
+
             }
 
             adapterVistoria.recuperaCheck(blocosRochasCB, vistoriaCriada.getBlocosRochasMatacoes());
@@ -510,6 +518,7 @@ public class VistoriaActivity extends Activity {
             radioButtonList.add(vazamentoEsgotoRB);
             radioButtonList.add(vazamentoAguaRB);
             adapterVistoria.recuperarCheckRadionButton(radioButtonList, vistoriaCriada.getTipoVazamento());
+            adapter.visibility(vazamentoSNRG);
             radioButtonList.removeAll(radioButtonList);
 
             radioButtonList.add(peRB);

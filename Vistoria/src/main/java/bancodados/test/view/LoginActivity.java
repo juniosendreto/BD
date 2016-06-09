@@ -33,7 +33,7 @@ public class LoginActivity extends Activity {
             public void onClick(View v) {
                 try {
 
-                    Usuario usuario = usuarioImpl.findByLoginAndPassword(loginE.getText().toString(),
+                    Usuario usuario = usuarioImpl.findByLoginAndPassword(loginE.getText().toString().toLowerCase(),
                             passwordE.getText().toString());
 
                     if(usuario != null){
