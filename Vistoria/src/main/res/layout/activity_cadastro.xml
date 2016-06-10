@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_alignParentTop="true"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="false"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
     android:orientation="vertical"
     tools:context="bancodados.test.view.CadastroActivity">
 
@@ -189,6 +190,12 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/celularET"
                 android:inputType="phone"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nível"
+                android:id="@+id/nivelTV" />
 
             <RadioGroup
                 android:layout_width="wrap_content"

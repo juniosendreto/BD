@@ -1,7 +1,11 @@
 package bancodados.test.view;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.os.Bundle;
 
 import android.view.View;
@@ -26,8 +30,10 @@ public class MainActivity extends Activity {
         final Button listarVistorias = (Button) findViewById(R.id.listarVistoriasB);
         final EditText latitudeET = (EditText) findViewById(R.id.latitudeET);
         final EditText longitudeET = (EditText)findViewById(R.id.longitudeET);
+        final Button coodernadaGPSB = (Button) findViewById(R.id.coodernadaGPSB);
         localizacao =  new Localizacao();
         final Intent intent = new Intent(this, VistoriaActivity.class);
+        final AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
 
         novaVistoria.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,7 +45,23 @@ public class MainActivity extends Activity {
                     startActivity(intent);
                 }catch (Exception e){
                     e.printStackTrace();
+                    alert.setTitle("Alerta");
+                    alert.setMessage("Você precisa Digitar ou pegar coordenada para realizar vistoria");
+                    alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    }).show();
                 }
+            }
+        });
+        coodernadaGPSB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+
             }
         });
 

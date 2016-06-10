@@ -177,8 +177,8 @@ public class CadastroActivity extends Activity {
 
                 radioButtons.add(tecnicoDCRB);
                 radioButtons.add(geologoRB);
-                if(adapterVistoria.whichButtonIsChacked(radioButtons) == 1 ||
-                        adapterVistoria.whichButtonIsChacked(radioButtons) == 2){
+                if((adapterVistoria.whichButtonIsChacked(radioButtons) == 1 ||
+                        adapterVistoria.whichButtonIsChacked(radioButtons) == 2)){
 
                     usuario.setNivel(adapterVistoria.whichButtonIsChacked(radioButtons));
                     try {

@@ -35,7 +35,7 @@ public class AdapterVistoria {
             if(radioButtons.get(i).isChecked())
                 return i + 1;
         }
-        return null;
+        return 0;
     }
 
     public void recuperarCheckRadionButton(List<RadioButton> radioButtons, Integer numeroCheck){
