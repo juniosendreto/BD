@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import bancodados.test.R;
+import bancodados.test.core.service.dao.GPSTracker;
 import bancodados.test.model.Localizacao;
 
 
@@ -34,6 +36,8 @@ public class MainActivity extends Activity {
         localizacao =  new Localizacao();
         final Intent intent = new Intent(this, VistoriaActivity.class);
         final AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+        final GPSTracker gpsTracker = new GPSTracker(getApplicationContext());
+        //Location location;
 
         novaVistoria.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +54,6 @@ public class MainActivity extends Activity {
                     alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-
                         }
                     }).show();
                 }
@@ -59,9 +62,20 @@ public class MainActivity extends Activity {
         coodernadaGPSB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-
+                gpsTracker.getLocation();
+                if(gpsTracker.podePegarLocalizacao()){
+                    latitudeET.setText(String.valueOf(gpsTracker.getLatitude()));
+                    longitudeET.setText(String.valueOf(gpsTracker.getLongitude()));
+                }else{
+                    alert.setTitle("Alerta");
+                    alert.setMessage("Você não possui conexão com internet ou GPS não está ligado, digite manualmente");
+                    alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    }).show();
+                }
             }
         });
 

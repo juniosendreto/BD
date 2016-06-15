@@ -41,7 +41,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pegar Coordenada por GPS"
+            android:text="Pegar Coordenada por GPS ou Internet"
             android:id="@+id/coodernadaGPSB" />
 
         <Button
