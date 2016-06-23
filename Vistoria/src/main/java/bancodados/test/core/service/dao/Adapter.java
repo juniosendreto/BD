@@ -277,6 +277,36 @@ public class Adapter{
         }
     }
 
+    public Boolean validarCamposUsuarioUpdate(Usuario usuario) throws SQLException {
+        Integer contador = 0;
+
+        if (usuario.getNome().equals("")) {
+            contador++;
+        }
+
+        if (usuario.getCpf().equals("") || validarCfp(usuario.getCpf()) == false) {
+            contador++;
+        }
+        if (validarEmail(usuario.getEmail()) == false) {
+            contador++;
+        }
+        if (contador == 0) {
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+    public Boolean validarPassword(String password, String passwordAuxiliar){
+        if(password.equals("") && passwordAuxiliar.equals(""))
+            return true;
+        else if(password.equals(passwordAuxiliar)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public Boolean salvarUsuario(Usuario usuario, Boolean validacao) {
         try {
             AlertDialog alert = new AlertDialog.Builder(context).create();
@@ -300,7 +330,7 @@ public class Adapter{
                 alert.setButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        dialog.cancel();
                     }
                 });
                 alert.show();
@@ -314,29 +344,6 @@ public class Adapter{
 
     }
 
-    public void validarNivel(EditText editText, TextView textView){
-        String nivel = editText.getText().toString();
-        if(campoNull(editText)){
-            textView.setText(campoObrigatorio);
-            textView.setVisibility(View.VISIBLE);
-        }else{
-            if(!(nivel.equals("1") || nivel.equals("2"))){
-                textView.setText("Você só pode se definir como nível 1 ou 2");
-                textView.setVisibility(View.VISIBLE);
-            }else{
-                textView.setVisibility(View.GONE);
-            }
-        }
-    }
-
-    public Boolean isNumber(EditText editText){
-        try{
-            Integer.parseInt(editText.getText().toString());
-            return true;
-        }catch(Exception e){
-            return false;
-        }
-    }
 
     public String conversaoEditTextParaString(EditText editText){
         return editText.getText().toString();

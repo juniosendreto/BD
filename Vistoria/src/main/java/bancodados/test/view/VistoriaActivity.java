@@ -753,6 +753,11 @@ public class VistoriaActivity extends Activity {
             }
         });
 
+
+    }
+
+    public void onBackPressed(){
+        startActivity(new Intent(this, MainActivity.class));
     }
 
 }

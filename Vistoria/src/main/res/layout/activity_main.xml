@@ -9,6 +9,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".view.MainActivity">
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,7 +23,7 @@
             android:id="@+id/latitudeTV" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:id="@+id/latitudeET"
             android:inputType="number" />
@@ -33,7 +35,7 @@
             android:id="@+id/longitudeTV" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:id="@+id/longitudeET"
             android:inputType="number" />
@@ -41,7 +43,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pegar Coordenada por GPS ou Internet"
+            android:text="Gerar Coordenada"
             android:id="@+id/coodernadaGPSB" />
 
         <Button
@@ -55,6 +57,12 @@
             android:layout_height="wrap_content"
             android:text="Listar Vistorias"
             android:id="@+id/listarVistoriasB" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alterar Usuário"
+            android:id="@+id/alterarUsuarioB" />
     </LinearLayout>
 
 </RelativeLayout>

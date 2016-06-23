@@ -178,7 +178,8 @@ public class CadastroActivity extends Activity {
                 radioButtons.add(tecnicoDCRB);
                 radioButtons.add(geologoRB);
                 if((adapterVistoria.whichButtonIsChacked(radioButtons) == 1 ||
-                        adapterVistoria.whichButtonIsChacked(radioButtons) == 2)){
+                        adapterVistoria.whichButtonIsChacked(radioButtons) == 2) &&
+                        passwordET.getText().toString().equals(password2ET.getText().toString())){
 
                     usuario.setNivel(adapterVistoria.whichButtonIsChacked(radioButtons));
                     try {
@@ -193,6 +194,7 @@ public class CadastroActivity extends Activity {
                     alert.setButton("Ok", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
                         }
                     });
                     alert.show();
@@ -201,9 +203,4 @@ public class CadastroActivity extends Activity {
         });
     }
 
-    public void chamarActivity(Class novaActivity) {
-        Intent abrirActivity = new Intent(this, novaActivity);
-        startActivity(abrirActivity);
-
-    }
 }

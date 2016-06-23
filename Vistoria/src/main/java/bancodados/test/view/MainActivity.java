@@ -2,13 +2,11 @@ package bancodados.test.view;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
 
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,7 +16,7 @@ import bancodados.test.core.service.dao.GPSTracker;
 import bancodados.test.model.Localizacao;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     Localizacao localizacao;
 
@@ -33,11 +31,12 @@ public class MainActivity extends Activity {
         final EditText latitudeET = (EditText) findViewById(R.id.latitudeET);
         final EditText longitudeET = (EditText)findViewById(R.id.longitudeET);
         final Button coodernadaGPSB = (Button) findViewById(R.id.coodernadaGPSB);
+        final Button alterarUsuarioB = (Button) findViewById(R.id.alterarUsuarioB);
         localizacao =  new Localizacao();
-        final Intent intent = new Intent(this, VistoriaActivity.class);
+        final Intent intentVistoria = new Intent(this, VistoriaActivity.class);
+        final Intent intentAlteracaoUsuario = new Intent(this, UpdateUsuarioActivity.class);
         final AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
         final GPSTracker gpsTracker = new GPSTracker(getApplicationContext());
-        //Location location;
 
         novaVistoria.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,15 +44,16 @@ public class MainActivity extends Activity {
                 try {
                     localizacao.setLatitude(Double.valueOf(latitudeET.getText().toString()));
                     localizacao.setLongitude(Double.valueOf(longitudeET.getText().toString()));
-                    intent.putExtra("localizacao", (Localizacao) localizacao);
-                    startActivity(intent);
+                    intentVistoria.putExtra("localizacao", (Localizacao) localizacao);
+                    startActivity(intentVistoria);
                 }catch (Exception e){
                     e.printStackTrace();
                     alert.setTitle("Alerta");
-                    alert.setMessage("Você precisa Digitar ou pegar coordenada para realizar vistoria");
+                    alert.setMessage("Você precisa digitar ou pegar coordenada para realizar vistoria");
                     alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
                         }
                     }).show();
                 }
@@ -89,12 +89,40 @@ public class MainActivity extends Activity {
                 }
             }
         });
+
+        alterarUsuarioB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               startActivity(intentAlteracaoUsuario);
+            }
+        });
     }
 
     public void chamarActivity(Class novaActivity) {
         Intent abrirActivity = new Intent(this, novaActivity);
         startActivity(abrirActivity);
 
+    }
+
+    public void onBackPressed(){
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Alerta");
+        alert.setMessage("Se você voltar, você terá que logar novamente!");
+        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                try {
+                    chamarActivity(Class.forName("bancodados.test.view.LoginActivity"));
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        }).show();
     }
 
 }
