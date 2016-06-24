@@ -1,12 +1,13 @@
 package bancodados.test.view;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,15 +27,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+
         final Button novaVistoria = (Button) findViewById(R.id.novaVistoriaB);
         final Button listarVistorias = (Button) findViewById(R.id.listarVistoriasB);
         final EditText latitudeET = (EditText) findViewById(R.id.latitudeET);
         final EditText longitudeET = (EditText)findViewById(R.id.longitudeET);
         final Button coodernadaGPSB = (Button) findViewById(R.id.coodernadaGPSB);
-        final Button alterarUsuarioB = (Button) findViewById(R.id.alterarUsuarioB);
         localizacao =  new Localizacao();
         final Intent intentVistoria = new Intent(this, VistoriaActivity.class);
-        final Intent intentAlteracaoUsuario = new Intent(this, UpdateUsuarioActivity.class);
         final AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
         final GPSTracker gpsTracker = new GPSTracker(getApplicationContext());
 
@@ -90,12 +90,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        alterarUsuarioB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               startActivity(intentAlteracaoUsuario);
-            }
-        });
     }
 
     public void chamarActivity(Class novaActivity) {
@@ -123,6 +117,31 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }).show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        switch(id){
+            case R.id.action_update_usuario:
+                final Intent intentAlteracaoUsuario = new Intent(this, UpdateUsuarioActivity.class);
+                startActivity(intentAlteracaoUsuario);
+                break;
+            case R.id.action_sair:
+                onBackPressed();
+                break;
+            default:
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }
