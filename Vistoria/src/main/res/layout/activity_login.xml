@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Password"
-        android:id="@+id/PasswordView"
+        android:id="@+id/passwordView"
         android:layout_gravity="center_horizontal" />
 
     <EditText
@@ -56,7 +56,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login ou Senha incorreto"
+        android:text="Login ou Senha incorreta"
         android:textColor="#ff2b40"
         android:id="@+id/report"
         android:layout_gravity="center_horizontal"

@@ -26,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         final Button novaVistoria = (Button) findViewById(R.id.novaVistoriaB);
         final Button listarVistorias = (Button) findViewById(R.id.listarVistoriasB);
         final EditText latitudeET = (EditText) findViewById(R.id.latitudeET);

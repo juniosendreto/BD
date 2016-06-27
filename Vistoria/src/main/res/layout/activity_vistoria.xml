@@ -8,7 +8,8 @@
     android:paddingRight="16dp"
     android:paddingTop="16dp"
     android:orientation="vertical"
-    tools:context="bancodados.test.view.VistoriaActivity">
+    tools:context="bancodados.test.view.VistoriaActivity"
+    android:background="#ffffff">
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -197,16 +198,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Altura em metros"
-                        android:id="@+id/alturaEncostaTV"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true" />
+                        android:id="@+id/alturaEncostaTV" />
 
                     <EditText
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/alturaEncostaET"
                         android:inputType="number" />
+
+                    <ImageButton
+                        android:id="@+id/chamarCamera"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/camera25"
+                        android:background="#ffffff" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

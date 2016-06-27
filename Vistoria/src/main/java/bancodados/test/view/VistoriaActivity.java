@@ -10,11 +10,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ import java.util.List;
 
 import bancodados.test.R;
 import bancodados.test.core.service.dao.Adapter;
+import bancodados.test.core.service.dao.AdapterCamera;
 import bancodados.test.core.service.dao.AdapterVistoria;
 import bancodados.test.core.service.dao.LocalizacaoDaoImpl;
 import bancodados.test.core.service.dao.UsuarioVistoriaDaoImpl;
@@ -88,6 +91,7 @@ public class VistoriaActivity extends Activity {
         final LinearLayout encostaLL = (LinearLayout) findViewById(R.id.encostaLL);
         final EditText alturaEncostaET = (EditText) findViewById(R.id.alturaEncostaET);
         final TextView alturaEncostaReportTV = (TextView) findViewById(R.id.alturaEncostaReportTV);
+        final ImageButton chamarCamera = (ImageButton) findViewById(R.id.chamarCamera);
 
         final CheckBox taludeCB = (CheckBox) findViewById(R.id.taludeCB);
         final LinearLayout taludeLL = (LinearLayout) findViewById(R.id.taludeLL);
@@ -572,6 +576,15 @@ public class VistoriaActivity extends Activity {
             outrasInformacoesET.setText(vistoriaCriada.getInformacoes());
 
         }
+        chamarCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AdapterCamera adapterCamera = new AdapterCamera();
+                File file = adapterCamera.gerarPastaPrincipal();
+                startActivityForResult(adapterCamera.chamarCamera(file), 100);
+            }
+        });
 
         salvarVistoriaB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -740,6 +753,7 @@ public class VistoriaActivity extends Activity {
                     public void onClick(DialogInterface dialog, int which) {
                         try {
                             startActivity(intent);
+
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
