@@ -455,7 +455,6 @@ public class VistoriaActivity extends Activity {
             adapterVistoria.recuperarCheckRadionButton(radioButtonList, vistoriaCriada.getTipoMoradia());
             radioButtonList.removeAll(radioButtonList);
 
-
             /* PASSO 2 */
 
             validarCheckBox = adapterVistoria.recuperaCheck(encostaCB, vistoriaCriada.getEncostaNatural());
@@ -579,10 +578,10 @@ public class VistoriaActivity extends Activity {
         chamarCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 AdapterCamera adapterCamera = new AdapterCamera();
                 File file = adapterCamera.gerarPastaPrincipal();
                 startActivityForResult(adapterCamera.chamarCamera(file), 100);
+
             }
         });
 
@@ -607,17 +606,25 @@ public class VistoriaActivity extends Activity {
 
                 /* PASSO 2 */
                 if(encostaCB.isChecked() == true){
-                    vistoria.setEncostaNatural(encostaCB.isChecked());
-                    vistoria.setAlturaEncosta(Double.valueOf(alturaEncostaET.getText().toString()));
+                    if(!(alturaEncostaET.getText().toString().equals(""))){
+                        vistoria.setEncostaNatural(encostaCB.isChecked());
+                        vistoria.setAlturaEncosta(Double.valueOf(alturaEncostaET.getText().toString()));
+                    }
                 }else{
                     vistoria.setEncostaNatural(encostaCB.isChecked());
                     vistoria.setAlturaEncosta(doubleNull);
                 }
                 if(taludeCB.isChecked() == true){
-                    vistoria.setTaludeCorte(taludeCB.isChecked());
-                    vistoria.setAlturaTalude(Double.valueOf(alturaTaludeET.getText().toString()));
-                    vistoria.setDistanciaBaseTalude(Double.valueOf(distanciaBaseTaludeET.getText().toString()));
-                    vistoria.setAlturaTopoTalude(Double.valueOf(alturaTopoTaludeET.getText().toString()));
+                    if(!(alturaTaludeET.getText().toString().equals("") ||
+                            distanciaBaseTaludeET.getText().toString().equals("") ||
+                            alturaTopoTaludeET.getText().toString().equals(""))){
+
+                        vistoria.setTaludeCorte(taludeCB.isChecked());
+                        vistoria.setAlturaTalude(Double.valueOf(alturaTaludeET.getText().toString()));
+                        vistoria.setDistanciaBaseTalude(Double.valueOf(distanciaBaseTaludeET.getText().toString()));
+                        vistoria.setAlturaTopoTalude(Double.valueOf(alturaTopoTaludeET.getText().toString()));
+                    }
+
                 }else{
                     vistoria.setTaludeCorte(taludeCB.isChecked());
                     vistoria.setAlturaTalude(doubleNull);
@@ -625,11 +632,16 @@ public class VistoriaActivity extends Activity {
                     vistoria.setAlturaTopoTalude(doubleNull);
                 }
                 if(aterroCB.isChecked() == true){
-                    vistoria.setAterroLancado(aterroCB.isChecked());
-                    vistoria.setAlturaAterro(Double.valueOf(alturaAterroET.getText().toString()));
-                    vistoria.setDistanciaBaseAterro(Double.valueOf(distanciaBaseAterroET.getText().toString()));
-                    vistoria.setAlturaTopoAterro(Double.valueOf(alturaTopoAterroET.getText().toString()));
+                    if(!(alturaAterroET.getText().toString().equals("") ||
+                            distanciaBaseAterroET.getText().toString().equals("") ||
+                            alturaTopoAterroET.getText().toString().equals(""))){
 
+                        vistoria.setAterroLancado(aterroCB.isChecked());
+                        vistoria.setAlturaAterro(Double.valueOf(alturaAterroET.getText().toString()));
+                        vistoria.setDistanciaBaseAterro(Double.valueOf(distanciaBaseAterroET.getText().toString()));
+                        vistoria.setAlturaTopoAterro(Double.valueOf(alturaTopoAterroET.getText().toString()));
+
+                    }
                 }else{
                     vistoria.setAterroLancado(aterroCB.isChecked());
                     vistoria.setAlturaAterro(doubleNull);
@@ -637,8 +649,11 @@ public class VistoriaActivity extends Activity {
                     vistoria.setAlturaTopoAterro(doubleNull);
                 }
                 if(paredeCB.isChecked() == true){
-                    vistoria.setParedeRochosa(paredeCB.isChecked());
-                    vistoria.setAlturaParede(Double.valueOf(alturaParedeET.getText().toString()));
+                    if(!(alturaParedeET.getText().toString().equals(""))){
+                        vistoria.setParedeRochosa(paredeCB.isChecked());
+                        vistoria.setAlturaParede(Double.valueOf(alturaParedeET.getText().toString()));
+                    }
+
                 }else{
                     vistoria.setParedeRochosa(paredeCB.isChecked());
                     vistoria.setAlturaParede(doubleNull);

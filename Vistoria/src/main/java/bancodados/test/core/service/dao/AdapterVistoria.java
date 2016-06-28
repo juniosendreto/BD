@@ -48,7 +48,10 @@ public class AdapterVistoria {
     }
 
     public Boolean recuperaCheck(CheckBox checkBox, Boolean valorCheck){
-        if(valorCheck == true){
+        if(valorCheck == null){
+            checkBox.setChecked(false);
+            return false;
+        } else if(valorCheck == true){
             checkBox.setChecked(true);
             return true;
         }

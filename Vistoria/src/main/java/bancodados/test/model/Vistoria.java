@@ -18,6 +18,9 @@ public class Vistoria implements Serializable{
     @DatabaseField(foreign = true, columnName = "LOCALIZACAO_ID")
     private Localizacao localizacao;
 
+    @DatabaseField(foreign = true, columnName = "FOTO_VISTORIA_ID")
+    private FotoVistoria fotoVistoria;
+
     /*
         1 PASSO - DADOS GERAIS SOBRE AS MORADIAS
      */
