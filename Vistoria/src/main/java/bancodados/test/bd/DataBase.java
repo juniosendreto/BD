@@ -11,6 +11,7 @@ import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
 
+import bancodados.test.model.FotoVistoria;
 import bancodados.test.model.Localizacao;
 import bancodados.test.model.Usuario;
 import bancodados.test.model.UsuarioVistoria;
@@ -37,6 +38,7 @@ public class DataBase extends OrmLiteSqliteOpenHelper {
             TableUtils.createTable(connectionSource, Vistoria.class);
             TableUtils.createTable(connectionSource, UsuarioVistoria.class);
             TableUtils.createTable(connectionSource, Localizacao.class);
+            TableUtils.createTable(connectionSource, FotoVistoria.class);
 
         } catch(Exception e) {
             e.printStackTrace();
@@ -55,6 +57,8 @@ public class DataBase extends OrmLiteSqliteOpenHelper {
             TableUtils.dropTable(connectionSource, Usuario.class, true);
             TableUtils.dropTable(connectionSource, Vistoria.class, true);
             TableUtils.dropTable(connectionSource, Localizacao.class, true);
+            TableUtils.dropTable(connectionSource, FotoVistoria.class, true);
+
 
             onCreate(sqLiteDatabase, connectionSource);
 

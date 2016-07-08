@@ -5,5 +5,13 @@
     <string name="action_update_usuario">Alterar dados</string>
     <string name="action_sair">Sair</string>
 
-
+    <string name="titulo_login">
+        GOVERNO DO ESTADO DE SÃO PAULO\n
+        GABINETE DO GOVERNADOR - CASA MILITAR\n
+        COODENADORIAESTADUAL DE DEFESA CIVIL
+    </string>
+    <string name="subtitulo_login">
+        Vistoria Ténica - PPDC\n
+        Aplicado a Movimentos de Terra
+    </string>
 </resources>
