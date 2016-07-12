@@ -29,11 +29,18 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    //Teste Unitário
     testCompile 'junit:junit:4.12'
     androidTestCompile 'junit:junit:4.12'
+
     compile 'com.android.support:appcompat-v7:22.2.1'
+
+    //Framework ORMLite
     compile 'com.j256.ormlite:ormlite-android:4.48'
     compile 'com.j256.ormlite:ormlite-core:4.48'
+
     compile 'com.android.support:design:22.2.1'
+
     compile 'org.osmdroid:osmdroid-android:5.1@aar'
 }

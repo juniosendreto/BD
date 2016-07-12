@@ -11,8 +11,19 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/action_criar_vistoria"
+        android:orderInCategory="101"
+        android:title="@string/action_criar_vistoria"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_listar_vistorias"
+        android:orderInCategory="102"
+        android:title="@string/action_listar_vistorias"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_sair"
-        android:orderInCategory="100"
+        android:orderInCategory="103"
         android:title="@string/action_sair"
         app:showAsAction="never" />
 </menu>

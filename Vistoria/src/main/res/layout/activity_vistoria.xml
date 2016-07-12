@@ -34,7 +34,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="PASSO 1 - DADOS GERAIS SOBRE A MORADIA "
-                android:id="@+id/passo1TV" />
+                android:id="@+id/passo1TV"
+                android:textStyle="bold" />
             <!--android:drawableRight="@mipmap/erro"-->
 
 
@@ -161,9 +162,7 @@
                 android:layout_height="wrap_content"
                 android:text="PASSO 2 - CARACTERIZAÇÃO DO LOCAL"
                 android:id="@+id/passo2TV"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:textStyle="bold"/>
 
 
             <LinearLayout
@@ -470,9 +469,7 @@
                 android:layout_height="wrap_content"
                 android:text="PASSO 3 - ÁGUA"
                 android:id="@+id/passo3TV"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:textStyle="bold" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -718,9 +715,7 @@
                 android:layout_height="wrap_content"
                 android:text="PASSO 4 - VEGETAÇÃO NO TALUDE OU PROXIMIDADES"
                 android:id="@+id/passo4TV"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:textStyle="bold" />
 
 
             <LinearLayout
@@ -771,9 +766,7 @@
                 android:layout_height="wrap_content"
                 android:text="PASSO 5 - SINAIS DE MOVIMENTAÇÕES"
                 android:id="@+id/passo5TV"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:textStyle="bold" />
 
 
             <LinearLayout
@@ -891,9 +884,7 @@
                 android:layout_height="wrap_content"
                 android:text="PASSO 6 - TIPOS DE PROCESSOS DE INSTABILIZAÇÃO ESPERADOS OU JÁ OCORRIDOS"
                 android:id="@+id/passo6TV"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:textStyle="bold" />
 
 
             <LinearLayout
@@ -962,9 +953,7 @@
                 android:layout_height="wrap_content"
                 android:text="PASSO 7 - DETERMINAÇÃO DO GRAU DE RISCO"
                 android:id="@+id/passo7TV"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -1020,9 +1009,7 @@
                 android:layout_height="wrap_content"
                 android:text="PASSO 8 - NECESSIDADE DE REMOÇÃO"
                 android:id="@+id/passo8TV"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -1073,17 +1060,12 @@
             android:layout_height="wrap_content"
             android:text="PASSO 9 - OUTRAS INFORMAÇÕES"
             android:id="@+id/passo9TV"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/passo9LL"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="false"
                 android:orientation="vertical"
                 android:visibility="gone">
 
@@ -1093,10 +1075,11 @@
                     android:id="@+id/outrasInformacoesET" />
             </LinearLayout>
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:id="@+id/salvarVistoriaB"
-                android:text="Salvar Vistoria"/>
+                android:text="Salvar Vistoria" />
 
         </LinearLayout>
     </ScrollView>

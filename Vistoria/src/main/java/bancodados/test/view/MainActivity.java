@@ -1,6 +1,7 @@
 package bancodados.test.view;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +13,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapController;
+import org.osmdroid.views.MapView;
+
 import bancodados.test.R;
 import bancodados.test.core.service.dao.GPSTracker;
 import bancodados.test.model.Localizacao;
@@ -20,11 +26,25 @@ import bancodados.test.model.Localizacao;
 public class MainActivity extends AppCompatActivity {
 
     Localizacao localizacao;
+    private MapView mMapView;
+    private MapController mMapController;
+    GPSTracker gpsTracker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //ProgressDialog progressDialog = new ProgressDialog(this);
+        //progressDialog.setMessage("wait");
+        //progressDialog.show();
+
+        mMapView = (MapView) findViewById(R.id.mapview);
+        mMapView.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE);
+        mMapView.setBuiltInZoomControls(true);
+        mMapController = (MapController) mMapView.getController();
+        mMapController.setZoom(13);
+        GeoPoint gPt = new GeoPoint(51500000, -150000);
+        mMapController.setCenter(gPt);
 
         final Button novaVistoria = (Button) findViewById(R.id.novaVistoriaB);
         final Button listarVistorias = (Button) findViewById(R.id.listarVistoriasB);
@@ -34,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         localizacao =  new Localizacao();
         final Intent intentVistoria = new Intent(this, VistoriaActivity.class);
         final AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
-        final GPSTracker gpsTracker = new GPSTracker(getApplicationContext());
+        gpsTracker = new GPSTracker(getApplicationContext());
 
         novaVistoria.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,13 +145,23 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-
-        switch(id){
+        Intent intent;
+        switch(item.getItemId()){
             case R.id.action_update_usuario:
-                final Intent intentAlteracaoUsuario = new Intent(this, UpdateUsuarioActivity.class);
-                startActivity(intentAlteracaoUsuario);
+                intent = new Intent(this, UpdateUsuarioActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.action_criar_vistoria:
+                intent = new Intent(this, VistoriaActivity.class);
+                gpsTracker = new GPSTracker(getApplicationContext());
+                localizacao.setLatitude(gpsTracker.getLatitude());
+                localizacao.setLongitude(gpsTracker.getLongitude());
+                intent.putExtra("localizacao", (Localizacao) localizacao);
+                startActivity(intent);
+                break;
+            case R.id.action_listar_vistorias:
+                intent = new Intent(this, ListViewVistoriaActivity.class);
+                startActivity(intent);
                 break;
             case R.id.action_sair:
                 onBackPressed();
