@@ -43,4 +43,5 @@ dependencies {
     compile 'com.android.support:design:22.2.1'
 
     compile 'org.osmdroid:osmdroid-android:5.1@aar'
+
 }

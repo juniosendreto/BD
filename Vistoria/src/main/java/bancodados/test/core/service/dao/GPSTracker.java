@@ -11,21 +11,24 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
+import bancodados.test.Util.Menssage;
+
 /**
  * Created by junio on 10/06/16.
  */
-public class GPSTracker extends Service  implements LocationListener{
+public class GPSTracker extends Service{
 
     private final Context context;
 
-    private Boolean gPSAtivado = false;
-    private Boolean internetAtivada = false;
-    private Boolean podePegarLocalizacao = false;
+    private Boolean isGPSEnabled = false;
+    private Boolean isInternetEnabled = false;
+    private Boolean canGetLocation = false;
+    private ProgressDialog progressDialog;
 
     private Double latitude;
     private Double longitude;
 
-    protected LocationManager locationManager;
+    private LocationManager locationManager;
 
     private Location location;
 
@@ -34,65 +37,47 @@ public class GPSTracker extends Service  implements LocationListener{
         //getLocation();
     }
 
-    public Location getLocation(){
+    public  Boolean getLocation(LocationListener locationListener) {
         try{
             locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-            gPSAtivado = locationManager.isProviderEnabled(locationManager.GPS_PROVIDER);
-            internetAtivada = locationManager.isProviderEnabled(locationManager.NETWORK_PROVIDER);
+            isGPSEnabled = locationManager.isProviderEnabled(locationManager.GPS_PROVIDER);
+            isInternetEnabled = locationManager.isProviderEnabled(locationManager.NETWORK_PROVIDER);
 
-            if (internetAtivada) {
-                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
-                if (locationManager != null) {
-                    location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                    this.podePegarLocalizacao = true;
-                }
-            }else if(gPSAtivado){
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+
+            if(isGPSEnabled){
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
                 if (locationManager != null) {
                     location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                    this.podePegarLocalizacao = true;
+                    return true;
+
+                }
+            }else if (isInternetEnabled) {
+                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+                if (locationManager != null) {
+                    location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                    return true;
                 }
             }
 
-
         }catch (Exception e){
             e.printStackTrace();
-        }finally {
-            //pararUsoGps();
         }
-        return location;
+        return false;
+
     }
 
-    public void pararUsoGps(){
+
+    public void closeGPS(LocationListener locationListener){
         if(locationManager != null){
-            locationManager.removeUpdates(GPSTracker.this);
+            locationManager.removeUpdates(locationListener);
         }
     }
 
-    public Boolean podePegarLocalizacao(){
-        return this.podePegarLocalizacao;
+    public Boolean canGetLocation(){
+        return this.canGetLocation;
     }
 
 
-    @Override
-    public void onLocationChanged(Location location) {
-
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-
-    }
 
     @Nullable
     @Override
@@ -134,28 +119,28 @@ public class GPSTracker extends Service  implements LocationListener{
         this.locationManager = locationManager;
     }
 
-    public Boolean getPodePegarLocalizacao() {
-        return podePegarLocalizacao;
+    public Boolean getCanGetLocation() {
+        return canGetLocation;
     }
 
-    public void setPodePegarLocalizacao(Boolean podePegarLocalizacao) {
-        this.podePegarLocalizacao = podePegarLocalizacao;
+    public void setCanGetLocation(Boolean canGetLocation) {
+        this.canGetLocation = canGetLocation;
     }
 
-    public Boolean getInternetAtivada() {
-        return internetAtivada;
+    public Boolean getIsInternetEnabled() {
+        return isInternetEnabled;
     }
 
-    public void setInternetAtivada(Boolean internetAtivada) {
-        this.internetAtivada = internetAtivada;
+    public void setIsInternetEnabled(Boolean isInternetEnabled) {
+        this.isInternetEnabled = isInternetEnabled;
     }
 
-    public Boolean getgPSAtivado() {
-        return gPSAtivado;
+    public Boolean getIsGPSEnabled() {
+        return isGPSEnabled;
     }
 
-    public void setgPSAtivado(Boolean gPSAtivado) {
-        this.gPSAtivado = gPSAtivado;
+    public void setIsGPSEnabled(Boolean isGPSEnabled) {
+        this.isGPSEnabled = isGPSEnabled;
     }
 
     public Context getContext() {

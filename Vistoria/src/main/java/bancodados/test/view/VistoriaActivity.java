@@ -58,6 +58,10 @@ public class VistoriaActivity extends Activity {
         final Vistoria vistoriaCriada = (Vistoria) getIntent().getSerializableExtra("vistoria");
         usuario = Usuario.getInstance();
 
+        Log.d("-----", localizacao.getLatitude().toString());
+        Log.d("-----", localizacao.getLongitude().toString());
+
+
         final List<Vistoria> vistoriaList = new ArrayList<Vistoria>();
         final UsuarioVistoria usuarioVistoria = new UsuarioVistoria(getApplicationContext());
         final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");

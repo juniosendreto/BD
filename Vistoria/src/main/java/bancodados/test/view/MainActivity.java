@@ -4,21 +4,25 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
 import android.os.Bundle;
 
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
-import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
-import org.osmdroid.util.GeoPoint;
-import org.osmdroid.views.MapController;
-import org.osmdroid.views.MapView;
 
 import bancodados.test.R;
+import bancodados.test.Util.Menssage;
 import bancodados.test.core.service.dao.GPSTracker;
 import bancodados.test.model.Localizacao;
 
@@ -26,42 +30,33 @@ import bancodados.test.model.Localizacao;
 public class MainActivity extends AppCompatActivity {
 
     Localizacao localizacao;
-    private MapView mMapView;
-    private MapController mMapController;
     GPSTracker gpsTracker;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //ProgressDialog progressDialog = new ProgressDialog(this);
-        //progressDialog.setMessage("wait");
-        //progressDialog.show();
-
-        mMapView = (MapView) findViewById(R.id.mapview);
-        mMapView.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE);
-        mMapView.setBuiltInZoomControls(true);
-        mMapController = (MapController) mMapView.getController();
-        mMapController.setZoom(13);
-        GeoPoint gPt = new GeoPoint(51500000, -150000);
-        mMapController.setCenter(gPt);
 
         final Button novaVistoria = (Button) findViewById(R.id.novaVistoriaB);
         final Button listarVistorias = (Button) findViewById(R.id.listarVistoriasB);
         final EditText latitudeET = (EditText) findViewById(R.id.latitudeET);
-        final EditText longitudeET = (EditText)findViewById(R.id.longitudeET);
-        final Button coodernadaGPSB = (Button) findViewById(R.id.coodernadaGPSB);
+        final EditText longitudeET = (EditText) findViewById(R.id.longitudeET);
+        //final EditText latitudeET = (EditText) findViewById(R.id.latitudeET);
+        //final EditText longitudeET = (EditText)findViewById(R.id.longitudeET);
+        //final Button coodernadaGPSB = (Button) findViewById(R.id.coodernadaGPSB);
         localizacao =  new Localizacao();
         final Intent intentVistoria = new Intent(this, VistoriaActivity.class);
         final AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
-        gpsTracker = new GPSTracker(getApplicationContext());
+        gpsTracker = new GPSTracker(MainActivity.this);
 
         novaVistoria.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    localizacao.setLatitude(Double.valueOf(latitudeET.getText().toString()));
-                    localizacao.setLongitude(Double.valueOf(longitudeET.getText().toString()));
+
+                    //localizacao.setLatitude(Double.valueOf(latitudeET.getText().toString()));
+                    //localizacao.setLongitude(Double.valueOf(longitudeET.getText().toString()));
                     intentVistoria.putExtra("localizacao", (Localizacao) localizacao);
                     startActivity(intentVistoria);
                 }catch (Exception e){
@@ -77,11 +72,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        coodernadaGPSB.setOnClickListener(new View.OnClickListener() {
+        /*coodernadaGPSB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 gpsTracker.getLocation();
-                if(gpsTracker.podePegarLocalizacao()){
+
+                if(gpsTracker.canGetLocation()){
                     latitudeET.setText(String.valueOf(gpsTracker.getLatitude()));
                     longitudeET.setText(String.valueOf(gpsTracker.getLongitude()));
                 }else{
@@ -95,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                     }).show();
                 }
             }
-        });
+        });*/
 
         listarVistorias.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,13 +148,37 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(this, UpdateUsuarioActivity.class);
                 startActivity(intent);
                 break;
+
             case R.id.action_criar_vistoria:
-                intent = new Intent(this, VistoriaActivity.class);
-                gpsTracker = new GPSTracker(getApplicationContext());
-                localizacao.setLatitude(gpsTracker.getLatitude());
-                localizacao.setLongitude(gpsTracker.getLongitude());
-                intent.putExtra("localizacao", (Localizacao) localizacao);
-                startActivity(intent);
+                final AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+                LayoutInflater inflater = this.getLayoutInflater();
+                View janelaLatLong = inflater.inflate(R.layout.janela_lat_long, null);
+
+                final EditText latitudeET = (EditText) janelaLatLong.findViewById(R.id.latitudeET);
+                final EditText longitudeET = (EditText) janelaLatLong.findViewById(R.id.longitudeET);
+                ImageButton myLocation = (ImageButton) findViewById(R.id.myLocation);
+
+
+                alertDialog
+                        .setTitle("Criando Vistoria")
+                        .setView(janelaLatLong)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(MainActivity.this, VistoriaActivity.class);
+                                localizacao.setLatitude(Double.valueOf(latitudeET.getText().toString()));
+                                localizacao.setLongitude(Double.valueOf(longitudeET.getText().toString()));
+                                intent.putExtra("localizacao", (Localizacao) localizacao);
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).show();
+
                 break;
             case R.id.action_listar_vistorias:
                 intent = new Intent(this, ListViewVistoriaActivity.class);
@@ -170,6 +191,55 @@ public class MainActivity extends AppCompatActivity {
 
         }
         return super.onOptionsItemSelected(item);
+    }
+    public void getCoordinate(View view) {
+
+        final AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+        final ProgressDialog progressDialog = Menssage.startProgressDialog(MainActivity.this, "Aguade, Gerando Coordenada");
+
+        LayoutInflater inflater = this.getLayoutInflater();
+        View janelaLatLong = inflater.inflate(R.layout.janela_lat_long, null);
+        final EditText latitudeET = (EditText) janelaLatLong.findViewById(R.id.latitudeET);
+        final EditText longitudeET = (EditText) janelaLatLong.findViewById(R.id.longitudeET);
+
+
+        final LocationListener locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+
+                latitudeET.setText(String.valueOf(location.getLatitude()));
+                longitudeET.setText(String.valueOf(location.getLongitude()));
+                gpsTracker.closeGPS(this);
+                progressDialog.dismiss();
+
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+                alert.setTitle("Alerta");
+                alert.setMessage("Você não possui conexão com internet ou GPS não está ligado, digite manualmente");
+                alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                }).show();
+                progressDialog.dismiss();
+            }
+        };
+
+        gpsTracker.getLocation(locationListener);
+
     }
 
 }

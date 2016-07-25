@@ -12,20 +12,20 @@
     android:background="#ffffff"
     tools:context=".view.MainActivity">
 
-    <LinearLayout
+    <!--LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
         <include layout="@layout/osmroid_map"/>
 
-    </LinearLayout>
+    </LinearLayout-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
+        <!--TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Latitude"
@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Gerar Coordenada"
-            android:id="@+id/coodernadaGPSB" />
+            android:id="@+id/coodernadaGPSB" /-->
 
         <Button
             android:layout_width="wrap_content"

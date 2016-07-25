@@ -32,7 +32,6 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
                 try {
-
                     Usuario usuario = usuarioImpl.findByLoginAndPassword(loginE.getText().toString().toLowerCase(),
                             passwordE.getText().toString());
 
