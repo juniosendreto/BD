@@ -8,7 +8,7 @@
     android:paddingRight="16dp"
     android:paddingTop="16dp"
     android:orientation="vertical"
-    tools:context="bancodados.test.view.VistoriaActivity"
+    tools:context="bancodados.vistoria.view.VistoriaActivity"
     android:background="#ffffff">
 
     <ScrollView

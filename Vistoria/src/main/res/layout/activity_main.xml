@@ -12,62 +12,15 @@
     android:background="#ffffff"
     tools:context=".view.MainActivity">
 
-    <!--LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <include layout="@layout/osmroid_map"/>
+    <include layout="@layout/osmroid_map"></include>
 
-    </LinearLayout-->
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <!--TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Latitude"
-            android:id="@+id/latitudeTV" />
-
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/latitudeET"
-            android:inputType="number" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Longitude"
-            android:id="@+id/longitudeTV" />
-
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/longitudeET"
-            android:inputType="number" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Gerar Coordenada"
-            android:id="@+id/coodernadaGPSB" /-->
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cria Nova Vistoria"
-            android:id="@+id/novaVistoriaB" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Listar Vistorias"
-            android:id="@+id/listarVistoriasB" />
+    <ImageButton
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="#ffffff"
+        android:gravity="bottom|right"
+        android:src="@drawable/my_location"/>
 
 
-    </LinearLayout>
 
 </RelativeLayout>
