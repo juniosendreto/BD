@@ -1,9 +1,11 @@
 package bancodados.vistoria.model;
 
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 /**
  * Created by junio on 26/02/16.
@@ -18,8 +20,9 @@ public class Vistoria implements Serializable{
     @DatabaseField(foreign = true, columnName = "LOCALIZACAO_ID")
     private Localizacao localizacao;
 
-    @DatabaseField(foreign = true, columnName = "FOTO_VISTORIA_ID")
-    private FotoVistoria fotoVistoria;
+    @ForeignCollectionField(columnName = "FOTO_VISTORIA_ID")
+    private Collection<FotoVistoria> fotoVistorias;
+
 
     /*
         1 PASSO - DADOS GERAIS SOBRE AS MORADIAS
@@ -211,6 +214,14 @@ public class Vistoria implements Serializable{
 
     public void setLocalizacao(Localizacao localizacao) {
         this.localizacao = localizacao;
+    }
+
+    public Collection<FotoVistoria> getFotoVistorias() {
+        return fotoVistorias;
+    }
+
+    public void setFotoVistorias(Collection<FotoVistoria> fotoVistorias) {
+        this.fotoVistorias = fotoVistorias;
     }
 
     public String getNomeMorador() {
@@ -575,24 +586,25 @@ public class Vistoria implements Serializable{
 
     public Vistoria(){}
 
-    public Vistoria(Long id, Localizacao localizacao, String nomeMorador, Integer tipoMoradia,
-                    Boolean encostaNatural, Boolean taludeCorte, Boolean aterroLancado,
-                    Boolean paredeRochosa, Double alturaEncosta, Double alturaTalude,
-                    Double alturaAterro, Double alturaParede, Double distanciaBaseTalude,
-                    Double distanciaBaseAterro, Double alturaTopoTalude, Double alturaTopoAterro,
-                    Boolean blocosRochasMatacoes, Boolean lixoEntulho, Boolean concentraAguaChuva,
-                    Boolean concentraAguaServida, Integer drenageSuperficial, Integer esgoto,
-                    Integer usoAguaMoradia, Integer aguaMoradiaVazamento, Integer tipoVazamento,
-                    Integer minasDagua, Boolean arvores, Boolean vegetacaoRasteira,
-                    Boolean areaDesmatada, String areaCultivo, Boolean trincaTerreno,
-                    Boolean trincaMoradia, Boolean degrausAbatimento, Boolean arvoresInclinacao,
-                    Boolean postesInclinacao, Boolean murosInclinacao, Boolean muroParedeEmbarrigado,
+    public Vistoria(Localizacao localizacao, Collection<FotoVistoria> fotoVistorias,
+                    String nomeMorador, Integer tipoMoradia, Boolean encostaNatural,
+                    Boolean taludeCorte, Boolean aterroLancado, Boolean paredeRochosa,
+                    Double alturaEncosta, Double alturaTalude, Double alturaAterro,
+                    Double alturaParede, Double distanciaBaseTalude, Double distanciaBaseAterro,
+                    Double alturaTopoTalude, Double alturaTopoAterro, Boolean blocosRochasMatacoes,
+                    Boolean lixoEntulho, Boolean concentraAguaChuva, Boolean concentraAguaServida,
+                    Integer drenageSuperficial, Integer esgoto, Integer usoAguaMoradia,
+                    Integer aguaMoradiaVazamento, Integer tipoVazamento, Integer minasDagua,
+                    Boolean arvores, Boolean vegetacaoRasteira, Boolean areaDesmatada,
+                    String areaCultivo, Boolean trincaTerreno, Boolean trincaMoradia,
+                    Boolean degrausAbatimento, Boolean arvoresInclinacao, Boolean postesInclinacao,
+                    Boolean murosInclinacao, Boolean muroParedeEmbarrigado,
                     Boolean cicatrizEscorregamento, Boolean escorregamentoNatural,
                     Boolean escorregamentoCorte, Boolean escorregamentoAterro, Boolean quedaBlocos,
                     Boolean rolamentoBlocos, Integer risco, Integer quantidadeMoradias,
                     Integer quantidadePessoas, String informacoes) {
-        this.id = id;
         this.localizacao = localizacao;
+        this.fotoVistorias = fotoVistorias;
         this.nomeMorador = nomeMorador;
         this.tipoMoradia = tipoMoradia;
         this.encostaNatural = encostaNatural;

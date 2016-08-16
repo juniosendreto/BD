@@ -206,7 +206,7 @@
                         android:inputType="number" />
 
                     <ImageButton
-                        android:id="@+id/chamarCamera"
+                        android:id="@+id/encostaCameraIB"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/camera25"
@@ -256,6 +256,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/alturaTaludeET"
                         android:inputType="number" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -264,8 +265,6 @@
                         android:id="@+id/alturaTaludeReportTV"
                         android:layout_above="@id/alturaTaludeET"
                         android:visibility="gone"/>
-
-                    <!-- Recurso de imagens -->
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -313,6 +312,13 @@
                         android:layout_above="@id/alturaTopoTaludeET"
                         android:visibility="gone"/>
 
+                    <ImageButton
+                        android:id="@+id/cameraTaludeIB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/camera25"
+                        android:background="#ffffff" />
+
                 </LinearLayout>
 
                 <!-- Aterro Lançado -->
@@ -347,6 +353,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/alturaAterroET"
                         android:inputType="number" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -356,7 +363,6 @@
                         android:layout_above="@id/alturaAterroET"
                         android:visibility="gone"/>
 
-                    <!-- Recurso de imagens -->
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -403,6 +409,12 @@
                         android:id="@+id/alturaTopoAterroReportTV"
                         android:layout_above="@id/alturaTopoAterroET"
                         android:visibility="gone"/>
+                    <ImageButton
+                        android:id="@+id/AterroCameraIB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/camera25"
+                        android:background="#ffffff" />
 
                 </LinearLayout>
 
@@ -436,6 +448,14 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/alturaParedeET"
                         android:inputType="number" />
+
+                    <ImageButton
+                        android:id="@+id/paredeCameraIB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/camera25"
+                        android:background="#ffffff" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -444,7 +464,6 @@
                         android:id="@+id/alturaParedeReportTV"
                         android:layout_above="@id/alturaParedeET"
                         android:visibility="gone"/>
-                    <!-- Recurso de imagens -->
 
                 </LinearLayout>
 
@@ -454,11 +473,25 @@
                     android:id="@+id/blocosRochasCB"
                     android:text="Presença de blocos de rocha e matacões" />
 
+                <ImageButton
+                    android:id="@+id/blocosRochaCameraIB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/camera25"
+                    android:background="#ffffff" />
+
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/lixoEntulhoCB"
                     android:text="Presença de lixo/entulho" />
+
+                <ImageButton
+                    android:id="@+id/lixoEntulhoCameraIB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/camera25"
+                    android:background="#ffffff" />
 
             </LinearLayout>
 
@@ -486,11 +519,25 @@
                     android:id="@+id/concentracaoAguaCB"
                     android:text="Concentração de água de chuva em superfície (enxurrada)" />
 
+                <ImageButton
+                    android:id="@+id/concentracaoAguaCameraIB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/camera25"
+                    android:background="#ffffff" />
+
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/lancamentoAguaCB"
                     android:text="Lançamento de água servida em superfície(a céu aberto ou no quintal)" />
+
+                <ImageButton
+                    android:id="@+id/lancamentoAguaIB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/camera25"
+                    android:background="#ffffff" />
 
                 <TextView
                     android:layout_width="wrap_content"

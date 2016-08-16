@@ -22,7 +22,6 @@ public abstract class AbstractDaoImpl {
 
     public AbstractDaoImpl(Context context) {
         this.context = context;
-        //dataBase = new DataBase(context);
     }
 
     public void openBD() {
