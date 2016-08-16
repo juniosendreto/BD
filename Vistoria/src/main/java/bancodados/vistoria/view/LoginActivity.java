@@ -57,10 +57,11 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
                 try {
-                    chamarActivity(Class.forName("bancodados.test.view.CadastroActivity"));
+                    Intent intentCadastro = new Intent(getApplicationContext(), CadastroActivity.class);
+                    startActivity(intentCadastro);
                     report.setVisibility(View.INVISIBLE);
 
-                } catch (ClassNotFoundException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                     Log.d("ERRO CHAMADA CADASTRO", e.getMessage());
                 }
@@ -69,12 +70,6 @@ public class LoginActivity extends Activity {
 
     }
 
-
-    public void chamarActivity(Class novaActivity) {
-        Intent abrirActivity = new Intent(this, novaActivity);
-        startActivity(abrirActivity);
-
-    }
 
     public void onBackPressed(){
         Intent intent = new Intent(Intent.ACTION_MAIN);

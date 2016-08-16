@@ -1,6 +1,7 @@
 package bancodados.vistoria.view;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -34,20 +35,29 @@ public class MainActivity extends AppCompatActivity {
     Localizacao localizacao;
     GPSTracker gpsTracker;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         localizacao =  new Localizacao();
-        final AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
         gpsTracker = new GPSTracker(MainActivity.this);
+
+
+        final LayoutInflater inflater = this.getLayoutInflater();
+
+        final View janelaLatLong = inflater.inflate(R.layout.janela_lat_long, null);
+        final EditText latitudeET = (EditText) janelaLatLong.findViewById(R.id.latitudeET);
+        final EditText longitudeET = (EditText) janelaLatLong.findViewById(R.id.longitudeET);
+
+
 
         final MapView osmdroid = (MapView) findViewById(R.id.mapview);
         osmdroid.canZoomIn();
         osmdroid.canZoomOut();
 
+
+        /*
         final LocationListener locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
@@ -75,13 +85,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
         gpsTracker.getLocation(locationListener);
-
-
-    }
-
-    public void chamarActivity(Class novaActivity) {
-        Intent abrirActivity = new Intent(this, novaActivity);
-        startActivity(abrirActivity);
+           */
 
     }
 
@@ -92,11 +96,9 @@ public class MainActivity extends AppCompatActivity {
         alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                try {
-                    chamarActivity(Class.forName("bancodados.test.view.LoginActivity"));
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+
             }
         }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             @Override
@@ -111,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -128,7 +131,6 @@ public class MainActivity extends AppCompatActivity {
 
                 final EditText latitudeET = (EditText) janelaLatLong.findViewById(R.id.latitudeET);
                 final EditText longitudeET = (EditText) janelaLatLong.findViewById(R.id.longitudeET);
-                ImageButton myLocation = (ImageButton) findViewById(R.id.myLocation);
 
                 alertDialog
                         .setTitle("Criando Vistoria")
@@ -137,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent intent = new Intent(MainActivity.this, VistoriaActivity.class);
+
                                 localizacao.setLatitude(Double.valueOf(latitudeET.getText().toString()));
                                 localizacao.setLongitude(Double.valueOf(longitudeET.getText().toString()));
                                 intent.putExtra("localizacao", (Localizacao) localizacao);
@@ -155,6 +158,8 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(this, ListViewVistoriaActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.action_sobre:
+                break;
             case R.id.action_sair:
                 onBackPressed();
                 break;
@@ -166,25 +171,24 @@ public class MainActivity extends AppCompatActivity {
     public void getCoordinate(View view) {
 
         final AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
-        final ProgressDialog progressDialog = Menssage.startProgressDialog(MainActivity.this, "Aguade, Gerando Coordenada");
+        final ProgressDialog progressDialog = Menssage.startProgressDialog(MainActivity.this,
+                "Aguade, Gerando Coordenada");
 
-        LayoutInflater inflater = this.getLayoutInflater();
-        View janelaLatLong = inflater.inflate(R.layout.janela_lat_long, null);
+        final LayoutInflater inflater = this.getLayoutInflater();
+
+        final View janelaLatLong = inflater.inflate(R.layout.janela_lat_long, null);
         final EditText latitudeET = (EditText) janelaLatLong.findViewById(R.id.latitudeET);
         final EditText longitudeET = (EditText) janelaLatLong.findViewById(R.id.longitudeET);
-
 
         final LocationListener locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
 
-                latitudeET.setText(String.valueOf(location.getLatitude()));
-                Log.d("-------", latitudeET.getText() +"");
-                longitudeET.setText(String.valueOf(location.getLongitude()));
-                Log.d("-------", longitudeET.getText() +"");
-
-                gpsTracker.closeGPS(this);
                 progressDialog.dismiss();
+
+                latitudeET.setText(String.valueOf(location.getLatitude()));
+                longitudeET.setText(String.valueOf(location.getLongitude()));
+                gpsTracker.closeGPS(this);
 
             }
 

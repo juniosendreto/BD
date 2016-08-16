@@ -6,6 +6,7 @@
     <string name="action_update_usuario">Alterar dados</string>
     <string name="action_criar_vistoria">Criar vistoria</string>
     <string name="action_listar_vistorias">Listar vistorias</string>
+    <string name="action_sobre">Sobre</string>
     <string name="action_sair">Sair</string>
 
     <string name="titulo_login">

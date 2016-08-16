@@ -36,6 +36,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/longitudeET"
         android:inputType="number" />
+
     <RelativeLayout
         android:layout_width="200dp"
         android:layout_height="wrap_content">
