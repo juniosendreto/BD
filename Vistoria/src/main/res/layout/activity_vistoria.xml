@@ -210,7 +210,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/camera25"
-                        android:background="#ffffff" />
+                        android:background="#ffffff"
+                        android:onClick="callCamera"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -317,7 +318,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/camera25"
-                        android:background="#ffffff" />
+                        android:background="#ffffff"
+                        android:onClick="callCamera" />
 
                 </LinearLayout>
 
@@ -414,7 +416,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/camera25"
-                        android:background="#ffffff" />
+                        android:background="#ffffff"
+                        android:onClick="callCamera" />
 
                 </LinearLayout>
 
@@ -454,7 +457,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/camera25"
-                        android:background="#ffffff" />
+                        android:background="#ffffff"
+                        android:onClick="callCamera" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -478,7 +482,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/camera25"
-                    android:background="#ffffff" />
+                    android:background="#ffffff"
+                    android:onClick="callCamera" />
 
                 <CheckBox
                     android:layout_width="wrap_content"
@@ -491,7 +496,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/camera25"
-                    android:background="#ffffff" />
+                    android:background="#ffffff"
+                    android:onClick="callCamera" />
 
             </LinearLayout>
 
@@ -524,7 +530,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/camera25"
-                    android:background="#ffffff" />
+                    android:background="#ffffff"
+                    android:onClick="callCamera" />
 
                 <CheckBox
                     android:layout_width="wrap_content"
@@ -537,7 +544,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/camera25"
-                    android:background="#ffffff" />
+                    android:background="#ffffff"
+                    android:onClick="callCamera" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -780,16 +788,43 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/presencaArvoresCB"
                     android:text="Presença de Árvores" />
+
+                <ImageButton
+                    android:id="@+id/presencaArvoresIB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/camera25"
+                    android:background="#ffffff"
+                    android:onClick="callCamera" />
+
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/vegetacaoRasteiraCB"
                     android:text="Vegetação Rasteira" />
+
+                <ImageButton
+                    android:id="@+id/vegetacaoRasteiraIB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/camera25"
+                    android:background="#ffffff"
+                    android:onClick="callCamera" />
+
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/areaDesmatadaCB"
                     android:text="Área Desmatada" />
+
+                <ImageButton
+                    android:id="@+id/areaDesmatadaIB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/camera25"
+                    android:background="#ffffff"
+                    android:onClick="callCamera" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -803,6 +838,14 @@
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/areaCultivoET" />
+
+                <ImageButton
+                    android:id="@+id/areaCultivoIB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/camera25"
+                    android:background="#ffffff"
+                    android:onClick="callCamera" />
 
             </LinearLayout>
 
@@ -922,6 +965,15 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/cicatrizEscorregamentoCB"
                     android:text="Cicatriz de escorregamento próxima à moradia" />
+
+                <ImageButton
+                    android:id="@+id/sinaisMovimentacoesIB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/camera25"
+                    android:background="#ffffff"
+                    android:onClick="callCamera" />
+
             </LinearLayout>
 
             <!-- *********** Passo 6 - Tipos de processos de instabilização esperados ou já ocorridos ******** -->
@@ -978,6 +1030,15 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/escorregamentoAterroCB"
                         android:text="Aterro" />
+
+                    <ImageButton
+                        android:id="@+id/escorregamentosIB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/camera25"
+                        android:background="#ffffff"
+                        android:onClick="callCamera" />
+
                 </LinearLayout>
 
                 <CheckBox
@@ -990,6 +1051,14 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/rolamentoBlocosCB"
                     android:text="Rolamento de blocos" />
+
+                <ImageButton
+                    android:id="@+id/quedaRolamentoBlocosIB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/camera25"
+                    android:background="#ffffff"
+                    android:onClick="callCamera" />
 
             </LinearLayout>
 

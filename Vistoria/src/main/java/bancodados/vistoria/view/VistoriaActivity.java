@@ -91,7 +91,6 @@ public class VistoriaActivity extends Activity {
         final LinearLayout encostaLL = (LinearLayout) findViewById(R.id.encostaLL);
         final EditText alturaEncostaET = (EditText) findViewById(R.id.alturaEncostaET);
         final TextView alturaEncostaReportTV = (TextView) findViewById(R.id.alturaEncostaReportTV);
-        final ImageButton chamarCamera = (ImageButton) findViewById(R.id.encostaCameraIB);
 
         final CheckBox taludeCB = (CheckBox) findViewById(R.id.taludeCB);
         final LinearLayout taludeLL = (LinearLayout) findViewById(R.id.taludeLL);
@@ -575,15 +574,6 @@ public class VistoriaActivity extends Activity {
             outrasInformacoesET.setText(vistoriaCriada.getInformacoes());
 
         }
-        chamarCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AdapterCamera adapterCamera = new AdapterCamera();
-                File file = adapterCamera.createMainDictionary();
-                startActivityForResult(adapterCamera.callCamera(file), 100);
-
-            }
-        });
 
         salvarVistoriaB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -783,6 +773,12 @@ public class VistoriaActivity extends Activity {
         });
 
 
+    }
+
+    public void callCamera(View v){
+        AdapterCamera adapterCamera = new AdapterCamera();
+        File file = adapterCamera.createMainDictionary();
+        startActivityForResult(adapterCamera.callCamera(file), 100);
     }
 
     public void onBackPressed(){
