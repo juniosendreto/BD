@@ -4,19 +4,24 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -38,9 +43,9 @@ import bancodados.vistoria.model.Vistoria;
 
 public class VistoriaActivity extends Activity {
 
+    public static final int PICK_PHOTO_REQUEST = 1;
     Localizacao localizacao;
     Usuario usuario;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -776,10 +781,30 @@ public class VistoriaActivity extends Activity {
     }
 
     public void callCamera(View v){
-        AdapterCamera adapterCamera = new AdapterCamera();
-        File file = adapterCamera.createMainDictionary();
-        startActivityForResult(adapterCamera.callCamera(file), 100);
+        AdapterCamera adapterCamera = new AdapterCamera(getApplicationContext());
+        startActivityForResult(adapterCamera.callCamera(), PICK_PHOTO_REQUEST);
+
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_PHOTO_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            try {
+                Uri uri = data.getData();
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+
+                ImageView imageView = (ImageView) findViewById(R.id.imagemView);
+                imageView.setImageBitmap(bitmap);
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.d("-------", e.getMessage());
+            }
+        }
+
+    }
+
 
     public void onBackPressed(){
         startActivity(new Intent(this, MainActivity.class));

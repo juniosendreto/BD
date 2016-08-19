@@ -1,9 +1,11 @@
 package bancodados.vistoria.core.service.dao;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -14,27 +16,28 @@ import java.util.Date;
  */
 public class AdapterCamera {
 
+    public static final int MEDIA_TYPE_IMAGE = 1;
     public static File file;
+    private Context context;
 
-    public File createMainDictionary(){
+    public AdapterCamera(Context context){
+        this.context = context;
         if(file == null){
             File directory = new File(Environment.getExternalStorageDirectory() + File.separator + "Vistorias");
             directory.mkdirs();
         }
-        return file;
+
     }
 
-    public Intent callCamera(File file){
+    public Intent callCamera(){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         Uri uri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-        return intent;
+        if(intent.resolveActivity(context.getPackageManager()) != null)
+            return intent;
+        return null;
 
     }
-
-    /*      */
-
-    public static final int MEDIA_TYPE_IMAGE = 1;
 
     private static Uri getOutputMediaFileUri(int type){
         return Uri.fromFile(getOutputMediaFile(type));

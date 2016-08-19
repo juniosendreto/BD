@@ -89,24 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void onBackPressed(){
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle("Alerta");
-        alert.setMessage("Se você voltar, você terá que logar novamente!");
-        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
 
-            }
-        }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        }).show();
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -217,6 +200,26 @@ public class MainActivity extends AppCompatActivity {
         };
 
         gpsTracker.getLocation(locationListener);
+
+    }
+
+    public void onBackPressed(){
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Alerta");
+        alert.setMessage("Se você voltar, você terá que logar novamente!");
+        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+
+            }
+        }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        }).show();
 
     }
 
