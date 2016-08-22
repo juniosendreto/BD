@@ -123,19 +123,19 @@ public abstract class AbstractDaoImpl {
         return Long.valueOf(0);
     }
 
-
-
-    public Integer deleteAllrows(Class classe) {
-        try {
+    public Boolean saveAll(Class classe, List<Object> objects){
+        try{
             openBD();
-            dataBase.getDao(classe).delete(listAll(classe));
-            return 1;
-        } catch (SQLException e) {
-            Log.d("------", "ERRO deleteAllRows(ABSDAO) - " + e.getMessage());
-        } finally {
+
+            for(Object o: objects)
+                dataBase.getDao(classe).create(o);
+            return true;
+        }catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }finally {
             dataBase.close();
         }
-        return 0;
     }
 
 }

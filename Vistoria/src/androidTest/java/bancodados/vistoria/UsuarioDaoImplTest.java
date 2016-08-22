@@ -1,5 +1,6 @@
 package bancodados.vistoria;
 
+import java.sql.Array;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -153,5 +154,26 @@ public class UsuarioDaoImplTest extends ConfigBDTestCase{
         usuarioDao.delete(Usuario.class, usuario3);
     }
 
+    public void testSaveAll(){
+        UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl(getContext());
+        Usuario usuario1 = new Usuario("Junio", "00000000000", "junio", "12345", "junio@hotmail.com", "SJC", "Uberaba", "11111111", "222222222", 1);
+        Usuario usuario2 = new Usuario("Junio", "00000000000", "junio", "12345", "junio@hotmail.com", "SJC", "Uberaba", "11111111", "222222222", 1);
+        Usuario usuario3 = new Usuario("Junio", "00000000000", "junio", "12345", "junio@hotmail.com", "SJC", "Uberaba", "11111111", "222222222", 1);
 
+        List<Usuario> usersActual = new ArrayList<>();
+        usersActual.add(usuario1);
+        usersActual.add(usuario2);
+        usersActual.add(usuario3);
+
+        usuarioDao.saveAll(Usuario.class, (ArrayList) usersActual);
+
+        List<Usuario> usersExpected = (ArrayList) usuarioDao.listAll(Usuario.class);
+
+        for(int i = 0; i < 3; i++)
+            assertEquals(usersActual.get(i), usersExpected.get(i));
+
+        usuarioDao.delete(Usuario.class, usuario1);
+        usuarioDao.delete(Usuario.class, usuario2);
+        usuarioDao.delete(Usuario.class, usuario3);
+    }
 }

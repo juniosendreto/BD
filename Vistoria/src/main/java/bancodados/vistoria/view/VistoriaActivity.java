@@ -13,15 +13,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import java.io.File;
-import java.io.IOException;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -43,16 +41,20 @@ import bancodados.vistoria.model.Vistoria;
 
 public class VistoriaActivity extends Activity {
 
-    public static final int PICK_PHOTO_REQUEST = 1;
+    public static final int PICK_PHOTO_REQUEST = 100;
     Localizacao localizacao;
     Usuario usuario;
+    private ImageView imageView;
+    private List<Bitmap> vistoriaImagens;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vistoria);
 
-
+        //imageView = (ImageView) findViewById(R.id.imagemView);
+        vistoriaImagens = new ArrayList<>();
         final Adapter adapter = new Adapter(getApplicationContext());
         final AdapterVistoria adapterVistoria = new AdapterVistoria(getApplicationContext());
         final Intent intent = new Intent(this, MainActivity.class);
@@ -782,7 +784,8 @@ public class VistoriaActivity extends Activity {
 
     public void callCamera(View v){
         AdapterCamera adapterCamera = new AdapterCamera(getApplicationContext());
-        startActivityForResult(adapterCamera.callCamera(), PICK_PHOTO_REQUEST);
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, PICK_PHOTO_REQUEST);
 
     }
 
@@ -790,18 +793,32 @@ public class VistoriaActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == PICK_PHOTO_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+
+        if (requestCode == PICK_PHOTO_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
             try {
                 Uri uri = data.getData();
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                vistoriaImagens.add(bitmap);
 
-                ImageView imageView = (ImageView) findViewById(R.id.imagemView);
-                imageView.setImageBitmap(bitmap);
             } catch (Exception e) {
                 e.printStackTrace();
                 Log.d("-------", e.getMessage());
             }
         }
+       /* Log.d("-------", "OI");
+        if(data != null){
+            Log.d("-------", "OI2");
+
+            Bundle bundle = data.getExtras();
+            if(bundle != null){
+                Log.d("-------", "OI3");
+
+                Bitmap bitmap = (Bitmap) bundle.get("data");
+                imageView.setImageBitmap(bitmap);
+
+
+            }
+        }*/
 
     }
 

@@ -1197,12 +1197,6 @@
                 android:id="@+id/salvarVistoriaB"
                 android:text="Salvar Vistoria" />
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:id="@+id/imagemView" />
-
-
         </LinearLayout>
 
 

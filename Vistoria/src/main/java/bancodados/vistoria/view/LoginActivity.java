@@ -41,6 +41,7 @@ public class LoginActivity extends Activity {
                         passwordE.setText("");
                         Usuario.uniqueUsuario = usuario;
                         startActivity(intent);
+                        finish();
                     }else{
                         report.setVisibility(View.VISIBLE);
                     }
@@ -76,6 +77,7 @@ public class LoginActivity extends Activity {
         intent.addCategory(Intent.CATEGORY_HOME);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+        finish();
 
     }
 

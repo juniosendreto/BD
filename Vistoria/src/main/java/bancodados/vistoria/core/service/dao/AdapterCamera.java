@@ -28,13 +28,18 @@ public class AdapterCamera {
         }
 
     }
+    public void saveAllImage(){
+
+    }
 
     public Intent callCamera(){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         Uri uri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-        if(intent.resolveActivity(context.getPackageManager()) != null)
+
+        if(intent.resolveActivity(context.getPackageManager()) != null) {
             return intent;
+        }
         return null;
 
     }
