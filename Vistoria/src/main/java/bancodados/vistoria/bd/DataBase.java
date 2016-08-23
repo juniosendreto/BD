@@ -58,7 +58,6 @@ public class DataBase extends OrmLiteSqliteOpenHelper {
             TableUtils.dropTable(connectionSource, Localizacao.class, true);
             TableUtils.dropTable(connectionSource, FotoVistoria.class, true);
 
-
             onCreate(sqLiteDatabase, connectionSource);
 
         } catch(SQLException e) {

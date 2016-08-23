@@ -34,6 +34,7 @@ import bancodados.vistoria.core.service.dao.AdapterVistoria;
 import bancodados.vistoria.core.service.dao.LocalizacaoDaoImpl;
 import bancodados.vistoria.core.service.dao.UsuarioVistoriaDaoImpl;
 import bancodados.vistoria.core.service.dao.VistoriaDaoImpl;
+import bancodados.vistoria.model.FotoVistoria;
 import bancodados.vistoria.model.Localizacao;
 import bancodados.vistoria.model.Usuario;
 import bancodados.vistoria.model.UsuarioVistoria;
@@ -45,7 +46,8 @@ public class VistoriaActivity extends Activity {
     Localizacao localizacao;
     Usuario usuario;
     private ImageView imageView;
-    private List<Bitmap> vistoriaImagens;
+    private List<FotoVistoria> fotoVistorias;
+    private List<Bitmap> bitmaps;
 
 
     @Override
@@ -54,7 +56,8 @@ public class VistoriaActivity extends Activity {
         setContentView(R.layout.activity_vistoria);
 
         //imageView = (ImageView) findViewById(R.id.imagemView);
-        vistoriaImagens = new ArrayList<>();
+        fotoVistorias = new ArrayList<>();
+        bitmaps = new ArrayList<>();
         final Adapter adapter = new Adapter(getApplicationContext());
         final AdapterVistoria adapterVistoria = new AdapterVistoria(getApplicationContext());
         final Intent intent = new Intent(this, MainActivity.class);
@@ -746,17 +749,7 @@ public class VistoriaActivity extends Activity {
                 vistoria.setInformacoes(outrasInformacoesET.getText().toString());
 
 
-                vistoriaList.add(vistoria);
-                localizacao.setVistorias((Collection) vistoriaList);
-                vistoria.setLocalizacao(localizacao);
-                usuarioVistoria.setData(dateFormat.format(date));
 
-
-                localizacaoDao.save(Localizacao.class, localizacao);
-                vistoriaDao.save(Vistoria.class, vistoria);
-                usuarioVistoria.setUsuario(usuario);
-                usuarioVistoria.setVistoria(vistoria);
-                usuarioVistoriaDao.save(UsuarioVistoria.class, usuarioVistoria);
 
                 AlertDialog.Builder alert = new AlertDialog.Builder(VistoriaActivity.this);
                 alert.setMessage("Você realmente deseja salvar a vistoria?");
@@ -764,6 +757,21 @@ public class VistoriaActivity extends Activity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         try {
+                            AdapterCamera adapterCamera = new AdapterCamera(getApplicationContext());
+
+                            vistoriaList.add(vistoria);
+                            localizacao.setVistorias((Collection) vistoriaList);
+                            vistoria.setLocalizacao(localizacao);
+                            usuarioVistoria.setData(dateFormat.format(date));
+
+
+                            localizacaoDao.save(Localizacao.class, localizacao);
+                            vistoriaDao.save(Vistoria.class, vistoria);
+                            usuarioVistoria.setUsuario(usuario);
+                            usuarioVistoria.setVistoria(vistoria);
+                            usuarioVistoriaDao.save(UsuarioVistoria.class, usuarioVistoria);
+
+                            adapterCamera.saveAllImage(fotoVistorias, vistoria, bitmaps);
                             startActivity(intent);
 
                         } catch (Exception e) {
@@ -779,11 +787,9 @@ public class VistoriaActivity extends Activity {
             }
         });
 
-
     }
 
     public void callCamera(View v){
-        AdapterCamera adapterCamera = new AdapterCamera(getApplicationContext());
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, PICK_PHOTO_REQUEST);
 
@@ -793,32 +799,20 @@ public class VistoriaActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-
         if (requestCode == PICK_PHOTO_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
             try {
                 Uri uri = data.getData();
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                vistoriaImagens.add(bitmap);
+                bitmaps.add(bitmap);
+                FotoVistoria fotoVistoria = new FotoVistoria();
+                fotoVistoria.setDescricao("IMG_" + new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()));
+                fotoVistorias.add(fotoVistoria);
 
             } catch (Exception e) {
                 e.printStackTrace();
                 Log.d("-------", e.getMessage());
             }
         }
-       /* Log.d("-------", "OI");
-        if(data != null){
-            Log.d("-------", "OI2");
-
-            Bundle bundle = data.getExtras();
-            if(bundle != null){
-                Log.d("-------", "OI3");
-
-                Bitmap bitmap = (Bitmap) bundle.get("data");
-                imageView.setImageBitmap(bitmap);
-
-
-            }
-        }*/
 
     }
 

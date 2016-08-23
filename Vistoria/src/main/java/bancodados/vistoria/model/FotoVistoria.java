@@ -19,9 +19,6 @@ public class FotoVistoria {
     @DatabaseField(foreign = true, columnName = "VISTORIA_ID")
     private Vistoria vistorias;
 
-    @DatabaseField(columnName = "caminho", canBeNull = false)
-    private String caminho;
-
     @DatabaseField(columnName = "descricao", canBeNull = false)
     private String descricao;
 
@@ -36,22 +33,21 @@ public class FotoVistoria {
 
     public FotoVistoria(){ }
 
-    public FotoVistoria(Vistoria vistorias, String caminho, String descricao, byte[] imagemGrande, byte[] imagemMedia, byte[] imagemPequena) {
-        this.vistorias = vistorias;
-        this.caminho = caminho;
+    public FotoVistoria(String descricao, byte[] imagemGrande, byte[] imagemMedia, byte[] imagemPequena) {
         this.descricao = descricao;
         this.imagemGrande = imagemGrande;
         this.imagemMedia = imagemMedia;
         this.imagemPequena = imagemPequena;
     }
 
-    public FotoVistoria(String caminho,String descricao, byte[] imagemGrande, byte[] imagemMedia, byte[] imagemPequena) {
-        this.caminho = caminho;
+    public FotoVistoria(Vistoria vistorias, String descricao, byte[] imagemGrande, byte[] imagemMedia,
+                        byte[] imagemPequena) {
+        this.vistorias = vistorias;
+        this.descricao = descricao;
         this.imagemGrande = imagemGrande;
         this.imagemMedia = imagemMedia;
         this.imagemPequena = imagemPequena;
     }
-
 
     public Long getId() {
         return id;
@@ -69,12 +65,12 @@ public class FotoVistoria {
         this.vistorias = vistorias;
     }
 
-    public String getCaminho() {
-        return caminho;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setCaminho(String caminho) {
-        this.caminho = caminho;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public byte[] getImagemGrande() {
