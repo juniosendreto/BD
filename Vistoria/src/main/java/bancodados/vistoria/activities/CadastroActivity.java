@@ -1,4 +1,4 @@
-package bancodados.vistoria.view;
+package bancodados.vistoria.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;

@@ -1,7 +1,6 @@
-package bancodados.vistoria.view;
+package bancodados.vistoria.activities;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,18 +9,13 @@ import android.location.LocationListener;
 import android.os.Bundle;
 
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 
 
-import org.osmdroid.api.IMapController;
-import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 
 import bancodados.vistoria.R;
@@ -34,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     Localizacao localizacao;
     GPSTracker gpsTracker;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -16,7 +16,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import bancodados.vistoria.model.Usuario;
-import bancodados.vistoria.view.LoginActivity;
+import bancodados.vistoria.activities.LoginActivity;
 
 /**
  * Created by junio on 13/04/16.

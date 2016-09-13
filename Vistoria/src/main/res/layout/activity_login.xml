@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:weightSum="1"
     android:background="#ffffff"
-    tools:context="bancodados.vistoria.view.LoginActivity">
+    tools:context="bancodados.vistoria.activities.LoginActivity">
     <!--android:background="@drawable/color"-->
 
     <ScrollView

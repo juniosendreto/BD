@@ -8,32 +8,26 @@
     android:paddingRight="16dp"
     android:paddingTop="16dp"
     android:orientation="vertical"
-    tools:context="bancodados.vistoria.view.VistoriaActivity"
+    tools:context="bancodados.vistoria.activities.VistoriaActivity"
     android:background="#ffffff">
 
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/scrollView"
-        android:fillViewport="false"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
->
+        android:fillViewport="false">
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:layout_alignBottom="@+id/scrollView"
-            android:layout_centerHorizontal="true">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <!-- *********** Passo 1 - DADOS GERAIS SOBRE MORADIA ******** -->
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:text="PASSO 1 - DADOS GERAIS SOBRE A MORADIA "
+                android:text="@string/passo1"
                 android:id="@+id/passo1TV"
                 android:textStyle="bold" />
             <!--android:drawableRight="@mipmap/erro"-->
@@ -43,20 +37,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/passo1LL"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="false"
+
                 android:orientation="vertical"
                 android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Município"
+                    android:text="@string/municipio"
                     android:id="@+id/municioTV"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    />
 
                 <EditText
                     android:layout_width="200dp"
@@ -66,11 +56,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bairro"
+                    android:text="@string/bairro"
                     android:id="@+id/bairroTV"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                     />
 
                 <EditText
                     android:layout_width="200dp"
@@ -81,11 +69,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nome de moradores"
-                    android:id="@+id/nomeMoradorTV"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:text="@string/nome_moradores"
+                    android:id="@+id/nomeMoradorTV" />
 
                 <EditText
                     android:layout_width="200dp"
@@ -95,33 +80,27 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Condições de acesso à área"
-                    android:id="@+id/condicoesAreaTV"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:text="@string/acesso_area"
+                    android:id="@+id/condicoesAreaTV" />
 
                 <EditText
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/condicoesAreaET" />
-                <TextView
+                <!--TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Condições de acesso a não informada"
                     android:textColor="#ff2b40"
                     android:id="@+id/condicoesAreaReportTV"
                     android:layout_above="@id/condicoesAreaET"
-                    android:visibility="gone" />
+                    android:visibility="gone" / -->
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tipos de moradias"
-                    android:id="@+id/tiposMoradiasTV"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:text="@string/tipo_moradia"
+                    android:id="@+id/tiposMoradiasTV"/>
 
                 <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
@@ -132,26 +111,26 @@
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Alvenaria"
+                        android:text="@string/alvenaria"
                         android:id="@+id/alvenariaRB"/>
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/madeiraRB"
-                        android:text="Madeira" />
+                        android:text="@string/maderia" />
                     <RadioButton
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:id="@+id/mistoRB"
-                        android:text="Misto (alvenaria e madeira)" />
+                        android:text="@string/misto" />
                 </RadioGroup>
-                <TextView
+                <!--TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tipos de Moradias não informado!"
                     android:textColor="#ff2b40"
                     android:id="@+id/tiposMoradiasReportTV"
-                    android:layout_above="@id/tiposMoradiasRG"/>
+                    android:layout_above="@id/tiposMoradiasRG"/ -->
 
             </LinearLayout>
 
@@ -160,7 +139,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="PASSO 2 - CARACTERIZAÇÃO DO LOCAL"
+                android:text="@string/passo2"
                 android:id="@+id/passo2TV"
                 android:textStyle="bold"/>
 
@@ -169,9 +148,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/passo2LL"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="false"
                 android:orientation="vertical"
                 android:visibility="gone">
 
@@ -181,22 +157,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/encostaCB"
-                    android:text="Encosta Natural" />
+                    android:text="@string/encosta_narutal" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/encostaLL"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="false"
                     android:orientation="vertical"
                     android:visibility="gone">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Altura em metros"
+                        android:text="@string/altura_metros"
                         android:id="@+id/alturaEncostaTV" />
 
                     <EditText
@@ -206,21 +179,21 @@
                         android:inputType="number" />
 
                     <ImageButton
-                        android:id="@+id/encostaCameraIB"
+                        android:id="@+id/camera1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/camera25"
                         android:background="#ffffff"
                         android:onClick="callCamera"/>
 
-                    <TextView
+                    <!--TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Altura da Encosta Natural não informada!"
                         android:textColor="#ff2b40"
                         android:id="@+id/alturaEncostaReportTV"
                         android:layout_above="@id/alturaEncostaET"
-                        android:visibility="gone"/>
+                        android:visibility="gone"/ -->
 
                     <!-- Recurso de imagens -->
                 </LinearLayout>
@@ -231,26 +204,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/taludeCB"
-                    android:text="Talude de Corte" />
+                    android:text="@string/talude_corte" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/taludeLL"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="false"
                     android:orientation="vertical"
                     android:visibility="gone" >
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Altura em metros"
-                        android:id="@+id/alturaTaludeTV"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true" />
+                        android:text="@string/altura_metros"
+                        android:id="@+id/alturaTaludeTV" />
 
                     <EditText
                         android:layout_width="200dp"
@@ -258,63 +225,57 @@
                         android:id="@+id/alturaTaludeET"
                         android:inputType="number" />
 
-                    <TextView
+                    <!--TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Altura do Talude de corte não informada!"
                         android:textColor="#ff2b40"
                         android:id="@+id/alturaTaludeReportTV"
                         android:layout_above="@id/alturaTaludeET"
-                        android:visibility="gone"/>
+                        android:visibility="gone"/ -->
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Distância da moradia da base da encosta/talude em metros"
-                        android:id="@+id/distanciaBaseTaludeTV"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true" />
+                        android:text="@string/distancia_base_encosta_talude"
+                        android:id="@+id/distanciaBaseTaludeTV" />
 
                     <EditText
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/distanciaBaseTaludeET"
                         android:inputType="number" />
-                    <TextView
+                    <!--TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Distância da moradia da base da encosta/talude não informada!"
                         android:textColor="#ff2b40"
                         android:id="@+id/distanciaBaseTaludeReportTV"
                         android:layout_above="@id/distanciaBaseTaludeET"
-                        android:visibility="gone"/>
+                        android:visibility="gone"/ -->
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Distancia da moradia do topo da encosta/talude"
-                        android:id="@+id/alturaTopoTaludeTV"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true" />
+                        android:text="@string/distacia_topo_encosta_talude"
+                        android:id="@+id/alturaTopoTaludeTV"/>
 
                     <EditText
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/alturaTopoTaludeET"
                         android:inputType="number" />
-                    <TextView
+                    <!-- TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Distancia da moradia do topo da encosta/talude não informada!"
                         android:textColor="#ff2b40"
                         android:id="@+id/alturaTopoEncostaReportTV"
                         android:layout_above="@id/alturaTopoTaludeET"
-                        android:visibility="gone"/>
+                        android:visibility="gone"/ -->
 
                     <ImageButton
-                        android:id="@+id/cameraTaludeIB"
+                        android:id="@+id/camera2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/camera25"
@@ -329,26 +290,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/aterroCB"
-                    android:text="Aterro Lançado" />
+                    android:text="@string/aterro_lancado" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/aterroLL"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="false"
                     android:orientation="vertical"
                     android:visibility="gone">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Altura em metros"
-                        android:id="@+id/alturaAterroTV"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true" />
+                        android:text="@string/altura_metros"
+                        android:id="@+id/alturaAterroTV" />
 
                     <EditText
                         android:layout_width="200dp"
@@ -356,63 +311,57 @@
                         android:id="@+id/alturaAterroET"
                         android:inputType="number" />
 
-                    <TextView
+                    <!-- TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Altura do Aterro Lançado não informada!"
                         android:textColor="#ff2b40"
                         android:id="@+id/alturaAterroReportTV"
                         android:layout_above="@id/alturaAterroET"
-                        android:visibility="gone"/>
+                        android:visibility="gone"/ -->
 
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Distância da moradia da base do aterro em metros"
-                        android:id="@+id/distanciaBaseAterroTV"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true" />
+                        android:text="@string/distancia_base_aterro"
+                        android:id="@+id/distanciaBaseAterroTV" />
 
                     <EditText
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/distanciaBaseAterroET"
                         android:inputType="number" />
-                    <TextView
+                    <!--TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Distância da moradia da base do aterro não informada!"
                         android:textColor="#ff2b40"
                         android:id="@+id/distanciaBaseAterroReportTV"
                         android:layout_above="@id/distanciaBaseAterroET"
-                        android:visibility="gone"/>
+                        android:visibility="gone"/ -->
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Distancia da moradia do topo do aterro"
-                        android:id="@+id/alturaTopoAterroTV"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true" />
+                        android:text="@string/distancia_topo_aterro"
+                        android:id="@+id/alturaTopoAterroTV" />
 
                     <EditText
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/alturaTopoAterroET"
                         android:inputType="number" />
-                    <TextView
+                    <!--TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Distancia da moradia do topo do aterro não informada!"
                         android:textColor="#ff2b40"
                         android:id="@+id/alturaTopoAterroReportTV"
                         android:layout_above="@id/alturaTopoAterroET"
-                        android:visibility="gone"/>
+                        android:visibility="gone"/ -->
                     <ImageButton
-                        android:id="@+id/AterroCameraIB"
+                        android:id="@+id/camera3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/camera25"
@@ -425,26 +374,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/paredeCB"
-                    android:text="Presença de Parede Rochosa" />
+                    android:text="@string/parede_rochosa" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/paredeLL"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="false"
                     android:orientation="vertical"
                     android:visibility="gone">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Altura em metros"
-                        android:id="@+id/alturaParedeTV"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true" />
+                        android:text="@string/altura_metros"
+                        android:id="@+id/alturaParedeTV" />
 
                     <EditText
                         android:layout_width="200dp"
@@ -453,21 +396,21 @@
                         android:inputType="number" />
 
                     <ImageButton
-                        android:id="@+id/paredeCameraIB"
+                        android:id="@+id/camera4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/camera25"
                         android:background="#ffffff"
                         android:onClick="callCamera" />
 
-                    <TextView
+                    <!--TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Altura da parede rochosa não informada!"
                         android:textColor="#ff2b40"
                         android:id="@+id/alturaParedeReportTV"
                         android:layout_above="@id/alturaParedeET"
-                        android:visibility="gone"/>
+                        android:visibility="gone"/ -->
 
                 </LinearLayout>
 
@@ -475,10 +418,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/blocosRochasCB"
-                    android:text="Presença de blocos de rocha e matacões" />
+                    android:text="@string/blocos_rocha_matacoes" />
 
                 <ImageButton
-                    android:id="@+id/blocosRochaCameraIB"
+                    android:id="@+id/camera5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/camera25"
@@ -489,10 +432,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/lixoEntulhoCB"
-                    android:text="Presença de lixo/entulho" />
+                    android:text="@string/lixo_entulho" />
 
                 <ImageButton
-                    android:id="@+id/lixoEntulhoCameraIB"
+                    android:id="@+id/camera6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/camera25"
@@ -506,16 +449,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="PASSO 3 - ÁGUA"
+                android:text="@string/passo3"
                 android:id="@+id/passo3TV"
                 android:textStyle="bold" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/passo3LL"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="false"
                 android:orientation="vertical"
                 android:visibility="gone">
 
@@ -523,10 +463,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/concentracaoAguaCB"
-                    android:text="Concentração de água de chuva em superfície (enxurrada)" />
+                    android:text="@string/concentracao_agua" />
 
                 <ImageButton
-                    android:id="@+id/concentracaoAguaCameraIB"
+                    android:id="@+id/camera7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/camera25"
@@ -535,12 +475,12 @@
 
                 <CheckBox
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:id="@+id/lancamentoAguaCB"
-                    android:text="Lançamento de água servida em superfície(a céu aberto ou no quintal)" />
+                    android:text="@string/lancamento_agua" />
 
                 <ImageButton
-                    android:id="@+id/lancamentoAguaIB"
+                    android:id="@+id/camera8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/camera25"
@@ -550,11 +490,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sistema de drenagem superficial"
-                    android:id="@+id/drenagemSuperficialTV"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:text="@string/drenagem_superficial"
+                    android:id="@+id/drenagemSuperficialTV" />
 
                 <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
@@ -565,36 +502,33 @@
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Inexistente"
+                        android:text="@string/inexistente"
                         android:id="@+id/inexistenteRB"/>
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/precarioRB"
-                        android:text="Precário" />
+                        android:text="@string/precario" />
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/satisfatorioRB"
-                        android:text="Satisfatorio" />
+                        android:text="@string/satisfatorio" />
                 </RadioGroup>
-                <TextView
+                <!--TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sistema de drenagem superficial não informada"
                     android:textColor="#ff2b40"
                     android:id="@+id/drenagemSuperficialReportTV"
                     android:layout_above="@id/drenagemSuperficialRG"
-                    android:visibility="gone"/>
+                    android:visibility="gone"/-->
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Para onde vai o esgoto?"
-                    android:id="@+id/idaEsgotoTV"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:text="@string/local_esgoto"
+                    android:id="@+id/idaEsgotoTV" />
 
                 <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
@@ -604,37 +538,34 @@
 
                     <RadioButton
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Fossa"
+                        android:layout_height="match_parent"
+                        android:text="@string/fossa"
                         android:id="@+id/fossaRB"/>
                     <RadioButton
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:id="@+id/canalizadoRB"
-                        android:text="Canalizado" />
+                        android:text="@string/canalizado" />
                     <RadioButton
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:id="@+id/superficieRB"
-                        android:text="Lançamento em superfície (céu aberto)" />
+                        android:text="@string/lancamento_superficie" />
                 </RadioGroup>
-                <TextView
+                <!--TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Local onde o esgoto vai não informado"
                     android:textColor="#ff2b40"
                     android:id="@+id/idaEsgotoReportTV"
                     android:layout_above="@id/idaEsgotoRG"
-                    android:visibility="gone"/>
+                    android:visibility="gone"/ -->
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="De onde vem a água para uso na moradia?"
-                    android:id="@+id/vindaAguaTV"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:text="@string/agua_moradia"
+                    android:id="@+id/vindaAguaTV" />
 
                 <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
@@ -645,32 +576,29 @@
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Prefeitura/Concessionária"
+                        android:text="@string/prefeitura_concessionaria"
                         android:id="@+id/prefeituraCRB"/>
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/mangueiraRB"
-                        android:text="Mangueira" />
+                        android:text="@string/mangueira" />
                 </RadioGroup>
 
-                <TextView
+                <!--TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Local onde vem a água não informado"
                     android:textColor="#ff2b40"
                     android:id="@+id/vindaAguaReportTV"
                     android:layout_above="@id/vindaAguaRG"
-                    android:visibility="gone"/>
+                    android:visibility="gone"/-->
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Existe vazamento na tubulação?"
-                    android:id="@+id/vazamentoTV"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:text="@string/vazamento_tubulacao"
+                    android:id="@+id/vazamentoTV" />
 
                 <RadioGroup
                     android:layout_width="wrap_content"
@@ -681,7 +609,7 @@
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sim"
+                        android:text="@string/sim"
                         android:id="@+id/vazamentoSRB">
 
                     </RadioButton>
@@ -690,7 +618,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/vazamentoNRB"
-                        android:text="Não"/>
+                        android:text="@string/nao"/>
                 </RadioGroup>
                 <RadioGroup
                     android:layout_width="fill_parent"
@@ -702,17 +630,17 @@
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Esgoto"
+                        android:text="@string/esgoto"
                         android:id="@+id/vazamentoEsgotoRB"/>
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/vazamentoAguaRB"
-                        android:text="Agua" />
+                        android:text="@string/agua" />
                 </RadioGroup>
 
-                <TextView
+                <!--TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Existência de vazamento não informada"
@@ -727,17 +655,14 @@
                     android:textColor="#ff2b40"
                     android:id="@+id/vazamentoEAReportTV"
                     android:layout_above="@id/vazamentoRG"
-                    android:visibility="gone"/>
+                    android:visibility="gone"/ -->
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Minas d'água no barranco (talude)"
-                    android:id="@+id/minasAguaTV"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:text="@string/minas_dagua"
+                    android:id="@+id/minasAguaTV" />
 
                 <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
@@ -747,18 +672,18 @@
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="No pé"
+                        android:text="@string/pe"
                         android:id="@+id/peRB"/>
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/meioRB"
-                        android:text="No meio" />
+                        android:text="@string/meio" />
                     <RadioButton
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:id="@+id/topoTaludeRB"
-                        android:text="Topo do talude ou aterro" />
+                        android:text="@string/topo_talude_aterro" />
 
                 </RadioGroup>
             </LinearLayout>
@@ -768,7 +693,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="PASSO 4 - VEGETAÇÃO NO TALUDE OU PROXIMIDADES"
+                android:text="@string/passo4"
                 android:id="@+id/passo4TV"
                 android:textStyle="bold" />
 
@@ -777,9 +702,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/passo4LL"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="false"
                 android:orientation="vertical"
                 android:visibility="gone">
 
@@ -787,10 +709,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/presencaArvoresCB"
-                    android:text="Presença de Árvores" />
+                    android:text="@string/presenca_arvores" />
 
                 <ImageButton
-                    android:id="@+id/presencaArvoresIB"
+                    android:id="@+id/camera9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/camera25"
@@ -801,10 +723,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/vegetacaoRasteiraCB"
-                    android:text="Vegetação Rasteira" />
+                    android:text="@string/vegetacao_rasteira" />
 
                 <ImageButton
-                    android:id="@+id/vegetacaoRasteiraIB"
+                    android:id="@+id/camera10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/camera25"
@@ -815,10 +737,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/areaDesmatadaCB"
-                    android:text="Área Desmatada" />
+                    android:text="@string/area_desmatada" />
 
                 <ImageButton
-                    android:id="@+id/areaDesmatadaIB"
+                    android:id="@+id/camera11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/camera25"
@@ -828,19 +750,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Área de Cultivo"
-                    android:id="@+id/areaCultivoTV"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:text="@string/area_cultivo"
+                    android:id="@+id/areaCultivoTV" />
 
                 <EditText
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/areaCultivoET" />
+                    android:id="@+id/areaCultivoET"
+                    android:hint="@string/area_cultivo_exemplo"/>
 
                 <ImageButton
-                    android:id="@+id/areaCultivoIB"
+                    android:id="@+id/camera12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/camera25"
@@ -854,7 +774,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="PASSO 5 - SINAIS DE MOVIMENTAÇÕES"
+                android:text="@string/passo5"
                 android:id="@+id/passo5TV"
                 android:textStyle="bold" />
 
@@ -863,9 +783,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/passo5LL"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="false"
                 android:orientation="vertical"
                 android:visibility="gone">
 
@@ -873,31 +790,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/trincasLL"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="false"
+
                     android:orientation="horizontal">
                     <!-- android:visibility="gone" -->
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Trincas"
-                        android:id="@+id/trincasTV"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true" />
+                        android:text="@string/tricas"
+                        android:id="@+id/trincasTV" />
 
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/trincasTerrenoCB"
-                        android:text="No terreno" />
+                        android:text="@string/terreno" />
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/trincasMoradiaCB"
-                        android:text="Na moradia" />
+                        android:text="@string/moradia" />
                         <!--- Adicionar imagem -->
                 </LinearLayout>
 
@@ -905,16 +817,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/degrausLL"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="false"
                     android:orientation="vertical">
 
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/degrausAbatimentoCB"
-                        android:text="Degraus de batimento" />
+                        android:text="@string/degraus_abatimento" />
                     <!--- Adicionar imagem -->
 
                 </LinearLayout>
@@ -923,51 +832,45 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/inclinacaoLL"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="false"
                     android:orientation="horizontal">
                     <!-- android:visibility="gone" -->
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Inclinação"
-                        android:id="@+id/inclinacaoTV"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true" />
+                        android:text="@string/inclicacao"
+                        android:id="@+id/inclinacaoTV" />
 
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/arvoreInclinacaoCB"
-                        android:text="Árvores" />
+                        android:text="@string/arvores" />
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/postesInclinacaoCB"
-                        android:text="Postes" />
+                        android:text="@string/postes" />
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/murosInclinacaoCB"
-                        android:text="Muros" />
+                        android:text="@string/muros" />
                 </LinearLayout>
 
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/paredesEmbarrigadosCB"
-                    android:text="Muros/paredes 'embarrigados'" />
+                    android:text="@string/muros_paredes_embarrigados" />
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/cicatrizEscorregamentoCB"
-                    android:text="Cicatriz de escorregamento próxima à moradia" />
+                    android:text="@string/cicatriz_escorregamento" />
 
                 <ImageButton
-                    android:id="@+id/sinaisMovimentacoesIB"
+                    android:id="@+id/camera13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/camera25"
@@ -981,7 +884,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="PASSO 6 - TIPOS DE PROCESSOS DE INSTABILIZAÇÃO ESPERADOS OU JÁ OCORRIDOS"
+                android:text="@string/passo6"
                 android:id="@+id/passo6TV"
                 android:textStyle="bold" />
 
@@ -990,9 +893,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/passo6LL"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="false"
                 android:orientation="vertical"
                 android:visibility="gone">
 
@@ -1000,39 +900,32 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/escorregamentosLL"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="false"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
                     <!--android:visibility="gone"-->
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Inclinação"
-                        android:id="@+id/escorregamentosTV"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true" />
-
+                        android:text="@string/escorregamentos"
+                        android:id="@+id/escorregamentosTV" />
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/escorregamentoTaludeNaturalCB"
-                        android:text="No talude natural" />
+                        android:text="@string/escorregamento_talude_natural" />
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/escorregamentoTaludeCorteCB"
-                        android:text="No talude de corte" />
+                        android:text="@string/escorregamento_talude_corte" />
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/escorregamentoAterroCB"
-                        android:text="Aterro" />
+                        android:text="@string/escorregamento_aterro" />
 
                     <ImageButton
-                        android:id="@+id/escorregamentosIB"
+                        android:id="@+id/camera14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/camera25"
@@ -1045,15 +938,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/quedaBlocosCB"
-                    android:text="Queda de blocos" />
+                    android:text="@string/queda_blocos" />
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/rolamentoBlocosCB"
-                    android:text="Rolamento de blocos" />
+                    android:text="@string/rolamento_blocos" />
 
                 <ImageButton
-                    android:id="@+id/quedaRolamentoBlocosIB"
+                    android:id="@+id/camera15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/camera25"
@@ -1067,7 +960,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="PASSO 7 - DETERMINAÇÃO DO GRAU DE RISCO"
+                android:text="@string/passo7"
                 android:id="@+id/passo7TV"
                 android:textStyle="bold" />
 
@@ -1075,9 +968,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/passo7LL"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="false"
                 android:orientation="vertical"
                 android:visibility="gone">
 
@@ -1090,23 +980,23 @@
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="RISCO MUITO ALTO/Providência imediata"
+                        android:text="@string/risco_muito_alto"
                         android:id="@+id/riscoMuitoAltoRB"/>
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/riscoAltoB"
-                        android:text="RISCO ALTO/Manter o local em observação" />
+                        android:text="@string/risco_alto" />
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/riscoMedioRB"
-                        android:text="RISCO MÉDIO/Manter o local em observação" />
+                        android:text="@string/risco_medio" />
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/riscoBaixoRB"
-                        android:text="RISCO BAIXO OU INESXISTENTE (pode incluir situaçãoes sem risco)" />
+                        android:text="@string/risco_baixo" />
                 </RadioGroup>
                 <TextView
                     android:layout_width="wrap_content"
@@ -1123,7 +1013,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="PASSO 8 - NECESSIDADE DE REMOÇÃO"
+                android:text="@string/passo8"
                 android:id="@+id/passo8TV"
                 android:textStyle="bold" />
 
@@ -1131,20 +1021,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/passo8LL"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="false"
                 android:orientation="vertical"
                 android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Número de moradias em risco"
-                    android:id="@+id/numeroMoradiasRiscoTV"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:text="@string/numero_moradias_risco"
+                    android:id="@+id/numeroMoradiasRiscoTV" />
 
                 <EditText
                     android:layout_width="200dp"
@@ -1155,11 +1039,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Estimativa do número de pessoas para remoção"
-                    android:id="@+id/quatidadeRemocaoTV"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:text="@string/numero_pessoas_remocao"
+                    android:id="@+id/quatidadeRemocaoTV" />
 
                 <EditText
                     android:layout_width="200dp"
@@ -1174,7 +1055,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PASSO 9 - OUTRAS INFORMAÇÕES"
+            android:text="@string/passo9"
             android:id="@+id/passo9TV"
             android:textStyle="bold" />
 
@@ -1196,9 +1077,6 @@
                 android:layout_gravity="center"
                 android:id="@+id/salvarVistoriaB"
                 android:text="Salvar Vistoria" />
-
         </LinearLayout>
-
-
     </ScrollView>
 </LinearLayout>

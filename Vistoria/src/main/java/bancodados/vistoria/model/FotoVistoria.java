@@ -19,16 +19,16 @@ public class FotoVistoria {
     @DatabaseField(foreign = true, columnName = "VISTORIA_ID")
     private Vistoria vistorias;
 
-    @DatabaseField(columnName = "descricao", canBeNull = false)
+    @DatabaseField(columnName = "descricao", canBeNull = true)
     private String descricao;
 
-    @DatabaseField(columnName = "imagem_grande", canBeNull = false, dataType = DataType.BYTE_ARRAY)
+    @DatabaseField(columnName = "imagem_grande", canBeNull = true, dataType = DataType.BYTE_ARRAY)
     private byte[] imagemGrande;
 
-    @DatabaseField(columnName = "imagem_media", canBeNull = false, dataType = DataType.BYTE_ARRAY)
+    @DatabaseField(columnName = "imagem_media", canBeNull = true, dataType = DataType.BYTE_ARRAY)
     private byte[] imagemMedia;
 
-    @DatabaseField(columnName = "imagem_pequena", canBeNull = false, dataType = DataType.BYTE_ARRAY)
+    @DatabaseField(columnName = "imagem_pequena", canBeNull = true, dataType = DataType.BYTE_ARRAY)
     private byte[] imagemPequena;
 
     public FotoVistoria(){ }

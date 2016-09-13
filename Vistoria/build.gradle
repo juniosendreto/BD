@@ -44,4 +44,6 @@ dependencies {
 
     compile 'org.osmdroid:osmdroid-android:5.1@aar'
 
+    compile 'commons-io:commons-io:2.4'
+
 }

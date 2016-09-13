@@ -23,7 +23,7 @@ public class UsuarioDaoImpl extends AbstractDaoImpl{
     public Usuario findByLoginAndPassword(String login, String password){
         List<Usuario> usuarioList = null;
         try {
-            openBD();
+            connectingBD();
             QueryBuilder<Usuario, Object> queryBuilder = (QueryBuilder<Usuario, Object>) dataBase.getDao(Usuario.class).queryBuilder();
             Where<Usuario, Object> where =  queryBuilder.where();
             where.eq(Usuario.COL_LOGIN, login).and().eq(Usuario.COL_PASSWORD, password);
@@ -44,7 +44,7 @@ public class UsuarioDaoImpl extends AbstractDaoImpl{
 
     public Usuario findByLogin(String login) throws java.sql.SQLException {
         List<Usuario> usuarioList;
-        openBD();
+        connectingBD();
         QueryBuilder<Usuario, Object> queryBuilder = (QueryBuilder<Usuario, Object>) dataBase.getDao(Usuario.class).queryBuilder();
         Where<Usuario, Object> where =  queryBuilder.where();
         where.eq(Usuario.COL_LOGIN, login);

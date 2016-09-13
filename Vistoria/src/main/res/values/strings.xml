@@ -3,12 +3,16 @@
     <string name="title_activity_pagina_inicial">PaginaInicialActivity</string>
     <string name="action_settings">Settings</string>
 
+
+    <!-- menu main_activity -->
     <string name="action_update_usuario">Alterar dados</string>
     <string name="action_criar_vistoria">Criar vistoria</string>
     <string name="action_listar_vistorias">Listar vistorias</string>
     <string name="action_sobre">Sobre</string>
     <string name="action_sair">Sair</string>
 
+
+    <!-- Título e Subtítulo da aplicação -->
     <string name="titulo_login">
         GOVERNO DO ESTADO DE SÃO PAULO\n
         GABINETE DO GOVERNADOR - CASA MILITAR\n
@@ -18,4 +22,94 @@
         Vistoria Ténica - PPDC\n
         Aplicado a Movimentos de Terra
     </string>
+
+
+    <!-- Lista com nomes de cada câmera da vistoria -->
+    <string name="passo1">PASSO 1 - DADOS GERAIS SOBRE A MORADIA</string>
+    <string name="municipio">Município</string>
+    <string name="bairro">Bairro</string>
+    <string name="nome_moradores">Nome de moradores</string>
+    <string name="acesso_area">Condições de Acesso à área</string>
+    <string name="tipo_moradia">Tipos de moradias</string>
+    <string name="alvenaria">Alvenaria</string>
+    <string name="maderia">Madeira</string>
+    <string name="misto">Misto(alvenaria e madeira)</string>
+
+    <string name="passo2">PASSO 2 -  CARACTERIZACÃO DO LOCAL</string>
+    <string name="encosta_narutal">Encosta Natural</string>
+    <string name="talude_corte">Talude de Corte</string>
+    <string name="distancia_base_encosta_talude">Distância da moradia da base da encosta/talude em metros</string>
+    <string name="distacia_topo_encosta_talude">Distâcia da moradia do topo da encosta/talude</string>
+    <string name="aterro_lancado">Aterro Lançado</string>
+    <string name="distancia_base_aterro">Distância da moradia da base do aterro em metros</string>
+    <string name="distancia_topo_aterro">Distância da moradia do topo do aterro</string>
+    <string name="parede_rochosa">Presença de parede rochosa</string>
+    <string name="altura_metros">Altura em metros</string>
+    <string name="blocos_rocha_matacoes">Presença de blocos de rocha e matacões</string>
+    <string name="lixo_entulho">Presença de lixo/entulho</string>
+
+    <string name="passo3"> PASSO 3 - ÁGUA</string>
+    <string name="concentracao_agua">Concentracão de água de chuva em superfície(enxurrada)</string>
+    <string name="lancamento_agua">Lançamento de água servida em superfície(a céu aberto ou no quintal)</string>
+    <string name="drenagem_superficial">Sistema de drenagem superficial</string>
+    <string name="inexistente">Inexistente</string>
+    <string name="precario">Precário</string>
+    <string name="satisfatorio">Satisfatório</string>
+    <string name="local_esgoto">Para onde vai o esgoto?</string>
+    <string name="fossa">Fossa</string>
+    <string name="canalizado">Canalizado</string>
+    <string name="lancamento_superficie">Lançamento em superfície(céu aberto)</string>
+    <string name="agua_moradia">De onde vem a água para uso na moradia?</string>
+    <string name="prefeitura_concessionaria">Prefeitura/Concessionária</string>
+    <string name="mangueira">Mangueira</string>
+    <string name="vazamento_tubulacao">Existe vazamento na tubulação?</string>
+    <string name="sim">SIM</string>
+    <string name="esgoto">Esgoto</string>
+    <string name="agua">Água</string>
+    <string name="nao">NÃO</string>
+    <string name="minas_dagua">Minas "d'água" no barranco(talude)</string>
+    <string name="pe">No pé</string>
+    <string name="meio">No meio</string>
+    <string name="topo_talude_aterro">Topo do talude ou aterro</string>
+
+    <string name="passo4">PASSO 4 - VEGETAÇÃO NO TALUDE OU PROXIMIDADES</string>
+    <string name="presenca_arvores">Presença de árvores</string>
+    <string name="vegetacao_rasteira">Vegetação rasteira(arbustos, capim, etc)</string>
+    <string name="area_desmatada">Área Desmatada</string>
+    <string name="area_cultivo">Área de cultivo</string>
+    <string name="area_cultivo_exemplo">banana</string>
+
+    <string name="passo5">PASSO 5 - SINAIS DE MOVIMENTAÇÕES</string>
+    <string name="tricas">Trincas</string>
+    <string name="terreno">No terreno</string>
+    <string name="moradia">Na moradia</string>
+    <string name="degraus_abatimento">Degraus de Abatimento</string>
+    <string name="inclicacao">Inclinação</string>
+    <string name="arvores">Árvores</string>
+    <string name="postes">Postes</string>
+    <string name="muros">Muros</string>
+    <string name="muros_paredes_embarrigados">Muros/paredes ""Embarrigados""</string>
+    <string name="cicatriz_escorregamento">Cicatriz de escorregamento próxima à moradia</string>
+
+    <string name="passo6">PASSO 6 - TIPOS DE PROCESSOS DE INSTABILIZAÇÃO ESPERADOS OU JÁ OCORRIDOS</string>
+    <string name="escorregamentos">Escorregamentos</string>
+    <string name="escorregamento_talude_natural">No talude natural</string>
+    <string name="escorregamento_talude_corte">No talude de corte</string>
+    <string name="escorregamento_aterro">No aterro</string>
+    <string name="queda_blocos">Queda de blocos</string>
+    <string name="rolamento_blocos">Rolamento de blocos</string>
+
+    <string name="passo7">PASSO 7 - DETERMINAÇÃO DO GRAU DE RISCO</string>
+    <string name="risco_muito_alto">RISCO MUITO ALTO/Providência imediata</string>
+    <string name="risco_alto">RISCO ALTO/Manter local em observação</string>
+    <string name="risco_medio">RISCO MÉDIO/Manter local em observação</string>
+    <string name="risco_baixo">RISCO BAIXO OU INEXISTENTE (pode incluir situações sem risco)</string>
+
+    <string name="passo8">PASSO 8 - NECESSIDADE DE REMOÇÃO</string>
+    <string name="numero_moradias_risco">Número de moradias em risco</string>
+    <string name="numero_pessoas_remocao">Estimativa do npumero de pessoas para remoção</string>
+
+    <string name="passo9"></string>
+    <string name="outras_informacoes">Outras Informações</string>
+
 </resources>

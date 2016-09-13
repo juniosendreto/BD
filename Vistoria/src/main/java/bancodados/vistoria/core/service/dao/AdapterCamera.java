@@ -28,15 +28,15 @@ import bancodados.vistoria.model.Vistoria;
 public class AdapterCamera {
 
     public static final int MEDIA_TYPE_IMAGE = 1;
-    public static File file;
+    private File file;
     private Context context;
 
     public AdapterCamera(Context context){
         this.context = context;
-        if(file == null){
-            File directory = new File(Environment.getExternalStorageDirectory() + File.separator + "Vistorias");
-            directory.mkdirs();
-        }
+        /*file = new File(Environment.getExternalStorageDirectory() + File.separator + "Vistorias");
+        if(file.exists() == false){
+            file.mkdirs();
+        }*/
 
     }
     public void saveAllImage(List<FotoVistoria> fotoVistorias, Vistoria vistoria, List<Bitmap> bitmaps) throws IOException {
@@ -45,14 +45,14 @@ public class AdapterCamera {
         directory.mkdirs();
 
 
-            for(int i = 0;  i < bitmaps.size(); i++){
+            /*for(int i = 0;  i < bitmaps.size(); i++){
                 File file = new File(directory.getPath() + "/" + fotoVistorias.get(i).getDescricao());
                 OutputStream os = new BufferedOutputStream(new FileOutputStream(file));
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bitmaps.get(i).compress(Bitmap.CompressFormat.PNG, 100, os);
-                fotoVistorias.get(i).setImagemGrande(stream.toByteArray());
+               // ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bitmaps.get(i).compress(Bitmap.CompressFormat.JPEG, 100, os);
+                //fotoVistorias.get(i).setImagemGrande(stream.toByteArray());
                 os.close();
-            }
+            }*/
 
     }
 
@@ -94,13 +94,21 @@ public class AdapterCamera {
         return mediaFile;
     }
 
+    public void removeAllFile(File file){
+        if(file.exists()){
+            File[] fileList = file.listFiles();
 
+            for(File f: fileList){
+                f.delete();
+            }
+            file.delete();
+        }
+    }
 
-
-
-
-
-
-
+    public byte[] bitmapToByteArray(Context context, Bitmap bitmap){
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        return stream.toByteArray();
+    }
 
 }

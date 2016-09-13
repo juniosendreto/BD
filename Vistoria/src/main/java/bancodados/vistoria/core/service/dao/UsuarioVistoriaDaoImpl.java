@@ -26,7 +26,7 @@ public class UsuarioVistoriaDaoImpl extends AbstractDaoImpl{
     public UsuarioVistoria findByIdVistoria(Vistoria vistoria) throws SQLException{
         List<UsuarioVistoria> usuarioVistoriaList = null;
         try {
-            openBD();
+            connectingBD();
             QueryBuilder<UsuarioVistoria, Object> queryBuilder = (QueryBuilder<UsuarioVistoria, Object>)
                     dataBase.getDao(UsuarioVistoria.class).queryBuilder();
             Where<UsuarioVistoria, Object> where =  queryBuilder.where();

@@ -9,6 +9,7 @@ import com.j256.ormlite.dao.Dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import bancodados.vistoria.Util.FileUtil;
 import bancodados.vistoria.bd.DataBase;
 
 /**
@@ -24,10 +25,12 @@ public abstract class AbstractDaoImpl {
         this.context = context;
     }
 
-    public void openBD() {
+    public void connectingBD() {
         try {
             if (dataBase == null || !(dataBase.isOpen())) {
                 dataBase = new DataBase(context);
+
+                
             }
         }catch (Exception e){
             Log.d("--------", "ERRO OpenBD(ABSTRACTDAO) " + e.getMessage());
@@ -38,7 +41,7 @@ public abstract class AbstractDaoImpl {
 
     public Object save(Class classe, Object object) {
         try {
-            openBD();
+            connectingBD();
             dataBase.getDao(classe).create(object);
             return object;
         } catch (Exception e) {
@@ -51,7 +54,7 @@ public abstract class AbstractDaoImpl {
 
     public Boolean update(Class classe, Object object) {
         try {
-            openBD();
+            connectingBD();
             dataBase.getDao(classe).update(object);
             return true;
         } catch (SQLException e) {
@@ -65,7 +68,7 @@ public abstract class AbstractDaoImpl {
     public Boolean delete(Class classe, Object object) {
         Integer validarDelete = 0;
         try {
-            openBD();
+            connectingBD();
             validarDelete = dataBase.getDao(classe).delete(object);
         } catch (java.sql.SQLException e) {
             e.printStackTrace();
@@ -83,7 +86,7 @@ public abstract class AbstractDaoImpl {
     public List<Class> listAll(Class classe) {
         List<Class> lista = null;
         try {
-            openBD();
+            connectingBD();
             lista =  dataBase.getDao(classe).queryForAll();
             return lista;
         } catch (SQLException e) {
@@ -97,7 +100,7 @@ public abstract class AbstractDaoImpl {
     public Object findById(Class classe, Long id) {
         Object classeId = null;
         try {
-            openBD();
+            connectingBD();
             Dao<Class, Integer> dao = dataBase.getDao(classe);
             classeId = dao.queryForId(Integer.valueOf(id.toString()));
             return classeId;
@@ -112,7 +115,7 @@ public abstract class AbstractDaoImpl {
 
     public Long countAllRows(Class classe) {
         try {
-            openBD();
+            connectingBD();
             return dataBase.getDao(classe).countOf();
         } catch (SQLException e) {
             Log.d("------", "ERRO countAllRows(ABSDAO) - " + e.getMessage());
@@ -125,7 +128,7 @@ public abstract class AbstractDaoImpl {
 
     public Boolean saveAll(Class classe, List<Object> objects){
         try{
-            openBD();
+            connectingBD();
 
             for(Object o: objects)
                 dataBase.getDao(classe).create(o);

@@ -1,4 +1,4 @@
-package bancodados.vistoria.view;
+package bancodados.vistoria.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -13,24 +13,32 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import bancodados.vistoria.R;
+import bancodados.vistoria.Util.FileUtil;
 import bancodados.vistoria.core.service.dao.Adapter;
 import bancodados.vistoria.core.service.dao.AdapterCamera;
 import bancodados.vistoria.core.service.dao.AdapterVistoria;
+import bancodados.vistoria.core.service.dao.FotoVistoriaDaoImpl;
 import bancodados.vistoria.core.service.dao.LocalizacaoDaoImpl;
 import bancodados.vistoria.core.service.dao.UsuarioVistoriaDaoImpl;
 import bancodados.vistoria.core.service.dao.VistoriaDaoImpl;
@@ -43,21 +51,81 @@ import bancodados.vistoria.model.Vistoria;
 public class VistoriaActivity extends Activity {
 
     public static final int PICK_PHOTO_REQUEST = 100;
-    Localizacao localizacao;
-    Usuario usuario;
-    private ImageView imageView;
+
+    private Localizacao localizacao;
+    private Usuario usuario;
     private List<FotoVistoria> fotoVistorias;
     private List<Bitmap> bitmaps;
+    private File mTempFile;
+    private AdapterCamera adapterCamera;
+    private FotoVistoriaDaoImpl fotoVistoriaDao;
+    private Map<Integer, List<String>> mPathPhotos;
+    private Integer mHashmapKey;
 
+    private ImageButton mCamera1;
+    private ImageButton mCamera2;
+    private ImageButton mCamera3;
+    private ImageButton mCamera4;
+    private ImageButton mCamera5;
+    private ImageButton mCamera6;
+    private ImageButton mCamera7;
+    private ImageButton mCamera8;
+    private ImageButton mCamera9;
+    private ImageButton mCamera10;
+    private ImageButton mCamera11;
+    private ImageButton mCamera12;
+    private ImageButton mCamera13;
+    private ImageButton mCamera14;
+    private ImageButton mCamera15;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vistoria);
 
-        //imageView = (ImageView) findViewById(R.id.imagemView);
+
+
+        //adapterCamera = new AdapterCamera(getApplicationContext());
         fotoVistorias = new ArrayList<>();
         bitmaps = new ArrayList<>();
+
+
+        mPathPhotos = new HashMap<>();
+        mTempFile = null;
+
+        mCamera1 = (ImageButton) findViewById(R.id.camera1);
+        mCamera2 = (ImageButton) findViewById(R.id.camera2);
+        mCamera3 = (ImageButton) findViewById(R.id.camera3);
+        mCamera4 = (ImageButton) findViewById(R.id.camera4);
+        mCamera5 = (ImageButton) findViewById(R.id.camera5);
+        mCamera6 = (ImageButton) findViewById(R.id.camera6);
+        mCamera7 = (ImageButton) findViewById(R.id.camera7);
+        mCamera8 = (ImageButton) findViewById(R.id.camera8);
+        mCamera9 = (ImageButton) findViewById(R.id.camera9);
+        mCamera10 = (ImageButton) findViewById(R.id.camera10);
+        mCamera11 = (ImageButton) findViewById(R.id.camera11);
+        mCamera12 = (ImageButton) findViewById(R.id.camera12);
+        mCamera13 = (ImageButton) findViewById(R.id.camera13);
+        mCamera14 = (ImageButton) findViewById(R.id.camera14);
+        mCamera15 = (ImageButton) findViewById(R.id.camera15);
+
+        mCamera1.setId(new Integer(0));
+        mCamera2.setId(new Integer(1));
+        mCamera3.setId(new Integer(2));
+        mCamera4.setId(new Integer(3));
+        mCamera5.setId(new Integer(4));
+        mCamera6.setId(new Integer(5));
+        mCamera7.setId(new Integer(6));
+        mCamera8.setId(new Integer(7));
+        mCamera9.setId(new Integer(8));
+        mCamera10.setId(new Integer(9));
+        mCamera11.setId(new Integer(10));
+        mCamera12.setId(new Integer(11));
+        mCamera13.setId(new Integer(12));
+        mCamera14.setId(new Integer(13));
+        mCamera15.setId(new Integer(14));
+
+
         final Adapter adapter = new Adapter(getApplicationContext());
         final AdapterVistoria adapterVistoria = new AdapterVistoria(getApplicationContext());
         final Intent intent = new Intent(this, MainActivity.class);
@@ -67,8 +135,9 @@ public class VistoriaActivity extends Activity {
         localizacao = (Localizacao) getIntent().getSerializableExtra("localizacao");
         final Vistoria vistoriaCriada = (Vistoria) getIntent().getSerializableExtra("vistoria");
         usuario = Usuario.getInstance();
+        fotoVistoriaDao = new FotoVistoriaDaoImpl(getApplicationContext());
 
-        final List<Vistoria> vistoriaList = new ArrayList<Vistoria>();
+        final List<Vistoria> vistoriaList = new ArrayList<>();
         final UsuarioVistoria usuarioVistoria = new UsuarioVistoria(getApplicationContext());
         final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         final Date date = new Date();
@@ -78,17 +147,17 @@ public class VistoriaActivity extends Activity {
 
         final TextView passo1TV = (TextView) findViewById(R.id.passo1TV);
         final LinearLayout passo1LL = (LinearLayout) findViewById(R.id.passo1LL);
-        final Vistoria vistoria = new Vistoria();
+        final Vistoria vistoria = new Vistoria(getApplicationContext());
 
         final EditText bairroET = (EditText) findViewById(R.id.bairroET);
         final EditText municipioET = (EditText) findViewById(R.id.municipioET);
         final EditText nomeMoradorET = (EditText) findViewById(R.id.nomeMoradorET);
         final EditText condicoesAreaET = (EditText) findViewById(R.id.condicoesAreaET);
-        final TextView condicoesAreaReportTV = (TextView) findViewById(R.id.condicoesAreaReportTV);
+        //final TextView condicoesAreaReportTV = (TextView) findViewById(R.id.condicoesAreaReportTV);
         final RadioButton alvenariaRB = (RadioButton) findViewById(R.id.alvenariaRB);
         final RadioButton madeiraRB = (RadioButton) findViewById(R.id.madeiraRB);
         final RadioButton mistoRB = (RadioButton) findViewById(R.id.mistoRB);
-        final TextView tiposMoradiasReportTV = (TextView) findViewById(R.id.tiposMoradiasReportTV);
+        //final TextView tiposMoradiasReportTV = (TextView) findViewById(R.id.tiposMoradiasReportTV);
 
 
         /* PASSO 2 */
@@ -100,30 +169,30 @@ public class VistoriaActivity extends Activity {
         final CheckBox encostaCB = (CheckBox) findViewById(R.id.encostaCB);
         final LinearLayout encostaLL = (LinearLayout) findViewById(R.id.encostaLL);
         final EditText alturaEncostaET = (EditText) findViewById(R.id.alturaEncostaET);
-        final TextView alturaEncostaReportTV = (TextView) findViewById(R.id.alturaEncostaReportTV);
+        //final TextView alturaEncostaReportTV = (TextView) findViewById(R.id.alturaEncostaReportTV);
 
         final CheckBox taludeCB = (CheckBox) findViewById(R.id.taludeCB);
         final LinearLayout taludeLL = (LinearLayout) findViewById(R.id.taludeLL);
         final EditText alturaTaludeET = (EditText) findViewById(R.id.alturaTaludeET);
         final EditText distanciaBaseTaludeET = (EditText) findViewById(R.id.distanciaBaseTaludeET);
         final EditText alturaTopoTaludeET = (EditText) findViewById(R.id.alturaTopoTaludeET);
-        final TextView alturaTaludeReportTV = (TextView) findViewById(R.id.alturaTaludeReportTV);
-        final TextView distanciaBaseTaludeReportTV = (TextView) findViewById(R.id.distanciaBaseTaludeReportTV);
-        final TextView alturaTopoEncostaReportTV = (TextView) findViewById(R.id.alturaTopoEncostaReportTV);
+        //final TextView alturaTaludeReportTV = (TextView) findViewById(R.id.alturaTaludeReportTV);
+       // final TextView distanciaBaseTaludeReportTV = (TextView) findViewById(R.id.distanciaBaseTaludeReportTV);
+        //final TextView alturaTopoEncostaReportTV = (TextView) findViewById(R.id.alturaTopoEncostaReportTV);
 
         final CheckBox aterroCB = (CheckBox) findViewById(R.id.aterroCB);
         final LinearLayout aterroLL = (LinearLayout) findViewById(R.id.aterroLL);
         final EditText alturaAterroET = (EditText) findViewById(R.id.alturaAterroET);
         final EditText distanciaBaseAterroET = (EditText) findViewById(R.id.distanciaBaseAterroET);
         final EditText alturaTopoAterroET = (EditText) findViewById(R.id.alturaTopoAterroET);
-        final TextView alturaAterroReportTV = (TextView) findViewById(R.id.alturaAterroReportTV);
-        final TextView distanciaBaseAterroReportTV = (TextView) findViewById(R.id.distanciaBaseAterroReportTV);
-        final TextView alturaTopoAterroReportTV = (TextView) findViewById(R.id.alturaTopoAterroReportTV);
+        //final TextView alturaAterroReportTV = (TextView) findViewById(R.id.alturaAterroReportTV);
+        //final TextView distanciaBaseAterroReportTV = (TextView) findViewById(R.id.distanciaBaseAterroReportTV);
+        //final TextView alturaTopoAterroReportTV = (TextView) findViewById(R.id.alturaTopoAterroReportTV);
 
         final CheckBox paredeCB = (CheckBox) findViewById(R.id.paredeCB);
         final LinearLayout paredeLL = (LinearLayout) findViewById(R.id.paredeLL);
         final EditText alturaParedeET = (EditText) findViewById(R.id.alturaParedeET);
-        final TextView alturaParedeReportTV = (TextView) findViewById(R.id.alturaParedeReportTV);
+        //final TextView alturaParedeReportTV = (TextView) findViewById(R.id.alturaParedeReportTV);
 
         final CheckBox blocosRochasCB = (CheckBox) findViewById(R.id.blocosRochasCB);
         final CheckBox lixoEntulhoCB = (CheckBox) findViewById(R.id.lixoEntulhoCB);
@@ -140,7 +209,7 @@ public class VistoriaActivity extends Activity {
         final RadioButton inexistenteRB = (RadioButton) findViewById(R.id.inexistenteRB);
         final RadioButton precarioRB = (RadioButton) findViewById(R.id.precarioRB);
         final RadioButton satisfatorioRB = (RadioButton) findViewById(R.id.satisfatorioRB);
-        final TextView drenagemsuperficialReportTV = (TextView) findViewById(R.id.drenagemSuperficialReportTV);
+        //final TextView drenagemsuperficialReportTV = (TextView) findViewById(R.id.drenagemSuperficialReportTV);
 
 
         final RadioButton fossaRB = (RadioButton) findViewById(R.id.fossaRB);
@@ -235,22 +304,22 @@ public class VistoriaActivity extends Activity {
             }
         });
 
-        condicoesAreaET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        /*condicoesAreaET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus){
                     adapter.nullValue(condicoesAreaET, condicoesAreaReportTV);
                 }
             }
-        });
+        });*/
 
-        alvenariaRB.setOnClickListener(new View.OnClickListener() {
+       /* alvenariaRB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 adapter.visibilityRadioButton(alvenariaRB, tiposMoradiasReportTV);
             }
-        });
-        madeiraRB.setOnClickListener(new View.OnClickListener() {
+        });*/
+        /*madeiraRB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 adapter.visibilityRadioButton(madeiraRB, tiposMoradiasReportTV);
@@ -261,7 +330,7 @@ public class VistoriaActivity extends Activity {
             public void onClick(View v) {
                 adapter.visibilityRadioButton(mistoRB, tiposMoradiasReportTV);
             }
-        });
+        });*/
 
 
          /* PASSO 2 */
@@ -281,14 +350,14 @@ public class VistoriaActivity extends Activity {
 
             }
         });
-        alturaEncostaET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        /*alturaEncostaET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus){
                     adapter.nullValueByCheckBox(encostaCB, alturaEncostaET, alturaEncostaReportTV);
                 }
             }
-        });
+        });*/
 
         taludeCB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -297,16 +366,16 @@ public class VistoriaActivity extends Activity {
             }
         });
 
-        alturaTaludeET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        /*alturaTaludeET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus){
                     adapter.nullValueByCheckBox(taludeCB, alturaTaludeET, alturaTaludeReportTV);
                 }
             }
-        });
+        });*/
 
-        distanciaBaseTaludeET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        /*distanciaBaseTaludeET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus){
@@ -322,7 +391,7 @@ public class VistoriaActivity extends Activity {
                     adapter.nullValueByCheckBox(taludeCB, alturaTopoTaludeET, alturaTopoEncostaReportTV);
                 }
             }
-        });
+        });*/
 
         aterroCB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -331,7 +400,7 @@ public class VistoriaActivity extends Activity {
             }
         });
 
-        alturaAterroET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        /*alturaAterroET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus){
@@ -356,7 +425,7 @@ public class VistoriaActivity extends Activity {
                     adapter.nullValueByCheckBox(aterroCB, alturaTopoAterroET, alturaTopoAterroReportTV);
                 }
             }
-        });
+        });*/
 
         paredeCB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -365,14 +434,14 @@ public class VistoriaActivity extends Activity {
             }
         });
 
-        alturaParedeET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        /*alturaParedeET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus){
                     adapter.nullValueByCheckBox(paredeCB, alturaParedeET, alturaParedeReportTV);
                 }
             }
-        });
+        });*/
 
         passo3TV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -757,8 +826,6 @@ public class VistoriaActivity extends Activity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         try {
-                            AdapterCamera adapterCamera = new AdapterCamera(getApplicationContext());
-
                             vistoriaList.add(vistoria);
                             localizacao.setVistorias((Collection) vistoriaList);
                             vistoria.setLocalizacao(localizacao);
@@ -770,9 +837,18 @@ public class VistoriaActivity extends Activity {
                             usuarioVistoria.setUsuario(usuario);
                             usuarioVistoria.setVistoria(vistoria);
                             usuarioVistoriaDao.save(UsuarioVistoria.class, usuarioVistoria);
+                            usuarioVistoriaDao.saveAll(FotoVistoria.class, (ArrayList) fotoVistorias);
 
-                            adapterCamera.saveAllImage(fotoVistorias, vistoria, bitmaps);
+                            //adapterCamera.saveAllImage(fotoVistorias, vistoria, bitmaps);
+                            if(!(mPathPhotos.isEmpty()))
+                                FileUtil.saveAllPhotosDB(getApplicationContext(), mPathPhotos, vistoria);
+                            if(!(mTempFile == null))
+                                if(mTempFile.exists())
+                                    FileUtil.tempToVistoria(mTempFile, vistoria.getId());
+
+
                             startActivity(intent);
+                            finish();
 
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -791,6 +867,10 @@ public class VistoriaActivity extends Activity {
 
     public void callCamera(View v){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        mHashmapKey = v.getId();
+        if(!(mPathPhotos.containsKey(v.getId())))
+            mPathPhotos.put(v.getId(), new ArrayList<String>());
+
         startActivityForResult(intent, PICK_PHOTO_REQUEST);
 
     }
@@ -799,18 +879,41 @@ public class VistoriaActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == PICK_PHOTO_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
+        Uri uri = null;
+        File file;
+        OutputStream os;
+
+        mTempFile = FileUtil.tempDirectory();
+        String photo = mTempFile.getPath() + "/" + "IMG_" +
+                new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+
+        if (requestCode == PICK_PHOTO_REQUEST && resultCode == Activity.RESULT_OK && data != null &&
+                data.getData() != null) {
             try {
-                Uri uri = data.getData();
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                bitmaps.add(bitmap);
-                FotoVistoria fotoVistoria = new FotoVistoria();
-                fotoVistoria.setDescricao("IMG_" + new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()));
-                fotoVistorias.add(fotoVistoria);
+
+                uri = data.getData();
+                file = new File(photo + FileUtil.JPEG);
+                Bitmap imageReal = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                os = new BufferedOutputStream(new FileOutputStream(file));
+
+                imageReal.compress(Bitmap.CompressFormat.JPEG, 100, os);
+                os.close();
+
+                file = new File(photo + FileUtil.THUMBNAIL_SIGLA  + FileUtil.JPEG);
+                Bundle extras = data.getExtras();
+                Bitmap imageThumbNail =  (Bitmap) extras.get("data");
+                os = new BufferedOutputStream(new FileOutputStream(file));
+                imageThumbNail.compress(Bitmap.CompressFormat.JPEG, 100, os);
+                os.close();
+
+                mPathPhotos.get(mHashmapKey).add(photo);
 
             } catch (Exception e) {
                 e.printStackTrace();
                 Log.d("-------", e.getMessage());
+            }finally {
+                getContentResolver().delete(uri, null, null);
+
             }
         }
 
@@ -818,7 +921,10 @@ public class VistoriaActivity extends Activity {
 
 
     public void onBackPressed(){
+        FileUtil.removeAllFile(mTempFile);
         startActivity(new Intent(this, MainActivity.class));
+
     }
+
 
 }

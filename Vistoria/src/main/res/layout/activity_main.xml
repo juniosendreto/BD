@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:background="#ffffff"
-    tools:context=".view.MainActivity">
+    tools:context=".activities.MainActivity">
 
     <include layout="@layout/osmroid_map"></include>
 
@@ -19,7 +19,8 @@
         android:layout_height="30dp"
         android:background="#ffffff"
         android:gravity="bottom|right"
-        android:src="@drawable/my_location"/>
+        android:src="@drawable/my_location"
+        android:visibility="invisible"/>
 
 
 

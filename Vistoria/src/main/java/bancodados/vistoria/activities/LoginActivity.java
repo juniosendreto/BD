@@ -1,15 +1,21 @@
-package bancodados.vistoria.view;
+package bancodados.vistoria.activities;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import java.io.File;
+
 import bancodados.vistoria.R;
+import bancodados.vistoria.Util.FileUtil;
+import bancodados.vistoria.core.service.dao.AdapterCamera;
 import bancodados.vistoria.core.service.dao.UsuarioDaoImpl;
 import bancodados.vistoria.model.Usuario;
 
@@ -19,6 +25,11 @@ public class LoginActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        FileUtil.mainDirectory();
+        FileUtil.vistoriasDirectory();
+        FileUtil.bDDirectory();
+        FileUtil.removeAllFile(new File(FileUtil.PATH + "vistoria/vistorias/temp"));
 
         final UsuarioDaoImpl usuarioImpl = new UsuarioDaoImpl(this);
         ImageButton imageButton =  (ImageButton) findViewById(R.id.imageButton);
@@ -76,6 +87,7 @@ public class LoginActivity extends Activity {
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_HOME);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        Usuario.uniqueUsuario = null;
         startActivity(intent);
         finish();
 

@@ -1,11 +1,18 @@
 package bancodados.vistoria.model;
 
+import android.content.Context;
+import android.content.res.Resources;
+
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+
+import bancodados.vistoria.R;
 
 /**
  * Created by junio on 26/02/16.
@@ -13,6 +20,9 @@ import java.util.Collection;
 
 @DatabaseTable(tableName = "VISTORIA")
 public class Vistoria implements Serializable{
+
+    private List<String> nomeCameras;
+    private Resources mResources;
 
     @DatabaseField(columnName = "id", generatedId = true)
     private Long id;
@@ -584,7 +594,45 @@ public class Vistoria implements Serializable{
         this.informacoes = informacoes;
     }
 
+    public List<String> getNomeCameras() {
+        return nomeCameras;
+    }
+
+    public void setNomeCameras(List<String> nomeCameras) {
+        this.nomeCameras = nomeCameras;
+    }
+
+    public Resources getmResources() {
+        return mResources;
+    }
+
+    public void setmResources(Resources mResources) {
+        this.mResources = mResources;
+    }
+
     public Vistoria(){}
+
+    public Vistoria(Context context){
+        mResources = context.getResources();
+        nomeCameras = new ArrayList<String>(){{
+            add(mResources.getString(R.string.encosta_narutal));
+            add(mResources.getString(R.string.talude_corte));
+            add(mResources.getString(R.string.aterro_lancado));
+            add(mResources.getString(R.string.parede_rochosa));
+            add(mResources.getString(R.string.blocos_rocha_matacoes));
+            add(mResources.getString(R.string.lixo_entulho));
+            add(mResources.getString(R.string.concentracao_agua));
+            add(mResources.getString(R.string.lancamento_agua));
+            add(mResources.getString(R.string.presenca_arvores));
+            add(mResources.getString(R.string.vegetacao_rasteira));
+            add(mResources.getString(R.string.area_desmatada));
+            add(mResources.getString(R.string.area_cultivo));
+            add(mResources.getString(R.string.passo5));
+            add(mResources.getString(R.string.escorregamentos));
+            add(mResources.getString(R.string.rolamento_blocos));
+
+        }};
+    }
 
     public Vistoria(Localizacao localizacao, Collection<FotoVistoria> fotoVistorias,
                     String nomeMorador, Integer tipoMoradia, Boolean encostaNatural,
