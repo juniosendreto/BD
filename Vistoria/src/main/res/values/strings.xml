@@ -112,4 +112,20 @@
     <string name="passo9"></string>
     <string name="outras_informacoes">Outras Informações</string>
 
+
+    <!--string-array name="navigation_drawer_itens_array">
+        <item>Create</item>
+        <item>Read</item>
+    </string-array-->
+
+    <string name="vistorias">Vistorias</string>
+    <string name="bases_locais">Bases Locais</string>
+    <string name="bases_internet">Bases Internet</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="open_street_map">Open Street Map</string>
+    <string name="listar_vistorias_mapa">Listar Vistorias no Mapa</string>
+
 </resources>

@@ -1,15 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_first_fragment"
-            android:title="First" />
-        <item
-            android:id="@+id/nav_second_fragment"
-            android:title="Second" />
-        <item
-            android:id="@+id/nav_third_fragment"
-            android:title="Third" />
+
+    <group
+        android:id="@+id/vistoria_group"
+        android:checkableBehavior="single">
+
+        <item android:title="@string/vistorias">
+            <menu>
+                <item
+                    android:id="@+id/lista_vistoria_mapa_menu"
+                    android:title="@string/listar_vistorias_mapa">
+
+                </item>
+            </menu>
+        </item>
+
     </group>
+
+    <group
+        android:id="@+id/bases_locais_group"
+        android:checkableBehavior="single">
+
+        <item android:title="@string/bases_locais">
+            <menu>
+            </menu>
+        </item>
+
+    </group>
+
+    <group
+        android:id="@+id/base_internet_group"
+        android:checkableBehavior="single">
+
+        <item android:title="@string/bases_internet">
+            <menu>
+                <item
+                    android:id="@+id/open_street_map_menu"
+                    android:title="@string/open_street_map">
+                </item>
+            </menu>
+        </item>
+
+    </group>
+
+
 
 </menu>
