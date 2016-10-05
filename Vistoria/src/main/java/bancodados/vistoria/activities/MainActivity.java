@@ -8,27 +8,38 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
 
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-
+import org.osmdroid.bonuspack.overlays.MapEventsOverlay;
+import org.osmdroid.bonuspack.overlays.MapEventsReceiver;
+import org.osmdroid.bonuspack.overlays.Marker;
+import org.osmdroid.bonuspack.overlays.MarkerInfoWindow;
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import bancodados.vistoria.R;
 import bancodados.vistoria.Util.Menssage;
+import bancodados.vistoria.Util.PointMap;
 import bancodados.vistoria.core.service.dao.GPSTracker;
+import bancodados.vistoria.core.service.dao.LocalizacaoDaoImpl;
 import bancodados.vistoria.model.Localizacao;
 import bancodados.vistoria.model.Usuario;
 
@@ -41,6 +52,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private TextView mNomeDrawer;
     private TextView mLoginDrawer;
     private MapView mOsmdroid;
+    private MapController mMapController;
+    private Marker mMarker;
+    private Integer mListController;
+    private MapEventsReceiver mMapEventsReceiver;
+    private MapEventsOverlay mMapEventsOverlay;
 
 
     @Override
@@ -50,6 +66,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mLoginDrawer = (TextView) findViewById(R.id.loginDrawer);
         mNomeDrawer = (TextView) findViewById(R.id.nomeDrawer);
+
+        //mOverlay = new
 
         mLoginDrawer.setText(Usuario.getInstance().getLogin());
         mNomeDrawer.setText(Usuario.getInstance().getNome());
@@ -80,12 +98,75 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         final EditText longitudeET = (EditText) janelaLatLong.findViewById(R.id.longitudeET);
 
 
-
+        mListController = 0;
         mOsmdroid = (MapView) findViewById(R.id.mapview);
-        //mOsmdroid.canZoomIn();
-        //mOsmdroid.canZoomOut();
+        mOsmdroid.setTileSource(TileSourceFactory.MAPNIK);
+        mOsmdroid.setId(new Integer(1));
+        mMapController = (MapController) mOsmdroid.getController();
+        mMapController.setZoom(12);
+
+        mMarker = new Marker(mOsmdroid);
+        mMarker.setIcon(getResources().getDrawable(R.drawable.marker_red));
+        mMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+
+        GeoPoint center = new GeoPoint(-23.20570845486738, -45.873516831970164);
+        mMapController.animateTo(center);
+
+        mOsmdroid.setMinZoomLevel(2);
         mOsmdroid.setBuiltInZoomControls(true);
+        mOsmdroid.setLongClickable(true);
         mOsmdroid.setMultiTouchControls(true);
+
+        mMapEventsReceiver =  new MapEventsReceiver() {
+            @Override
+            public boolean singleTapConfirmedHelper(GeoPoint geoPoint) {
+                return false;
+            }
+
+            @Override
+            public boolean longPressHelper(GeoPoint geoPoint) {
+                mMarker.setPosition(geoPoint);
+                PointMap.setMarker(getApplicationContext(), mMarker, mOsmdroid);
+                mMapController.animateTo(mMarker.getPosition());
+                mMarker.getInfoWindow().close();
+                return false;
+            }
+        };
+
+        mMapEventsOverlay = new MapEventsOverlay(getBaseContext(), mMapEventsReceiver);
+        mOsmdroid.getOverlays().add(mMapEventsOverlay);
+        mOsmdroid.invalidate();
+
+
+
+        mMarker.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker, MapView mapView) {
+
+                if(marker.getPosition().equals(mMarker.getPosition())) {
+                    mapView.setId(new Integer(1));
+                }
+                else {
+                    mapView.setId(new Integer(2));
+                }
+                if(marker.isInfoWindowOpen())
+                    marker.getInfoWindow().close();
+                else{
+                    if(mapView.getId() == new Integer(1)){
+                        marker.setInfoWindow(new CustomMakerInfoWindow(R.layout.bonuspack_bubble, mOsmdroid));
+                        marker.showInfoWindow();
+                        mMapController.animateTo(marker.getPosition());
+
+                    }else{
+                        marker.setInfoWindow(new CustomMakerInfoWindow(R.layout.inf_vistoria, mOsmdroid));
+                        marker.showInfoWindow();
+                        mMapController.animateTo(marker.getPosition());
+                    }
+                }
+
+                return false;
+            }
+        });
 
 
 
@@ -121,7 +202,61 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    public class CustomMakerInfoWindow extends MarkerInfoWindow{
 
+        TextView bubbleSubdescription = (TextView) mView.findViewById(R.id.bubble_subdescription);
+        TextView bubbleTitle = (TextView) mView.findViewById(R.id.bubble_title);
+        Button criarVistoria = (Button) mView.findViewById(R.id.criarVistoria);
+
+        TextView idVistoria = (TextView) mView.findViewById(R.id.idVistoria);
+        TextView dataVistoria = (TextView) mView.findViewById(R.id.dataVistoria);
+        TextView autorVistoria = (TextView) mView.findViewById(R.id.autorVistoria);
+        Button verVistoria = (Button) mView.findViewById(R.id.verVistoria);
+
+        public CustomMakerInfoWindow(int layoutResId, MapView mapView) {
+            super(layoutResId, mapView);
+        }
+
+
+
+        @Override
+        public void onOpen(Object item){
+            final Marker marker = (Marker) item;
+
+            if(mOsmdroid.getId() == new Integer(1)){
+                bubbleSubdescription.setVisibility(View.VISIBLE);
+                bubbleTitle.setText("Ponto");
+                criarVistoria.setVisibility(View.VISIBLE);
+                bubbleTitle.setVisibility(View.VISIBLE);
+                bubbleSubdescription.setText("Latitude: " + marker.getPosition().getLatitude() + " " +
+                        "Longitude: " + marker.getPosition().getLongitude());
+
+            }else if(mOsmdroid.getId() == new Integer(2)) {
+                idVistoria.setVisibility(View.VISIBLE);
+                idVistoria.setText("ID: ");
+                dataVistoria.setVisibility(View.VISIBLE);
+                dataVistoria.setText("Data: ");
+                autorVistoria.setVisibility(View.VISIBLE);
+                autorVistoria.setText("Autor: ");
+                verVistoria.setVisibility(View.VISIBLE);
+                verVistoria.setText("Ver Vistoria");
+            }
+
+
+
+            criarVistoria.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, VistoriaActivity.class);
+                    localizacao.setLatitude(marker.getPosition().getLatitude());
+                    localizacao.setLongitude(marker.getPosition().getLongitude());
+                    intent.putExtra("localizacao",  localizacao);
+                    startActivity(intent);
+                }
+            });
+        }
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -195,11 +330,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 mOsmdroid.setVisibility(View.VISIBLE);
             else
                 mOsmdroid.setVisibility(View.GONE);
-        } /*else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.lista_vistoria_mapa_menu) {
+            if(mOsmdroid.getVisibility() != View.GONE){
+                if(mListController == 0){
+                    LocalizacaoDaoImpl localizacaoDao = new LocalizacaoDaoImpl(getApplicationContext());
+                    List<Localizacao> localizacaos = (ArrayList) localizacaoDao.listAll(Localizacao.class);
+                    PointMap.setAllMarkers(getApplicationContext(), mOsmdroid, localizacaos);
+                    mOsmdroid.getOverlays().get(0).setEnabled(true);
+                    mListController = 1;
 
-        } else if (id == R.id.nav_slideshow) {
+                }else if(mListController == 1){
+                    PointMap.removeAllMarkers(getApplicationContext(), mOsmdroid, mMapEventsOverlay, mMarker);
+                    mListController = 0;
+                }
+            }
 
-        }*/
+
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -259,6 +406,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+
     public void onBackPressed(){
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle("Alerta");
@@ -279,5 +427,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }).show();
 
     }
+
+
 
 }

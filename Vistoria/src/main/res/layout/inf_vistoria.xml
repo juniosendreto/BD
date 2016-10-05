@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/bonuspack_bubble" >
+        <ImageView android:id="@+id/bubble_image"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:visibility="gone" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:orientation="vertical" >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+                        <TextView android:id="@+id/bubble_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#000000"
+                            android:maxEms="17"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:text="" />
+                </LinearLayout>
+                <Button android:id="@+id/criarVistoria"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Criar Vistoria"
+                    android:visibility="gone"/>
+
+                <TextView android:id="@+id/bubble_subdescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textSize="10dp"
+                    android:maxEms="17"
+                    android:visibility="gone" />
+
+                <TextView android:id="@+id/idVistoria"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textSize="12dp"
+                    android:maxEms="17"
+                    android:text=""
+                    android:visibility="gone"/>
+                <TextView android:id="@+id/dataVistoria"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textSize="12dp"
+                    android:maxEms="17"
+                    android:text=""
+                    android:visibility="gone"/>
+                <TextView android:id="@+id/autorVistoria"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textSize="12dp"
+                    android:maxEms="17"
+                    android:text=""
+                    android:visibility="gone"/>
+
+
+                <Button android:id="@+id/verVistoria"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Ver Vistoria"
+                    android:visibility="gone"/>
+
+                <TextView android:id="@+id/bubble_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textSize="12dp"
+                    android:maxEms="17"
+                    android:text="Description"
+                    android:visibility="gone"/>
+
+        </LinearLayout>
+</LinearLayout>
