@@ -129,7 +129,6 @@ public abstract class AbstractDaoImpl {
     public Boolean saveAll(Class classe, List<Object> objects){
         try{
             connectingBD();
-
             for(Object o: objects)
                 dataBase.getDao(classe).create(o);
             return true;
@@ -140,5 +139,4 @@ public abstract class AbstractDaoImpl {
             dataBase.close();
         }
     }
-
 }

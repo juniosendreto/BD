@@ -134,6 +134,7 @@ public class VistoriaActivity extends Activity {
         final LocalizacaoDaoImpl localizacaoDao = new LocalizacaoDaoImpl(getApplicationContext());
         localizacao = (Localizacao) getIntent().getSerializableExtra("localizacao");
         final Vistoria vistoriaCriada = (Vistoria) getIntent().getSerializableExtra("vistoria");
+        final Boolean vistoriaVelha = (Boolean) getIntent().getSerializableExtra("localizacaoVelha");
         usuario = Usuario.getInstance();
         fotoVistoriaDao = new FotoVistoriaDaoImpl(getApplicationContext());
 
@@ -826,20 +827,29 @@ public class VistoriaActivity extends Activity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         try {
-                            vistoriaList.add(vistoria);
-                            localizacao.setVistorias((Collection) vistoriaList);
-                            vistoria.setLocalizacao(localizacao);
-                            usuarioVistoria.setData(dateFormat.format(date));
+                            if(vistoriaVelha != null && vistoriaVelha == true){
+                                vistoria.setLocalizacao(localizacao);
+                                usuarioVistoria.setData(dateFormat.format(date));
+                                vistoriaDao.save(Vistoria.class, vistoria);
+                                usuarioVistoria.setUsuario(usuario);
+                                usuarioVistoria.setVistoria(vistoria);
+                                usuarioVistoriaDao.save(UsuarioVistoria.class, usuarioVistoria);
+
+                            }else{
+                                vistoriaList.add(vistoria);
+                                localizacao.setVistorias((Collection) vistoriaList);
+                                vistoria.setLocalizacao(localizacao);
+                                usuarioVistoria.setData(dateFormat.format(date));
 
 
-                            localizacaoDao.save(Localizacao.class, localizacao);
-                            vistoriaDao.save(Vistoria.class, vistoria);
-                            usuarioVistoria.setUsuario(usuario);
-                            usuarioVistoria.setVistoria(vistoria);
-                            usuarioVistoriaDao.save(UsuarioVistoria.class, usuarioVistoria);
-                            usuarioVistoriaDao.saveAll(FotoVistoria.class, (ArrayList) fotoVistorias);
+                                localizacaoDao.save(Localizacao.class, localizacao);
+                                vistoriaDao.save(Vistoria.class, vistoria);
+                                usuarioVistoria.setUsuario(usuario);
+                                usuarioVistoria.setVistoria(vistoria);
+                                usuarioVistoriaDao.save(UsuarioVistoria.class, usuarioVistoria);
+                                usuarioVistoriaDao.saveAll(FotoVistoria.class, (ArrayList) fotoVistorias);
+                            }
 
-                            //adapterCamera.saveAllImage(fotoVistorias, vistoria, bitmaps);
                             if(!(mPathPhotos.isEmpty()))
                                 FileUtil.saveAllPhotosDB(getApplicationContext(), mPathPhotos, vistoria);
                             if(!(mTempFile == null))

@@ -23,7 +23,7 @@ public class UsuarioVistoriaDaoImpl extends AbstractDaoImpl{
         super(context);
     }
 
-    public UsuarioVistoria findByIdVistoria(Vistoria vistoria) throws SQLException{
+    public UsuarioVistoria findByIdVistoria(Vistoria vistoria){
         List<UsuarioVistoria> usuarioVistoriaList = null;
         try {
             connectingBD();

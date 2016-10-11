@@ -32,22 +32,29 @@ import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import bancodados.vistoria.R;
+import bancodados.vistoria.Util.CustomMarkerInfoWindow;
 import bancodados.vistoria.Util.Menssage;
 import bancodados.vistoria.Util.PointMap;
 import bancodados.vistoria.core.service.dao.GPSTracker;
 import bancodados.vistoria.core.service.dao.LocalizacaoDaoImpl;
+import bancodados.vistoria.core.service.dao.VistoriaDaoImpl;
 import bancodados.vistoria.model.Localizacao;
 import bancodados.vistoria.model.Usuario;
+import bancodados.vistoria.model.Vistoria;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
-    Localizacao localizacao;
-    GPSTracker gpsTracker;
+    private Localizacao localizacao;
+    private LocalizacaoDaoImpl mLocalizacaoDao;
+    private Vistoria mVistoria;
+    private VistoriaDaoImpl mVistoriaDao;
+    private GPSTracker gpsTracker;
 
     private TextView mNomeDrawer;
     private TextView mLoginDrawer;
@@ -58,7 +65,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private MapEventsReceiver mMapEventsReceiver;
     private MapEventsOverlay mMapEventsOverlay;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,8 +72,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mLoginDrawer = (TextView) findViewById(R.id.loginDrawer);
         mNomeDrawer = (TextView) findViewById(R.id.nomeDrawer);
-
-        //mOverlay = new
 
         mLoginDrawer.setText(Usuario.getInstance().getLogin());
         mNomeDrawer.setText(Usuario.getInstance().getNome());
@@ -88,6 +92,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         localizacao =  new Localizacao();
+        mLocalizacaoDao = new LocalizacaoDaoImpl(getApplicationContext());
+        mVistoria = new Vistoria(getApplicationContext());
+        mVistoriaDao = new VistoriaDaoImpl(getApplicationContext());
         gpsTracker = new GPSTracker(MainActivity.this);
 
 
@@ -131,6 +138,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 mMarker.getInfoWindow().close();
                 return false;
             }
+
         };
 
         mMapEventsOverlay = new MapEventsOverlay(getBaseContext(), mMapEventsReceiver);
@@ -142,28 +150,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mMarker.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker, MapView mapView) {
-
-                if(marker.getPosition().equals(mMarker.getPosition())) {
-                    mapView.setId(new Integer(1));
-                }
-                else {
-                    mapView.setId(new Integer(2));
-                }
                 if(marker.isInfoWindowOpen())
                     marker.getInfoWindow().close();
                 else{
-                    if(mapView.getId() == new Integer(1)){
-                        marker.setInfoWindow(new CustomMakerInfoWindow(R.layout.bonuspack_bubble, mOsmdroid));
-                        marker.showInfoWindow();
-                        mMapController.animateTo(marker.getPosition());
+                    marker.setInfoWindow(new CustomMarkerInfoWindow(MainActivity.this, R.layout.bonuspack_bubble, mOsmdroid));
+                    marker.showInfoWindow();
+                    mMapController.animateTo(marker.getPosition());
 
-                    }else{
-                        marker.setInfoWindow(new CustomMakerInfoWindow(R.layout.inf_vistoria, mOsmdroid));
-                        marker.showInfoWindow();
-                        mMapController.animateTo(marker.getPosition());
-                    }
                 }
-
                 return false;
             }
         });
@@ -202,7 +196,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    public class CustomMakerInfoWindow extends MarkerInfoWindow{
+    /*public class CustomMakerInfoWindow extends MarkerInfoWindow{
 
         TextView bubbleSubdescription = (TextView) mView.findViewById(R.id.bubble_subdescription);
         TextView bubbleTitle = (TextView) mView.findViewById(R.id.bubble_title);
@@ -212,9 +206,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         TextView dataVistoria = (TextView) mView.findViewById(R.id.dataVistoria);
         TextView autorVistoria = (TextView) mView.findViewById(R.id.autorVistoria);
         Button verVistoria = (Button) mView.findViewById(R.id.verVistoria);
+        int layoutResId;
+        MapView mapView;
 
         public CustomMakerInfoWindow(int layoutResId, MapView mapView) {
             super(layoutResId, mapView);
+            this.layoutResId = layoutResId;
+            this.mapView = mapView;
         }
 
 
@@ -223,25 +221,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         public void onOpen(Object item){
             final Marker marker = (Marker) item;
 
-            if(mOsmdroid.getId() == new Integer(1)){
+            if(layoutResId == R.layout.bonuspack_bubble){
                 bubbleSubdescription.setVisibility(View.VISIBLE);
                 bubbleTitle.setText("Ponto");
                 criarVistoria.setVisibility(View.VISIBLE);
                 bubbleTitle.setVisibility(View.VISIBLE);
                 bubbleSubdescription.setText("Latitude: " + marker.getPosition().getLatitude() + " " +
                         "Longitude: " + marker.getPosition().getLongitude());
-
-            }else if(mOsmdroid.getId() == new Integer(2)) {
+            }else{
                 idVistoria.setVisibility(View.VISIBLE);
-                idVistoria.setText("ID: ");
+                //idVistoria.setText("ID: ");
                 dataVistoria.setVisibility(View.VISIBLE);
-                dataVistoria.setText("Data: ");
+                //dataVistoria.setText("Data: ");
                 autorVistoria.setVisibility(View.VISIBLE);
-                autorVistoria.setText("Autor: ");
+                //utorVistoria.setText("Autor: ");
                 verVistoria.setVisibility(View.VISIBLE);
                 verVistoria.setText("Ver Vistoria");
             }
-
 
 
             criarVistoria.setOnClickListener(new View.OnClickListener() {
@@ -254,9 +250,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     startActivity(intent);
                 }
             });
+
+            verVistoria.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+
         }
 
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -292,7 +296,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                                 localizacao.setLatitude(Double.valueOf(latitudeET.getText().toString()));
                                 localizacao.setLongitude(Double.valueOf(longitudeET.getText().toString()));
-                                intent.putExtra("localizacao", (Localizacao) localizacao);
+                                intent.putExtra("localizacao", localizacao);
                                 startActivity(intent);
                             }
                         })
@@ -333,9 +337,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.lista_vistoria_mapa_menu) {
             if(mOsmdroid.getVisibility() != View.GONE){
                 if(mListController == 0){
-                    LocalizacaoDaoImpl localizacaoDao = new LocalizacaoDaoImpl(getApplicationContext());
-                    List<Localizacao> localizacaos = (ArrayList) localizacaoDao.listAll(Localizacao.class);
-                    PointMap.setAllMarkers(getApplicationContext(), mOsmdroid, localizacaos);
+                    PointMap.setAllMarkers(getApplicationContext(), mOsmdroid);
                     mOsmdroid.getOverlays().get(0).setEnabled(true);
                     mListController = 1;
 

@@ -16,30 +16,44 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                        <ImageButton android:id="@+id/SetaEsquerda"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/seta_esquerda"
+                            android:background="@null"
+                            android:visibility="gone"/>
+                        <TextView android:id="@+id/indice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="100dp"
+                            android:text="" />
+                        <ImageButton
+                            android:id="@+id/setaSireita"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/seta_direita"
+                            android:background="@null"
+                            android:layout_marginLeft="90dp"
+                            android:visibility="gone"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical" >
                         <TextView android:id="@+id/bubble_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#000000"
-                            android:maxEms="17"
-                            android:gravity="center"
-                            android:layout_weight="1"
-                            android:text="" />
+                            android:visibility="gone" />
                 </LinearLayout>
-                <Button android:id="@+id/criarVistoria"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Criar Vistoria"
-                    android:visibility="gone"/>
 
                 <TextView android:id="@+id/bubble_subdescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#000000"
                     android:textSize="10dp"
-                    android:maxEms="17"
-                    android:visibility="gone" />
+                    android:maxEms="17"/>
 
                 <TextView android:id="@+id/idVistoria"
                     android:layout_width="wrap_content"
@@ -47,16 +61,14 @@
                     android:textColor="#000000"
                     android:textSize="12dp"
                     android:maxEms="17"
-                    android:text=""
-                    android:visibility="gone"/>
+                    android:text="" />
                 <TextView android:id="@+id/dataVistoria"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#000000"
                     android:textSize="12dp"
                     android:maxEms="17"
-                    android:text=""
-                    android:visibility="gone"/>
+                    android:text="" />
                 <TextView android:id="@+id/autorVistoria"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -64,15 +76,30 @@
                     android:textSize="12dp"
                     android:maxEms="17"
                     android:text=""
-                    android:visibility="gone"/>
+                    android:visibility="visible"/>
 
-
-                <Button android:id="@+id/verVistoria"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Ver Vistoria"
-                    android:visibility="gone"/>
+                    android:orientation="horizontal">
+                        <Button android:id="@+id/verVistoria"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ver" />
+                        <Button android:id="@+id/adicionarVistoria"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Adicionar" />
+                        <Button android:id="@+id/removerVistoria"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Remover"
+                            android:visibility="gone"/>
+
+                </LinearLayout>
+
 
                 <TextView android:id="@+id/bubble_description"
                     android:layout_width="wrap_content"

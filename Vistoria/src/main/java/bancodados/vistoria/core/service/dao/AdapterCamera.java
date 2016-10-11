@@ -33,26 +33,12 @@ public class AdapterCamera {
 
     public AdapterCamera(Context context){
         this.context = context;
-        /*file = new File(Environment.getExternalStorageDirectory() + File.separator + "Vistorias");
-        if(file.exists() == false){
-            file.mkdirs();
-        }*/
 
     }
     public void saveAllImage(List<FotoVistoria> fotoVistorias, Vistoria vistoria, List<Bitmap> bitmaps) throws IOException {
         File directory = new File(Environment.getExternalStorageDirectory() + File.separator +
                 "Vistorias/" +  "V_" + vistoria.getId());
         directory.mkdirs();
-
-
-            /*for(int i = 0;  i < bitmaps.size(); i++){
-                File file = new File(directory.getPath() + "/" + fotoVistorias.get(i).getDescricao());
-                OutputStream os = new BufferedOutputStream(new FileOutputStream(file));
-               // ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bitmaps.get(i).compress(Bitmap.CompressFormat.JPEG, 100, os);
-                //fotoVistorias.get(i).setImagemGrande(stream.toByteArray());
-                os.close();
-            }*/
 
     }
 
