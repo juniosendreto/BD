@@ -3,6 +3,7 @@ package bancodados.vistoria.model;
 import android.content.Context;
 import android.content.res.Resources;
 
+import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
@@ -24,7 +25,7 @@ public class Vistoria implements Serializable{
     private List<String> nomeCameras;
     private Resources mResources;
 
-    @DatabaseField(columnName = "id", generatedId = true)
+    @DatabaseField(columnName = "id", generatedId = true, canBeNull = false)
     private Long id;
 
     @DatabaseField(foreign = true, columnName = "LOCALIZACAO_ID")

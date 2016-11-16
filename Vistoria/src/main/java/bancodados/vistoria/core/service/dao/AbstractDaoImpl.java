@@ -29,14 +29,10 @@ public abstract class AbstractDaoImpl {
         try {
             if (dataBase == null || !(dataBase.isOpen())) {
                 dataBase = new DataBase(context);
-
-                
             }
         }catch (Exception e){
             Log.d("--------", "ERRO OpenBD(ABSTRACTDAO) " + e.getMessage());
-
         }
-
     }
 
     public Object save(Class classe, Object object) {
@@ -45,6 +41,7 @@ public abstract class AbstractDaoImpl {
             dataBase.getDao(classe).create(object);
             return object;
         } catch (Exception e) {
+            e.printStackTrace();
             Log.d("--------", "ERRO SAVE(ABSTRACTDAO) " + e.getMessage());
         } finally {
             dataBase.close();
@@ -58,6 +55,7 @@ public abstract class AbstractDaoImpl {
             dataBase.getDao(classe).update(object);
             return true;
         } catch (SQLException e) {
+            e.printStackTrace();
             Log.d("------", "ERRO UPDATE(ABSDAO)");
         } finally {
             dataBase.close();
@@ -90,6 +88,7 @@ public abstract class AbstractDaoImpl {
             lista =  dataBase.getDao(classe).queryForAll();
             return lista;
         } catch (SQLException e) {
+            e.printStackTrace();
             Log.d("------", "ERRO listAll(ABSDAO)");
         } finally {
             dataBase.close();
@@ -105,6 +104,7 @@ public abstract class AbstractDaoImpl {
             classeId = dao.queryForId(Integer.valueOf(id.toString()));
             return classeId;
         } catch (SQLException e) {
+            e.printStackTrace();
             Log.d("------", "ERRO findById(ABSDAO)");
         }finally {
             dataBase.close();
@@ -118,6 +118,7 @@ public abstract class AbstractDaoImpl {
             connectingBD();
             return dataBase.getDao(classe).countOf();
         } catch (SQLException e) {
+            e.printStackTrace();
             Log.d("------", "ERRO countAllRows(ABSDAO) - " + e.getMessage());
 
         }finally {

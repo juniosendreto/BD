@@ -1,5 +1,6 @@
 package bancodados.vistoria.model;
 
+import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
@@ -23,7 +24,7 @@ public class Localizacao implements Serializable{
     public static final String COL_TIPO_MORADIA = "TIPO_MORADIA";
     public static final String TABLE_NAME = "LOCALIZACAO";
 
-    @DatabaseField(columnName = "id", generatedId = true)
+    @DatabaseField(columnName = "id", generatedId = true, canBeNull = false)
     private Long id;
 
     @ForeignCollectionField(columnName = "VISTORIA_ID")

@@ -64,7 +64,6 @@ public class LoginActivity extends Activity {
             }
         });
 
-
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,7 +81,6 @@ public class LoginActivity extends Activity {
 
     }
 
-
     public void onBackPressed(){
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_HOME);
@@ -90,9 +88,5 @@ public class LoginActivity extends Activity {
         Usuario.uniqueUsuario = null;
         startActivity(intent);
         finish();
-
     }
-
-
-
 }

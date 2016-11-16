@@ -35,12 +35,11 @@ public class Adapter{
             view.setVisibility(View.VISIBLE);
         }else{
             view.setVisibility(View.GONE);
-
         }
     }
 
     public void validarVisibilidade(Boolean validacao, View view){
-        if(validacao == true){
+        if(validacao){
             view.setVisibility(View.GONE);
         }else{
             view.setVisibility(View.VISIBLE);
@@ -71,32 +70,6 @@ public class Adapter{
         }
     }
 
-    public void nullValue(EditText editText, TextView textView){
-        if(String.valueOf(editText.getText()).equals("")){
-            textView.setVisibility(View.VISIBLE);
-        }else{
-            textView.setVisibility(View.GONE);
-        }
-    }
-
-    public void nullValueByCheckBox(CheckBox checkBox, EditText editText, TextView textView) {
-        if (checkBox.isChecked()) {
-            if (String.valueOf(editText.getText()).equals("")) {
-                textView.setVisibility(View.VISIBLE);
-            } else {
-                textView.setVisibility(View.GONE);
-            }
-        }
-    }
-
-    public void validarCampo(EditText editText, TextView textView){
-        if(campoNull(editText) == true){
-            textView.setText(campoObrigatorio);
-            textView.setVisibility(View.VISIBLE);
-        }else{
-            textView.setVisibility(View.GONE);
-        }
-    }
     public void validarLoginECampo(EditText editText, TextView textView){
 
         try {
@@ -124,7 +97,7 @@ public class Adapter{
     }
 
     public void validarSenha(EditText editText, TextView textView){
-        if(!(campoNull(editText) == true)) {
+        if(!(campoNull(editText))) {
             if (editText.getText().toString().length() < 5) {
                 textView.setText("Sua senha deve ter no mínimo 5 caracteres");
                 textView.setVisibility(View.VISIBLE);
@@ -138,7 +111,7 @@ public class Adapter{
     }
 
     public void validarConfirmacaoSenha(EditText editText, EditText editText2, TextView textView){
-        if(campoNull(editText2) == true){
+        if(campoNull(editText2)){
             textView.setText(campoObrigatorio);
             textView.setVisibility(View.VISIBLE);
 
@@ -175,14 +148,11 @@ public class Adapter{
                 }
             }
             if (cpfAux.length() == 11) {
-
                 for (int i = 0; i < 2; i++) {
                     Integer calculo = 0;
                     Integer calculoAux = 0;
-
                     if (i == 0) {
                         numeroMultiplicacao = 10;
-
                         for (int j = 0; j < 9; j++) {
                             calculo = calculo + Integer.parseInt(String.valueOf(cpf.charAt(j))) * numeroMultiplicacao;
                             numeroMultiplicacao--;
@@ -212,7 +182,7 @@ public class Adapter{
                         }
                     }
                 }
-                if (digito.charAt(0) == cpfAux.charAt(9) && digito.charAt(1) == cpfAux.charAt(10)) {
+                if(digito.charAt(0) == cpfAux.charAt(9) && digito.charAt(1) == cpfAux.charAt(10)) {
                     return true;
                 } else {
                     return false;
@@ -261,10 +231,10 @@ public class Adapter{
         if (usuario.getPassword().length() < 5) {
             contador++;
         }
-        if (usuario.getCpf().equals("") || validarCfp(usuario.getCpf()) == false) {
+        if (usuario.getCpf().equals("") || !validarCfp(usuario.getCpf())) {
             contador++;
         }
-        if (validarEmail(usuario.getEmail()) == false) {
+        if (!validarEmail(usuario.getEmail())) {
             contador++;
         }
         if (contador == 0) {
@@ -277,17 +247,16 @@ public class Adapter{
     public Boolean validarCamposUsuarioUpdate(Usuario usuario) throws SQLException {
         Integer contador = 0;
 
-        if (usuario.getNome().equals("")) {
+        if(usuario.getNome().equals("")) {
             contador++;
         }
-
-        if (usuario.getCpf().equals("") || validarCfp(usuario.getCpf()) == false) {
+        if(usuario.getCpf().equals("") || !validarCfp(usuario.getCpf())) {
             contador++;
         }
-        if (validarEmail(usuario.getEmail()) == false) {
+        if(!validarEmail(usuario.getEmail())) {
             contador++;
         }
-        if (contador == 0) {
+        if(contador == 0) {
             return true;
         } else{
             return false;
@@ -307,16 +276,22 @@ public class Adapter{
     public Boolean salvarUsuario(Usuario usuario, Boolean validacao) {
         try {
             AlertDialog alert = new AlertDialog.Builder(context).create();
-            if (validacao == true) {
+            if (validacao) {
                 UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl(context);
                 usuarioDao.save(Usuario.class, usuario);
                 alert.setTitle("Alerta");
-                alert.setMessage("Usuário Criado com Sucesso!");
-                alert.setButton("Ok", new DialogInterface.OnClickListener() {
+                alert.setMessage("Deseja realmente criar usuário?");
+                alert.setButton("Sim", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(context, LoginActivity.class);
                         context.startActivity(intent);
+                    }
+                });
+                alert.setButton2("Não", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
                     }
                 });
                 alert.show();
@@ -338,13 +313,9 @@ public class Adapter{
             Log.d("--------", e.getMessage());
         }
         return null;
-
     }
-
 
     public String conversaoEditTextParaString(EditText editText){
         return editText.getText().toString();
     }
-
-
 }

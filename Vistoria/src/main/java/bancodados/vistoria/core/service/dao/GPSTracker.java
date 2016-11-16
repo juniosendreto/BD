@@ -20,10 +20,6 @@ public class GPSTracker extends Service{
     private Boolean isGPSEnabled = false;
     private Boolean isInternetEnabled = false;
     private Boolean canGetLocation = false;
-    private ProgressDialog progressDialog;
-
-    private Double latitude;
-    private Double longitude;
 
     private LocationManager locationManager;
 
@@ -31,7 +27,6 @@ public class GPSTracker extends Service{
 
     public GPSTracker(Context context) {
         this.context = context;
-        //getLocation();
     }
 
     public  Boolean getLocation(LocationListener locationListener) {
@@ -80,32 +75,6 @@ public class GPSTracker extends Service{
     @Override
     public IBinder onBind(Intent intent) {
         return null;
-    }
-
-    public Double getLongitude() {
-        if(location != null){
-            longitude = location.getLongitude();
-        }
-        return longitude;
-    }
-
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
-    }
-
-    public Double getLatitude() {
-        if(location != null){
-            latitude = location.getLatitude();
-        }
-        return latitude;
-    }
-
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
     }
 
     public LocationManager getLocationManager() {

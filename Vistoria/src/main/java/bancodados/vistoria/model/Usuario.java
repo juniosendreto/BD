@@ -1,5 +1,6 @@
 package bancodados.vistoria.model;
 
+import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -28,7 +29,7 @@ public class Usuario implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
-    @DatabaseField(columnName = "id", generatedId = true)
+    @DatabaseField(columnName = "id", generatedId = true, canBeNull = false)
     private Long id;
 
     @DatabaseField(columnName = "nome", canBeNull = false)

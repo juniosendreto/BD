@@ -11,6 +11,7 @@ import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.stmt.Where;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import bancodados.vistoria.bd.DataBase;
@@ -27,18 +28,40 @@ public class FotoVistoriaDaoImpl extends AbstractDaoImpl{
     }
 
     public List<FotoVistoria> findByIdVistoria(Vistoria vistoria) {
-        List<FotoVistoria> fotoVistoriaList = null;
+        List<FotoVistoria> fotoVistoriaList = new ArrayList<>();
         try {
             connectingBD();
-            QueryBuilder<FotoVistoria, Object> queryBuilder = (QueryBuilder<FotoVistoria, Object>)
-                    dataBase.getDao(FotoVistoria.class).queryBuilder();
-            Where<FotoVistoria, Object> where = queryBuilder.where();
+            QueryBuilder<FotoVistoria, ?> queryBuilder = dataBase.getDao(FotoVistoria.class).queryBuilder();
+            Where<FotoVistoria, ?> where = queryBuilder.where();
             where.eq("VISTORIA_ID", vistoria.getId());
             PreparedQuery<FotoVistoria> preparedQuery = queryBuilder.prepare();
             fotoVistoriaList = dataBase.getDao(FotoVistoria.class).query(preparedQuery);
         } catch (SQLException e) {
             e.printStackTrace();
-            Log.d("----------", "Problema com método findByIdVistoria");
+            Log.d("----------", e.getMessage());
+        }finally {
+            dataBase.close();
+        }
+        if (fotoVistoriaList.isEmpty()) {
+            return null;
+        } else {
+            return fotoVistoriaList;
+        }
+    }
+
+    public List<FotoVistoria> querryImagemPequena(Vistoria vistoria) {
+        List<FotoVistoria> fotoVistoriaList = new ArrayList<>();
+        try {
+            connectingBD();
+            QueryBuilder<FotoVistoria, ?> queryBuilder = dataBase.getDao(FotoVistoria.class).queryBuilder();
+            queryBuilder.selectColumns("IMAGEM_MEDIA", "DESCRICAO");
+            Where<FotoVistoria, ?> where = queryBuilder.where();
+            where.eq("VISTORIA_ID", vistoria.getId());
+            PreparedQuery<FotoVistoria> preparedQuery = queryBuilder.prepare();
+            fotoVistoriaList = dataBase.getDao(FotoVistoria.class).query(preparedQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Log.d("----------", e.getMessage());
         }finally {
             dataBase.close();
         }

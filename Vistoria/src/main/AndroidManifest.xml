@@ -16,7 +16,8 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
-            android:name="bancodados.vistoria.activities.LoginActivity">
+            android:name="bancodados.vistoria.activities.LoginActivity"
+            android:windowSoftInputMode="stateHidden">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,10 +25,13 @@
             </intent-filter>
         </activity>
         <activity android:name="bancodados.vistoria.activities.VistoriaActivity" />
-        <activity android:name="bancodados.vistoria.activities.MainActivity" />
-        <activity android:name="bancodados.vistoria.activities.CadastroActivity" />
+        <activity android:name="bancodados.vistoria.activities.MainActivity"
+                  android:windowSoftInputMode="stateHidden"/>
+        <activity android:name="bancodados.vistoria.activities.CadastroActivity"
+                  android:windowSoftInputMode="stateHidden"/>
         <activity android:name="bancodados.vistoria.activities.ListViewVistoriaActivity" />
-        <activity android:name="bancodados.vistoria.activities.UpdateUsuarioActivity"></activity>
+        <activity android:name="bancodados.vistoria.activities.UpdateUsuarioActivity"
+                  android:windowSoftInputMode="stateHidden"/>
     </application>
 
 </manifest>

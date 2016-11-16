@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
     <group
-        android:id="@+id/vistoria_group"
-        android:checkableBehavior="single">
-
-        <item android:title="@string/vistorias">
-            <menu>
-                <item
-                    android:id="@+id/lista_vistoria_mapa_menu"
-                    android:title="@string/listar_vistorias_mapa">
-
-                </item>
-            </menu>
-        </item>
-
+        android:id="@+id/listar_vistorias_group"
+        android:checkableBehavior="all">
+            <item android:title="@string/vistorias">
+                <menu >
+                    <item
+                        android:id="@+id/lista_vistoria_mapa_menu"
+                        app:actionLayout="@layout/checkbox_drawer"
+                        android:title="@string/listar_vistorias_mapa"
+                        android:checkable="true"/>
+                </menu>
+            </item>
     </group>
 
     <group

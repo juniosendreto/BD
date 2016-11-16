@@ -29,12 +29,10 @@ public class DataBase extends OrmLiteSqliteOpenHelper {
 
     public DataBase(Context context) {
         super(context, PATH + DATABASE_NAME, null, DATABASE_VERSION);
-
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource) {
-
         try {
             TableUtils.createTable(connectionSource, Usuario.class);
             TableUtils.createTable(connectionSource, Vistoria.class);
@@ -46,9 +44,7 @@ public class DataBase extends OrmLiteSqliteOpenHelper {
             e.printStackTrace();
             Log.e("-------", "Não foi possível criar a base de dados " + e.getMessage());
             throw new RuntimeException(e);
-
         }
-
     }
 
     @Override
@@ -66,10 +62,7 @@ public class DataBase extends OrmLiteSqliteOpenHelper {
         } catch(SQLException e) {
             e.printStackTrace();
             Log.e("----------", "Não foi possível dropar o banco" + e.getMessage());
-
             throw new RuntimeException(e);
-
         }
-
     }
 }

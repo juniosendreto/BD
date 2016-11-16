@@ -33,7 +33,6 @@ public class UsuarioVistoriaDaoImpl extends AbstractDaoImpl{
             where.eq(UsuarioVistoria.COL_VISTORIA_ID, vistoria.getId());
             PreparedQuery<UsuarioVistoria> preparedQuery = queryBuilder.prepare();
             usuarioVistoriaList = dataBase.getDao(UsuarioVistoria.class).query(preparedQuery);
-
         } catch (Exception e) {
             e.printStackTrace();
             Log.d("----------", "Problema co  método findByIdVistoria");
@@ -44,6 +43,5 @@ public class UsuarioVistoriaDaoImpl extends AbstractDaoImpl{
             return usuarioVistoriaList.get(0);
         }
     }
-
 
 }

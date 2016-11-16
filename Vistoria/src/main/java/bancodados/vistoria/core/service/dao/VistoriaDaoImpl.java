@@ -33,4 +33,16 @@ public class VistoriaDaoImpl extends AbstractDaoImpl {
         }
         return contador;
     }
+
+    public List<Vistoria> findByFK(Long id){
+        List<Vistoria> vistorias = (ArrayList)listAll(Vistoria.class);
+        List<Vistoria> listAux = new ArrayList<>();
+        for(Vistoria v: vistorias){
+            if(v.getLocalizacao().getId() == id){
+                listAux.add(v);
+            }
+        }
+        return listAux;
+    }
+
 }

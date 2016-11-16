@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/janelaLatLongLL"
+    android:background="@null">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="\nDescrição: Aplicativo para auxílio a Defesa Civil em vistorias em campos contra deslizamento \n"
+        android:textStyle="bold"
+        android:textColor="#000000"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Orientador: Eymar Silva Sampaio Lopes \n"
+        android:textStyle="bold"
+        android:textColor="#000000"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Desenvolvedor: Junio Luiz Sendreto dos Santos \n"
+        android:textStyle="bold"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Projeto: CNPq/INPE \n"
+        android:textStyle="bold"
+        android:textColor="#000000"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Versão: 1.0"
+        android:textStyle="bold"
+        android:textColor="#000000"/>
+
+</LinearLayout>

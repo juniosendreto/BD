@@ -1,6 +1,8 @@
 package bancodados.vistoria.Util;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -8,7 +10,11 @@ import android.util.Log;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +29,7 @@ public class FileUtil {
 
     /// PATH = storage/emulated/0/
     public static final String PATH = Environment.getExternalStorageDirectory() + File.separator;
+    public static final String IMAGEM_MEDIA_SIGLA = "M";
     public static final String THUMBNAIL_SIGLA = "_TN";
     public static final String JPEG = ".jpeg";
 
@@ -37,28 +44,28 @@ public class FileUtil {
 
 
     public static File mainDirectory(){
-        mFile = new File(PATH + "/vistoria");
+        mFile = new File(PATH + "vistoria");
         if(!(mFile.exists()))
             mFile.mkdirs();
         return mFile;
     }
 
     public static File bDDirectory(){
-        mFile = new File(PATH + "/vistoria/bd");
+        mFile = new File(PATH + "vistoria/bd");
         if(!(mFile.exists()))
             mFile.mkdirs();
         return mFile;
     }
 
     public static File vistoriasDirectory(){
-        mFile = new File(PATH + "/vistoria/vistorias");
+        mFile = new File(PATH + "vistoria/vistorias");
         if(!(mFile.exists()))
             mFile.mkdirs();
         return mFile;
     }
 
     public static File tempDirectory(){
-        mFile = new File(PATH + "/vistoria/vistorias/temp");
+        mFile = new File(PATH + "vistoria/vistorias/temp");
         if(!(mFile.exists()))
             mFile.mkdirs();
         return mFile;
@@ -74,10 +81,8 @@ public class FileUtil {
                 }
                 file.delete();
             }
-
         }
     }
-
 
     public static File tempToVistoria(File file, Long id){
         if(file.exists())
@@ -93,7 +98,8 @@ public class FileUtil {
                 for(String path: entry.getValue()){
                     fotoVistoriaDao.save(FotoVistoria.class,
                             new FotoVistoria(vistoria, vistoria.getNomeCameras().get(entry.getKey()),
-                                    fileToByteArray(path + JPEG), null,
+                                    fileToByteArray(path + JPEG),
+                                    fileToByteArray(path + IMAGEM_MEDIA_SIGLA + JPEG),
                                     fileToByteArray(path + THUMBNAIL_SIGLA + JPEG)));
                 }
             }
@@ -114,10 +120,56 @@ public class FileUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return null;
-
     }
 
+    public static void copy(File sourceLocation, File targetLocation){
+        if(sourceLocation.isDirectory()){
+            copyDirectory(sourceLocation, targetLocation);
+        }else{
+            copyFile(sourceLocation, targetLocation);
+        }
+    }
+
+    public static void copyDirectory(File source, File target){
+        if(!target.exists())
+            target.mkdirs();
+
+        for(String f: source.list())
+            copy(new File(source, f), new File(target, f));
+    }
+
+    public static void copyFile(File source, File target){
+        try {
+            InputStream in = new FileInputStream(source);
+            OutputStream out = new FileOutputStream(target);
+
+            byte[] buf = new byte[1024];
+            int length;
+            while((length = in.read(buf)) > 0)
+                out.write(buf, 0, length);
+            in.close();
+            out.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static Bitmap getResizeBitmap(Bitmap bm, int newWidth, int newHeight){
+        int width = bm.getWidth();
+        int height = bm.getHeight();
+        float scaleWidth = ((float) newWidth) / width;
+        float scaleHeight = ((float) newHeight) / height;
+        // CREATE A MATRIX FOR THE MANIPULATION
+        Matrix matrix = new Matrix();
+        // RESIZE THE BIT MAP
+        matrix.postScale(scaleWidth, scaleHeight);
+
+        // "RECREATE" THE NEW BITMAP
+        Bitmap resizedBitmap = Bitmap.createBitmap(
+                bm, 0, 0, width, height, matrix, false);
+        bm.recycle();
+        return resizedBitmap;
+    }
 
 }

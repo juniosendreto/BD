@@ -37,11 +37,10 @@ dependencies {
     //Framework ORMLite
     compile 'com.j256.ormlite:ormlite-android:4.48'
     compile 'com.j256.ormlite:ormlite-core:4.48'
+
     compile 'com.android.support:design:22.2.1'
     compile 'org.osmdroid:osmdroid-android:5.1@aar'
-    //compile files('libs/osmbonuspack_v3.7.jar')
     compile 'commons-io:commons-io:2.4'
-    //compile files('/home/junio/AndroidStudioProjects/BD/libs/osmbonuspack_v3.7.jar')
     compile files('libs/osmbonuspack_v5.1.jar')
     compile files('libs/slf4j-android-1.6.1-RC1.jar')
 }

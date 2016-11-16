@@ -1071,12 +1071,33 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/outrasInformacoesET" />
             </LinearLayout>
-            <Button
+
+            <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:id="@+id/salvarVistoriaB"
-                android:text="Salvar Vistoria" />
+                android:background="@null"
+                android:visibility="gone"
+                android:src="@drawable/images_icon"
+                android:id="@+id/listarFotos"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:id="@+id/alterarVistoriaB"
+                    android:text="Alterar Vistoria"
+                    android:visibility="gone"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:id="@+id/salvarVistoriaB"
+                    android:text="Salvar Vistoria" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

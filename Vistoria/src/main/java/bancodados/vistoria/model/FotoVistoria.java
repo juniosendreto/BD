@@ -13,7 +13,7 @@ import java.util.Collection;
 @DatabaseTable(tableName = "FOTO_VISTORIA")
 public class FotoVistoria {
 
-    @DatabaseField(columnName = "id", generatedId = true)
+    @DatabaseField(columnName = "id", generatedId = true, canBeNull = false)
     private Long id;
 
     @DatabaseField(foreign = true, columnName = "VISTORIA_ID")

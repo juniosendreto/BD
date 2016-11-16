@@ -28,7 +28,6 @@ import bancodados.vistoria.model.Vistoria;
 public class AdapterCamera {
 
     public static final int MEDIA_TYPE_IMAGE = 1;
-    private File file;
     private Context context;
 
     public AdapterCamera(Context context){
@@ -39,7 +38,6 @@ public class AdapterCamera {
         File directory = new File(Environment.getExternalStorageDirectory() + File.separator +
                 "Vistorias/" +  "V_" + vistoria.getId());
         directory.mkdirs();
-
     }
 
     public Intent callCamera(){

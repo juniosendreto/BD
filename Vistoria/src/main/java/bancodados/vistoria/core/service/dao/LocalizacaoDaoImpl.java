@@ -27,4 +27,12 @@ public class LocalizacaoDaoImpl  extends AbstractDaoImpl{
         super(context);
     }
 
+    public Boolean existsLocation(Localizacao localizacao){
+        List<Localizacao> localizacaos = (ArrayList) listAll(Localizacao.class);
+        for (Localizacao l: localizacaos)
+            if(localizacao.getLatitude() == l.getLatitude() && localizacao.getLongitude() == localizacao.getLongitude())
+                return true;
+        return false;
+    }
+
 }

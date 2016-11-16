@@ -56,58 +56,11 @@ public class CadastroActivity extends Activity {
         emailReportTV.setText("E-mail inválido!");
         final TextView nivelReportTV = (TextView) findViewById(R.id.nivelReportTV);
 
-        /*nomeET.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if(nomeET.getText().length() <= 0)
-                    nomeET.setError("O Campo nome não pode ser nulo");
-
-            }
-        });
-        loginET.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-*/
-        /*nomeET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    adapter.validarCampo(nomeET, nomeReportTV);
-                }
-            }
-        });*/
-
-
         loginET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     adapter.validarLoginECampo(loginET, loginReportTV);
-
-
                 }
             }
         });
@@ -148,14 +101,6 @@ public class CadastroActivity extends Activity {
             }
         });
 
-        /*nivelET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus){
-                    //adapter.validarNivel(nivelET, nivelReportTV);
-                }
-            }
-        });*/
 
         salvarB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -199,5 +144,4 @@ public class CadastroActivity extends Activity {
             }
         });
     }
-
 }

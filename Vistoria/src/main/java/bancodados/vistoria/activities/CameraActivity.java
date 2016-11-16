@@ -42,9 +42,6 @@ public class CameraActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mTempFile = new File(Environment.getExternalStorageDirectory() + File.separator + "Vistorias/temp");
-
-
-
     }
 
     @Override
@@ -75,32 +72,12 @@ public class CameraActivity extends Activity {
                 imageReal.compress(Bitmap.CompressFormat.JPEG, 100, os);
                 os.close();
 
-
-                //FotoVistoria fotoVistoria = new FotoVistoria();
-                //fotoVistoria.setDescricao("IMG_" + new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()) + ".jpeg");
-                //fotoVistoria.setImagemGrande(adapterCamera.bitmapToByteArray(getApplicationContext(), imageReal));
-
-                /* ----*/
                 file = new File(thumbNail);
                 Bundle extras = data.getExtras();
                 Bitmap imageThumbNail =  (Bitmap) extras.get("data");
                 os = new BufferedOutputStream(new FileOutputStream(file));
                 imageThumbNail.compress(Bitmap.CompressFormat.JPEG, 100, os);
                 os.close();
-
-                //fotoVistoria.setImagemPequena(adapterCamera.bitmapToByteArray(getApplicationContext(), imageThumbNail));
-
-                //fotoVistorias.add(fotoVistoria);
-
-                /// 2131493058
-                /// 2131493071
-
-
-
-                //ByteArrayOutputStream stream = new ByteArrayOutputStream();
-
-                //imageThumbNail.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-                //fotoVistoria.setImagemPequena(stream.toByteArray());
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -110,11 +87,6 @@ public class CameraActivity extends Activity {
 
             }
         }
-
-    }
-
-
-    public void teste(){
 
     }
 

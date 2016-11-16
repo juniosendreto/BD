@@ -35,7 +35,7 @@ public class UsuarioDaoImpl extends AbstractDaoImpl{
             Log.d("----------", "Problema co  método findByLoginAndPassword");
         }
 
-        if(usuarioList.isEmpty() == true){
+        if(usuarioList.isEmpty()){
             return null;
         }else{
             return usuarioList.get(0);

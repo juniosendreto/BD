@@ -1,16 +1,21 @@
 package bancodados.vistoria.Util;
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.widget.TextView;
 
 import org.osmdroid.bonuspack.overlays.MapEventsOverlay;
 import org.osmdroid.bonuspack.overlays.Marker;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.Overlay;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import bancodados.vistoria.R;
 import bancodados.vistoria.core.service.dao.LocalizacaoDaoImpl;
@@ -36,38 +41,17 @@ public class PointMap {
         }
     }
 
-    public static void setAllMarkers(Context context, MapView mapView){
-        Usuario usuario;
-        UsuarioVistoria usuarioVistoria;
-        Localizacao localizacao;
-        UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl(context);
-        UsuarioVistoriaDaoImpl usuarioVistoriaDao = new UsuarioVistoriaDaoImpl(context);
-        VistoriaDaoImpl vistoriaDao = new VistoriaDaoImpl(context);
+    public static void setAllMarkers(Context context, MapView mapView, FragmentManager fragmentManager){
         LocalizacaoDaoImpl localizacaoDao = new LocalizacaoDaoImpl(context);
 
         List<Localizacao> localizacoes = (ArrayList)localizacaoDao.listAll(Localizacao.class);
-        List<Vistoria> vistorias = (ArrayList) vistoriaDao.listAll(Vistoria.class);
 
-        for(Vistoria v: vistorias){
+        for(Localizacao l: localizacoes){
             CustomMarkerInfoWindow customMarkerInfoWindow = new CustomMarkerInfoWindow(context, R.layout.inf_vistoria, mapView);
 
-            TextView idVistoria = (TextView) customMarkerInfoWindow.getView().findViewById(R.id.idVistoria);
-            TextView dataVistoria = (TextView) customMarkerInfoWindow.getView().findViewById(R.id.dataVistoria);
-            TextView autorVistoria = (TextView) customMarkerInfoWindow.getView().findViewById(R.id.autorVistoria);
-
-            usuarioVistoria = usuarioVistoriaDao.findByIdVistoria(v);
-            usuario = (Usuario) usuarioDao.findById(Usuario.class, usuarioVistoria.getUsuario().getId());
-            localizacao = (Localizacao) localizacaoDao.findById(Localizacao.class, v.getLocalizacao().getId());
-
-            idVistoria.setText("ID: " + v.getId());
-            idVistoria.setId((int) (long) v.getId());
-            dataVistoria.setText("Data: " + usuarioVistoria.getData());
-            autorVistoria.setText("Autor: " + usuario.getNome());
-            autorVistoria.setId((int) (long) usuario.getId());
-
             Marker marker = new Marker(mapView);
-            marker.setPosition(new GeoPoint(localizacao.getLatitude(), localizacao.getLongitude()));
-            marker.getInfoWindow().getView().setId(((int) (long) localizacao.getId()));
+            marker.setPosition(new GeoPoint(l.getLatitude(), l.getLongitude()));
+            customMarkerInfoWindow.getView().setId(((int) (long) l.getId()));
             marker.setIcon(context.getResources().getDrawable(R.drawable.marker_default));
             marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
             marker.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
@@ -88,12 +72,33 @@ public class PointMap {
     }
 
     public static void removeAllMarkers(Context context, MapView mapView, MapEventsOverlay mapEventsOverlay, Marker marker){
-        if(!(mapView.getOverlays().size() == 2)){
+        if(mapView.getOverlays().contains(mapEventsOverlay)){
+            if(mapView.getOverlays().contains(marker)){
+                mapView.getOverlays().clear();
+                mapView.getOverlays().add(mapEventsOverlay);
+                mapView.getOverlays().add(marker);
+            }else{
+                mapView.getOverlays().clear();
+                mapView.getOverlays().add(mapEventsOverlay);
+            }
+        }else{
             mapView.getOverlays().clear();
-            mapView.getOverlays().add(mapEventsOverlay);
-            mapView.getOverlays().add(marker);
         }
         mapView.invalidate();
     }
 
+    public static void closeAllMarkInf(List<Overlay> overlays, Marker marker){
+
+        List<Marker> markers = new ArrayList<>();
+
+        for(Overlay o: overlays){
+            if(o.getClass() != MapEventsOverlay.class)
+                markers.add((Marker) o);
+        }
+
+        for(Marker m: markers){
+            if(!(m.equals(marker)) || m.getInfoWindow().isOpen())
+                m.closeInfoWindow();
+        }
+    }
 }

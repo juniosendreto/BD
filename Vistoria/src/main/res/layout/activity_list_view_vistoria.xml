@@ -10,7 +10,7 @@
     tools:context="bancodados.vistoria.activities.ListViewVistoriaActivity">
 
     <ListView
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:id="@+id/vistoriaLV"
         android:layout_alignParentBottom="true"

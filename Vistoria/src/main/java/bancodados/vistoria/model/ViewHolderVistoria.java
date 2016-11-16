@@ -1,9 +1,10 @@
 package bancodados.vistoria.model;
 
 /**
- * Created by junio on 02/06/16.
+ * Created by junio on 19/10/16.
  */
-public class ViewHolder {
+
+public class ViewHolderVistoria {
 
     private Long idUsuario;
     private Long idUsuarioVistoria;
@@ -13,6 +14,19 @@ public class ViewHolder {
     private String data;
     private String municipio;
     private String bairro;
+
+    public ViewHolderVistoria(){}
+
+    public ViewHolderVistoria(Long idUsuario, Long idUsuarioVistoria, Long idVistoria, Long idLocalizacao, String autor, String data, String municipio, String bairro) {
+        this.idUsuario = idUsuario;
+        this.idUsuarioVistoria = idUsuarioVistoria;
+        this.idVistoria = idVistoria;
+        this.idLocalizacao = idLocalizacao;
+        this.autor = autor;
+        this.data = data;
+        this.municipio = municipio;
+        this.bairro = bairro;
+    }
 
     public Long getIdUsuario() {
         return idUsuario;
@@ -77,10 +91,4 @@ public class ViewHolder {
     public void setBairro(String bairro) {
         this.bairro = bairro;
     }
-
-    @Override
-    public String toString(){
-        return "Autor: " + this.autor + " Data: " + this.data + "\n\nMunicípio: " + this.municipio + "  Bairro: " + this.bairro;
-    }
-
 }
