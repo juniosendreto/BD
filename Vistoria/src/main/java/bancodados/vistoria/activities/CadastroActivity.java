@@ -27,9 +27,9 @@ public class CadastroActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
 
-        final AlertDialog alert = new AlertDialog.Builder(this).create();
         final Adapter adapter= new Adapter(CadastroActivity.this);
         final AdapterVistoria adapterVistoria = new AdapterVistoria(CadastroActivity.this);
+        final AlertDialog.Builder alertBuilder = new AlertDialog.Builder(CadastroActivity.this);
 
 
         final Button salvarB = (Button) findViewById(R.id.salvarButton);
@@ -131,15 +131,14 @@ public class CadastroActivity extends Activity {
                         Log.d("------", e.getMessage());
                     }
                 }else{
-                    alert.setTitle("Alerta");
-                    alert.setMessage("Os campos: NOME, LOGIN, PASSWORD, CPF E EMAIL, são obrigatórios verifique se estão corretos!");
-                    alert.setButton("Ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-                    alert.show();
+                    alertBuilder.setTitle("Alerta")
+                            .setMessage("Os campos: NOME, LOGIN, PASSWORD, CPF E EMAIL, são obrigatórios verifique se estão corretos!")
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            }).show();
                 }
             }
         });

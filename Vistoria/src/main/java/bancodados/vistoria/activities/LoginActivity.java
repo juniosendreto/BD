@@ -29,7 +29,8 @@ public class LoginActivity extends Activity {
         FileUtil.mainDirectory();
         FileUtil.vistoriasDirectory();
         FileUtil.bDDirectory();
-        FileUtil.removeAllFile(new File(FileUtil.PATH + "vistoria/vistorias/temp"));
+        if(new File(FileUtil.PATH + "vistoria/vistorias/temp").exists())
+            FileUtil.removeAllFile(new File(FileUtil.PATH + "vistoria/vistorias/temp"));
 
         final UsuarioDaoImpl usuarioImpl = new UsuarioDaoImpl(this);
         ImageButton imageButton =  (ImageButton) findViewById(R.id.imageButton);

@@ -273,39 +273,40 @@ public class Adapter{
         }
     }
 
-    public Boolean salvarUsuario(Usuario usuario, Boolean validacao) {
+    public Boolean salvarUsuario(final Usuario usuario, Boolean validacao) {
         try {
-            AlertDialog alert = new AlertDialog.Builder(context).create();
+            AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
             if (validacao) {
-                UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl(context);
-                usuarioDao.save(Usuario.class, usuario);
-                alert.setTitle("Alerta");
-                alert.setMessage("Deseja realmente criar usuário?");
-                alert.setButton("Sim", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(context, LoginActivity.class);
-                        context.startActivity(intent);
-                    }
-                });
-                alert.setButton2("Não", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                final UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl(context);
 
-                    }
-                });
-                alert.show();
+                alertBuilder.setTitle("Alerta")
+                        .setMessage("Deseja realmente criar usuário?")
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                usuarioDao.save(Usuario.class, usuario);
+                                Intent intent = new Intent(context, LoginActivity.class);
+                                context.startActivity(intent);
+                                dialog.dismiss();
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        }).show();
+
                 return true;
             } else {
-                alert.setTitle("Alerta");
-                alert.setMessage("Os campos: NOME, LOGIN, PASSWORD, CPF E EMAIL, são obrigatórios verifique se estão corretos!");
-                alert.setButton("Ok", new DialogInterface.OnClickListener() {
+                alertBuilder.setTitle("Alerta")
+                    .setMessage("Os campos: NOME, LOGIN, PASSWORD, CPF E EMAIL, são obrigatórios verifique se estão corretos!")
+                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
-                });
-                alert.show();
+                }).show();
                 return false;
             }
         } catch (Exception e) {
