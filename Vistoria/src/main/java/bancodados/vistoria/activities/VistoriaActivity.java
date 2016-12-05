@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -760,7 +761,7 @@ public class VistoriaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentDialog overlay = new FragmentDialog();
-
+                FragmentTransaction fragmentTransaction = fm.beginTransaction();
                 Bundle args;
                 if(tipoVistoria == 2){
                     args = new Bundle();
@@ -772,7 +773,10 @@ public class VistoriaActivity extends AppCompatActivity {
                     args.putBoolean("vistoriaNova", true);
                     overlay.setArguments(args);
                 }
-                overlay.show(fm, "FragmentDialog");
+                fragmentTransaction.add(overlay, "fragment");
+                fragmentTransaction.commit();
+                //overlay.show(fm, "FragmentDialog");
+
             }
         });
 
@@ -793,7 +797,6 @@ public class VistoriaActivity extends AppCompatActivity {
                 radioButtonList.add(madeiraRB);
                 radioButtonList.add(mistoRB);
                 vistoria.setTipoMoradia(adapterVistoria.whichButtonIsChacked(radioButtonList));
-                //radioButtonList.removeAll(radioButtonList);
                 radioButtonList.clear();
 
                 /* PASSO 2 */
@@ -948,6 +951,7 @@ public class VistoriaActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         try {
                             if(tipoVistoria == 0){
+                                ///
                                 vistoriaList.add(vistoria);
                                 localizacao.setVistorias((Collection) vistoriaList);
                                 vistoria.setLocalizacao(localizacao);

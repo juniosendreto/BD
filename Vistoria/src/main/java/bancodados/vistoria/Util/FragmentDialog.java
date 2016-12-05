@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageButton;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -39,12 +40,13 @@ public class FragmentDialog extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dialog, container);
         List<FotoVistoria> fotoVistorias = new ArrayList<>();
-        if(!getArguments().getBoolean("vistoriaNova")){
+
+        /*if(!getArguments().getBoolean("vistoriaNova")){
             bdFacade = new BDFacade(getActivity());
             long chaveVistoria = getArguments().getLong("chaveVistoria");
             Vistoria vistoria = (Vistoria) bdFacade.getVistoriaDao().findById(Vistoria.class, chaveVistoria);
             fotoVistorias  = bdFacade.getFotoVistoriaDao().querryImagemPequena(vistoria);
-        }else if(getArguments().getBoolean("vistoriaNova")){
+        }else if(getArguments().getBoolean("vistoriaNova")){*/
             File tempFile = FileUtil.tempDirectory();
             if(tempFile.exists()){
                 for(File f: tempFile.listFiles()){
@@ -53,10 +55,9 @@ public class FragmentDialog extends DialogFragment {
                         fotoVistoria.setImagemMedia(FileUtil.fileToByteArray(f.getAbsolutePath()));
                         fotoVistorias.add(fotoVistoria);
                     }
-
                 }
             }
-        }
+        //}
 
         // tab slider
         sectionsPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager(), fotoVistorias);
@@ -67,6 +68,7 @@ public class FragmentDialog extends DialogFragment {
 
         return view;
     }
+
 
     @Override
     public void onResume() {

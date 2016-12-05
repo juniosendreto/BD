@@ -1,17 +1,17 @@
 package bancodados.vistoria.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
-
-import java.util.Collection;
 
 /**
  * Created by junio on 28/06/16.
  */
 @DatabaseTable(tableName = "FOTO_VISTORIA")
-public class FotoVistoria {
+public class FotoVistoria implements Parcelable{
 
     @DatabaseField(columnName = "id", generatedId = true, canBeNull = false)
     private Long id;
@@ -48,6 +48,38 @@ public class FotoVistoria {
         this.imagemMedia = imagemMedia;
         this.imagemPequena = imagemPequena;
     }
+
+    protected FotoVistoria(Parcel in) {
+        descricao = in.readString();
+        imagemGrande = in.createByteArray();
+        imagemMedia = in.createByteArray();
+        imagemPequena = in.createByteArray();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(descricao);
+        dest.writeByteArray(imagemGrande);
+        dest.writeByteArray(imagemMedia);
+        dest.writeByteArray(imagemPequena);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<FotoVistoria> CREATOR = new Creator<FotoVistoria>() {
+        @Override
+        public FotoVistoria createFromParcel(Parcel in) {
+            return new FotoVistoria(in);
+        }
+
+        @Override
+        public FotoVistoria[] newArray(int size) {
+            return new FotoVistoria[size];
+        }
+    };
 
     public Long getId() {
         return id;

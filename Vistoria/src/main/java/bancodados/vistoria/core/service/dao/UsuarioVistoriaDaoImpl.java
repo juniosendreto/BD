@@ -36,10 +36,13 @@ public class UsuarioVistoriaDaoImpl extends AbstractDaoImpl{
         } catch (Exception e) {
             e.printStackTrace();
             Log.d("----------", "Problema co  método findByIdVistoria");
+        }finally {
+            dataBase.close();
         }
-        if(usuarioVistoriaList.isEmpty() == true){
+        if(usuarioVistoriaList.isEmpty()){
             return null;
         }else{
+
             return usuarioVistoriaList.get(0);
         }
     }

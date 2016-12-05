@@ -110,6 +110,7 @@ public class ListViewVistoriaActivity extends Activity {
         intent.putExtra("localizacao",  mLocalizacao);
         intent.putExtra("vistoria",  vistoria);
         intent.putExtra("localizacaoVelha", true);
+        intent.putExtra("tipoVistoria", 2);
         startActivity(intent);
 
     }

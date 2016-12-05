@@ -73,7 +73,7 @@ public class Adapter{
     public void validarLoginECampo(EditText editText, TextView textView){
 
         try {
-            if (!(campoNull(editText) == true)) {
+            if (!(campoNull(editText))) {
                 UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl(context);
                 Usuario usuario = usuarioDao.findByLogin(editText.getText().toString());
 

@@ -54,7 +54,7 @@ public class FotoVistoriaDaoImpl extends AbstractDaoImpl{
         try {
             connectingBD();
             QueryBuilder<FotoVistoria, ?> queryBuilder = dataBase.getDao(FotoVistoria.class).queryBuilder();
-            queryBuilder.selectColumns("IMAGEM_MEDIA", "DESCRICAO");
+            queryBuilder.selectColumns("IMAGEM_MEDIA", "DESCRICAO", "VISTORIA_ID");
             Where<FotoVistoria, ?> where = queryBuilder.where();
             where.eq("VISTORIA_ID", vistoria.getId());
             PreparedQuery<FotoVistoria> preparedQuery = queryBuilder.prepare();

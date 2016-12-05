@@ -1,6 +1,7 @@
 package bancodados.vistoria.core.service.dao;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.QueryBuilder;
@@ -35,7 +36,7 @@ public class VistoriaDaoImpl extends AbstractDaoImpl {
     }
 
     public List<Vistoria> findByFK(Long id){
-        List<Vistoria> vistorias = (ArrayList)listAll(Vistoria.class);
+        List<Vistoria> vistorias = (ArrayList) listAll(Vistoria.class);
         List<Vistoria> listAux = new ArrayList<>();
         for(Vistoria v: vistorias){
             if(v.getLocalizacao().getId() == id){
